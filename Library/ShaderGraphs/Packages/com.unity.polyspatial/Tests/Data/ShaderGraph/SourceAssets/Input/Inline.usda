@@ -1,0 +1,332 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Inline"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Inline/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Inline/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Inline/CastSwizzleFromCombine_RGBNode_5d290b3e7ea749e0a3fcf48c9aedc046ToSR_Inlinecolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromCombine_RGBNode_5d290b3e7ea749e0a3fcf48c9aedc046ToSR_Inlinecolor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Inline/Combine_RGBNode_5d290b3e7ea749e0a3fcf48c9aedc046.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "Combine_RGBNode_5d290b3e7ea749e0a3fcf48c9aedc046"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Inline/Combine_RNode_5d290b3e7ea749e0a3fcf48c9aedc046.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Inline/Combine_GNode_5d290b3e7ea749e0a3fcf48c9aedc046.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Inline/Combine_BNode_5d290b3e7ea749e0a3fcf48c9aedc046.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Combine_RNode_5d290b3e7ea749e0a3fcf48c9aedc046"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Inline/ComparisonNode_dfe1157c49b042e398e38dcfbbd8f334.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComparisonNode_dfe1157c49b042e398e38dcfbbd8f334"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Inline/SplitNode_85625ce6d7394d349bff045010f861d4G.outputs:out>
+                float inputs:value2 = 1
+                float inputs:in1 = 0
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "SplitNode_85625ce6d7394d349bff045010f861d4G"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Inline/SplitNode_85625ce6d7394d349bff045010f861d4.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "SplitNode_85625ce6d7394d349bff045010f861d4"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Inline/MultiplyNode_95dbcc349a9e4a2da0259216aed96082.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "MultiplyNode_95dbcc349a9e4a2da0259216aed96082"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Inline/SwizzleNode_e4913c612fb54dd6be003ba1a5a192f2.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Inline/Combine_RGBNode_3f23c8af36b74ec58dd2f9c91e517f96.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "SwizzleNode_e4913c612fb54dd6be003ba1a5a192f2"
+            {
+                uniform token info:id = "ND_swizzle_vector3_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Inline/MultiplyNode_7b9461e21e7b487e89260d52af799254.outputs:out>
+                string inputs:channels = "xzx"
+                float3 outputs:out
+            }
+
+            def Shader "MultiplyNode_7b9461e21e7b487e89260d52af799254"
+            {
+                uniform token info:id = "ND_transformmatrix_vector3"
+                matrix3d inputs:mat.connect = </MaterialX/Materials/USD_Inline/Matrix3Node_1c8752aa39474102996a29196906a7af.outputs:out>
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Inline/Vector3Node_00e2465ebe3d430ca59fe273d9e22031.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Matrix3Node_1c8752aa39474102996a29196906a7af"
+            {
+                uniform token info:id = "ND_constant_matrix33"
+                matrix3d inputs:value = ((0, 0, 0), (0, 0, 0), (0, 0, 1))
+                matrix3d outputs:out
+            }
+
+            def Shader "Combine_GNode_5d290b3e7ea749e0a3fcf48c9aedc046"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Inline/ComparisonNode_f59b192015b44c75ba63be933974ba2d.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComparisonNode_f59b192015b44c75ba63be933974ba2d"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Inline/SplitNode_85625ce6d7394d349bff045010f861d4G.outputs:out>
+                float inputs:value2 = 1
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "Combine_BNode_5d290b3e7ea749e0a3fcf48c9aedc046"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "Combine_RGBNode_3f23c8af36b74ec58dd2f9c91e517f96"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Inline/Combine_RNode_3f23c8af36b74ec58dd2f9c91e517f96.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Inline/Combine_GNode_3f23c8af36b74ec58dd2f9c91e517f96.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Inline/Combine_BNode_3f23c8af36b74ec58dd2f9c91e517f96.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Combine_BNode_3f23c8af36b74ec58dd2f9c91e517f96"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "Combine_GNode_3f23c8af36b74ec58dd2f9c91e517f96"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Inline/ComparisonNode_0383f0c483b045bea75c26996629f641.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComparisonNode_0383f0c483b045bea75c26996629f641"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Inline/SwizzleNode_7ad0401bb15140bbb73e52122901ae42.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_Inline/ComparisonNode_35723bacd79d4141bb88623f8846b702.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "ComparisonNode_35723bacd79d4141bb88623f8846b702"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Inline/SwizzleNode_0bd44f4896b446649f0af0c3591c41dd.outputs:out>
+                float inputs:value2 = 0.9
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "SwizzleNode_0bd44f4896b446649f0af0c3591c41dd"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Inline/MultiplyNode_6f068585fa8d4fc092163d7dc63b4c3a.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "MultiplyNode_6f068585fa8d4fc092163d7dc63b4c3a"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Inline/CastSwizzleFromColorNode_8abd3c29e0704db4bf458dbdabe3fa0eToMultiplyNode_6f068585fa8d4fc092163d7dc63b4c3ain.outputs:out>
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_Inline/Matrix4Node_cf80b4df220344cdbf8a69d9faa54fb8.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Matrix4Node_cf80b4df220344cdbf8a69d9faa54fb8"
+            {
+                uniform token info:id = "ND_constant_matrix44"
+                matrix4d inputs:value = ((1, 0, 0, 0), (0, 0, 1, 0), (0, 1, 0, 0), (0, 0, 0, 1))
+                matrix4d outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorNode_8abd3c29e0704db4bf458dbdabe3fa0eToMultiplyNode_6f068585fa8d4fc092163d7dc63b4c3ain"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_Inline/ColorNode_8abd3c29e0704db4bf458dbdabe3fa0e.outputs:out>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "ColorNode_8abd3c29e0704db4bf458dbdabe3fa0e"
+            {
+                uniform token info:id = "ND_constant_color4"
+                color4f inputs:value = (0, 0, 1, 0)
+                color4f outputs:out
+            }
+
+            def Shader "SwizzleNode_7ad0401bb15140bbb73e52122901ae42"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Inline/MultiplyNode_865313310802411a9385a5961bd56768.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "MultiplyNode_865313310802411a9385a5961bd56768"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_Inline/Matrix4Node_396f3fcac4f541439cdc87cdffe8d186.outputs:out>
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Inline/PreviewNode_46a17d09779e49aaa5b71e7cf6c0151a.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "PreviewNode_46a17d09779e49aaa5b71e7cf6c0151a"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Inline/Vector4Node_f8f76bb01d31452db8918c223686f835.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Vector4Node_f8f76bb01d31452db8918c223686f835"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1 = 0
+                float inputs:in2 = 0
+                float inputs:in3 = 1
+                float inputs:in4 = 0
+                float4 outputs:out
+            }
+
+            def Shader "Matrix4Node_396f3fcac4f541439cdc87cdffe8d186"
+            {
+                uniform token info:id = "ND_constant_matrix44"
+                matrix4d inputs:value = ((1, 0, 0, 0), (0, 0, 1, 0), (0, 1, 0, 0), (0, 0, 0, 1))
+                matrix4d outputs:out
+            }
+
+            def Shader "Combine_RNode_3f23c8af36b74ec58dd2f9c91e517f96"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "Vector3Node_00e2465ebe3d430ca59fe273d9e22031"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Inline/SplitNode_6e2eda0cdc89409dae3e2e64a01b400cR.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Inline/SplitNode_6e2eda0cdc89409dae3e2e64a01b400cG.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Inline/SliderNode_daf2fdc6d5d74cbbb0675758fa864c58.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "SplitNode_6e2eda0cdc89409dae3e2e64a01b400cR"
+            {
+                uniform token info:id = "ND_extract_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Inline/SplitNode_6e2eda0cdc89409dae3e2e64a01b400c.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "SplitNode_6e2eda0cdc89409dae3e2e64a01b400c"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Inline/Vector2Node_38eb6240e1b44cefb84fed18279d07a9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Vector2Node_38eb6240e1b44cefb84fed18279d07a9"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Inline/Vector1Node_357db831fae94474a8b365d79d4a5dc4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Inline/BooleanNode_01c6f0bb61c44486b702209c067d0db0.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Vector1Node_357db831fae94474a8b365d79d4a5dc4"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = </MaterialX/Materials/USD_Inline/IntegerNode_61551c3b080940bcb850696a8465e50e.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "IntegerNode_61551c3b080940bcb850696a8465e50e"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 1
+                float outputs:out
+            }
+
+            def Shader "SplitNode_6e2eda0cdc89409dae3e2e64a01b400cG"
+            {
+                uniform token info:id = "ND_extract_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Inline/SplitNode_6e2eda0cdc89409dae3e2e64a01b400c.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "SliderNode_daf2fdc6d5d74cbbb0675758fa864c58"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 1
+                float outputs:out
+            }
+
+            def Shader "BooleanNode_01c6f0bb61c44486b702209c067d0db0"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 1
+                float outputs:out
+            }
+        }
+    }
+}

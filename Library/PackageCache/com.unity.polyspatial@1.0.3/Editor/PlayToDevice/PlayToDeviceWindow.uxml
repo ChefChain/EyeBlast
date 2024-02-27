@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.unity.polyspatial/Editor/PlayToDevice/PlayToDeviceWindow.uss?fileID=7433441132597879392&amp;guid=a882e690f2642fd41b82babf6557875b&amp;type=3#PlayToDeviceWindow" />
+    <ui:Foldout text="Play To Device info" name="InfoFoldout">
+        <ui:HelpBox message-type="Info" name="InfoHelpBox" style="margin-bottom: 5px;" />
+    </ui:Foldout>
+    <ui:DropdownField label="Connect on Play" index="0" name="ConnectOnPlayDropdown" choices="Disabled,Enabled" style="margin-left: 19px; margin-bottom: 3px; margin-top: 4px;" />
+    <ui:Foldout text="Available Connections" name="AvailableConnectionsFoldout">
+        <ui:ListView focusable="true" name="ConnectionList" fixed-item-height="22" show-alternating-row-backgrounds="All" selection-type="None" horizontal-scrolling="true" style="margin-right: 3px; border-left-color: rgba(0, 0, 0, 0.39); border-right-color: rgba(0, 0, 0, 0.39); border-top-color: rgba(0, 0, 0, 0.39); border-bottom-color: rgba(0, 0, 0, 0.39); min-height: 22px; border-right-width: 1px; border-left-width: 1px; border-bottom-width: 1px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-top-width: 1px; margin-left: 3px;" />
+        <ui:HelpBox message-type="Warning" name="MismatchVersionHelpBox" style="margin-top: 7px;" />
+    </ui:Foldout>
+    <ui:Foldout text="Advanced Settings" name="AdvancedSettingsFoldout" style="padding-bottom: 3px;">
+        <ui:UnsignedIntegerField label="Connection Timeout (Seconds)" value="5" name="ConnectionTimeoutField" />
+        <ui:Foldout text="Direct Connection" style="padding-bottom: 3px;">
+            <ui:TextField picking-mode="Ignore" label="Name" value="&lt;Direct Connection&gt;" name="HostNameField" />
+            <ui:HelpBox message-type="Warning" name="InvalidHostNameHelpBox" style="margin-left: 180px;" />
+            <ui:TextField picking-mode="Ignore" label="Host IP" value="127.0.0.1" name="HostIPField" />
+            <ui:HelpBox message-type="Warning" name="InvalidIPHelpBox" style="margin-left: 180px;" />
+            <ui:IntegerField label="Port" value="9876" name="HostPortField" />
+            <ui:HelpBox message-type="Warning" name="InvalidPortHelpBox" style="margin-left: 180px;" />
+            <ui:Button text="Add Device" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AddConnectionButton" />
+            <ui:HelpBox message-type="Warning" name="DuplicateConnectionHelpBox" />
+        </ui:Foldout>
+    </ui:Foldout>
+</ui:UXML>

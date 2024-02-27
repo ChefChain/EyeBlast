@@ -1,0 +1,451 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_MaskingShader"
+        {
+            asset inputs:_MainTex = @placeholder.png@ (colorSpace = "srgb_texture")
+            asset inputs:_MaskTexture = @placeholder.png@ (colorSpace = "srgb_texture")
+            float inputs:_MaskOperation = 0
+            float inputs:_AlphaCutoff = 0.2
+            matrix4d inputs:_UVTransform = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1))
+            color4f inputs:_Color = (1, 1, 1, 1)
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_MaskingShader/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_MaskingShader/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_MaskingShader/CastSwizzleFromMultiplyNode_ca202ed6204a47e1a69f31ba43acc969ToSR_MaskingShadercolor.outputs:out>
+                float inputs:opacity.connect = </MaterialX/Materials/USD_MaskingShader/MultiplyNode_350b69613b20404b88b96229b1a49c49.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_ca202ed6204a47e1a69f31ba43acc969ToSR_MaskingShadercolor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/MultiplyNode_ca202ed6204a47e1a69f31ba43acc969.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "MultiplyNode_ca202ed6204a47e1a69f31ba43acc969"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_RGBANode_d7d3e5a6ff4c47f5a45ba41f62acc5dc.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_MaskingShader/CastSwizzleFrom_ColorToMultiplyNode_ca202ed6204a47e1a69f31ba43acc969in2.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_d7d3e5a6ff4c47f5a45ba41f62acc5dc"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_TextureNode_d7d3e5a6ff4c47f5a45ba41f62acc5dc.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_UVNode_d7d3e5a6ff4c47f5a45ba41f62acc5dc.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_d7d3e5a6ff4c47f5a45ba41f62acc5dc"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_MaskingShader.inputs:_MainTex>
+                asset outputs:out
+            }
+
+            def Shader "MultiplyNode_350b69613b20404b88b96229b1a49c49"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/MultiplyNode_5d105cbf16eb44fdae77f059ebd0b1a1.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_MaskingShader/StepNode_ebb61e3105c244b9b64252a246561ea7.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "StepNode_ebb61e3105c244b9b64252a246561ea7"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value2.connect = </MaterialX/Materials/USD_MaskingShader.inputs:_AlphaCutoff>
+                float inputs:value1.connect = </MaterialX/Materials/USD_MaskingShader/BranchNode_82119c4eaa96430a944ae68199e420db.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "BranchNode_82119c4eaa96430a944ae68199e420db"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/SubtractNode_6241de9ab43a43ce84a8c128c975df4f.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_MaskingShader/MultiplyNode_0dc88181c6f4482c9ce5fbe2e7f4cad8.outputs:out>
+                float inputs:value1.connect = </MaterialX/Materials/USD_MaskingShader/BranchAbsNode_82119c4eaa96430a944ae68199e420db.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SubtractNode_6241de9ab43a43ce84a8c128c975df4f"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_MaskingShader/MultiplyNode_0dc88181c6f4482c9ce5fbe2e7f4cad8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "MultiplyNode_5d105cbf16eb44fdae77f059ebd0b1a1"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_ANode_d7d3e5a6ff4c47f5a45ba41f62acc5dc.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_MaskingShader/SplitNode_5f33042aa89647aa83f58236175ae95aA.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SplitNode_5f33042aa89647aa83f58236175ae95aA"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/SplitNode_5f33042aa89647aa83f58236175ae95a.outputs:out>
+                int inputs:index = 3
+                float outputs:out
+            }
+
+            def Shader "SplitNode_5f33042aa89647aa83f58236175ae95a"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/CastSwizzleFrom_ColorToSplitNode_5f33042aa89647aa83f58236175ae95ain.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzleFrom_ColorToSplitNode_5f33042aa89647aa83f58236175ae95ain"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_MaskingShader.inputs:_Color>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_ANode_d7d3e5a6ff4c47f5a45ba41f62acc5dc"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_RGBANode_d7d3e5a6ff4c47f5a45ba41f62acc5dc.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFrom_ColorToMultiplyNode_ca202ed6204a47e1a69f31ba43acc969in2"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_MaskingShader.inputs:_Color>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_d7d3e5a6ff4c47f5a45ba41f62acc5dc"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_UVNode_d7d3e5a6ff4c47f5a45ba41f62acc5dcAdd.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_d7d3e5a6ff4c47f5a45ba41f62acc5dcAdd"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_UVNode_d7d3e5a6ff4c47f5a45ba41f62acc5dcMultiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_d7d3e5a6ff4c47f5a45ba41f62acc5dcMultiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_UVNode_d7d3e5a6ff4c47f5a45ba41f62acc5dcUV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_d7d3e5a6ff4c47f5a45ba41f62acc5dcUV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "MultiplyNode_0dc88181c6f4482c9ce5fbe2e7f4cad8"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_ANode_cecee4dba1ce4f03828417fff797f8f2.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_MaskingShader/MultiplyNode_7172f18c73b6473ab8fcbc8463a48aab.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "MultiplyNode_7172f18c73b6473ab8fcbc8463a48aab"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/SplitNode_a64b69054ecb4a96bb5620e977f52dccR.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_MaskingShader/SplitNode_a64b69054ecb4a96bb5620e977f52dccG.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SplitNode_a64b69054ecb4a96bb5620e977f52dccG"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/SplitNode_a64b69054ecb4a96bb5620e977f52dcc.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "SplitNode_a64b69054ecb4a96bb5620e977f52dcc"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/StepOutNode_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "StepOutNode_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/StepComp0Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_MaskingShader/StepComp1Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_MaskingShader/StepComp2Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:in4.connect = </MaterialX/Materials/USD_MaskingShader/StepComp3Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "StepComp2Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_MaskingShader/StepIn2Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_MaskingShader/StepEdge2Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "StepIn2Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/StepInNode_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                int inputs:index = 2
+                float outputs:out
+            }
+
+            def Shader "StepInNode_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in = (0.5, 0.5, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "StepComp1Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_MaskingShader/StepIn1Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_MaskingShader/StepEdge1Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "StepEdge1Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/StepEdgeNode_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "StepEdgeNode_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/AbsoluteNode_c2a356eb5f6b4421990ff9eced40dfd0.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "AbsoluteNode_c2a356eb5f6b4421990ff9eced40dfd0"
+            {
+                uniform token info:id = "ND_absval_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/SubtractNode_afe435c83d8b4e6084da6ac99bab0a9a.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "SubtractNode_afe435c83d8b4e6084da6ac99bab0a9a"
+            {
+                uniform token info:id = "ND_subtract_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/MultiplyNode_202a3a2221024642afaf43cb568ac12b.outputs:out>
+                float4 inputs:in2 = (0.5, 0.5, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "MultiplyNode_202a3a2221024642afaf43cb568ac12b"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_MaskingShader.inputs:_UVTransform>
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/Position_OutNode_7cba84f2c7fe4c2a870e4dac3a403e70.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Position_OutNode_7cba84f2c7fe4c2a870e4dac3a403e70"
+            {
+                uniform token info:id = "ND_convert_vector3_vector4"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/Position_Out_inNode_7cba84f2c7fe4c2a870e4dac3a403e70.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Position_Out_inNode_7cba84f2c7fe4c2a870e4dac3a403e70"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_MaskingShader/Position_Out_in_in1Node_7cba84f2c7fe4c2a870e4dac3a403e70.outputs:out>
+                float3 inputs:in2 = (1, 1, -1)
+                float3 outputs:out
+            }
+
+            def Shader "Position_Out_in_in1Node_7cba84f2c7fe4c2a870e4dac3a403e70"
+            {
+                uniform token info:id = "ND_position_vector3"
+                string inputs:space = "object"
+                float3 outputs:out
+            }
+
+            def Shader "StepIn1Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/StepInNode_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "StepComp0Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_MaskingShader/StepIn0Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_MaskingShader/StepEdge0Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "StepEdge0Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/StepEdgeNode_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "StepIn0Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/StepInNode_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "SplitNode_a64b69054ecb4a96bb5620e977f52dccR"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/SplitNode_a64b69054ecb4a96bb5620e977f52dcc.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_ANode_cecee4dba1ce4f03828417fff797f8f2"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_RGBANode_cecee4dba1ce4f03828417fff797f8f2.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_cecee4dba1ce4f03828417fff797f8f2"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_TextureNode_cecee4dba1ce4f03828417fff797f8f2.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_MaskingShader/SampleTexture2D_UVNode_cecee4dba1ce4f03828417fff797f8f2.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_cecee4dba1ce4f03828417fff797f8f2"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/CastSwizzleFromMultiplyNode_202a3a2221024642afaf43cb568ac12bToSampleTexture2D_UVNode_cecee4dba1ce4f03828417fff797f8f2in.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_202a3a2221024642afaf43cb568ac12bToSampleTexture2D_UVNode_cecee4dba1ce4f03828417fff797f8f2in"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/MultiplyNode_202a3a2221024642afaf43cb568ac12b.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_cecee4dba1ce4f03828417fff797f8f2"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_MaskingShader.inputs:_MaskTexture>
+                asset outputs:out
+            }
+
+            def Shader "BranchAbsNode_82119c4eaa96430a944ae68199e420db"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_MaskingShader.inputs:_MaskOperation>
+                float outputs:out
+            }
+
+            def Shader "StepComp3Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_MaskingShader/StepIn3Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_MaskingShader/StepEdge3Node_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "StepEdge3Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/StepEdgeNode_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                int inputs:index = 3
+                float outputs:out
+            }
+
+            def Shader "StepIn3Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/StepInNode_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                int inputs:index = 3
+                float outputs:out
+            }
+
+            def Shader "StepEdge2Node_80c77a648fa14ab0b836a3ececbd7f45"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_MaskingShader/StepEdgeNode_80c77a648fa14ab0b836a3ececbd7f45.outputs:out>
+                int inputs:index = 2
+                float outputs:out
+            }
+        }
+    }
+}

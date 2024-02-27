@@ -1,0 +1,410 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <constant name = "_MainTex" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <RealityKitTexture2D name = "SampleTexture2D_RGBANode_c81bcbfe0f60718e939542eb395bf3c4" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture2D_TextureNode_c81bcbfe0f60718e939542eb395bf3c4" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture2D_UVNode_c81bcbfe0f60718e939542eb395bf3c4" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "SampleTexture2D_TextureNode_c81bcbfe0f60718e939542eb395bf3c4" type = "filename">
+        <input name = "in" type = "filename" nodename = "_MainTex" />
+    </dot>
+    <dot name = "SampleTexture2D_UVNode_c81bcbfe0f60718e939542eb395bf3c4" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9" />
+    </dot>
+    <swizzle name = "SampleTexture2D_RNode_c81bcbfe0f60718e939542eb395bf3c4" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_c81bcbfe0f60718e939542eb395bf3c4" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_GNode_c81bcbfe0f60718e939542eb395bf3c4" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_c81bcbfe0f60718e939542eb395bf3c4" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_BNode_c81bcbfe0f60718e939542eb395bf3c4" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_c81bcbfe0f60718e939542eb395bf3c4" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_ANode_c81bcbfe0f60718e939542eb395bf3c4" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_c81bcbfe0f60718e939542eb395bf3c4" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <constant name = "_EmissionColor" type = "color4">
+        <input name = "value" type = "color4" value = "0,0,0,0" />
+    </constant>
+    <constant name = "_BumpMap" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <RealityKitTexture2D name = "SampleTexture2D_RGBANode_8afd86312220fa8fbc8af293511adef0" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture2D_TextureNode_8afd86312220fa8fbc8af293511adef0" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture2D_UVNode_8afd86312220fa8fbc8af293511adef0" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "SampleTexture2D_TextureNode_8afd86312220fa8fbc8af293511adef0" type = "filename">
+        <input name = "in" type = "filename" nodename = "_OcclusionMap" />
+    </dot>
+    <dot name = "SampleTexture2D_UVNode_8afd86312220fa8fbc8af293511adef0" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9" />
+    </dot>
+    <swizzle name = "SampleTexture2D_RNode_8afd86312220fa8fbc8af293511adef0" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_8afd86312220fa8fbc8af293511adef0" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_GNode_8afd86312220fa8fbc8af293511adef0" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_8afd86312220fa8fbc8af293511adef0" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_BNode_8afd86312220fa8fbc8af293511adef0" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_8afd86312220fa8fbc8af293511adef0" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_ANode_8afd86312220fa8fbc8af293511adef0" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_8afd86312220fa8fbc8af293511adef0" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <ifequal name = "SampleTexture2D_RGBANode_2fe4f324395f648db87f16e6a639ee36" type = "vector4">
+        <input name = "value1" type = "float" nodename = "SampleTexture2D_RGBA_value1Node_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "vector4" nodename = "SampleTexture2D_reconstructedNode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "in2" type = "vector4" nodename = "SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36" />
+    </ifequal>
+    <ifequal name = "SampleTexture2D_RGBA_value1Node_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "value1" type = "float" nodename = "SampleTexture2D_RGBA_value1_value1Node_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "value2" type = "float" value = "1" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <swizzle name = "SampleTexture2D_RGBA_value1_value1Node_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <subtract name = "SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "SampleTexture2D_rescaled_in1Node_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "in2" type = "float" value = "1" />
+    </subtract>
+    <multiply name = "SampleTexture2D_rescaled_in1Node_2fe4f324395f648db87f16e6a639ee36" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "SampleTexture2D_rescaled_in1_in1Node_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "in2" type = "float" value = "2" />
+    </multiply>
+    <RealityKitTexture2D name = "SampleTexture2D_rescaled_in1_in1Node_2fe4f324395f648db87f16e6a639ee36" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture2D_TextureNode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture2D_UVNode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "SampleTexture2D_TextureNode_2fe4f324395f648db87f16e6a639ee36" type = "filename">
+        <input name = "in" type = "filename" nodename = "_BumpMap" />
+    </dot>
+    <dot name = "SampleTexture2D_UVNode_2fe4f324395f648db87f16e6a639ee36" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9" />
+    </dot>
+    <combine4 name = "SampleTexture2D_reconstructedNode_2fe4f324395f648db87f16e6a639ee36" type = "vector4">
+        <input name = "in1" type = "float" nodename = "SampleTexture2D_reconstructed_in1Node_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "in2" type = "float" nodename = "SampleTexture2D_reconstructed_in2Node_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "in3" type = "float" nodename = "SampleTexture2D_zNode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "in4" type = "float" value = "1" />
+    </combine4>
+    <swizzle name = "SampleTexture2D_reconstructed_in1Node_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_reconstructed_in2Node_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <sqrt name = "SampleTexture2D_zNode_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "in" type = "float" nodename = "SampleTexture2D_z_inNode_2fe4f324395f648db87f16e6a639ee36" />
+    </sqrt>
+    <subtract name = "SampleTexture2D_z_inNode_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "SampleTexture2D_z_in_in2Node_2fe4f324395f648db87f16e6a639ee36" />
+    </subtract>
+    <dotproduct name = "SampleTexture2D_z_in_in2Node_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "in1" type = "vector4" nodename = "SampleTexture2D_z_in_in2_in1Node_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "in2" type = "vector4" value = "0,1,0,1" />
+    </dotproduct>
+    <multiply name = "SampleTexture2D_z_in_in2_in1Node_2fe4f324395f648db87f16e6a639ee36" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "in2" type = "vector4" nodename = "SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36" />
+    </multiply>
+    <swizzle name = "SampleTexture2D_RNode_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_GNode_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_BNode_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_ANode_2fe4f324395f648db87f16e6a639ee36" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <constant name = "_OcclusionMap" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <constant name = "_UseRoughnessMap" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <texcoord name = "UVNode_1e2cbb3268acf98195ceef69aea4fc5e" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "MultiplyNode_1e2cbb3268acf98195ceef69aea4fc5e" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,-1" />
+        <input name = "in2" type = "vector2" nodename = "UVNode_1e2cbb3268acf98195ceef69aea4fc5e" />
+    </multiply>
+    <add name = "AddNode_1e2cbb3268acf98195ceef69aea4fc5e" type = "vector2">
+        <input name = "in1" type = "vector2" value = "0,1" />
+        <input name = "in2" type = "vector2" nodename = "MultiplyNode_1e2cbb3268acf98195ceef69aea4fc5e" />
+    </add>
+    <constant name = "_UseColorMap" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <constant name = "_UseNormalMap" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <ifgreater name = "BranchNode_705619f9be8be288b1ace340eb6a2446" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleTexture2D_RNode_7309751d3670628fba389d722171d2f3" />
+        <input name = "in2" type = "float" nodename = "_Glossiness" />
+        <input name = "value1" type = "float" nodename = "BranchAbsNode_705619f9be8be288b1ace340eb6a2446" />
+    </ifgreater>
+    <absval name = "BranchAbsNode_705619f9be8be288b1ace340eb6a2446" type = "float">
+        <input name = "in" type = "float" nodename = "_UseRoughnessMap" />
+    </absval>
+    <RealityKitTexture2D name = "SampleTexture2D_RGBANode_7309751d3670628fba389d722171d2f3" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture2D_TextureNode_7309751d3670628fba389d722171d2f3" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture2D_UVNode_7309751d3670628fba389d722171d2f3" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "SampleTexture2D_TextureNode_7309751d3670628fba389d722171d2f3" type = "filename">
+        <input name = "in" type = "filename" nodename = "_SpecGlossMap" />
+    </dot>
+    <dot name = "SampleTexture2D_UVNode_7309751d3670628fba389d722171d2f3" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9" />
+    </dot>
+    <swizzle name = "SampleTexture2D_RNode_7309751d3670628fba389d722171d2f3" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_7309751d3670628fba389d722171d2f3" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_GNode_7309751d3670628fba389d722171d2f3" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_7309751d3670628fba389d722171d2f3" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_BNode_7309751d3670628fba389d722171d2f3" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_7309751d3670628fba389d722171d2f3" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_ANode_7309751d3670628fba389d722171d2f3" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_7309751d3670628fba389d722171d2f3" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <constant name = "_Glossiness" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <constant name = "_SpecGlossMap" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <constant name = "_UseMetallicMap" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <RealityKitTexture2D name = "SampleTexture2D_RGBANode_2c09eb7f35dcb2879ba5fb2923c41623" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture2D_TextureNode_2c09eb7f35dcb2879ba5fb2923c41623" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture2D_UVNode_2c09eb7f35dcb2879ba5fb2923c41623" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "SampleTexture2D_TextureNode_2c09eb7f35dcb2879ba5fb2923c41623" type = "filename">
+        <input name = "in" type = "filename" nodename = "_MetallicGlossMap" />
+    </dot>
+    <dot name = "SampleTexture2D_UVNode_2c09eb7f35dcb2879ba5fb2923c41623" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9" />
+    </dot>
+    <swizzle name = "SampleTexture2D_RNode_2c09eb7f35dcb2879ba5fb2923c41623" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_2c09eb7f35dcb2879ba5fb2923c41623" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_GNode_2c09eb7f35dcb2879ba5fb2923c41623" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_2c09eb7f35dcb2879ba5fb2923c41623" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_BNode_2c09eb7f35dcb2879ba5fb2923c41623" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_2c09eb7f35dcb2879ba5fb2923c41623" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_ANode_2c09eb7f35dcb2879ba5fb2923c41623" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_2c09eb7f35dcb2879ba5fb2923c41623" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <constant name = "_Metallic" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <ifgreater name = "BranchNode_cd2ee7937e14f18c8dcfa0cb0e18e4cd" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleTexture2D_RNode_2c09eb7f35dcb2879ba5fb2923c41623" />
+        <input name = "in2" type = "float" nodename = "_Metallic" />
+        <input name = "value1" type = "float" nodename = "BranchAbsNode_cd2ee7937e14f18c8dcfa0cb0e18e4cd" />
+    </ifgreater>
+    <absval name = "BranchAbsNode_cd2ee7937e14f18c8dcfa0cb0e18e4cd" type = "float">
+        <input name = "in" type = "float" nodename = "_UseMetallicMap" />
+    </absval>
+    <ifgreater name = "BranchNode_5f4b31f3c3ad1688a81ba431f06aab5a" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "SampleTexture2D_RGBANode_2fe4f324395f648db87f16e6a639ee36" />
+        <input name = "in2" type = "vector4" value = "0,0,1,0" />
+        <input name = "value1" type = "float" nodename = "BranchAbsNode_5f4b31f3c3ad1688a81ba431f06aab5a" />
+    </ifgreater>
+    <absval name = "BranchAbsNode_5f4b31f3c3ad1688a81ba431f06aab5a" type = "float">
+        <input name = "in" type = "float" nodename = "_UseNormalMap" />
+    </absval>
+    <constant name = "_MetallicGlossMap" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <ifgreater name = "BranchNode_087669b47659ea85a78c835a80e92b29" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "SampleTexture2D_RGBANode_c81bcbfe0f60718e939542eb395bf3c4" />
+        <input name = "in2" type = "vector4" nodename = "CastSwizzleFrom_ColorToBranchNode_087669b47659ea85a78c835a80e92b29in2" />
+        <input name = "value1" type = "float" nodename = "BranchAbsNode_087669b47659ea85a78c835a80e92b29" />
+    </ifgreater>
+    <absval name = "BranchAbsNode_087669b47659ea85a78c835a80e92b29" type = "float">
+        <input name = "in" type = "float" nodename = "_UseColorMap" />
+    </absval>
+    <RealityKitTexture2D name = "SampleTexture2D_RGBANode_985ac3a286764389bc11faa74f1266ce" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture2D_TextureNode_985ac3a286764389bc11faa74f1266ce" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture2D_UVNode_985ac3a286764389bc11faa74f1266ce" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "SampleTexture2D_TextureNode_985ac3a286764389bc11faa74f1266ce" type = "filename">
+        <input name = "in" type = "filename" nodename = "_EmissionMap" />
+    </dot>
+    <dot name = "SampleTexture2D_UVNode_985ac3a286764389bc11faa74f1266ce" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9" />
+    </dot>
+    <swizzle name = "SampleTexture2D_RNode_985ac3a286764389bc11faa74f1266ce" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_985ac3a286764389bc11faa74f1266ce" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_GNode_985ac3a286764389bc11faa74f1266ce" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_985ac3a286764389bc11faa74f1266ce" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_BNode_985ac3a286764389bc11faa74f1266ce" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_985ac3a286764389bc11faa74f1266ce" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_ANode_985ac3a286764389bc11faa74f1266ce" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_985ac3a286764389bc11faa74f1266ce" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <subtract name = "OneMinusNode_cb620ab3a45473838d9c902b3497ed94" type = "float">
+        <input name = "in2" type = "float" nodename = "SquareRootNode_bf8c77908df5c588bd2b259e3241141b" />
+        <input name = "in1" type = "float" value = "1" />
+    </subtract>
+    <ifgreater name = "BranchNode_c328fbfd37023b84b0e6d61edc72ab48" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "SampleTexture2D_RGBANode_985ac3a286764389bc11faa74f1266ce" />
+        <input name = "in2" type = "vector4" nodename = "CastSwizzleFrom_EmissionColorToBranchNode_c328fbfd37023b84b0e6d61edc72ab48in2" />
+        <input name = "value1" type = "float" nodename = "BranchAbsNode_c328fbfd37023b84b0e6d61edc72ab48" />
+    </ifgreater>
+    <absval name = "BranchAbsNode_c328fbfd37023b84b0e6d61edc72ab48" type = "float">
+        <input name = "in" type = "float" nodename = "_UseEmissiveMap" />
+    </absval>
+    <constant name = "_EmissionMap" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <sqrt name = "SquareRootNode_bf8c77908df5c588bd2b259e3241141b" type = "float">
+        <input name = "in" type = "float" nodename = "BranchNode_705619f9be8be288b1ace340eb6a2446" />
+    </sqrt>
+    <constant name = "_Color" type = "color4">
+        <input name = "value" type = "color4" value = "0,0,0,0" />
+    </constant>
+    <constant name = "_UvOffset" type = "vector2">
+        <input name = "value" type = "vector2" value = "0,0" />
+    </constant>
+    <constant name = "_UvTiling" type = "vector2">
+        <input name = "value" type = "vector2" value = "1,1" />
+    </constant>
+    <multiply name = "TilingAndOffsetMulNode_dbb3172036415f8e8492048aaa103ea9" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "AddNode_1e2cbb3268acf98195ceef69aea4fc5e" />
+        <input name = "in2" type = "vector2" nodename = "_UvTiling" />
+    </multiply>
+    <add name = "TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "TilingAndOffsetMulNode_dbb3172036415f8e8492048aaa103ea9" />
+        <input name = "in2" type = "vector2" nodename = "_UvOffset" />
+    </add>
+    <constant name = "_UseEmissiveMap" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <GeometryModification name = "SR_AutodeskInteractiveVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_pbr name = "SR_AutodeskInteractive" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" nodename = "CastSwizzleFromBranchNode_087669b47659ea85a78c835a80e92b29ToSR_AutodeskInteractivebaseColor" />
+        <input name = "normal" type = "vector3" nodename = "CastSwizzleFromBranchNode_5f4b31f3c3ad1688a81ba431f06aab5aToSR_AutodeskInteractivenormal" />
+        <input name = "emissiveColor" type = "color3" nodename = "CastSwizzleFromBranchNode_c328fbfd37023b84b0e6d61edc72ab48ToSR_AutodeskInteractiveemissiveColor" />
+        <input name = "ambientOcclusion" type = "float" nodename = "CastSwizzleFromSampleTexture2D_RGBANode_8afd86312220fa8fbc8af293511adef0ToSR_AutodeskInteractiveambientOcclusion" />
+        <input name = "metallic" type = "float" nodename = "BranchNode_cd2ee7937e14f18c8dcfa0cb0e18e4cd" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "roughness" type = "float" nodename = "SR_AutodeskInteractive_roughness_OnesComplement" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_AutodeskInteractive" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_AutodeskInteractiveVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_AutodeskInteractive" />
+    </surfacematerial>
+    <subtract name = "SR_AutodeskInteractive_roughness_OnesComplement" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "OneMinusNode_cb620ab3a45473838d9c902b3497ed94" />
+    </subtract>
+    <swizzle name = "CastSwizzleFrom_ColorToBranchNode_087669b47659ea85a78c835a80e92b29in2" type = "vector4">
+        <input name = "in" type = "color4" nodename = "_Color" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFrom_EmissionColorToBranchNode_c328fbfd37023b84b0e6d61edc72ab48in2" type = "vector4">
+        <input name = "in" type = "color4" nodename = "_EmissionColor" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromBranchNode_087669b47659ea85a78c835a80e92b29ToSR_AutodeskInteractivebaseColor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "BranchNode_087669b47659ea85a78c835a80e92b29" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromBranchNode_5f4b31f3c3ad1688a81ba431f06aab5aToSR_AutodeskInteractivenormal" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "BranchNode_5f4b31f3c3ad1688a81ba431f06aab5a" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromBranchNode_c328fbfd37023b84b0e6d61edc72ab48ToSR_AutodeskInteractiveemissiveColor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "BranchNode_c328fbfd37023b84b0e6d61edc72ab48" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromSampleTexture2D_RGBANode_8afd86312220fa8fbc8af293511adef0ToSR_AutodeskInteractiveambientOcclusion" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_8afd86312220fa8fbc8af293511adef0" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+</materialx>

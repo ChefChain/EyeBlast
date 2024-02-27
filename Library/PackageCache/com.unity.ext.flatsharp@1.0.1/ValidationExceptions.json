@@ -1,0 +1,15 @@
+{
+    "ErrorExceptions": [
+        {
+            "ValidationTest": "Restricted File Type Validation",
+            "ExceptionMessage": "/Tools~/FlatSharp.Compiler/FlatSharp.Compiler.exe cannot be included in a package.",
+            "PackageVersion": "1.0.1"
+        },
+        {
+            "ValidationTest": "Restricted File Type Validation",
+            "ExceptionMessage": "/Tools~/FlatSharp.Compiler/flatc/windows/flatc.exe cannot be included in a package.",
+            "PackageVersion": "1.0.1"
+        }
+    ],
+    "WarningExceptions": []
+}

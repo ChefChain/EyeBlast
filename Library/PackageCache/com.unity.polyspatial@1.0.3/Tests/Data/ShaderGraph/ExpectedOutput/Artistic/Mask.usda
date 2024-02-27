@@ -1,0 +1,209 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Mask"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Mask/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Mask/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Mask/CastSwizzleFromMultiplyNode_e7ce4037f7a04ff49140ffa21dec109aToSR_Maskcolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_e7ce4037f7a04ff49140ffa21dec109aToSR_Maskcolor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Mask/MultiplyNode_e7ce4037f7a04ff49140ffa21dec109a.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "MultiplyNode_e7ce4037f7a04ff49140ffa21dec109a"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_Mask/ChannelMask_OutNode_b9e8523ea102435eb431f467e2c7486f.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_Mask/CastSwizzleFromColorMask_OutNode_3473a78bde11410199b0271121206aacToMultiplyNode_e7ce4037f7a04ff49140ffa21dec109ain2.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ChannelMask_OutNode_b9e8523ea102435eb431f467e2c7486f"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1 = 0
+                float inputs:in2.connect = </MaterialX/Materials/USD_Mask/ChannelMask_Out_in2Node_b9e8523ea102435eb431f467e2c7486f.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Mask/ChannelMask_Out_in3Node_b9e8523ea102435eb431f467e2c7486f.outputs:out>
+                float inputs:in4.connect = </MaterialX/Materials/USD_Mask/ChannelMask_Out_in4Node_b9e8523ea102435eb431f467e2c7486f.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ChannelMask_Out_in2Node_b9e8523ea102435eb431f467e2c7486f"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Mask/ChannelMask_InNode_b9e8523ea102435eb431f467e2c7486f.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "ChannelMask_InNode_b9e8523ea102435eb431f467e2c7486f"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Mask/CastSwizzleFromColorNode_e4ff551bf3ed4ed79b9c770d0cbda367ToChannelMask_InNode_b9e8523ea102435eb431f467e2c7486fin.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorNode_e4ff551bf3ed4ed79b9c770d0cbda367ToChannelMask_InNode_b9e8523ea102435eb431f467e2c7486fin"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_Mask/ColorNode_e4ff551bf3ed4ed79b9c770d0cbda367.outputs:out>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "ColorNode_e4ff551bf3ed4ed79b9c770d0cbda367"
+            {
+                uniform token info:id = "ND_constant_color4"
+                color4f inputs:value = (1, 1, 1, 0)
+                color4f outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorMask_OutNode_3473a78bde11410199b0271121206aacToMultiplyNode_e7ce4037f7a04ff49140ffa21dec109ain2"
+            {
+                uniform token info:id = "ND_swizzle_float_vector4"
+                float inputs:in.connect = </MaterialX/Materials/USD_Mask/ColorMask_OutNode_3473a78bde11410199b0271121206aac.outputs:out>
+                string inputs:channels = "xxxx"
+                float4 outputs:out
+            }
+
+            def Shader "ColorMask_OutNode_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_clamp_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Mask/ColorMask_Out_inNode_3473a78bde11410199b0271121206aac.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorMask_Out_inNode_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Mask/ColorMask_Out_in_in2Node_3473a78bde11410199b0271121206aac.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorMask_Out_in_in2Node_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Mask/ColorMask_Out_in_in2_in1Node_3473a78bde11410199b0271121206aac.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Mask/ColorMask_Out_in_in2_in2Node_3473a78bde11410199b0271121206aac.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorMask_Out_in_in2_in2Node_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_max_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Mask/ColorMask_FuzzinessNode_3473a78bde11410199b0271121206aac.outputs:out>
+                float inputs:in2 = 1E-05
+                float outputs:out
+            }
+
+            def Shader "ColorMask_FuzzinessNode_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "ColorMask_Out_in_in2_in1Node_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Mask/ColorMask_DistanceNode_3473a78bde11410199b0271121206aac.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Mask/ColorMask_RangeNode_3473a78bde11410199b0271121206aac.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorMask_RangeNode_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "ColorMask_DistanceNode_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_magnitude_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Mask/ColorMask_Distance_inNode_3473a78bde11410199b0271121206aac.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorMask_Distance_inNode_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Mask/ColorMask_Distance_in_in1Node_3473a78bde11410199b0271121206aac.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Mask/ColorMask_InNode_3473a78bde11410199b0271121206aac.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorMask_InNode_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Mask/CastSwizzleFromColorNode_e4ff551bf3ed4ed79b9c770d0cbda367ToColorMask_InNode_3473a78bde11410199b0271121206aacin.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorNode_e4ff551bf3ed4ed79b9c770d0cbda367ToColorMask_InNode_3473a78bde11410199b0271121206aacin"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector3"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_Mask/ColorNode_e4ff551bf3ed4ed79b9c770d0cbda367.outputs:out>
+                string inputs:channels = "rgb"
+                float3 outputs:out
+            }
+
+            def Shader "ColorMask_Distance_in_in1Node_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_convert_color3_vector3"
+                color3f inputs:in.connect = </MaterialX/Materials/USD_Mask/ColorMask_MaskColorNode_3473a78bde11410199b0271121206aac.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorMask_MaskColorNode_3473a78bde11410199b0271121206aac"
+            {
+                uniform token info:id = "ND_dot_color3"
+                color3f inputs:in = (1, 1, 1)
+                color3f outputs:out
+            }
+
+            def Shader "ChannelMask_Out_in3Node_b9e8523ea102435eb431f467e2c7486f"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Mask/ChannelMask_InNode_b9e8523ea102435eb431f467e2c7486f.outputs:out>
+                int inputs:index = 2
+                float outputs:out
+            }
+
+            def Shader "ChannelMask_Out_in4Node_b9e8523ea102435eb431f467e2c7486f"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Mask/ChannelMask_InNode_b9e8523ea102435eb431f467e2c7486f.outputs:out>
+                int inputs:index = 3
+                float outputs:out
+            }
+        }
+    }
+}

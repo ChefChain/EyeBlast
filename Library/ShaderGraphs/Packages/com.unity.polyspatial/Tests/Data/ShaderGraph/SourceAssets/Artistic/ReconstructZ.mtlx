@@ -1,0 +1,149 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <normalize name = "NormalReconstructZ_OutNode_a5beafc600704580b1a195471b8465ad" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "NormalReconstructZ_normalVectorNode_a5beafc600704580b1a195471b8465ad" />
+    </normalize>
+    <combine3 name = "NormalReconstructZ_normalVectorNode_a5beafc600704580b1a195471b8465ad" type = "vector3">
+        <input name = "in1" type = "float" nodename = "NormalReconstructZ_normalVector_in1Node_a5beafc600704580b1a195471b8465ad" />
+        <input name = "in2" type = "float" nodename = "NormalReconstructZ_normalVector_in2Node_a5beafc600704580b1a195471b8465ad" />
+        <input name = "in3" type = "float" nodename = "NormalReconstructZ_reconstructZNode_a5beafc600704580b1a195471b8465ad" />
+    </combine3>
+    <swizzle name = "NormalReconstructZ_normalVector_in1Node_a5beafc600704580b1a195471b8465ad" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalReconstructZ_InNode_a5beafc600704580b1a195471b8465ad" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "NormalReconstructZ_InNode_a5beafc600704580b1a195471b8465ad" type = "vector2">
+        <input name = "in" type = "vector2" value = "0,0" />
+    </dot>
+    <swizzle name = "NormalReconstructZ_normalVector_in2Node_a5beafc600704580b1a195471b8465ad" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalReconstructZ_InNode_a5beafc600704580b1a195471b8465ad" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <sqrt name = "NormalReconstructZ_reconstructZNode_a5beafc600704580b1a195471b8465ad" type = "float">
+        <input name = "in" type = "float" nodename = "NormalReconstructZ_reconstructZ_inNode_a5beafc600704580b1a195471b8465ad" />
+    </sqrt>
+    <subtract name = "NormalReconstructZ_reconstructZ_inNode_a5beafc600704580b1a195471b8465ad" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "NormalReconstructZ_reconstructZ_in_in2Node_a5beafc600704580b1a195471b8465ad" />
+    </subtract>
+    <clamp name = "NormalReconstructZ_reconstructZ_in_in2Node_a5beafc600704580b1a195471b8465ad" type = "float">
+        <input name = "in" type = "float" nodename = "NormalReconstructZ_reconstructZ_in_in2_inNode_a5beafc600704580b1a195471b8465ad" />
+    </clamp>
+    <dotproduct name = "NormalReconstructZ_reconstructZ_in_in2_inNode_a5beafc600704580b1a195471b8465ad" type = "float">
+        <input name = "in1" type = "vector2" nodename = "NormalReconstructZ_reconstructZ_in_in2_in_in1Node_a5beafc600704580b1a195471b8465ad" />
+        <input name = "in2" type = "vector2" nodename = "NormalReconstructZ_reconstructZ_in_in2_in_in2Node_a5beafc600704580b1a195471b8465ad" />
+    </dotproduct>
+    <swizzle name = "NormalReconstructZ_reconstructZ_in_in2_in_in1Node_a5beafc600704580b1a195471b8465ad" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "NormalReconstructZ_InNode_a5beafc600704580b1a195471b8465ad" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "NormalReconstructZ_reconstructZ_in_in2_in_in2Node_a5beafc600704580b1a195471b8465ad" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "NormalReconstructZ_InNode_a5beafc600704580b1a195471b8465ad" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <normalize name = "NormalReconstructZ_OutNode_c433d563958a45edb48854fb301cc794" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "NormalReconstructZ_normalVectorNode_c433d563958a45edb48854fb301cc794" />
+    </normalize>
+    <combine3 name = "NormalReconstructZ_normalVectorNode_c433d563958a45edb48854fb301cc794" type = "vector3">
+        <input name = "in1" type = "float" nodename = "NormalReconstructZ_normalVector_in1Node_c433d563958a45edb48854fb301cc794" />
+        <input name = "in2" type = "float" nodename = "NormalReconstructZ_normalVector_in2Node_c433d563958a45edb48854fb301cc794" />
+        <input name = "in3" type = "float" nodename = "NormalReconstructZ_reconstructZNode_c433d563958a45edb48854fb301cc794" />
+    </combine3>
+    <swizzle name = "NormalReconstructZ_normalVector_in1Node_c433d563958a45edb48854fb301cc794" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalReconstructZ_InNode_c433d563958a45edb48854fb301cc794" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "NormalReconstructZ_InNode_c433d563958a45edb48854fb301cc794" type = "vector2">
+        <input name = "in" type = "vector2" value = "1,0" />
+    </dot>
+    <swizzle name = "NormalReconstructZ_normalVector_in2Node_c433d563958a45edb48854fb301cc794" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalReconstructZ_InNode_c433d563958a45edb48854fb301cc794" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <sqrt name = "NormalReconstructZ_reconstructZNode_c433d563958a45edb48854fb301cc794" type = "float">
+        <input name = "in" type = "float" nodename = "NormalReconstructZ_reconstructZ_inNode_c433d563958a45edb48854fb301cc794" />
+    </sqrt>
+    <subtract name = "NormalReconstructZ_reconstructZ_inNode_c433d563958a45edb48854fb301cc794" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "NormalReconstructZ_reconstructZ_in_in2Node_c433d563958a45edb48854fb301cc794" />
+    </subtract>
+    <clamp name = "NormalReconstructZ_reconstructZ_in_in2Node_c433d563958a45edb48854fb301cc794" type = "float">
+        <input name = "in" type = "float" nodename = "NormalReconstructZ_reconstructZ_in_in2_inNode_c433d563958a45edb48854fb301cc794" />
+    </clamp>
+    <dotproduct name = "NormalReconstructZ_reconstructZ_in_in2_inNode_c433d563958a45edb48854fb301cc794" type = "float">
+        <input name = "in1" type = "vector2" nodename = "NormalReconstructZ_reconstructZ_in_in2_in_in1Node_c433d563958a45edb48854fb301cc794" />
+        <input name = "in2" type = "vector2" nodename = "NormalReconstructZ_reconstructZ_in_in2_in_in2Node_c433d563958a45edb48854fb301cc794" />
+    </dotproduct>
+    <swizzle name = "NormalReconstructZ_reconstructZ_in_in2_in_in1Node_c433d563958a45edb48854fb301cc794" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "NormalReconstructZ_InNode_c433d563958a45edb48854fb301cc794" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "NormalReconstructZ_reconstructZ_in_in2_in_in2Node_c433d563958a45edb48854fb301cc794" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "NormalReconstructZ_InNode_c433d563958a45edb48854fb301cc794" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <add name = "AddNode_9a68bac233f14ed78ebee0632b09f9b5" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalReconstructZ_OutNode_c433d563958a45edb48854fb301cc794" />
+        <input name = "in2" type = "vector3" nodename = "NormalReconstructZ_OutNode_a5beafc600704580b1a195471b8465ad" />
+    </add>
+    <subtract name = "SubtractNode_aa773b43ea1f4695b7a13cf75b97c47f" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "AddNode_9a68bac233f14ed78ebee0632b09f9b5" />
+        <input name = "in2" type = "vector3" value = "1,0,1" />
+    </subtract>
+    <magnitude name = "LengthNode_e0ea0f3aed95465f8a02300e619b1b49" type = "float">
+        <input name = "in" type = "vector3" nodename = "SubtractNode_aa773b43ea1f4695b7a13cf75b97c47f" />
+    </magnitude>
+    <ifequal name = "ComparisonNode_1546d15e32fd4a99b1ea76ea08a17065" type = "float">
+        <input name = "value1" type = "float" nodename = "LengthNode_e0ea0f3aed95465f8a02300e619b1b49" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <combine4 name = "Combine_RGBANode_812e8fb079a44cd2aa80182fdb61e3a9" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_812e8fb079a44cd2aa80182fdb61e3a9" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_812e8fb079a44cd2aa80182fdb61e3a9" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_812e8fb079a44cd2aa80182fdb61e3a9" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_812e8fb079a44cd2aa80182fdb61e3a9" />
+    </combine4>
+    <dot name = "Combine_RNode_812e8fb079a44cd2aa80182fdb61e3a9" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_a0f1adfa929742d38bc4b9866ae93a6b" />
+    </dot>
+    <dot name = "Combine_GNode_812e8fb079a44cd2aa80182fdb61e3a9" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_1546d15e32fd4a99b1ea76ea08a17065" />
+    </dot>
+    <dot name = "Combine_BNode_812e8fb079a44cd2aa80182fdb61e3a9" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "Combine_ANode_812e8fb079a44cd2aa80182fdb61e3a9" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_812e8fb079a44cd2aa80182fdb61e3a9" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_812e8fb079a44cd2aa80182fdb61e3a9" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_812e8fb079a44cd2aa80182fdb61e3a9" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_812e8fb079a44cd2aa80182fdb61e3a9" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_812e8fb079a44cd2aa80182fdb61e3a9" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_812e8fb079a44cd2aa80182fdb61e3a9" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_812e8fb079a44cd2aa80182fdb61e3a9" />
+    </combine2>
+    <ifequal name = "ComparisonNode_a0f1adfa929742d38bc4b9866ae93a6b" type = "float">
+        <input name = "value1" type = "float" nodename = "LengthNode_e0ea0f3aed95465f8a02300e619b1b49" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+    </ifequal>
+    <GeometryModification name = "SR_ReconstructZVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_ReconstructZ" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromCombine_RGBNode_812e8fb079a44cd2aa80182fdb61e3a9ToSR_ReconstructZcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_ReconstructZ" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_ReconstructZVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_ReconstructZ" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromCombine_RGBNode_812e8fb079a44cd2aa80182fdb61e3a9ToSR_ReconstructZcolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "Combine_RGBNode_812e8fb079a44cd2aa80182fdb61e3a9" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

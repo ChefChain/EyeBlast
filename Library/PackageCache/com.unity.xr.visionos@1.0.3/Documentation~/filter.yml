@@ -1,0 +1,15 @@
+apiRules:
+  - exclude:
+      hasAttribute:
+        uid: System.ComponentModel.EditorBrowsableAttribute
+        ctorArguments:
+          - System.ComponentModel.EditorBrowsableState.Never
+  - exclude:
+      uidRegex: UnityEngine\.XR\.VisionOS\.Sample\.Builtin
+      type: Namespace
+  - exclude:
+      uidRegex: UnityEngine\.XR\.VisionOS\.Samples\.Builtin
+      type: Namespace
+  - exclude:
+      uidRegex: UnityEngine\.XR\.VisionOS\.Samples\.URP
+      type: Namespace

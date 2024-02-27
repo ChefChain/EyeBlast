@@ -1,0 +1,521 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_AutodeskInteractiveTransparent"
+        {
+            asset inputs:_MainTex = @placeholder.png@ (colorSpace = "srgb_texture")
+            color4f inputs:_EmissionColor = (0, 0, 0, 0)
+            asset inputs:_BumpMap = @placeholder.png@ (colorSpace = "srgb_texture")
+            float inputs:_UseRoughnessMap = 0
+            float inputs:_UseColorMap = 0
+            float inputs:_UseNormalMap = 0
+            float inputs:_Glossiness = 0
+            asset inputs:_SpecGlossMap = @placeholder.png@ (colorSpace = "srgb_texture")
+            float inputs:_UseMetallicMap = 0
+            float inputs:_Metallic = 0
+            asset inputs:_MetallicGlossMap = @placeholder.png@ (colorSpace = "srgb_texture")
+            asset inputs:_EmissionMap = @placeholder.png@ (colorSpace = "srgb_texture")
+            color4f inputs:_Color = (0, 0, 0, 0)
+            float2 inputs:_UvOffset = (0, 0)
+            float2 inputs:_UvTiling = (1, 1)
+            float inputs:_UseEmissiveMap = 0
+            float inputs:_Opacity = 1
+            float inputs:_UseOpacityMap = 0
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                color3f inputs:baseColor.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/CastSwizzleFromBranchNode_087669b47659ea85a78c835a80e92b29ToSR_AutodeskInteractiveTransparentbaseColor.outputs:out>
+                float3 inputs:normal.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/CastSwizzleFromBranchNode_5f4b31f3c3ad1688a81ba431f06aab5aToSR_AutodeskInteractiveTransparentnormal.outputs:out>
+                color3f inputs:emissiveColor.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/CastSwizzleFromBranchNode_c328fbfd37023b84b0e6d61edc72ab48ToSR_AutodeskInteractiveTransparentemissiveColor.outputs:out>
+                float inputs:ambientOcclusion = 1
+                float inputs:opacity.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchNode_c9d7816d25f698859de699bcb66b82fd.outputs:out>
+                float inputs:metallic.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchNode_cd2ee7937e14f18c8dcfa0cb0e18e4cd.outputs:out>
+                float inputs:specular = 0.5
+                float inputs:roughness.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SR_AutodeskInteractiveTransparent_roughness_OnesComplement.outputs:out>
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromBranchNode_087669b47659ea85a78c835a80e92b29ToSR_AutodeskInteractiveTransparentbaseColor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchNode_087669b47659ea85a78c835a80e92b29.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "BranchNode_087669b47659ea85a78c835a80e92b29"
+            {
+                uniform token info:id = "ND_ifgreater_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_RGBANode_c81bcbfe0f60718e939542eb395bf3c4.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/CastSwizzleFrom_ColorToBranchNode_087669b47659ea85a78c835a80e92b29in2.outputs:out>
+                float inputs:value1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchAbsNode_087669b47659ea85a78c835a80e92b29.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_c81bcbfe0f60718e939542eb395bf3c4"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_TextureNode_c81bcbfe0f60718e939542eb395bf3c4.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_UVNode_c81bcbfe0f60718e939542eb395bf3c4.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_c81bcbfe0f60718e939542eb395bf3c4"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_MainTex>
+                asset outputs:out
+            }
+
+            def Shader "CastSwizzleFromBranchNode_5f4b31f3c3ad1688a81ba431f06aab5aToSR_AutodeskInteractiveTransparentnormal"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchNode_5f4b31f3c3ad1688a81ba431f06aab5a.outputs:out>
+                string inputs:channels = "xyz"
+                float3 outputs:out
+            }
+
+            def Shader "BranchNode_5f4b31f3c3ad1688a81ba431f06aab5a"
+            {
+                uniform token info:id = "ND_ifgreater_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_RGBANode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float4 inputs:in2 = (0, 0, 1, 0)
+                float inputs:value1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchAbsNode_5f4b31f3c3ad1688a81ba431f06aab5a.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "BranchAbsNode_5f4b31f3c3ad1688a81ba431f06aab5a"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_UseNormalMap>
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_ifequal_vector4"
+                float inputs:value1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_RGBA_value1Node_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float inputs:value2 = 0
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_reconstructedNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_reconstructedNode_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_reconstructed_in1Node_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_reconstructed_in2Node_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_zNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float inputs:in4 = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_reconstructed_in1Node_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBA_value1Node_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_RGBA_value1_value1Node_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float inputs:value2 = 1
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBA_value1_value1Node_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromBranchNode_c328fbfd37023b84b0e6d61edc72ab48ToSR_AutodeskInteractiveTransparentemissiveColor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchNode_c328fbfd37023b84b0e6d61edc72ab48.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "BranchNode_c328fbfd37023b84b0e6d61edc72ab48"
+            {
+                uniform token info:id = "ND_ifgreater_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_RGBANode_985ac3a286764389bc11faa74f1266ce.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/CastSwizzleFrom_EmissionColorToBranchNode_c328fbfd37023b84b0e6d61edc72ab48in2.outputs:out>
+                float inputs:value1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchAbsNode_c328fbfd37023b84b0e6d61edc72ab48.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "BranchAbsNode_c328fbfd37023b84b0e6d61edc72ab48"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_UseEmissiveMap>
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFrom_EmissionColorToBranchNode_c328fbfd37023b84b0e6d61edc72ab48in2"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_EmissionColor>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_985ac3a286764389bc11faa74f1266ce"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_TextureNode_985ac3a286764389bc11faa74f1266ce.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_UVNode_985ac3a286764389bc11faa74f1266ce.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_985ac3a286764389bc11faa74f1266ce"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/TilingAndOffsetMulNode_dbb3172036415f8e8492048aaa103ea9.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_UvOffset>
+                float2 outputs:out
+            }
+
+            def Shader "TilingAndOffsetMulNode_dbb3172036415f8e8492048aaa103ea9"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/AddNode_1e2cbb3268acf98195ceef69aea4fc5e.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_UvTiling>
+                float2 outputs:out
+            }
+
+            def Shader "AddNode_1e2cbb3268acf98195ceef69aea4fc5e"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1 = (0, 1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/MultiplyNode_1e2cbb3268acf98195ceef69aea4fc5e.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "MultiplyNode_1e2cbb3268acf98195ceef69aea4fc5e"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1 = (1, -1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/UVNode_1e2cbb3268acf98195ceef69aea4fc5e.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "UVNode_1e2cbb3268acf98195ceef69aea4fc5e"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_985ac3a286764389bc11faa74f1266ce"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_EmissionMap>
+                asset outputs:out
+            }
+
+            def Shader "BranchNode_c9d7816d25f698859de699bcb66b82fd"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_ANode_c81bcbfe0f60718e939542eb395bf3c4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_Opacity>
+                float inputs:value1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchAbsNode_c9d7816d25f698859de699bcb66b82fd.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "BranchAbsNode_c9d7816d25f698859de699bcb66b82fd"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_UseOpacityMap>
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_ANode_c81bcbfe0f60718e939542eb395bf3c4"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_RGBANode_c81bcbfe0f60718e939542eb395bf3c4.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "BranchNode_cd2ee7937e14f18c8dcfa0cb0e18e4cd"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_RNode_2c09eb7f35dcb2879ba5fb2923c41623.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_Metallic>
+                float inputs:value1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchAbsNode_cd2ee7937e14f18c8dcfa0cb0e18e4cd.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "BranchAbsNode_cd2ee7937e14f18c8dcfa0cb0e18e4cd"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_UseMetallicMap>
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RNode_2c09eb7f35dcb2879ba5fb2923c41623"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_RGBANode_2c09eb7f35dcb2879ba5fb2923c41623.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_2c09eb7f35dcb2879ba5fb2923c41623"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_TextureNode_2c09eb7f35dcb2879ba5fb2923c41623.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_UVNode_2c09eb7f35dcb2879ba5fb2923c41623.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_2c09eb7f35dcb2879ba5fb2923c41623"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_2c09eb7f35dcb2879ba5fb2923c41623"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_MetallicGlossMap>
+                asset outputs:out
+            }
+
+            def Shader "SR_AutodeskInteractiveTransparent_roughness_OnesComplement"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/OneMinusNode_cb620ab3a45473838d9c902b3497ed94.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "OneMinusNode_cb620ab3a45473838d9c902b3497ed94"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SquareRootNode_bf8c77908df5c588bd2b259e3241141b.outputs:out>
+                float inputs:in1 = 1
+                float outputs:out
+            }
+
+            def Shader "SquareRootNode_bf8c77908df5c588bd2b259e3241141b"
+            {
+                uniform token info:id = "ND_sqrt_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchNode_705619f9be8be288b1ace340eb6a2446.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "BranchNode_705619f9be8be288b1ace340eb6a2446"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_RNode_7309751d3670628fba389d722171d2f3.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_Glossiness>
+                float inputs:value1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/BranchAbsNode_705619f9be8be288b1ace340eb6a2446.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "BranchAbsNode_705619f9be8be288b1ace340eb6a2446"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_UseRoughnessMap>
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RNode_7309751d3670628fba389d722171d2f3"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_RGBANode_7309751d3670628fba389d722171d2f3.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_7309751d3670628fba389d722171d2f3"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_TextureNode_7309751d3670628fba389d722171d2f3.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_UVNode_7309751d3670628fba389d722171d2f3.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_7309751d3670628fba389d722171d2f3"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_7309751d3670628fba389d722171d2f3"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_SpecGlossMap>
+                asset outputs:out
+            }
+
+            def Shader "CastSwizzleFrom_ColorToBranchNode_087669b47659ea85a78c835a80e92b29in2"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_Color>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "BranchAbsNode_087669b47659ea85a78c835a80e92b29"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_UseColorMap>
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_c81bcbfe0f60718e939542eb395bf3c4"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_subtract_vector4FA"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_rescaled_in1Node_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float inputs:in2 = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_rescaled_in1Node_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_multiply_vector4FA"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_rescaled_in1_in1Node_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float inputs:in2 = 2
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_rescaled_in1_in1Node_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_TextureNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_UVNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/TilingAndOffsetAddNode_dbb3172036415f8e8492048aaa103ea9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent.inputs:_BumpMap>
+                asset outputs:out
+            }
+
+            def Shader "SampleTexture2D_reconstructed_in2Node_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_zNode_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_sqrt_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_z_inNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_z_inNode_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_z_in_in2Node_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_z_in_in2Node_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_dotproduct_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_z_in_in2_in1Node_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float4 inputs:in2 = (0, 1, 0, 1)
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_z_in_in2_in1Node_2fe4f324395f648db87f16e6a639ee36"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_AutodeskInteractiveTransparent/SampleTexture2D_rescaledNode_2fe4f324395f648db87f16e6a639ee36.outputs:out>
+                float4 outputs:out
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "name": "Unity.PolySpatial.PerformanceTests",
+    "rootNamespace": "",
+    "references": [
+        "Unity.PolySpatial.Editor",
+        "Unity.PolySpatial",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Unity.PerformanceTesting",
+        "Unity.PolySpatial.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "Unity.PolySpatial.Core.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.test-framework.performance",
+            "expression": "",
+            "define": "HAS_TEST_PERF_FRAMEWORK"
+        }
+    ],
+    "noEngineReferences": false
+}

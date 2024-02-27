@@ -1,0 +1,218 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Keywords"
+        {
+            bool inputs:_ENUM_A = 0
+            bool inputs:_ENUM_B = 0
+            bool inputs:_BOOLEAN = 0
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Keywords/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Keywords/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Keywords/CastSwizzleFromCombine_RGBNode_cd251f14fe2042b2a17838410c24fe75ToSR_Keywordscolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromCombine_RGBNode_cd251f14fe2042b2a17838410c24fe75ToSR_Keywordscolor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Keywords/Combine_RGBNode_cd251f14fe2042b2a17838410c24fe75.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "Combine_RGBNode_cd251f14fe2042b2a17838410c24fe75"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Keywords/Combine_RNode_cd251f14fe2042b2a17838410c24fe75.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Keywords/Combine_GNode_cd251f14fe2042b2a17838410c24fe75.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Keywords/Combine_BNode_cd251f14fe2042b2a17838410c24fe75.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Combine_RNode_cd251f14fe2042b2a17838410c24fe75"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Keywords/BranchNode_b0139b1661a14dff948dc61bf3d3c48f.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "BranchNode_b0139b1661a14dff948dc61bf3d3c48f"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Keywords/SubtractNode_19d58034154f4d7c9b45c1778bc8a0fe.outputs:out>
+                float inputs:in2 = 1
+                float inputs:value1.connect = </MaterialX/Materials/USD_Keywords/BranchAbsNode_b0139b1661a14dff948dc61bf3d3c48f.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SubtractNode_19d58034154f4d7c9b45c1778bc8a0fe"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Keywords/Keyword_ENUM_OutNode_e7a4eb55308f4ce09c18db94440aa48a.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Keywords/Keyword_BOOLEANNode_c1c79b58b6de4f7a97f7626185518dd0.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Keyword_ENUM_OutNode_e7a4eb55308f4ce09c18db94440aa48a"
+            {
+                uniform token info:id = "ND_ifequal_floatB"
+                bool inputs:value1.connect = </MaterialX/Materials/USD_Keywords.inputs:_ENUM_A>
+                bool inputs:value2 = 1
+                float inputs:in1.connect = </MaterialX/Materials/USD_Keywords/Keyword_ENUM_ANode_e7a4eb55308f4ce09c18db94440aa48a.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Keywords/Keyword_ENUM_Out_in2Node_e7a4eb55308f4ce09c18db94440aa48a.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Keyword_ENUM_ANode_e7a4eb55308f4ce09c18db94440aa48a"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "Combine_GNode_cd251f14fe2042b2a17838410c24fe75"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Keywords/OneMinusNode_f23ffd7ad4c94b838d29fd307d57adee.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "OneMinusNode_f23ffd7ad4c94b838d29fd307d57adee"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in2.connect = </MaterialX/Materials/USD_Keywords/BranchNode_047b847a43dd4e9189de1e772389b43f.outputs:out>
+                float inputs:in1 = 1
+                float outputs:out
+            }
+
+            def Shader "BranchNode_047b847a43dd4e9189de1e772389b43f"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Keywords/SubtractNode_19d58034154f4d7c9b45c1778bc8a0fe.outputs:out>
+                float inputs:in2 = 1
+                float inputs:value1.connect = </MaterialX/Materials/USD_Keywords/BranchAbsNode_047b847a43dd4e9189de1e772389b43f.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "BranchAbsNode_047b847a43dd4e9189de1e772389b43f"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Keywords/Or_OutNode_adaf883c5bee46a6999b05259f2c33c8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Or_OutNode_adaf883c5bee46a6999b05259f2c33c8"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Keywords/Or_Out_value1Node_adaf883c5bee46a6999b05259f2c33c8.outputs:out>
+                float inputs:value2 = 0
+                float inputs:in1 = 0
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "Or_Out_value1Node_adaf883c5bee46a6999b05259f2c33c8"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Keywords/Or_Out_value1_in1Node_adaf883c5bee46a6999b05259f2c33c8.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Keywords/Or_Out_value1_in2Node_adaf883c5bee46a6999b05259f2c33c8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Or_Out_value1_in2Node_adaf883c5bee46a6999b05259f2c33c8"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Keywords/Or_BNode_adaf883c5bee46a6999b05259f2c33c8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Or_BNode_adaf883c5bee46a6999b05259f2c33c8"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Keywords/Keyword_BOOLEANNode_c1c79b58b6de4f7a97f7626185518dd0.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Or_Out_value1_in1Node_adaf883c5bee46a6999b05259f2c33c8"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Keywords/Or_ANode_adaf883c5bee46a6999b05259f2c33c8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Or_ANode_adaf883c5bee46a6999b05259f2c33c8"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Keywords/Keyword_ENUM_OutNode_e7a4eb55308f4ce09c18db94440aa48a.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Combine_BNode_cd251f14fe2042b2a17838410c24fe75"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "BranchAbsNode_b0139b1661a14dff948dc61bf3d3c48f"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Keywords/Or_OutNode_adaf883c5bee46a6999b05259f2c33c8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Keyword_BOOLEANNode_c1c79b58b6de4f7a97f7626185518dd0"
+            {
+                uniform token info:id = "ND_ifequal_floatB"
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                bool inputs:value1.connect = </MaterialX/Materials/USD_Keywords.inputs:_BOOLEAN>
+                bool inputs:value2 = 1
+                float outputs:out
+            }
+
+            def Shader "Keyword_ENUM_Out_in2Node_e7a4eb55308f4ce09c18db94440aa48a"
+            {
+                uniform token info:id = "ND_ifequal_floatB"
+                bool inputs:value1.connect = </MaterialX/Materials/USD_Keywords.inputs:_ENUM_B>
+                bool inputs:value2 = 1
+                float inputs:in1.connect = </MaterialX/Materials/USD_Keywords/Keyword_ENUM_BNode_e7a4eb55308f4ce09c18db94440aa48a.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Keywords/Keyword_ENUM_CNode_e7a4eb55308f4ce09c18db94440aa48a.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Keyword_ENUM_BNode_e7a4eb55308f4ce09c18db94440aa48a"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1
+                float outputs:out
+            }
+
+            def Shader "Keyword_ENUM_CNode_e7a4eb55308f4ce09c18db94440aa48a"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+        }
+    }
+}

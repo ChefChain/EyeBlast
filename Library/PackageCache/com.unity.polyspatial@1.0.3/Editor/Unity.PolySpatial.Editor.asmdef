@@ -1,0 +1,64 @@
+{
+    "name": "Unity.PolySpatial.Editor",
+    "rootNamespace": "Unity.PolySpatial.Editor",
+    "references": [
+        "Unity.PolySpatial",
+        "Unity.InternalAPIEngineBridge.021",
+        "Unity.InternalAPIEditorBridge.021",
+        "Unity.XR.CoreUtils",
+        "Unity.XR.CoreUtils.Editor",
+        "FlatSharp.Editor",
+        "Unity.ScriptableBuildPipeline.Editor",
+        "Unity.TextMeshPro",
+        "Unity.InputSystem",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.PolySpatial.Core",
+        "Unity.XR.Management",
+        "Unity.XR.Management.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Unity.PolySpatial.Core.dll",
+        "Unity.InternalAPIEngineBridge.021.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.scriptablebuildpipeline",
+            "expression": "",
+            "define": "HAS_SCRIPTABLE_BUILDPIPELINE"
+        },
+        {
+            "name": "com.unity.render-pipelines.universal",
+            "expression": "1.0.0",
+            "define": "ENABLE_URP"
+        },
+        {
+            "name": "com.unity.ugui",
+            "expression": "1.0.0",
+            "define": "ENABLE_UGUI"
+        },
+        {
+            "name": "com.unity.textmeshpro",
+            "expression": "1.0.0",
+            "define": "ENABLE_TEXT_MESH_PRO"
+        },
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "1.0.0",
+            "define": "ENABLE_INPUT_SYSTEM"
+        },
+        {
+            "name": "com.unity.xr.management",
+            "expression": "",
+            "define": "ENABLE_XR_MANAGEMENT"
+        }
+    ],
+    "noEngineReferences": false
+}

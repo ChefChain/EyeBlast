@@ -1,0 +1,20 @@
+{
+    "name": "Unity.PolySpatial",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Collections",
+        "Unity.InternalAPIEngineBridge.021"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Unity.PolySpatial.Core.dll",
+        "Unity.InternalAPIEngineBridge.021.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

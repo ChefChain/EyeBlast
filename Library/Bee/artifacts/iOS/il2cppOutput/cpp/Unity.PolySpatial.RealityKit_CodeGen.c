@@ -1,0 +1,145 @@
+﻿#include "pch-c.h"
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+extern const RuntimeMethod* RealityKitBackend_HostCommandCallbackFromRealityKit_m54A45EB932FE7283DFB4E04608D44694C10354BD_RuntimeMethod_var;
+
+
+
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mEF703FE7AE4E83701ECBC57EB0CC304F5FD81BED (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_m1FFDDBE1A5E01FF92AF42696970F599FEB99FF24 (void);
+extern void RealityKitBackend_get_NextHostHandler_m654A07D2D5EEAC9F29AC444EB1BEF583F637260C (void);
+extern void RealityKitBackend_set_NextHostHandler_m06A76D716D98D488E76CE73E40FB5501FB10149E (void);
+extern void RealityKitBackend_get_IgnoreSetCameraData_mBBD3889D2B27E144B6BA452717A1411A716CB743 (void);
+extern void RealityKitBackend_set_IgnoreSetCameraData_m71AED24015C63CFC52A9D75F12116D2A7D0DC113 (void);
+extern void RealityKitBackend_TryGetAPIPointers_m39BF0D90877972B4D522C3DF6A5ED477A64B2616 (void);
+extern void RealityKitBackend_GetBackendPriority_m58FF463317B4A1853946CE4B8CD9D144DEA835D2 (void);
+extern void RealityKitBackend__ctor_m335CDEFC457C434A892793CE0CE7F3F724E98490 (void);
+extern void RealityKitBackend_HostCommandCallbackFromRealityKit_m54A45EB932FE7283DFB4E04608D44694C10354BD (void);
+extern void RealityKitBackend_HandleCommand_m07BAB65A44D47B9784D403ADFA74C7BF17667F14 (void);
+extern void RealityKitBackend_GetCameraPose_m06D3151EDC8B7BADE9DD8814FE7B483550C4F527 (void);
+extern void RealityKitBackend_ObsoleteTakeScreenshot_m145C63CCB0F01DB8CA239BF294F373CABB8F7C7A (void);
+extern void RealityKitBackend_TakeScreenshot_mFC6044A478639704E473F03F45C6FAEF3076AEAA (void);
+extern void RealityKitBackend__cctor_m73B50CA97F44C57FFD7B84149203A6A0E79D0986 (void);
+extern void RKRuntimeFuncs_GetPolySpatialNativeAPI_static_mCA2433F613CA9024ED9FD398154B1E40228DECCB (void);
+extern void RKRuntimeFuncs_GetPolySpatialNativeAPI_mE2254CB9DD6A5BABD4FEF5DF5AA6FEE065482184 (void);
+extern void RKRuntimeFuncs_SetupHandles_m84D22F05B893C91929C332AE38F380982F641296 (void);
+extern void RKRuntimeFuncs_Shutdown_m1F4E9BDC2A0AA8D38F8CD523DCEEE2E9729E2F0D (void);
+extern void RKRuntimeFuncs_TryLoadFunctionPointers_m5B0C20B5D521AA85ABB55BCCE1798766FB111A0E (void);
+extern void RKRuntimeFuncs_dlopen_mD39616CD418C6577B26BC110365410D5A63B6629 (void);
+extern void RKRuntimeFuncs_dlclose_mBCA15ADDD6AF31E8D9E165A2505E06B70F2CD7C1 (void);
+extern void RKRuntimeFuncs_dlsym_m105E7B1D383B81BD9A5F89AF0EC539DD78FE0451 (void);
+extern void RKRuntimeFuncs_dlerror_m6A2D0E96E82EC5348A6EEBB3EC518F48628BDC96 (void);
+extern void RKRuntimeFuncs_dlerror_string_mDC4A58026B09F060D4B28E8594EAF3242C334808 (void);
+extern void GetPolySpatialNativeApiFn__ctor_mE8FF04D04C676CB83365005D31EE7F224C5811A2 (void);
+extern void GetPolySpatialNativeApiFn_Invoke_mC5ED42BC0B3BC97E44B589CA63B093764DBB0CA4 (void);
+extern void GetPolySpatialNativeApiFn_BeginInvoke_mA6F5C032ADBE890C636850BEBE94E7065956E3B1 (void);
+extern void GetPolySpatialNativeApiFn_EndInvoke_mA0F1E105A2641189AD066209F5340564D97A2D4D (void);
+extern void GenericFunctionDelegate__ctor_mC7050F5BE319F4DF59CA8ED6EF20E3B5B6611141 (void);
+extern void GenericFunctionDelegate_Invoke_mBBF7CA40651F789F374FAAB0FF1D5092E5FACBAE (void);
+extern void GenericFunctionDelegate_BeginInvoke_m9DCC3BF8F8695DAF9B76971676CB7C16159CF452 (void);
+extern void GenericFunctionDelegate_EndInvoke_m370C741C8A46F0F0BB4711448DB7FE7F6329C69B (void);
+static Il2CppMethodPointer s_methodPointers[33] = 
+{
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mEF703FE7AE4E83701ECBC57EB0CC304F5FD81BED,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_m1FFDDBE1A5E01FF92AF42696970F599FEB99FF24,
+	RealityKitBackend_get_NextHostHandler_m654A07D2D5EEAC9F29AC444EB1BEF583F637260C,
+	RealityKitBackend_set_NextHostHandler_m06A76D716D98D488E76CE73E40FB5501FB10149E,
+	RealityKitBackend_get_IgnoreSetCameraData_mBBD3889D2B27E144B6BA452717A1411A716CB743,
+	RealityKitBackend_set_IgnoreSetCameraData_m71AED24015C63CFC52A9D75F12116D2A7D0DC113,
+	RealityKitBackend_TryGetAPIPointers_m39BF0D90877972B4D522C3DF6A5ED477A64B2616,
+	RealityKitBackend_GetBackendPriority_m58FF463317B4A1853946CE4B8CD9D144DEA835D2,
+	RealityKitBackend__ctor_m335CDEFC457C434A892793CE0CE7F3F724E98490,
+	RealityKitBackend_HostCommandCallbackFromRealityKit_m54A45EB932FE7283DFB4E04608D44694C10354BD,
+	RealityKitBackend_HandleCommand_m07BAB65A44D47B9784D403ADFA74C7BF17667F14,
+	RealityKitBackend_GetCameraPose_m06D3151EDC8B7BADE9DD8814FE7B483550C4F527,
+	RealityKitBackend_ObsoleteTakeScreenshot_m145C63CCB0F01DB8CA239BF294F373CABB8F7C7A,
+	RealityKitBackend_TakeScreenshot_mFC6044A478639704E473F03F45C6FAEF3076AEAA,
+	RealityKitBackend__cctor_m73B50CA97F44C57FFD7B84149203A6A0E79D0986,
+	RKRuntimeFuncs_GetPolySpatialNativeAPI_static_mCA2433F613CA9024ED9FD398154B1E40228DECCB,
+	RKRuntimeFuncs_GetPolySpatialNativeAPI_mE2254CB9DD6A5BABD4FEF5DF5AA6FEE065482184,
+	RKRuntimeFuncs_SetupHandles_m84D22F05B893C91929C332AE38F380982F641296,
+	RKRuntimeFuncs_Shutdown_m1F4E9BDC2A0AA8D38F8CD523DCEEE2E9729E2F0D,
+	RKRuntimeFuncs_TryLoadFunctionPointers_m5B0C20B5D521AA85ABB55BCCE1798766FB111A0E,
+	RKRuntimeFuncs_dlopen_mD39616CD418C6577B26BC110365410D5A63B6629,
+	RKRuntimeFuncs_dlclose_mBCA15ADDD6AF31E8D9E165A2505E06B70F2CD7C1,
+	RKRuntimeFuncs_dlsym_m105E7B1D383B81BD9A5F89AF0EC539DD78FE0451,
+	RKRuntimeFuncs_dlerror_m6A2D0E96E82EC5348A6EEBB3EC518F48628BDC96,
+	RKRuntimeFuncs_dlerror_string_mDC4A58026B09F060D4B28E8594EAF3242C334808,
+	GetPolySpatialNativeApiFn__ctor_mE8FF04D04C676CB83365005D31EE7F224C5811A2,
+	GetPolySpatialNativeApiFn_Invoke_mC5ED42BC0B3BC97E44B589CA63B093764DBB0CA4,
+	GetPolySpatialNativeApiFn_BeginInvoke_mA6F5C032ADBE890C636850BEBE94E7065956E3B1,
+	GetPolySpatialNativeApiFn_EndInvoke_mA0F1E105A2641189AD066209F5340564D97A2D4D,
+	GenericFunctionDelegate__ctor_mC7050F5BE319F4DF59CA8ED6EF20E3B5B6611141,
+	GenericFunctionDelegate_Invoke_mBBF7CA40651F789F374FAAB0FF1D5092E5FACBAE,
+	GenericFunctionDelegate_BeginInvoke_m9DCC3BF8F8695DAF9B76971676CB7C16159CF452,
+	GenericFunctionDelegate_EndInvoke_m370C741C8A46F0F0BB4711448DB7FE7F6329C69B,
+};
+static const int32_t s_InvokerIndices[33] = 
+{
+	26155,
+	14138,
+	13941,
+	10914,
+	13793,
+	10766,
+	26010,
+	26038,
+	14138,
+	17784,
+	2010,
+	7651,
+	7849,
+	2379,
+	26112,
+	24875,
+	24875,
+	26112,
+	26112,
+	23794,
+	20854,
+	24887,
+	20852,
+	26040,
+	26048,
+	5643,
+	10722,
+	2348,
+	4685,
+	5643,
+	14138,
+	4409,
+	10914,
+};
+static const Il2CppTokenIndexMethodTuple s_reversePInvokeIndices[1] = 
+{
+	{ 0x0600000A, 16,  (void**)&RealityKitBackend_HostCommandCallbackFromRealityKit_m54A45EB932FE7283DFB4E04608D44694C10354BD_RuntimeMethod_var, 0 },
+};
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_Unity_PolySpatial_RealityKit_CodeGenModule;
+const Il2CppCodeGenModule g_Unity_PolySpatial_RealityKit_CodeGenModule = 
+{
+	"Unity.PolySpatial.RealityKit.dll",
+	33,
+	s_methodPointers,
+	0,
+	NULL,
+	s_InvokerIndices,
+	1,
+	s_reversePInvokeIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};

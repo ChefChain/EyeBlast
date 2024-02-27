@@ -1,0 +1,176 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <atan2 name = "ArctangentNode_db95fe01a76b4cb795da70aa723a8ed7" type = "float">
+        <input name = "iny" type = "float" value = "1" />
+        <input name = "inx" type = "float" value = "1" />
+    </atan2>
+    <multiply name = "RadiansToDegrees_OutNode_73344cbff9624eefa56b5c3776e8c914" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "RadiansToDegrees_InNode_73344cbff9624eefa56b5c3776e8c914" />
+        <input name = "in2" type = "float" value = "57.29578" />
+    </multiply>
+    <dot name = "RadiansToDegrees_InNode_73344cbff9624eefa56b5c3776e8c914" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_e12f6be7dbc3438ab76e3d176a77e142" />
+    </dot>
+    <multiply name = "DegreesToRadians_OutNode_417fb76d584b4507ab0e9d99b00b54ac" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "DegreesToRadians_InNode_417fb76d584b4507ab0e9d99b00b54ac" />
+        <input name = "in2" type = "float" value = "0.01745329" />
+    </multiply>
+    <dot name = "DegreesToRadians_InNode_417fb76d584b4507ab0e9d99b00b54ac" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "RadiansToDegrees_OutNode_73344cbff9624eefa56b5c3776e8c914" />
+    </dot>
+    <combine3 name = "Vector3Node_e12f6be7dbc3438ab76e3d176a77e142" type = "vector3">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "1" />
+        <input name = "in3" type = "float" value = "1" />
+    </combine3>
+    <divide name = "HyperbolicSine_OutNode_ca79ac24f7d64f4bbb386520374194d2" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicSine_Out_in1Node_ca79ac24f7d64f4bbb386520374194d2" />
+        <input name = "in2" type = "float" nodename = "HyperbolicSine_Out_in2Node_ca79ac24f7d64f4bbb386520374194d2" />
+    </divide>
+    <subtract name = "HyperbolicSine_Out_in1Node_ca79ac24f7d64f4bbb386520374194d2" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicSine_Out_in1_in1Node_ca79ac24f7d64f4bbb386520374194d2" />
+        <input name = "in2" type = "float" value = "1" />
+    </subtract>
+    <exp name = "HyperbolicSine_Out_in1_in1Node_ca79ac24f7d64f4bbb386520374194d2" type = "float">
+        <input name = "in" type = "float" nodename = "HyperbolicSine_Out_in1_in1_inNode_ca79ac24f7d64f4bbb386520374194d2" />
+    </exp>
+    <multiply name = "HyperbolicSine_Out_in1_in1_inNode_ca79ac24f7d64f4bbb386520374194d2" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicSine_InNode_ca79ac24f7d64f4bbb386520374194d2" />
+        <input name = "in2" type = "float" value = "2" />
+    </multiply>
+    <dot name = "HyperbolicSine_InNode_ca79ac24f7d64f4bbb386520374194d2" type = "float">
+        <input name = "in" type = "float" nodename = "SplitNode_d9dcf0ec531e43c4ab018d008f204942R" />
+    </dot>
+    <multiply name = "HyperbolicSine_Out_in2Node_ca79ac24f7d64f4bbb386520374194d2" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicSine_Out_in2_in1Node_ca79ac24f7d64f4bbb386520374194d2" />
+        <input name = "in2" type = "float" value = "2" />
+    </multiply>
+    <exp name = "HyperbolicSine_Out_in2_in1Node_ca79ac24f7d64f4bbb386520374194d2" type = "float">
+        <input name = "in" type = "float" nodename = "HyperbolicSine_InNode_ca79ac24f7d64f4bbb386520374194d2" />
+    </exp>
+    <divide name = "HyperbolicCosine_OutNode_9c42d27dc3754deca6d85eb9b002f87d" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicCosine_Out_in1Node_9c42d27dc3754deca6d85eb9b002f87d" />
+        <input name = "in2" type = "float" nodename = "HyperbolicCosine_Out_in2Node_9c42d27dc3754deca6d85eb9b002f87d" />
+    </divide>
+    <add name = "HyperbolicCosine_Out_in1Node_9c42d27dc3754deca6d85eb9b002f87d" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicCosine_Out_in1_in1Node_9c42d27dc3754deca6d85eb9b002f87d" />
+        <input name = "in2" type = "float" value = "1" />
+    </add>
+    <exp name = "HyperbolicCosine_Out_in1_in1Node_9c42d27dc3754deca6d85eb9b002f87d" type = "float">
+        <input name = "in" type = "float" nodename = "HyperbolicCosine_Out_in1_in1_inNode_9c42d27dc3754deca6d85eb9b002f87d" />
+    </exp>
+    <multiply name = "HyperbolicCosine_Out_in1_in1_inNode_9c42d27dc3754deca6d85eb9b002f87d" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicCosine_InNode_9c42d27dc3754deca6d85eb9b002f87d" />
+        <input name = "in2" type = "float" value = "2" />
+    </multiply>
+    <dot name = "HyperbolicCosine_InNode_9c42d27dc3754deca6d85eb9b002f87d" type = "float">
+        <input name = "in" type = "float" nodename = "SplitNode_d9dcf0ec531e43c4ab018d008f204942G" />
+    </dot>
+    <multiply name = "HyperbolicCosine_Out_in2Node_9c42d27dc3754deca6d85eb9b002f87d" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicCosine_Out_in2_in1Node_9c42d27dc3754deca6d85eb9b002f87d" />
+        <input name = "in2" type = "float" value = "2" />
+    </multiply>
+    <exp name = "HyperbolicCosine_Out_in2_in1Node_9c42d27dc3754deca6d85eb9b002f87d" type = "float">
+        <input name = "in" type = "float" nodename = "HyperbolicCosine_InNode_9c42d27dc3754deca6d85eb9b002f87d" />
+    </exp>
+    <divide name = "HyperbolicTangent_OutNode_c575747db9d14bea9eaf6eb002f17373" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicTangent_Out_in1Node_c575747db9d14bea9eaf6eb002f17373" />
+        <input name = "in2" type = "float" nodename = "HyperbolicTangent_Out_in2Node_c575747db9d14bea9eaf6eb002f17373" />
+    </divide>
+    <subtract name = "HyperbolicTangent_Out_in1Node_c575747db9d14bea9eaf6eb002f17373" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicTangent___Tmp0Node_c575747db9d14bea9eaf6eb002f17373" />
+        <input name = "in2" type = "float" value = "1" />
+    </subtract>
+    <exp name = "HyperbolicTangent___Tmp0Node_c575747db9d14bea9eaf6eb002f17373" type = "float">
+        <input name = "in" type = "float" nodename = "HyperbolicTangent___Tmp0_inNode_c575747db9d14bea9eaf6eb002f17373" />
+    </exp>
+    <multiply name = "HyperbolicTangent___Tmp0_inNode_c575747db9d14bea9eaf6eb002f17373" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicTangent_InNode_c575747db9d14bea9eaf6eb002f17373" />
+        <input name = "in2" type = "float" value = "2" />
+    </multiply>
+    <dot name = "HyperbolicTangent_InNode_c575747db9d14bea9eaf6eb002f17373" type = "float">
+        <input name = "in" type = "float" nodename = "SplitNode_d9dcf0ec531e43c4ab018d008f204942B" />
+    </dot>
+    <add name = "HyperbolicTangent_Out_in2Node_c575747db9d14bea9eaf6eb002f17373" type = "float">
+        <input name = "in1" type = "float" nodename = "HyperbolicTangent___Tmp0Node_c575747db9d14bea9eaf6eb002f17373" />
+        <input name = "in2" type = "float" value = "1" />
+    </add>
+    <dot name = "SplitNode_d9dcf0ec531e43c4ab018d008f204942" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Normal_OutNode_1da2d83e6b5f4d99b1281f6211158eeb" />
+    </dot>
+    <extract name = "SplitNode_d9dcf0ec531e43c4ab018d008f204942R" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_d9dcf0ec531e43c4ab018d008f204942" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "SplitNode_d9dcf0ec531e43c4ab018d008f204942G" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_d9dcf0ec531e43c4ab018d008f204942" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "SplitNode_d9dcf0ec531e43c4ab018d008f204942B" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_d9dcf0ec531e43c4ab018d008f204942" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <combine4 name = "Combine_RGBANode_04e448d01fab49c8b95f4fdd13f11df7" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_04e448d01fab49c8b95f4fdd13f11df7" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_04e448d01fab49c8b95f4fdd13f11df7" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_04e448d01fab49c8b95f4fdd13f11df7" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_04e448d01fab49c8b95f4fdd13f11df7" />
+    </combine4>
+    <dot name = "Combine_RNode_04e448d01fab49c8b95f4fdd13f11df7" type = "float">
+        <input name = "in" type = "float" nodename = "HyperbolicSine_OutNode_ca79ac24f7d64f4bbb386520374194d2" />
+    </dot>
+    <dot name = "Combine_GNode_04e448d01fab49c8b95f4fdd13f11df7" type = "float">
+        <input name = "in" type = "float" nodename = "HyperbolicCosine_OutNode_9c42d27dc3754deca6d85eb9b002f87d" />
+    </dot>
+    <dot name = "Combine_BNode_04e448d01fab49c8b95f4fdd13f11df7" type = "float">
+        <input name = "in" type = "float" nodename = "HyperbolicTangent_OutNode_c575747db9d14bea9eaf6eb002f17373" />
+    </dot>
+    <dot name = "Combine_ANode_04e448d01fab49c8b95f4fdd13f11df7" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_04e448d01fab49c8b95f4fdd13f11df7" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_04e448d01fab49c8b95f4fdd13f11df7" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_04e448d01fab49c8b95f4fdd13f11df7" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_04e448d01fab49c8b95f4fdd13f11df7" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_04e448d01fab49c8b95f4fdd13f11df7" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_04e448d01fab49c8b95f4fdd13f11df7" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_04e448d01fab49c8b95f4fdd13f11df7" />
+    </combine2>
+    <multiply name = "Normal_OutNode_1da2d83e6b5f4d99b1281f6211158eeb" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Normal_Out_in1Node_1da2d83e6b5f4d99b1281f6211158eeb" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <normal name = "Normal_Out_in1Node_1da2d83e6b5f4d99b1281f6211158eeb" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </normal>
+    <GeometryModification name = "SR_TrigonometryVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_pbr name = "SR_Trigonometry" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" nodename = "CastSwizzleFromArctangentNode_db95fe01a76b4cb795da70aa723a8ed7ToSR_TrigonometrybaseColor" />
+        <input name = "normal" type = "vector3" nodename = "Combine_RGBNode_04e448d01fab49c8b95f4fdd13f11df7" />
+        <input name = "metallic" type = "float" value = "0" />
+        <input name = "emissiveColor" type = "color3" nodename = "CastSwizzleFromDegreesToRadians_OutNode_417fb76d584b4507ab0e9d99b00b54acToSR_TrigonometryemissiveColor" />
+        <input name = "ambientOcclusion" type = "float" value = "1" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "roughness" type = "float" nodename = "SR_Trigonometry_roughness_OnesComplement" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_Trigonometry" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_TrigonometryVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Trigonometry" />
+    </surfacematerial>
+    <subtract name = "SR_Trigonometry_roughness_OnesComplement" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </subtract>
+    <swizzle name = "CastSwizzleFromArctangentNode_db95fe01a76b4cb795da70aa723a8ed7ToSR_TrigonometrybaseColor" type = "color3">
+        <input name = "in" type = "float" nodename = "ArctangentNode_db95fe01a76b4cb795da70aa723a8ed7" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromDegreesToRadians_OutNode_417fb76d584b4507ab0e9d99b00b54acToSR_TrigonometryemissiveColor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "DegreesToRadians_OutNode_417fb76d584b4507ab0e9d99b00b54ac" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

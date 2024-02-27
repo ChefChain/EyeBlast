@@ -1,0 +1,35 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <dot name = "Ambient_ColorSkyNode_b7f4d598f1fa461cacf4e82341f6c861" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "unity_AmbientSky" />
+    </dot>
+    <constant name = "unity_AmbientSky" type = "vector4">
+        <input name = "value" type = "vector4" value = "0,0,0,0" />
+    </constant>
+    <dot name = "Ambient_EquatorNode_b7f4d598f1fa461cacf4e82341f6c861" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "unity_AmbientEquator" />
+    </dot>
+    <constant name = "unity_AmbientEquator" type = "vector4">
+        <input name = "value" type = "vector4" value = "0,0,0,0" />
+    </constant>
+    <dot name = "Ambient_GroundNode_b7f4d598f1fa461cacf4e82341f6c861" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "unity_AmbientGround" />
+    </dot>
+    <constant name = "unity_AmbientGround" type = "vector4">
+        <input name = "value" type = "vector4" value = "0,0,0,0" />
+    </constant>
+    <GeometryModification name = "SR_LightingVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Lighting" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromAmbient_ColorSkyNode_b7f4d598f1fa461cacf4e82341f6c861ToSR_Lightingcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Lighting" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_LightingVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Lighting" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromAmbient_ColorSkyNode_b7f4d598f1fa461cacf4e82341f6c861ToSR_Lightingcolor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "Ambient_ColorSkyNode_b7f4d598f1fa461cacf4e82341f6c861" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

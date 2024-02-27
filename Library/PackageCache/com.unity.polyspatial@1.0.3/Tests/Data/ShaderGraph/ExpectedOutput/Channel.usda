@@ -1,0 +1,70 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Channel"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Channel/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Channel/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Channel/CastSwizzleFromChannelMask_OutNode_740d6f25fa844441bb939b969e221e64ToSR_Channelcolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromChannelMask_OutNode_740d6f25fa844441bb939b969e221e64ToSR_Channelcolor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Channel/ChannelMask_OutNode_740d6f25fa844441bb939b969e221e64.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "ChannelMask_OutNode_740d6f25fa844441bb939b969e221e64"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_Channel/ChannelMask_InNode_740d6f25fa844441bb939b969e221e64.outputs:out>
+                float4 inputs:in2 = (1, -1, 1, 1)
+                float4 outputs:out
+            }
+
+            def Shader "ChannelMask_InNode_740d6f25fa844441bb939b969e221e64"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Channel/CastSwizzleFromColorNode_03e4f501b54f4891be46d98087e4a094ToChannelMask_InNode_740d6f25fa844441bb939b969e221e64in.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorNode_03e4f501b54f4891be46d98087e4a094ToChannelMask_InNode_740d6f25fa844441bb939b969e221e64in"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_Channel/ColorNode_03e4f501b54f4891be46d98087e4a094.outputs:out>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "ColorNode_03e4f501b54f4891be46d98087e4a094"
+            {
+                uniform token info:id = "ND_constant_color4"
+                color4f inputs:value = (1, 1, 1, 0)
+                color4f outputs:out
+            }
+        }
+    }
+}

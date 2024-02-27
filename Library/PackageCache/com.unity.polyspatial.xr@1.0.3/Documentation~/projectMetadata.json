@@ -1,0 +1,7 @@
+{
+    "showScriptRef": false,
+    "xref": [
+        "com.unity.polyspatial.visionos",
+        "com.unity.xr.visionos"
+    ]
+}

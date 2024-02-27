@@ -1,0 +1,126 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <ifequal name = "Keyword_ENUM_OutNode_e7a4eb55308f4ce09c18db94440aa48a" type = "float">
+        <input name = "value1" type = "boolean" nodename = "_ENUM_A" />
+        <input name = "value2" type = "boolean" value = "true" />
+        <input name = "in1" type = "float" nodename = "Keyword_ENUM_ANode_e7a4eb55308f4ce09c18db94440aa48a" />
+        <input name = "in2" type = "float" nodename = "Keyword_ENUM_Out_in2Node_e7a4eb55308f4ce09c18db94440aa48a" />
+    </ifequal>
+    <constant name = "_ENUM_A" type = "boolean">
+        <input name = "value" type = "boolean" value = "false" />
+    </constant>
+    <dot name = "Keyword_ENUM_ANode_e7a4eb55308f4ce09c18db94440aa48a" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <ifequal name = "Keyword_ENUM_Out_in2Node_e7a4eb55308f4ce09c18db94440aa48a" type = "float">
+        <input name = "value1" type = "boolean" nodename = "_ENUM_B" />
+        <input name = "value2" type = "boolean" value = "true" />
+        <input name = "in1" type = "float" nodename = "Keyword_ENUM_BNode_e7a4eb55308f4ce09c18db94440aa48a" />
+        <input name = "in2" type = "float" nodename = "Keyword_ENUM_CNode_e7a4eb55308f4ce09c18db94440aa48a" />
+    </ifequal>
+    <constant name = "_ENUM_B" type = "boolean">
+        <input name = "value" type = "boolean" value = "false" />
+    </constant>
+    <dot name = "Keyword_ENUM_BNode_e7a4eb55308f4ce09c18db94440aa48a" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <dot name = "Keyword_ENUM_CNode_e7a4eb55308f4ce09c18db94440aa48a" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <constant name = "_BOOLEAN" type = "boolean">
+        <input name = "value" type = "boolean" value = "false" />
+    </constant>
+    <ifequal name = "Keyword_BOOLEANNode_c1c79b58b6de4f7a97f7626185518dd0" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+        <input name = "value1" type = "boolean" nodename = "_BOOLEAN" />
+        <input name = "value2" type = "boolean" value = "true" />
+    </ifequal>
+    <subtract name = "SubtractNode_19d58034154f4d7c9b45c1778bc8a0fe" type = "float">
+        <input name = "in1" type = "float" nodename = "Keyword_ENUM_OutNode_e7a4eb55308f4ce09c18db94440aa48a" />
+        <input name = "in2" type = "float" nodename = "Keyword_BOOLEANNode_c1c79b58b6de4f7a97f7626185518dd0" />
+    </subtract>
+    <ifequal name = "Or_OutNode_adaf883c5bee46a6999b05259f2c33c8" type = "float">
+        <input name = "value1" type = "float" nodename = "Or_Out_value1Node_adaf883c5bee46a6999b05259f2c33c8" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+    </ifequal>
+    <add name = "Or_Out_value1Node_adaf883c5bee46a6999b05259f2c33c8" type = "float">
+        <input name = "in1" type = "float" nodename = "Or_Out_value1_in1Node_adaf883c5bee46a6999b05259f2c33c8" />
+        <input name = "in2" type = "float" nodename = "Or_Out_value1_in2Node_adaf883c5bee46a6999b05259f2c33c8" />
+    </add>
+    <absval name = "Or_Out_value1_in1Node_adaf883c5bee46a6999b05259f2c33c8" type = "float">
+        <input name = "in" type = "float" nodename = "Or_ANode_adaf883c5bee46a6999b05259f2c33c8" />
+    </absval>
+    <dot name = "Or_ANode_adaf883c5bee46a6999b05259f2c33c8" type = "float">
+        <input name = "in" type = "float" nodename = "Keyword_ENUM_OutNode_e7a4eb55308f4ce09c18db94440aa48a" />
+    </dot>
+    <absval name = "Or_Out_value1_in2Node_adaf883c5bee46a6999b05259f2c33c8" type = "float">
+        <input name = "in" type = "float" nodename = "Or_BNode_adaf883c5bee46a6999b05259f2c33c8" />
+    </absval>
+    <dot name = "Or_BNode_adaf883c5bee46a6999b05259f2c33c8" type = "float">
+        <input name = "in" type = "float" nodename = "Keyword_BOOLEANNode_c1c79b58b6de4f7a97f7626185518dd0" />
+    </dot>
+    <ifgreater name = "BranchNode_047b847a43dd4e9189de1e772389b43f" type = "float">
+        <input name = "in1" type = "float" nodename = "SubtractNode_19d58034154f4d7c9b45c1778bc8a0fe" />
+        <input name = "in2" type = "float" value = "1" />
+        <input name = "value1" type = "float" nodename = "BranchAbsNode_047b847a43dd4e9189de1e772389b43f" />
+    </ifgreater>
+    <absval name = "BranchAbsNode_047b847a43dd4e9189de1e772389b43f" type = "float">
+        <input name = "in" type = "float" nodename = "Or_OutNode_adaf883c5bee46a6999b05259f2c33c8" />
+    </absval>
+    <combine4 name = "Combine_RGBANode_cd251f14fe2042b2a17838410c24fe75" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_cd251f14fe2042b2a17838410c24fe75" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_cd251f14fe2042b2a17838410c24fe75" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_cd251f14fe2042b2a17838410c24fe75" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_cd251f14fe2042b2a17838410c24fe75" />
+    </combine4>
+    <dot name = "Combine_RNode_cd251f14fe2042b2a17838410c24fe75" type = "float">
+        <input name = "in" type = "float" nodename = "BranchNode_b0139b1661a14dff948dc61bf3d3c48f" />
+    </dot>
+    <dot name = "Combine_GNode_cd251f14fe2042b2a17838410c24fe75" type = "float">
+        <input name = "in" type = "float" nodename = "OneMinusNode_f23ffd7ad4c94b838d29fd307d57adee" />
+    </dot>
+    <dot name = "Combine_BNode_cd251f14fe2042b2a17838410c24fe75" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "Combine_ANode_cd251f14fe2042b2a17838410c24fe75" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_cd251f14fe2042b2a17838410c24fe75" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_cd251f14fe2042b2a17838410c24fe75" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_cd251f14fe2042b2a17838410c24fe75" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_cd251f14fe2042b2a17838410c24fe75" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_cd251f14fe2042b2a17838410c24fe75" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_cd251f14fe2042b2a17838410c24fe75" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_cd251f14fe2042b2a17838410c24fe75" />
+    </combine2>
+    <subtract name = "OneMinusNode_f23ffd7ad4c94b838d29fd307d57adee" type = "float">
+        <input name = "in2" type = "float" nodename = "BranchNode_047b847a43dd4e9189de1e772389b43f" />
+        <input name = "in1" type = "float" value = "1" />
+    </subtract>
+    <ifgreater name = "BranchNode_b0139b1661a14dff948dc61bf3d3c48f" type = "float">
+        <input name = "in1" type = "float" nodename = "SubtractNode_19d58034154f4d7c9b45c1778bc8a0fe" />
+        <input name = "in2" type = "float" value = "1" />
+        <input name = "value1" type = "float" nodename = "BranchAbsNode_b0139b1661a14dff948dc61bf3d3c48f" />
+    </ifgreater>
+    <absval name = "BranchAbsNode_b0139b1661a14dff948dc61bf3d3c48f" type = "float">
+        <input name = "in" type = "float" nodename = "Or_OutNode_adaf883c5bee46a6999b05259f2c33c8" />
+    </absval>
+    <GeometryModification name = "SR_KeywordsVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Keywords" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromCombine_RGBNode_cd251f14fe2042b2a17838410c24fe75ToSR_Keywordscolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Keywords" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_KeywordsVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Keywords" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromCombine_RGBNode_cd251f14fe2042b2a17838410c24fe75ToSR_Keywordscolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "Combine_RGBNode_cd251f14fe2042b2a17838410c24fe75" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

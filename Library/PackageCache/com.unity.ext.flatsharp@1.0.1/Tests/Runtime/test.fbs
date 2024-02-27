@@ -1,0 +1,15 @@
+include "../../Source~/UnityEngine.inc.fbs";
+
+namespace Unity.FlatSharpTests;
+
+attribute "fs_literalName";
+attribute "fs_vector";
+attribute "fs_valueStruct";
+attribute "fs_serializer";
+
+table Foo (fs_serializer, fs_literalName) {
+  vector2List: [UnityEngine.Vector2];
+  vector2NativeArray: [UnityEngine.Vector2] (fs_vector:"UnityNativeArray");
+  intList: [int];
+  intNativeArray: [int] (fs_vector:"UnityNativeArray");
+}

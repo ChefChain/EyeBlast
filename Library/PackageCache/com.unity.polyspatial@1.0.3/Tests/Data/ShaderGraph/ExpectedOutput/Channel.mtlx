@@ -1,0 +1,31 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <multiply name = "ChannelMask_OutNode_740d6f25fa844441bb939b969e221e64" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "ChannelMask_InNode_740d6f25fa844441bb939b969e221e64" />
+        <input name = "in2" type = "vector4" value = "1,-1,1,1" />
+    </multiply>
+    <dot name = "ChannelMask_InNode_740d6f25fa844441bb939b969e221e64" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "CastSwizzleFromColorNode_03e4f501b54f4891be46d98087e4a094ToChannelMask_InNode_740d6f25fa844441bb939b969e221e64in" />
+    </dot>
+    <constant name = "ColorNode_03e4f501b54f4891be46d98087e4a094" type = "color4">
+        <input name = "value" type = "color4" value = "1,1,1,0" />
+    </constant>
+    <GeometryModification name = "SR_ChannelVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Channel" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromChannelMask_OutNode_740d6f25fa844441bb939b969e221e64ToSR_Channelcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Channel" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_ChannelVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Channel" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromColorNode_03e4f501b54f4891be46d98087e4a094ToChannelMask_InNode_740d6f25fa844441bb939b969e221e64in" type = "vector4">
+        <input name = "in" type = "color4" nodename = "ColorNode_03e4f501b54f4891be46d98087e4a094" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromChannelMask_OutNode_740d6f25fa844441bb939b969e221e64ToSR_Channelcolor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "ChannelMask_OutNode_740d6f25fa844441bb939b969e221e64" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

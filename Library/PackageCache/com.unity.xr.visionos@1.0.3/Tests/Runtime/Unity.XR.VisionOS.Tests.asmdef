@@ -1,0 +1,11 @@
+{
+    "name": "Unity.XR.VisionOS.Tests",
+    "references": [
+        "Unity.XR.VisionOS"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

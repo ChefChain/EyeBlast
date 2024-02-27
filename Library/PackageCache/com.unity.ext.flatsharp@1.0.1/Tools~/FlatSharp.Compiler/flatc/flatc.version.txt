@@ -1,0 +1,9 @@
+Flatc binaries are copyright Google Inc, and are distributed in accordance with the Apache 2 License, which is included adjacent to this file.
+
+The specific version of flatc included was obtained from the artifacts of the CI build of a Unity fork of Flatbuffers:
+
+Commit:
+https://github.com/Unity-Technologies/flatbuffers/commit/501f9ac03b6c131d46b472e2dfc83ecd2922e3ba
+
+Binaries:
+https://unity-ci.cds.internal.unity3d.com/job/22713505/artifacts

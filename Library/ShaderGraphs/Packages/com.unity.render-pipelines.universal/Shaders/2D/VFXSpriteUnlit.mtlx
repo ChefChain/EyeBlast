@@ -1,0 +1,69 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <constant name = "_Texture2D" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <RealityKitTexture2D name = "SampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fc" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture2D_TextureNode_7d404c357a03490d9c3289c3692af3fc" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fc" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "SampleTexture2D_TextureNode_7d404c357a03490d9c3289c3692af3fc" type = "filename">
+        <input name = "in" type = "filename" nodename = "_Texture2D" />
+    </dot>
+    <dot name = "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fc" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcAdd" />
+    </dot>
+    <texcoord name = "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcUV" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcMultiply" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcUV" />
+        <input name = "in2" type = "vector2" value = "1,-1" />
+    </multiply>
+    <add name = "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcAdd" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcMultiply" />
+        <input name = "in2" type = "vector2" value = "0,1" />
+    </add>
+    <swizzle name = "SampleTexture2D_RNode_7d404c357a03490d9c3289c3692af3fc" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fc" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_GNode_7d404c357a03490d9c3289c3692af3fc" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fc" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_BNode_7d404c357a03490d9c3289c3692af3fc" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fc" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_ANode_7d404c357a03490d9c3289c3692af3fc" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fc" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <GeometryModification name = "SR_VFXSpriteUnlitVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_pbr name = "SR_VFXSpriteUnlit" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" nodename = "CastSwizzleFromSampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fcToSR_VFXSpriteUnlitbaseColor" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "ambientOcclusion" type = "float" value = "1" />
+        <input name = "emissiveColor" type = "color3" value = "0,0,0" />
+        <input name = "metallic" type = "float" value = "0" />
+        <input name = "roughness" type = "float" value = "0.5" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_VFXSpriteUnlit" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_VFXSpriteUnlitVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_VFXSpriteUnlit" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromSampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fcToSR_VFXSpriteUnlitbaseColor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fc" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

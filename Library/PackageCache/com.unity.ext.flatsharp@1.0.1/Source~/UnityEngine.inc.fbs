@@ -1,0 +1,74 @@
+//
+// UnityEngine schema (external)
+//
+
+attribute "fs_valueStruct";
+attribute "fs_unsafeExternal";
+attribute "fs_literalName";
+attribute "required";
+
+namespace UnityEngine;
+
+struct Vector2 (fs_valueStruct, fs_unsafeExternal, fs_literalName) {
+    x: float;
+    y: float;
+}
+
+struct Vector3 (fs_valueStruct, fs_unsafeExternal, fs_literalName) {
+    x: float;
+    y: float;
+    z: float;
+}
+
+struct Vector4 (fs_valueStruct, fs_unsafeExternal, fs_literalName) {
+    x: float;
+    y: float;
+    z: float;
+    w: float;
+}
+
+struct Quaternion (fs_valueStruct, fs_unsafeExternal, fs_literalName) {
+    x: float;
+    y: float;
+    z: float;
+    w: float;
+}
+
+struct Color32 (fs_valueStruct, fs_unsafeExternal, fs_literalName) {
+    r: ubyte;
+    g: ubyte;
+    b: ubyte;
+    a: ubyte;
+}
+
+
+struct Color (fs_valueStruct, fs_unsafeExternal, fs_literalName) {
+    r: float;
+    g: float;
+    b: float;
+    a: float;
+}
+
+struct Matrix4x4 (fs_valueStruct, fs_unsafeExternal, fs_literalName) {
+    m00: float;
+    m10: float;
+    m20: float;
+    m30: float;
+    m01: float;
+    m11: float;
+    m21: float;
+    m31: float;
+    m02: float;
+    m12: float;
+    m22: float;
+    m32: float;
+    m03: float;
+    m13: float;
+    m23: float;
+    m33: float;
+}
+
+struct Pose (fs_valueStruct, fs_unsafeExternal, fs_literalName) {
+    position: Vector3;
+    rotation: Quaternion;
+}

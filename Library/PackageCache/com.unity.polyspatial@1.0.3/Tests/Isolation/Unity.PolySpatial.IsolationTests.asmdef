@@ -1,0 +1,28 @@
+{
+    "name": "Unity.PolySpatial.IsolationTests",
+    "rootNamespace": "Tests.Isolation",
+    "references": [
+        "Unity.PolySpatial",
+        "Unity.PolySpatial.Core",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Unity.InputSystem",
+        "Unity.InputSystem.TestFramework",
+        "Unity.PolySpatial.FunctionalTests"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "FlatSharp.Runtime.dll",
+        "Unity.PolySpatial.Core.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

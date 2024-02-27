@@ -1,0 +1,94 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <mix name = "Checkerboard_OutNode_cb852112626c4b15a57c75af5f980a86" type = "vector3">
+        <input name = "bg" type = "vector3" nodename = "Checkerboard_Out_bgNode_cb852112626c4b15a57c75af5f980a86" />
+        <input name = "fg" type = "vector3" nodename = "Checkerboard_Out_fgNode_cb852112626c4b15a57c75af5f980a86" />
+        <input name = "mix" type = "float" nodename = "Checkerboard_xorValueNode_cb852112626c4b15a57c75af5f980a86" />
+    </mix>
+    <convert name = "Checkerboard_Out_bgNode_cb852112626c4b15a57c75af5f980a86" type = "vector3">
+        <input name = "in" type = "color3" nodename = "Checkerboard_ColorBNode_cb852112626c4b15a57c75af5f980a86" />
+    </convert>
+    <dot name = "Checkerboard_ColorBNode_cb852112626c4b15a57c75af5f980a86" type = "color3">
+        <input name = "in" type = "color3" value = "0.4479884,0.4479884,0.4479884" />
+    </dot>
+    <convert name = "Checkerboard_Out_fgNode_cb852112626c4b15a57c75af5f980a86" type = "vector3">
+        <input name = "in" type = "color3" nodename = "Checkerboard_ColorANode_cb852112626c4b15a57c75af5f980a86" />
+    </convert>
+    <dot name = "Checkerboard_ColorANode_cb852112626c4b15a57c75af5f980a86" type = "color3">
+        <input name = "in" type = "color3" value = "0.03310476,0.03310476,0.03310476" />
+    </dot>
+    <subtract name = "Checkerboard_xorValueNode_cb852112626c4b15a57c75af5f980a86" type = "float">
+        <input name = "in1" type = "float" nodename = "Checkerboard_xorValue_in1Node_cb852112626c4b15a57c75af5f980a86" />
+        <input name = "in2" type = "float" nodename = "Checkerboard_xorValue_in2Node_cb852112626c4b15a57c75af5f980a86" />
+    </subtract>
+    <add name = "Checkerboard_xorValue_in1Node_cb852112626c4b15a57c75af5f980a86" type = "float">
+        <input name = "in1" type = "float" nodename = "Checkerboard_horizontalValueNode_cb852112626c4b15a57c75af5f980a86" />
+        <input name = "in2" type = "float" nodename = "Checkerboard_verticalValueNode_cb852112626c4b15a57c75af5f980a86" />
+    </add>
+    <splitlr name = "Checkerboard_horizontalValueNode_cb852112626c4b15a57c75af5f980a86" type = "float">
+        <input name = "valuel" type = "float" value = "0" />
+        <input name = "valuer" type = "float" value = "1" />
+        <input name = "center" type = "float" value = "0.5" />
+        <input name = "texcoord" type = "vector2" nodename = "Checkerboard_fracUVNode_cb852112626c4b15a57c75af5f980a86" />
+    </splitlr>
+    <realitykit_fractional name = "Checkerboard_fracUVNode_cb852112626c4b15a57c75af5f980a86" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Checkerboard_fracUV_inNode_cb852112626c4b15a57c75af5f980a86" />
+    </realitykit_fractional>
+    <multiply name = "Checkerboard_fracUV_inNode_cb852112626c4b15a57c75af5f980a86" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Checkerboard_fracUV_in_in1Node_cb852112626c4b15a57c75af5f980a86" />
+        <input name = "in2" type = "vector2" nodename = "Checkerboard_FrequencyNode_cb852112626c4b15a57c75af5f980a86" />
+    </multiply>
+    <add name = "Checkerboard_fracUV_in_in1Node_cb852112626c4b15a57c75af5f980a86" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </add>
+    <dot name = "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86Add" />
+    </dot>
+    <texcoord name = "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86UV" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86Multiply" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86UV" />
+        <input name = "in2" type = "vector2" value = "1,-1" />
+    </multiply>
+    <add name = "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86Add" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86Multiply" />
+        <input name = "in2" type = "vector2" value = "0,1" />
+    </add>
+    <dot name = "Checkerboard_FrequencyNode_cb852112626c4b15a57c75af5f980a86" type = "vector2">
+        <input name = "in" type = "vector2" value = "1,1" />
+    </dot>
+    <splitlr name = "Checkerboard_verticalValueNode_cb852112626c4b15a57c75af5f980a86" type = "float">
+        <input name = "valuel" type = "float" value = "0" />
+        <input name = "valuer" type = "float" value = "1" />
+        <input name = "center" type = "float" value = "0.5" />
+        <input name = "texcoord" type = "vector2" nodename = "Checkerboard_verticalValue_texcoordNode_cb852112626c4b15a57c75af5f980a86" />
+    </splitlr>
+    <swizzle name = "Checkerboard_verticalValue_texcoordNode_cb852112626c4b15a57c75af5f980a86" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Checkerboard_fracUVNode_cb852112626c4b15a57c75af5f980a86" />
+        <input name = "channels" type = "string" value = "yx" />
+    </swizzle>
+    <multiply name = "Checkerboard_xorValue_in2Node_cb852112626c4b15a57c75af5f980a86" type = "float">
+        <input name = "in1" type = "float" nodename = "Checkerboard_xorValue_in2_in1Node_cb852112626c4b15a57c75af5f980a86" />
+        <input name = "in2" type = "float" nodename = "Checkerboard_verticalValueNode_cb852112626c4b15a57c75af5f980a86" />
+    </multiply>
+    <multiply name = "Checkerboard_xorValue_in2_in1Node_cb852112626c4b15a57c75af5f980a86" type = "float">
+        <input name = "in1" type = "float" value = "2" />
+        <input name = "in2" type = "float" nodename = "Checkerboard_horizontalValueNode_cb852112626c4b15a57c75af5f980a86" />
+    </multiply>
+    <GeometryModification name = "SR_ProceduralVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Procedural" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromCheckerboard_OutNode_cb852112626c4b15a57c75af5f980a86ToSR_Proceduralcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Procedural" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_ProceduralVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Procedural" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromCheckerboard_OutNode_cb852112626c4b15a57c75af5f980a86ToSR_Proceduralcolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "Checkerboard_OutNode_cb852112626c4b15a57c75af5f980a86" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

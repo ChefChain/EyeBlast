@@ -1,0 +1,465 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <multiply name = "TilingAndOffsetMulNode_4470133616aa40f893dd96fda2d90164" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Flipbook_OutNode_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <add name = "TilingAndOffsetAddNode_4470133616aa40f893dd96fda2d90164" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "TilingAndOffsetMulNode_4470133616aa40f893dd96fda2d90164" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </add>
+    <add name = "Rotate_OutNode_ffb23436d9574dbdb1940f539bd09cba" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Rotate_Out_in1Node_ffb23436d9574dbdb1940f539bd09cba" />
+        <input name = "in2" type = "vector2" nodename = "Rotate_CenterNode_ffb23436d9574dbdb1940f539bd09cba" />
+    </add>
+    <rotate2d name = "Rotate_Out_in1Node_ffb23436d9574dbdb1940f539bd09cba" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Rotate_Out_in1_inNode_ffb23436d9574dbdb1940f539bd09cba" />
+        <input name = "amount" type = "float" nodename = "Rotate_Out_in1_amountNode_ffb23436d9574dbdb1940f539bd09cba" />
+    </rotate2d>
+    <subtract name = "Rotate_Out_in1_inNode_ffb23436d9574dbdb1940f539bd09cba" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Rotate_UVNode_ffb23436d9574dbdb1940f539bd09cba" />
+        <input name = "in2" type = "vector2" nodename = "Rotate_CenterNode_ffb23436d9574dbdb1940f539bd09cba" />
+    </subtract>
+    <dot name = "Rotate_UVNode_ffb23436d9574dbdb1940f539bd09cba" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "TilingAndOffsetAddNode_4470133616aa40f893dd96fda2d90164" />
+    </dot>
+    <dot name = "Rotate_CenterNode_ffb23436d9574dbdb1940f539bd09cba" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "PolarCoordinates_OutNode_1df35a5b742e42d1bed34e80993c968f" />
+    </dot>
+    <multiply name = "Rotate_Out_in1_amountNode_ffb23436d9574dbdb1940f539bd09cba" type = "float">
+        <input name = "in1" type = "float" nodename = "Rotate_RotationNode_ffb23436d9574dbdb1940f539bd09cba" />
+        <input name = "in2" type = "float" value = "-1" />
+    </multiply>
+    <dot name = "Rotate_RotationNode_ffb23436d9574dbdb1940f539bd09cba" type = "float">
+        <input name = "in" type = "float" value = "270" />
+    </dot>
+    <combine2 name = "Vector2Node_83d395866e7446498e93265910d7baf1" type = "vector2">
+        <input name = "in1" type = "float" value = "0.5" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </combine2>
+    <multiply name = "Flipbook_OutNode_00b2df0a2ea04feca9efc70acf418fad" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Flipbook_Out_in1Node_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "vector2" nodename = "Flipbook_tileCountNode_00b2df0a2ea04feca9efc70acf418fad" />
+    </multiply>
+    <add name = "Flipbook_Out_in1Node_00b2df0a2ea04feca9efc70acf418fad" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Flipbook_UVNode_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "vector2" nodename = "Flipbook_Out_in1_in2Node_00b2df0a2ea04feca9efc70acf418fad" />
+    </add>
+    <dot name = "Flipbook_UVNode_00b2df0a2ea04feca9efc70acf418fad" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Vector2Node_83d395866e7446498e93265910d7baf1" />
+    </dot>
+    <combine2 name = "Flipbook_Out_in1_in2Node_00b2df0a2ea04feca9efc70acf418fad" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Flipbook_tileXNode_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "float" nodename = "Flipbook_tileYNode_00b2df0a2ea04feca9efc70acf418fad" />
+    </combine2>
+    <absval name = "Flipbook_tileXNode_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in" type = "float" nodename = "Flipbook_tileX_inNode_00b2df0a2ea04feca9efc70acf418fad" />
+    </absval>
+    <subtract name = "Flipbook_tileX_inNode_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in1" type = "float" nodename = "Flipbook_wrappedTileNode_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "float" nodename = "Flipbook_tileX_in_in2Node_00b2df0a2ea04feca9efc70acf418fad" />
+    </subtract>
+    <modulo name = "Flipbook_wrappedTileNode_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in1" type = "float" nodename = "Flipbook_wrappedTile_in1Node_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "float" nodename = "Flipbook_wrappedTile_in2Node_00b2df0a2ea04feca9efc70acf418fad" />
+    </modulo>
+    <floor name = "Flipbook_wrappedTile_in1Node_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in" type = "float" nodename = "Flipbook_TileNode_00b2df0a2ea04feca9efc70acf418fad" />
+    </floor>
+    <dot name = "Flipbook_TileNode_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <multiply name = "Flipbook_wrappedTile_in2Node_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in1" type = "float" nodename = "Flipbook_WidthNode_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "float" nodename = "Flipbook_HeightNode_00b2df0a2ea04feca9efc70acf418fad" />
+    </multiply>
+    <dot name = "Flipbook_WidthNode_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <dot name = "Flipbook_HeightNode_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <multiply name = "Flipbook_tileX_in_in2Node_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in1" type = "float" nodename = "Flipbook_WidthNode_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "float" nodename = "Flipbook_tileFloorNode_00b2df0a2ea04feca9efc70acf418fad" />
+    </multiply>
+    <floor name = "Flipbook_tileFloorNode_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in" type = "float" nodename = "Flipbook_tileFloor_inNode_00b2df0a2ea04feca9efc70acf418fad" />
+    </floor>
+    <multiply name = "Flipbook_tileFloor_inNode_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in1" type = "float" nodename = "Flipbook_wrappedTileNode_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "float" nodename = "Flipbook_tileFloor_in_in2Node_00b2df0a2ea04feca9efc70acf418fad" />
+    </multiply>
+    <swizzle name = "Flipbook_tileFloor_in_in2Node_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in" type = "vector2" nodename = "Flipbook_tileCountNode_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <divide name = "Flipbook_tileCountNode_00b2df0a2ea04feca9efc70acf418fad" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Flipbook_tileCount_in2Node_00b2df0a2ea04feca9efc70acf418fad" />
+    </divide>
+    <combine2 name = "Flipbook_tileCount_in2Node_00b2df0a2ea04feca9efc70acf418fad" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Flipbook_WidthNode_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "float" nodename = "Flipbook_HeightNode_00b2df0a2ea04feca9efc70acf418fad" />
+    </combine2>
+    <absval name = "Flipbook_tileYNode_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in" type = "float" nodename = "Flipbook_tileY_inNode_00b2df0a2ea04feca9efc70acf418fad" />
+    </absval>
+    <subtract name = "Flipbook_tileY_inNode_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in1" type = "float" nodename = "Flipbook_tileY_in_in1Node_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "float" nodename = "Flipbook_tileFloorNode_00b2df0a2ea04feca9efc70acf418fad" />
+    </subtract>
+    <subtract name = "Flipbook_tileY_in_in1Node_00b2df0a2ea04feca9efc70acf418fad" type = "float">
+        <input name = "in1" type = "float" nodename = "Flipbook_HeightNode_00b2df0a2ea04feca9efc70acf418fad" />
+        <input name = "in2" type = "float" value = "1" />
+    </subtract>
+    <combine2 name = "PolarCoordinates_OutNode_1df35a5b742e42d1bed34e80993c968f" type = "vector2">
+        <input name = "in1" type = "float" nodename = "PolarCoordinates_radiusNode_1df35a5b742e42d1bed34e80993c968f" />
+        <input name = "in2" type = "float" nodename = "PolarCoordinates_angleNode_1df35a5b742e42d1bed34e80993c968f" />
+    </combine2>
+    <multiply name = "PolarCoordinates_radiusNode_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "in1" type = "float" nodename = "PolarCoordinates_radius_in1Node_1df35a5b742e42d1bed34e80993c968f" />
+        <input name = "in2" type = "float" nodename = "PolarCoordinates_RadialScaleNode_1df35a5b742e42d1bed34e80993c968f" />
+    </multiply>
+    <multiply name = "PolarCoordinates_radius_in1Node_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "in1" type = "float" nodename = "PolarCoordinates_radius_in1_in1Node_1df35a5b742e42d1bed34e80993c968f" />
+        <input name = "in2" type = "float" value = "2" />
+    </multiply>
+    <magnitude name = "PolarCoordinates_radius_in1_in1Node_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "in" type = "vector2" nodename = "PolarCoordinates_deltaNode_1df35a5b742e42d1bed34e80993c968f" />
+    </magnitude>
+    <subtract name = "PolarCoordinates_deltaNode_1df35a5b742e42d1bed34e80993c968f" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968f" />
+        <input name = "in2" type = "vector2" nodename = "PolarCoordinates_CenterNode_1df35a5b742e42d1bed34e80993c968f" />
+    </subtract>
+    <dot name = "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968f" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fAdd" />
+    </dot>
+    <texcoord name = "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fUV" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fMultiply" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fUV" />
+        <input name = "in2" type = "vector2" value = "1,-1" />
+    </multiply>
+    <add name = "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fAdd" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fMultiply" />
+        <input name = "in2" type = "vector2" value = "0,1" />
+    </add>
+    <dot name = "PolarCoordinates_CenterNode_1df35a5b742e42d1bed34e80993c968f" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "RadialShear_OutNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+    </dot>
+    <dot name = "PolarCoordinates_RadialScaleNode_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <multiply name = "PolarCoordinates_angleNode_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "in1" type = "float" nodename = "PolarCoordinates_angle_in1Node_1df35a5b742e42d1bed34e80993c968f" />
+        <input name = "in2" type = "float" nodename = "PolarCoordinates_LengthScaleNode_1df35a5b742e42d1bed34e80993c968f" />
+    </multiply>
+    <divide name = "PolarCoordinates_angle_in1Node_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "in1" type = "float" nodename = "PolarCoordinates_angle_in1_in1Node_1df35a5b742e42d1bed34e80993c968f" />
+        <input name = "in2" type = "float" value = "6.28" />
+    </divide>
+    <multiply name = "PolarCoordinates_angle_in1_in1Node_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "in1" type = "float" nodename = "PolarCoordinates_angle_in1_in1_in1Node_1df35a5b742e42d1bed34e80993c968f" />
+        <input name = "in2" type = "float" value = "1" />
+    </multiply>
+    <atan2 name = "PolarCoordinates_angle_in1_in1_in1Node_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "iny" type = "float" nodename = "PolarCoordinates_angle_in1_in1_in1_inyNode_1df35a5b742e42d1bed34e80993c968f" />
+        <input name = "inx" type = "float" nodename = "PolarCoordinates_angle_in1_in1_in1_inxNode_1df35a5b742e42d1bed34e80993c968f" />
+    </atan2>
+    <swizzle name = "PolarCoordinates_angle_in1_in1_in1_inyNode_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "in" type = "vector2" nodename = "PolarCoordinates_deltaNode_1df35a5b742e42d1bed34e80993c968f" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "PolarCoordinates_angle_in1_in1_in1_inxNode_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "in" type = "vector2" nodename = "PolarCoordinates_deltaNode_1df35a5b742e42d1bed34e80993c968f" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "PolarCoordinates_LengthScaleNode_1df35a5b742e42d1bed34e80993c968f" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <add name = "RadialShear_OutNode_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "RadialShear_Out_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "in2" type = "vector2" nodename = "RadialShear_OffsetNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+    </add>
+    <add name = "RadialShear_Out_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "in2" type = "vector2" nodename = "RadialShear_Out_in1_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa" />
+    </add>
+    <dot name = "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaAdd" />
+    </dot>
+    <texcoord name = "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaUV" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaMultiply" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaUV" />
+        <input name = "in2" type = "vector2" value = "1,-1" />
+    </multiply>
+    <add name = "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaAdd" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaMultiply" />
+        <input name = "in2" type = "vector2" value = "0,1" />
+    </add>
+    <multiply name = "RadialShear_Out_in1_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "RadialShear_Out_in1_in2_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "in2" type = "vector2" nodename = "RadialShear_delta_offsetNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+    </multiply>
+    <combine2 name = "RadialShear_Out_in1_in2_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in1" type = "float" nodename = "RadialShear_Out_in1_in2_in1_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "in2" type = "float" nodename = "RadialShear_Out_in1_in2_in1_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa" />
+    </combine2>
+    <swizzle name = "RadialShear_Out_in1_in2_in1_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa" type = "float">
+        <input name = "in" type = "vector2" nodename = "RadialShear_deltaNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <subtract name = "RadialShear_deltaNode_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "in2" type = "vector2" nodename = "RadialShear_CenterNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+    </subtract>
+    <dot name = "RadialShear_CenterNode_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Spherize_OutNode_8cb0ad01f12048d685ae4cdc86158dba" />
+    </dot>
+    <subtract name = "RadialShear_Out_in1_in2_in1_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa" type = "float">
+        <input name = "in2" type = "float" nodename = "RadialShear_Out_in1_in2_in1_in2_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa" />
+    </subtract>
+    <swizzle name = "RadialShear_Out_in1_in2_in1_in2_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa" type = "float">
+        <input name = "in" type = "vector2" nodename = "RadialShear_deltaNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <multiply name = "RadialShear_delta_offsetNode_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "RadialShear_delta_offset_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "in2" type = "vector2" nodename = "RadialShear_StrengthNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+    </multiply>
+    <convert name = "RadialShear_delta_offset_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in" type = "float" nodename = "RadialShear_delta2Node_0e74430d3d1a4c9daf2ff488dadd47aa" />
+    </convert>
+    <dotproduct name = "RadialShear_delta2Node_0e74430d3d1a4c9daf2ff488dadd47aa" type = "float">
+        <input name = "in1" type = "vector2" nodename = "RadialShear_delta2_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "in2" type = "vector2" nodename = "RadialShear_delta2_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa" />
+    </dotproduct>
+    <swizzle name = "RadialShear_delta2_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "RadialShear_deltaNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "RadialShear_delta2_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "RadialShear_deltaNode_0e74430d3d1a4c9daf2ff488dadd47aa" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <dot name = "RadialShear_StrengthNode_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in" type = "vector2" value = "10,10" />
+    </dot>
+    <dot name = "RadialShear_OffsetNode_0e74430d3d1a4c9daf2ff488dadd47aa" type = "vector2">
+        <input name = "in" type = "vector2" value = "0,0" />
+    </dot>
+    <add name = "Spherize_OutNode_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Spherize_Out_in1Node_8cb0ad01f12048d685ae4cdc86158dba" />
+        <input name = "in2" type = "vector2" nodename = "Spherize_OffsetNode_8cb0ad01f12048d685ae4cdc86158dba" />
+    </add>
+    <add name = "Spherize_Out_in1Node_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dba" />
+        <input name = "in2" type = "vector2" nodename = "Spherize_Out_in1_in2Node_8cb0ad01f12048d685ae4cdc86158dba" />
+    </add>
+    <dot name = "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaAdd" />
+    </dot>
+    <texcoord name = "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaUV" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaMultiply" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaUV" />
+        <input name = "in2" type = "vector2" value = "1,-1" />
+    </multiply>
+    <add name = "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaAdd" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaMultiply" />
+        <input name = "in2" type = "vector2" value = "0,1" />
+    </add>
+    <multiply name = "Spherize_Out_in1_in2Node_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Spherize_deltaNode_8cb0ad01f12048d685ae4cdc86158dba" />
+        <input name = "in2" type = "vector2" nodename = "Spherize_delta_offsetNode_8cb0ad01f12048d685ae4cdc86158dba" />
+    </multiply>
+    <subtract name = "Spherize_deltaNode_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dba" />
+        <input name = "in2" type = "vector2" nodename = "Spherize_CenterNode_8cb0ad01f12048d685ae4cdc86158dba" />
+    </subtract>
+    <dot name = "Spherize_CenterNode_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Twirl_OutNode_fc43d37e544c4326b6bca87c59d050b4" />
+    </dot>
+    <multiply name = "Spherize_delta_offsetNode_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Spherize_delta_offset_in1Node_8cb0ad01f12048d685ae4cdc86158dba" />
+        <input name = "in2" type = "vector2" nodename = "Spherize_StrengthNode_8cb0ad01f12048d685ae4cdc86158dba" />
+    </multiply>
+    <convert name = "Spherize_delta_offset_in1Node_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in" type = "float" nodename = "Spherize_delta4Node_8cb0ad01f12048d685ae4cdc86158dba" />
+    </convert>
+    <multiply name = "Spherize_delta4Node_8cb0ad01f12048d685ae4cdc86158dba" type = "float">
+        <input name = "in1" type = "float" nodename = "Spherize_delta2Node_8cb0ad01f12048d685ae4cdc86158dba" />
+        <input name = "in2" type = "float" nodename = "Spherize_delta2Node_8cb0ad01f12048d685ae4cdc86158dba" />
+    </multiply>
+    <dotproduct name = "Spherize_delta2Node_8cb0ad01f12048d685ae4cdc86158dba" type = "float">
+        <input name = "in1" type = "vector2" nodename = "Spherize_delta2_in1Node_8cb0ad01f12048d685ae4cdc86158dba" />
+        <input name = "in2" type = "vector2" nodename = "Spherize_delta2_in2Node_8cb0ad01f12048d685ae4cdc86158dba" />
+    </dotproduct>
+    <swizzle name = "Spherize_delta2_in1Node_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Spherize_deltaNode_8cb0ad01f12048d685ae4cdc86158dba" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "Spherize_delta2_in2Node_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Spherize_deltaNode_8cb0ad01f12048d685ae4cdc86158dba" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <dot name = "Spherize_StrengthNode_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in" type = "vector2" value = "10,10" />
+    </dot>
+    <dot name = "Spherize_OffsetNode_8cb0ad01f12048d685ae4cdc86158dba" type = "vector2">
+        <input name = "in" type = "vector2" value = "0,0" />
+    </dot>
+    <combine2 name = "Twirl_OutNode_fc43d37e544c4326b6bca87c59d050b4" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Twirl_Out_in1Node_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_Out_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </combine2>
+    <add name = "Twirl_Out_in1Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_Out_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_Out_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </add>
+    <add name = "Twirl_Out_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_xNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_Out_in1_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </add>
+    <subtract name = "Twirl_xNode_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_x_in1Node_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_x_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </subtract>
+    <multiply name = "Twirl_x_in1Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_x_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_x_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </multiply>
+    <cos name = "Twirl_x_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "float" nodename = "Twirl_angleNode_fc43d37e544c4326b6bca87c59d050b4" />
+    </cos>
+    <multiply name = "Twirl_angleNode_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_StrengthNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_angle_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </multiply>
+    <dot name = "Twirl_StrengthNode_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "float" value = "10" />
+    </dot>
+    <magnitude name = "Twirl_angle_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "vector2" nodename = "Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4" />
+    </magnitude>
+    <subtract name = "Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "vector2" nodename = "Twirl_CenterNode_fc43d37e544c4326b6bca87c59d050b4" />
+    </subtract>
+    <dot name = "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4Add" />
+    </dot>
+    <texcoord name = "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4UV" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4Multiply" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4UV" />
+        <input name = "in2" type = "vector2" value = "1,-1" />
+    </multiply>
+    <add name = "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4Add" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4Multiply" />
+        <input name = "in2" type = "vector2" value = "0,1" />
+    </add>
+    <dot name = "Twirl_CenterNode_fc43d37e544c4326b6bca87c59d050b4" type = "vector2">
+        <input name = "in" type = "vector2" value = "0.5,0.5" />
+    </dot>
+    <swizzle name = "Twirl_x_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "vector2" nodename = "Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <multiply name = "Twirl_x_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_x_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_x_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </multiply>
+    <sin name = "Twirl_x_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "float" nodename = "Twirl_angleNode_fc43d37e544c4326b6bca87c59d050b4" />
+    </sin>
+    <swizzle name = "Twirl_x_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "vector2" nodename = "Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "Twirl_Out_in1_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "vector2" nodename = "Twirl_CenterNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "Twirl_Out_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "vector2" nodename = "Twirl_OffsetNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "Twirl_OffsetNode_fc43d37e544c4326b6bca87c59d050b4" type = "vector2">
+        <input name = "in" type = "vector2" value = "0,0" />
+    </dot>
+    <add name = "Twirl_Out_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_Out_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_Out_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </add>
+    <add name = "Twirl_Out_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_yNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_Out_in2_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </add>
+    <add name = "Twirl_yNode_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_y_in1Node_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_y_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </add>
+    <multiply name = "Twirl_y_in1Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_y_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_y_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </multiply>
+    <sin name = "Twirl_y_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "float" nodename = "Twirl_angleNode_fc43d37e544c4326b6bca87c59d050b4" />
+    </sin>
+    <swizzle name = "Twirl_y_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "vector2" nodename = "Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <multiply name = "Twirl_y_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in1" type = "float" nodename = "Twirl_y_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "in2" type = "float" nodename = "Twirl_y_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4" />
+    </multiply>
+    <cos name = "Twirl_y_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "float" nodename = "Twirl_angleNode_fc43d37e544c4326b6bca87c59d050b4" />
+    </cos>
+    <swizzle name = "Twirl_y_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "vector2" nodename = "Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "Twirl_Out_in2_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "vector2" nodename = "Twirl_CenterNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "Twirl_Out_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4" type = "float">
+        <input name = "in" type = "vector2" nodename = "Twirl_OffsetNode_fc43d37e544c4326b6bca87c59d050b4" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <GeometryModification name = "SR_UVVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_UV" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastConvertFinalFromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_UV" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_UVVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_UV" />
+    </surfacematerial>
+    <dot name = "CastConvertFromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Rotate_OutNode_ffb23436d9574dbdb1940f539bd09cba" />
+    </dot>
+    <combine3 name = "CastConvertFinalFromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor" type = "color3">
+        <input name = "in1" type = "float" nodename = "CastSwizzle1FromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor" />
+        <input name = "in2" type = "float" nodename = "CastSwizzle2FromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor" />
+        <input name = "in3" type = "float" value = "0" />
+    </combine3>
+    <swizzle name = "CastSwizzle1FromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzle2FromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+</materialx>

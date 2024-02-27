@@ -1,0 +1,261 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Decal"
+        {
+            asset inputs:Base_Map = @placeholder.png@ (colorSpace = "srgb_texture")
+            asset inputs:Normal_Map = @placeholder.png@ (colorSpace = "srgb_texture")
+            float inputs:Normal_Blend = 0.5
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Decal/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Decal/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                color3f inputs:baseColor.connect = </MaterialX/Materials/USD_Decal/CastSwizzleFromSampleTexture2D_RGBANode_7388a7ddbf6648ec92c3bb54ed055048ToSR_DecalbaseColor.outputs:out>
+                float3 inputs:normal.connect = </MaterialX/Materials/USD_Decal/CastSwizzleFromSampleTexture2D_RGBANode_1300b7cb738f4b18927411750039acd2ToSR_Decalnormal.outputs:out>
+                float inputs:specular = 0.5
+                float inputs:ambientOcclusion = 1
+                color3f inputs:emissiveColor = (0, 0, 0)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.5
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromSampleTexture2D_RGBANode_7388a7ddbf6648ec92c3bb54ed055048ToSR_DecalbaseColor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_RGBANode_7388a7ddbf6648ec92c3bb54ed055048.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_7388a7ddbf6648ec92c3bb54ed055048"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_TextureNode_7388a7ddbf6648ec92c3bb54ed055048.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_UVNode_7388a7ddbf6648ec92c3bb54ed055048.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_7388a7ddbf6648ec92c3bb54ed055048"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_Decal.inputs:Base_Map>
+                asset outputs:out
+            }
+
+            def Shader "CastSwizzleFromSampleTexture2D_RGBANode_1300b7cb738f4b18927411750039acd2ToSR_Decalnormal"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_RGBANode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                string inputs:channels = "xyz"
+                float3 outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_ifequal_vector4"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_RGBA_value1Node_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float inputs:value2 = 0
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_reconstructedNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_rescaledNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_reconstructedNode_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_reconstructed_in1Node_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_reconstructed_in2Node_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_zNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float inputs:in4 = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_reconstructed_in1Node_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_rescaledNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBA_value1Node_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_RGBA_value1_value1Node_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float inputs:value2 = 1
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBA_value1_value1Node_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_rescaledNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_7388a7ddbf6648ec92c3bb54ed055048"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_UVNode_7388a7ddbf6648ec92c3bb54ed055048Add.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_7388a7ddbf6648ec92c3bb54ed055048Add"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_UVNode_7388a7ddbf6648ec92c3bb54ed055048Multiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_7388a7ddbf6648ec92c3bb54ed055048Multiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_UVNode_7388a7ddbf6648ec92c3bb54ed055048UV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_7388a7ddbf6648ec92c3bb54ed055048UV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_rescaledNode_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_subtract_vector4FA"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_rescaled_in1Node_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float inputs:in2 = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_rescaled_in1Node_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_multiply_vector4FA"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_rescaled_in1_in1Node_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float inputs:in2 = 2
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_rescaled_in1_in1Node_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_TextureNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_UVNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_UVNode_1300b7cb738f4b18927411750039acd2Add.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_1300b7cb738f4b18927411750039acd2Add"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_UVNode_1300b7cb738f4b18927411750039acd2Multiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_1300b7cb738f4b18927411750039acd2Multiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_UVNode_1300b7cb738f4b18927411750039acd2UV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_1300b7cb738f4b18927411750039acd2UV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_Decal.inputs:Normal_Map>
+                asset outputs:out
+            }
+
+            def Shader "SampleTexture2D_reconstructed_in2Node_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_rescaledNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_zNode_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_sqrt_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_z_inNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_z_inNode_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_z_in_in2Node_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_z_in_in2Node_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_dotproduct_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_z_in_in2_in1Node_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float4 inputs:in2 = (0, 1, 0, 1)
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_z_in_in2_in1Node_1300b7cb738f4b18927411750039acd2"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_rescaledNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_Decal/SampleTexture2D_rescaledNode_1300b7cb738f4b18927411750039acd2.outputs:out>
+                float4 outputs:out
+            }
+        }
+    }
+}

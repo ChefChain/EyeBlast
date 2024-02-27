@@ -1,0 +1,261 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Wave"
+        {
+            float4 inputs:_Time = (0, 0, 0, 0)
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Wave/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Wave/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Wave/CastSwizzleFromCombine_RGBNode_1fb04e6723f043a4bb449a33439084ccToSR_Wavecolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromCombine_RGBNode_1fb04e6723f043a4bb449a33439084ccToSR_Wavecolor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Wave/Combine_RGBNode_1fb04e6723f043a4bb449a33439084cc.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "Combine_RGBNode_1fb04e6723f043a4bb449a33439084cc"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Wave/Combine_RNode_1fb04e6723f043a4bb449a33439084cc.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Wave/Combine_GNode_1fb04e6723f043a4bb449a33439084cc.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Wave/Combine_BNode_1fb04e6723f043a4bb449a33439084cc.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Combine_RNode_1fb04e6723f043a4bb449a33439084cc"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/SquareWave_OutNode_cca0ea3aed1148c3b12967a5c58f2979.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SquareWave_OutNode_cca0ea3aed1148c3b12967a5c58f2979"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Wave/SquareWave_Out_in2Node_cca0ea3aed1148c3b12967a5c58f2979.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SquareWave_Out_in2Node_cca0ea3aed1148c3b12967a5c58f2979"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 2
+                float inputs:in2.connect = </MaterialX/Materials/USD_Wave/SquareWave_Out_in2_in2Node_cca0ea3aed1148c3b12967a5c58f2979.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SquareWave_Out_in2_in2Node_cca0ea3aed1148c3b12967a5c58f2979"
+            {
+                uniform token info:id = "ND_round_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/SquareWave_Out_in2_in2_inNode_cca0ea3aed1148c3b12967a5c58f2979.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SquareWave_Out_in2_in2_inNode_cca0ea3aed1148c3b12967a5c58f2979"
+            {
+                uniform token info:id = "ND_realitykit_fractional_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/SquareWave_InNode_cca0ea3aed1148c3b12967a5c58f2979.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SquareWave_InNode_cca0ea3aed1148c3b12967a5c58f2979"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/_TimeyNode_8a9a3a20401349b4bbfe72dd809477d5.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_TimeyNode_8a9a3a20401349b4bbfe72dd809477d5"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                string inputs:channels = "y"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Wave.inputs:_Time>
+                float outputs:out
+            }
+
+            def Shader "Combine_GNode_1fb04e6723f043a4bb449a33439084cc"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/SawtoothWave_OutNode_3c75885595874ba5ac2117c392e79f5c.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SawtoothWave_OutNode_3c75885595874ba5ac2117c392e79f5c"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 2
+                float inputs:in2.connect = </MaterialX/Materials/USD_Wave/SawtoothWave_Out_in2Node_3c75885595874ba5ac2117c392e79f5c.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SawtoothWave_Out_in2Node_3c75885595874ba5ac2117c392e79f5c"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Wave/SawtoothWave_InNode_3c75885595874ba5ac2117c392e79f5c.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Wave/SawtoothWave_Out_in2_in2Node_3c75885595874ba5ac2117c392e79f5c.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SawtoothWave_Out_in2_in2Node_3c75885595874ba5ac2117c392e79f5c"
+            {
+                uniform token info:id = "ND_floor_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/SawtoothWave_Out_in2_in2_inNode_3c75885595874ba5ac2117c392e79f5c.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SawtoothWave_Out_in2_in2_inNode_3c75885595874ba5ac2117c392e79f5c"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1 = 0.5
+                float inputs:in2.connect = </MaterialX/Materials/USD_Wave/SawtoothWave_InNode_3c75885595874ba5ac2117c392e79f5c.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SawtoothWave_InNode_3c75885595874ba5ac2117c392e79f5c"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/_TimeyNode_8a9a3a20401349b4bbfe72dd809477d5.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Combine_BNode_1fb04e6723f043a4bb449a33439084cc"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_OutNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_OutNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_sinInNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_noiseNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_sinInNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_sin_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_InNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_InNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/_TimeyNode_8a9a3a20401349b4bbfe72dd809477d5.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_noiseNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_mix_float"
+                float inputs:bg.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_noise_bgNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float inputs:fg.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_noise_fgNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_randomnoNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_noise_bgNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_MinMaxNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_MinMaxNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in = (-0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "NoiseSineWave_noise_fgNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_MinMaxNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_randomnoNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_realitykit_fractional_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_randomno_inNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_randomno_inNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_randomno_in_in1Node_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float inputs:in2 = 43758.55
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_randomno_in_in1Node_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_sin_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_randomno_in_in1_inNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_randomno_in_in1_inNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_randomno_in_in1_in_in1Node_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float inputs:in2 = 91.2228
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_randomno_in_in1_in_in1Node_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_sinInNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_sinInOffsetNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_sinInOffsetNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_sin_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_sinInOffset_inNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "NoiseSineWave_sinInOffset_inNode_7ba6f499cd184ac48504324d70f30c06"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Wave/NoiseSineWave_InNode_7ba6f499cd184ac48504324d70f30c06.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+        }
+    }
+}

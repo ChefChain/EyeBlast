@@ -1,0 +1,1442 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Shapes"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Shapes/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Shapes/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                color3f inputs:baseColor.connect = </MaterialX/Materials/USD_Shapes/CastSwizzleFromCombine_RGBNode_7903779d99244da79024823f86ca9144ToSR_ShapesbaseColor.outputs:out>
+                color3f inputs:emissiveColor = (0, 0, 0)
+                float inputs:ambientOcclusion = 1
+                float inputs:metallic.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_OutNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:specular = 0.5
+                float inputs:roughness.connect = </MaterialX/Materials/USD_Shapes/SR_Shapes_roughness_OnesComplement.outputs:out>
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromCombine_RGBNode_7903779d99244da79024823f86ca9144ToSR_ShapesbaseColor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Combine_RGBNode_7903779d99244da79024823f86ca9144.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "Combine_RGBNode_7903779d99244da79024823f86ca9144"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Combine_RNode_7903779d99244da79024823f86ca9144.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Combine_GNode_7903779d99244da79024823f86ca9144.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Shapes/Combine_BNode_7903779d99244da79024823f86ca9144.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Combine_RNode_7903779d99244da79024823f86ca9144"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/Ellipse_OutNode_11b8ca005bdf4cc89a2d1e431df2f68c.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Ellipse_OutNode_11b8ca005bdf4cc89a2d1e431df2f68c"
+            {
+                uniform token info:id = "ND_splitlr_float"
+                float inputs:valuel = 1
+                float inputs:valuer = 0
+                float inputs:center = 1
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Shapes/Ellipse_Out_texcoordNode_11b8ca005bdf4cc89a2d1e431df2f68c.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Ellipse_Out_texcoordNode_11b8ca005bdf4cc89a2d1e431df2f68c"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Ellipse_dNode_11b8ca005bdf4cc89a2d1e431df2f68c.outputs:out>
+                float inputs:in2 = 0
+                float2 outputs:out
+            }
+
+            def Shader "Ellipse_dNode_11b8ca005bdf4cc89a2d1e431df2f68c"
+            {
+                uniform token info:id = "ND_magnitude_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Ellipse_d_inNode_11b8ca005bdf4cc89a2d1e431df2f68c.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Ellipse_d_inNode_11b8ca005bdf4cc89a2d1e431df2f68c"
+            {
+                uniform token info:id = "ND_divide_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Ellipse_d_in_in1Node_11b8ca005bdf4cc89a2d1e431df2f68c.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Ellipse_d_in_in2Node_11b8ca005bdf4cc89a2d1e431df2f68c.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Ellipse_d_in_in1Node_11b8ca005bdf4cc89a2d1e431df2f68c"
+            {
+                uniform token info:id = "ND_subtract_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Ellipse_d_in_in1_in1Node_11b8ca005bdf4cc89a2d1e431df2f68c.outputs:out>
+                float inputs:in2 = 1
+                float2 outputs:out
+            }
+
+            def Shader "Ellipse_d_in_in1_in1Node_11b8ca005bdf4cc89a2d1e431df2f68c"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Ellipse_UVNode_11b8ca005bdf4cc89a2d1e431df2f68c.outputs:out>
+                float inputs:in2 = 2
+                float2 outputs:out
+            }
+
+            def Shader "Ellipse_UVNode_11b8ca005bdf4cc89a2d1e431df2f68c"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Ellipse_UVNode_11b8ca005bdf4cc89a2d1e431df2f68cAdd.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Ellipse_UVNode_11b8ca005bdf4cc89a2d1e431df2f68cAdd"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Ellipse_UVNode_11b8ca005bdf4cc89a2d1e431df2f68cMultiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "Ellipse_UVNode_11b8ca005bdf4cc89a2d1e431df2f68cMultiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Ellipse_UVNode_11b8ca005bdf4cc89a2d1e431df2f68cUV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "Ellipse_UVNode_11b8ca005bdf4cc89a2d1e431df2f68cUV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_OutNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_splitlr_float"
+                float inputs:valuel = 1
+                float inputs:valuer = 0
+                float inputs:center = 1
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_Out_texcoordNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_Out_texcoordNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_dNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2 = 0
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_dNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_mix_float"
+                float inputs:bg.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_d_bgNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:fg.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_d_fgNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferZoneNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_d_fgNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_d_fg_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distCNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_d_fg_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2_in1_inNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv2_in1_inNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2_in1_in_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv2_in1_in_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_modulo_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2_in1_in_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_fullAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv2_in1_in_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2_in1_in_in1_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv2_in1_in_in1_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2_in1_in_in1_in1_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2_in1_in_in1_in1_in1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv2_in1_in_in1_in1_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2_in1_in_in1_in1_in1_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2 = 1.570796
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv2_in1_in_in1_in1_in1_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruvNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruvNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_atan2_float"
+                float inputs:iny.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv_in1_inyNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:inx.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv_in1_inxNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv_in1_inyNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV4Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV4Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_uvScaleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3_in1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float2 inputs:in2 = (-1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UVNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2 = 2
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_UVNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UVNode_d8cb5874b1db4435a91b42fb630d2fa9Add.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_UVNode_d8cb5874b1db4435a91b42fb630d2fa9Add"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UVNode_d8cb5874b1db4435a91b42fb630d2fa9Multiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_UVNode_d8cb5874b1db4435a91b42fb630d2fa9Multiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UVNode_d8cb5874b1db4435a91b42fb630d2fa9UV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_UVNode_d8cb5874b1db4435a91b42fb630d2fa9UV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_d_bgNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV5Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV5Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV5_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV5_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV5_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV5_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV5_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV5_in1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV5_in1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_sin_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV5_in1_in2_inNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV5_in1_in2_inNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV5_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_cos_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV5_in1_in1_inNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV5_in1_in1_inNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "SR_Shapes_roughness_OnesComplement"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_OutNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_OutNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_splitlr_float"
+                float inputs:valuel = 1
+                float inputs:valuer = 0
+                float inputs:center = 1
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_Out_texcoordNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_Out_texcoordNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_dNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float inputs:in2 = 0
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_dNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_d_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_clampedRadiusNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_clampedRadiusNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_max_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_clampedRadius_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float inputs:in2 = 1E-05
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_clampedRadius_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_min_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_clampedRadius_in1_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_clampedRadius_in1_in2Node_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_clampedRadius_in1_in2Node_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_HeightNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_HeightNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_clampedRadius_in1_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_min_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_clampedRadius_in1_in1_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_clampedRadius_in1_in1_in2Node_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_clampedRadius_in1_in1_in2Node_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_WidthNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_WidthNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_clampedRadius_in1_in1_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_clampedRadius_in1_in1_in1_inNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_clampedRadius_in1_in1_in1_inNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_RadiusNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float inputs:in2 = 2
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_RadiusNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.1
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_d_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_magnitude_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_d_in1_inNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedRectangle_d_in1_inNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_max_vector2"
+                float2 inputs:in1 = (0, 0)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_uvNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_uvNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_add_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_uv_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_clampedRadiusNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_uv_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_subtract_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_uv_in1_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_uv_in1_in2Node_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_uv_in1_in2Node_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_WidthNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_HeightNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_uv_in1_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_absval_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_uv_in1_in1_inNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_uv_in1_in1_inNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_subtract_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_uv_in1_in1_in_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float inputs:in2 = 1
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_uv_in1_in1_in_in1Node_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_UVNode_c5bab3d6d3dc40fbabbb97f9fa404381.outputs:out>
+                float inputs:in2 = 2
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_UVNode_c5bab3d6d3dc40fbabbb97f9fa404381"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_UVNode_c5bab3d6d3dc40fbabbb97f9fa404381Add.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_UVNode_c5bab3d6d3dc40fbabbb97f9fa404381Add"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_UVNode_c5bab3d6d3dc40fbabbb97f9fa404381Multiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_UVNode_c5bab3d6d3dc40fbabbb97f9fa404381Multiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedRectangle_UVNode_c5bab3d6d3dc40fbabbb97f9fa404381UV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "RoundedRectangle_UVNode_c5bab3d6d3dc40fbabbb97f9fa404381UV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "Combine_GNode_7903779d99244da79024823f86ca9144"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/Rectangle_OutNode_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Rectangle_OutNode_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_splitlr_float"
+                float inputs:valuel = 1
+                float inputs:valuer = 0
+                float inputs:center = 0
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Shapes/Rectangle_Out_texcoordNode_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Rectangle_Out_texcoordNode_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Rectangle_Out_texcoord_in1Node_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float inputs:in2 = 0
+                float2 outputs:out
+            }
+
+            def Shader "Rectangle_Out_texcoord_in1Node_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_max_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Rectangle_Out_texcoord_in1_in1Node_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Rectangle_Out_texcoord_in1_in2Node_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Rectangle_Out_texcoord_in1_in2Node_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Rectangle_dNode_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "Rectangle_dNode_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_subtract_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Rectangle_d_in1Node_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Rectangle_d_in2Node_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Rectangle_d_in2Node_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Rectangle_WidthNode_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Rectangle_HeightNode_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Rectangle_HeightNode_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "Rectangle_WidthNode_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "Rectangle_d_in1Node_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_absval_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Rectangle_d_in1_inNode_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Rectangle_d_in1_inNode_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_subtract_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Rectangle_d_in1_in_in1Node_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float inputs:in2 = 1
+                float2 outputs:out
+            }
+
+            def Shader "Rectangle_d_in1_in_in1Node_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Rectangle_UVNode_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                float inputs:in2 = 2
+                float2 outputs:out
+            }
+
+            def Shader "Rectangle_UVNode_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Rectangle_UVNode_3fb1d487692f4628b0ad18c019e8ecfbAdd.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Rectangle_UVNode_3fb1d487692f4628b0ad18c019e8ecfbAdd"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Rectangle_UVNode_3fb1d487692f4628b0ad18c019e8ecfbMultiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "Rectangle_UVNode_3fb1d487692f4628b0ad18c019e8ecfbMultiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Rectangle_UVNode_3fb1d487692f4628b0ad18c019e8ecfbUV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "Rectangle_UVNode_3fb1d487692f4628b0ad18c019e8ecfbUV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "Rectangle_Out_texcoord_in1_in1Node_3fb1d487692f4628b0ad18c019e8ecfb"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Rectangle_dNode_3fb1d487692f4628b0ad18c019e8ecfb.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "Combine_BNode_7903779d99244da79024823f86ca9144"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/Polygon_OutNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_OutNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_splitlr_float"
+                float inputs:valuel = 1
+                float inputs:valuer = 0
+                float inputs:center = 1
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Shapes/Polygon_Out_texcoordNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_Out_texcoordNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_distanceNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float inputs:in2 = 0
+                float2 outputs:out
+            }
+
+            def Shader "Polygon_distanceNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_distance_in1Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_distance_in2Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_distance_in2Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_magnitude_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Polygon_uvNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_uvNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_divide_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_uv_in1Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_uv_in2Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Polygon_uv_in2Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_uv_in2_in1Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_uv_in2_in2Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Polygon_uv_in2_in2Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_cos_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/Polygon_uv_in2_in2_inNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_uv_in2_in2_inNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 3.141593
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_SidesNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_SidesNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 6
+                float outputs:out
+            }
+
+            def Shader "Polygon_uv_in2_in1Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_WidthNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_uv_in2_in1_in2Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Polygon_uv_in2_in1_in2Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_HeightNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_HeightNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "Polygon_WidthNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "Polygon_uv_in1Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_subtract_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_uv_in1_in1Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float inputs:in2 = 1
+                float2 outputs:out
+            }
+
+            def Shader "Polygon_uv_in1_in1Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_UVNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float inputs:in2 = 2
+                float2 outputs:out
+            }
+
+            def Shader "Polygon_UVNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Polygon_UVNode_e509d8683f6b42e59036726da07752e8Add.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Polygon_UVNode_e509d8683f6b42e59036726da07752e8Add"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_UVNode_e509d8683f6b42e59036726da07752e8Multiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "Polygon_UVNode_e509d8683f6b42e59036726da07752e8Multiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_UVNode_e509d8683f6b42e59036726da07752e8UV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "Polygon_UVNode_e509d8683f6b42e59036726da07752e8UV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "Polygon_distance_in1Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_cos_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/Polygon_distance_in1_inNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_distance_in1_inNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_distance_in1_in_in1Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_pCoordNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_pCoordNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_atan2_float"
+                float inputs:iny.connect = </MaterialX/Materials/USD_Shapes/Polygon_pCoord_inyNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float inputs:inx.connect = </MaterialX/Materials/USD_Shapes/Polygon_pCoord_inxNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_pCoord_inxNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Polygon_uvNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "Polygon_pCoord_inyNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/Polygon_uvNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "Polygon_distance_in1_in_in1Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_distance_in1_in_in1_in1Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_rNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_rNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 6.283185
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_SidesNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_distance_in1_in_in1_in1Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_floor_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/Polygon_distance_in1_in_in1_in1_inNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_distance_in1_in_in1_in1_inNode_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1 = 0.5
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_distance_in1_in_in1_in1_in_in2Node_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Polygon_distance_in1_in_in1_in1_in_in2Node_e509d8683f6b42e59036726da07752e8"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Polygon_pCoordNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Polygon_rNode_e509d8683f6b42e59036726da07752e8.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Ellipse_d_in_in2Node_11b8ca005bdf4cc89a2d1e431df2f68c"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/Ellipse_WidthNode_11b8ca005bdf4cc89a2d1e431df2f68c.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/Ellipse_HeightNode_11b8ca005bdf4cc89a2d1e431df2f68c.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Ellipse_HeightNode_11b8ca005bdf4cc89a2d1e431df2f68c"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "Ellipse_WidthNode_11b8ca005bdf4cc89a2d1e431df2f68c"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_chamferZoneNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferZone_value1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in1 = 0
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_chamferAngleNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_Roundness2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_Roundness2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_clamp_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_RoundnessNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:low = 1E-06
+                float inputs:high = 1
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_RoundnessNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.3
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_chamferZone_value1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferZone_value1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_chamferZone_value1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distCNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_sqrt_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distC_inNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distC_inNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distC_in_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distC_in_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distC_in_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distC_in_in2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distC_in_in2_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distC_in_in2_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_cos_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distC_in_in2_in2_inNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distC_in_in2_in2_inNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 3.141593
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distC_in_in2_in2_in_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distC_in_in2_in2_in_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_angleRatioNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_angleRatioNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_angleRatio_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_angleRatio_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_angleRatio_in2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_angleRatio_in2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_angleRatio_in2_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_remainingAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_remainingAngleNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_angleRatio_in2_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruv2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distC_in_in2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distC_in_in2_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distBNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distBNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distB_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distB_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferCenterNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_chamferCenterNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferCenter_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_diagonalNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_diagonalNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_diagonal_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_diagonal_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_cos_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_chamferCenter_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferCenter_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_ratioNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_ratioNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_ratio_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_ratio_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_ratio_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_tan_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_ratio_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_tan_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_remainingAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_chamferCenter_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferCenter_in1_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferCenter_in1_in1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RoundedPolygon_chamferCenter_in1_in1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_sin_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_chamferCenter_in1_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_cos_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distC_in_in2_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 2
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distANode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distANode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_magnitude_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_chamferCenterNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distC_in_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distC_in_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distC_in_in1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distC_in_in1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distBNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distBNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_distC_in_in1_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distANode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_distANode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv2_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_polaruvNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_halfAngleNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_fullAngleNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2 = 2
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_fullAngleNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_fullAngle_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_i_sidesNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_i_sidesNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_floor_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_i_sides_inNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_i_sides_inNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_SidesNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_SidesNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 5
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_fullAngle_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 2
+                float inputs:in2 = 3.141593
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv2_in1_in_in1_in1_in1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 2
+                float inputs:in2 = 3.141593
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_magnitude_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV4Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_polaruv_in1_inxNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV4Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_uvScaleNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_diagonalNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3_in2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3_in2_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3_in2_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_HeightNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3_in2_in2_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3_in2_in2_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3_in2_in2_in2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_epsilonNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_epsilonNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1E-06
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3_in2_in2_in2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_HeightNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:value2 = 0
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_HeightNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3_in2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3_in1_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_WidthNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3_in1_in2_in2Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_WidthNode_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3_in1_in2_in2Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_UV3_in1_in2_in2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_epsilonNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RoundedPolygon_UV3_in1_in2_in2_in1Node_d8cb5874b1db4435a91b42fb630d2fa9"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Shapes/RoundedPolygon_WidthNode_d8cb5874b1db4435a91b42fb630d2fa9.outputs:out>
+                float inputs:value2 = 0
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+        }
+    }
+}

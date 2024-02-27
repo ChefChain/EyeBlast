@@ -1,0 +1,807 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Colorspace"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Colorspace/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Colorspace/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Colorspace/CastSwizzleFromCombine_RGBNode_a45a88de1f1e40a5a0902d7ea2afa4cdToSR_Colorspacecolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromCombine_RGBNode_a45a88de1f1e40a5a0902d7ea2afa4cdToSR_Colorspacecolor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/Combine_RGBNode_a45a88de1f1e40a5a0902d7ea2afa4cd.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "Combine_RGBNode_a45a88de1f1e40a5a0902d7ea2afa4cd"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/Combine_RNode_a45a88de1f1e40a5a0902d7ea2afa4cd.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/Combine_GNode_a45a88de1f1e40a5a0902d7ea2afa4cd.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Colorspace/Combine_BNode_a45a88de1f1e40a5a0902d7ea2afa4cd.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Combine_RNode_a45a88de1f1e40a5a0902d7ea2afa4cd"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ComparisonNode_6b2da8c4391d436fab182272b768928a.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComparisonNode_6b2da8c4391d436fab182272b768928a"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Colorspace/CastSwizzleFromColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78ToComparisonNode_6b2da8c4391d436fab182272b768928avalue1.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_Colorspace/CastSwizzleFromVector3Node_dafe86a2a9644655b4f60185b67bb03aToComparisonNode_6b2da8c4391d436fab182272b768928avalue2.outputs:out>
+                float inputs:in1 = 0
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78ToComparisonNode_6b2da8c4391d436fab182272b768928avalue1"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1Node_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in2Node_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1Node_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_convert_float_vector3"
+                float inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1_inNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1_inNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_InNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                string inputs:channels = "z"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_InNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_OutNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_OutNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_VNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1_inNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1_inNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1_in_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1_in_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1_in_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "z"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_mix_vector4"
+                float4 inputs:bg.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_bgNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float4 inputs:fg.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_fgNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_mixNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_bgNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_bg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_bg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_bg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in4.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_bg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_bg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp6Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion___Tmp6Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_PNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "xyw"
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_PNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_mix_vector4"
+                float4 inputs:bg.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_bgNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float4 inputs:fg.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_fgNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_mixNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_bgNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_bg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_bg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_bg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in4.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_bg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_bg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion___Tmp1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_vector2"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "zy"
+                float2 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/Vector3Node_dafe86a2a9644655b4f60185b67bb03a.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Vector3Node_dafe86a2a9644655b4f60185b67bb03a"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1 = 0.2
+                float inputs:in2 = 0.2
+                float inputs:in3 = 0.2
+                float3 outputs:out
+            }
+
+            def Shader "Combine_GNode_a45a88de1f1e40a5a0902d7ea2afa4cd"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ComparisonNode_b423e58c34b84281a3bdb00b4da0315c.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComparisonNode_b423e58c34b84281a3bdb00b4da0315c"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Colorspace/CastSwizzleFromColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78ToComparisonNode_b423e58c34b84281a3bdb00b4da0315cvalue1.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_Colorspace/CastSwizzleFromVector3Node_dafe86a2a9644655b4f60185b67bb03aToComparisonNode_b423e58c34b84281a3bdb00b4da0315cvalue2.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromVector3Node_dafe86a2a9644655b4f60185b67bb03aToComparisonNode_b423e58c34b84281a3bdb00b4da0315cvalue2"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/Vector3Node_dafe86a2a9644655b4f60185b67bb03a.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78ToComparisonNode_b423e58c34b84281a3bdb00b4da0315cvalue1"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "Combine_BNode_a45a88de1f1e40a5a0902d7ea2afa4cd"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromVector3Node_dafe86a2a9644655b4f60185b67bb03aToComparisonNode_6b2da8c4391d436fab182272b768928avalue2"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/Vector3Node_dafe86a2a9644655b4f60185b67bb03a.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in2Node_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_mix_vector3"
+                float3 inputs:bg.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in2_bgNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 inputs:fg.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in2_fgNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in2_mixNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in2_mixNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_InNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in2_fgNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_clamp_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in2_fg_inNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in2_fg_inNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_PNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in2_fg_in_in2Node_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in2_fg_in_in2Node_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_KNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                string inputs:channels = "xxx"
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_KNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_K_in2Node_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_K_in3Node_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float inputs:in4 = 3
+                float4 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_K_in3Node_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2 = 3
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_K_in2Node_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 2
+                float inputs:in2 = 3
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_PNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_absval_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_inNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_inNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_in_in1Node_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_in_in2Node_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_in_in2Node_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_KNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                string inputs:channels = "www"
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_in_in1Node_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_multiply_vector3FA"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_in_in1_in1Node_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float inputs:in2 = 6
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_in_in1_in1Node_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_realitykit_fractional_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_in_in1_in1_inNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_in_in1_in1_inNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_add_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_in_in1_in1_in_in1Node_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_in_in1_in1_in_in2Node_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_in_in1_in1_in_in2Node_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_KNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                string inputs:channels = "xyz"
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_in_in1_in1_in_in1Node_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_swizzle_vector3_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_InNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                string inputs:channels = "xxx"
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in2_bgNode_459265dc0b6b4416bde829114fd53e78"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_KNode_459265dc0b6b4416bde829114fd53e78.outputs:out>
+                string inputs:channels = "xxx"
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_DNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in2_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_ENode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_ENode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1E-10
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in2_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_DNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_D_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_D_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_D_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_min_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_D_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_D_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_D_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_D_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_D_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_VNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_V_value1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:value2 = 0
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_V_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_V_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_V_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_V_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_V_in1_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_ENode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_V_in1_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_V_value1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_DNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:value2 = 0
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1_in_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1_in_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1_in_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1_in_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1_in_in2_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_ENode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1_in_in2_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 6
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_DNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1_in_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1_in_in2_in1_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Out_in1_in_in2_in1_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1_in_in2_in1_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Out_in1_in_in2_in1_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_fgNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_fg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_fg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_fg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in4.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_fg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_fg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp7Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "z"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion___Tmp7Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_PNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "yzx"
+                float3 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_fg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp7Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_fg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp7Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_fg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_mixNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_realitykit_step_float"
+                float inputs:edge.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_mix_edgeNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_Q_mix_inNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_mix_inNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_mix_edgeNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_PNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_bg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp6Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_bg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp6Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "z"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_Q_bg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_fgNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_fg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_fg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_fg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in4.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_fg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_fg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp4Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion___Tmp4Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_KNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_KNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1 = 0
+                float inputs:in2.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_K_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_K_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in4 = -1
+                float4 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_K_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 2
+                float inputs:in2 = 3
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_K_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = -1
+                float inputs:in2 = 3
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_fg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp4Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_fg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp3Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion___Tmp3Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_vector2"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "yz"
+                float2 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_fg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp3Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_mixNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_realitykit_step_float"
+                float inputs:edge.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_mix_edgeNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_P_mix_inNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_mix_inNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_mix_edgeNode_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "z"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_bg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp1Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_bg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ColorspaceConversion___Tmp2Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion_KNode_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "wz"
+                float2 outputs:out
+            }
+
+            def Shader "ColorspaceConversion_P_bg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Colorspace/ColorspaceConversion___Tmp2Node_0d72fefb22f04f93a8158bd08dc9ea8b.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+        }
+    }
+}

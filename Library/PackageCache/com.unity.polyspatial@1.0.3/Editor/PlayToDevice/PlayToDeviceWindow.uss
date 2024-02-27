@@ -1,0 +1,4 @@
+.unity-base-field__label {
+    overflow: hidden;
+    min-width: 190px;
+}

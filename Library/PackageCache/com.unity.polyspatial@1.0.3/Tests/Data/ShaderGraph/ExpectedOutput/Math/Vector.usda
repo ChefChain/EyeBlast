@@ -1,0 +1,866 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Vector"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Vector/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Vector/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                color3f inputs:baseColor.connect = </MaterialX/Materials/USD_Vector/CastSwizzleFromFresnelEffect_OutNode_752d003d78d94e6cb3a31fbf94058238ToSR_VectorbaseColor.outputs:out>
+                float inputs:metallic.connect = </MaterialX/Materials/USD_Vector/SphereMask_OutNode_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                color3f inputs:emissiveColor.connect = </MaterialX/Materials/USD_Vector/CastSwizzleFromRefract_RefractedNode_441e3b0bb3c4451bbef26cd0d13265caToSR_VectoremissiveColor.outputs:out>
+                float inputs:ambientOcclusion.connect = </MaterialX/Materials/USD_Vector/Refract_IntensityNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:specular = 0.5
+                float inputs:roughness.connect = </MaterialX/Materials/USD_Vector/SR_Vector_roughness_OnesComplement.outputs:out>
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromFresnelEffect_OutNode_752d003d78d94e6cb3a31fbf94058238ToSR_VectorbaseColor"
+            {
+                uniform token info:id = "ND_swizzle_float_color3"
+                float inputs:in.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_OutNode_752d003d78d94e6cb3a31fbf94058238.outputs:out>
+                string inputs:channels = "xxx"
+                color3f outputs:out
+            }
+
+            def Shader "FresnelEffect_OutNode_752d003d78d94e6cb3a31fbf94058238"
+            {
+                uniform token info:id = "ND_power_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_Out_in1Node_752d003d78d94e6cb3a31fbf94058238.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_PowerNode_752d003d78d94e6cb3a31fbf94058238.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "FresnelEffect_Out_in1Node_752d003d78d94e6cb3a31fbf94058238"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_Out_in1_in2Node_752d003d78d94e6cb3a31fbf94058238.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "FresnelEffect_Out_in1_in2Node_752d003d78d94e6cb3a31fbf94058238"
+            {
+                uniform token info:id = "ND_clamp_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_Out_in1_in2_inNode_752d003d78d94e6cb3a31fbf94058238.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "FresnelEffect_Out_in1_in2_inNode_752d003d78d94e6cb3a31fbf94058238"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_Out_in1_in2_in_in1Node_752d003d78d94e6cb3a31fbf94058238.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_Out_in1_in2_in_in2Node_752d003d78d94e6cb3a31fbf94058238.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "FresnelEffect_Out_in1_in2_in_in1Node_752d003d78d94e6cb3a31fbf94058238"
+            {
+                uniform token info:id = "ND_normalize_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_NormalNode_752d003d78d94e6cb3a31fbf94058238.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "FresnelEffect_NormalNode_752d003d78d94e6cb3a31fbf94058238"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/CastSwizzleFromDistance_OutNode_ddb3c15bf45c46ab92e58786dcc187e5ToFresnelEffect_NormalNode_752d003d78d94e6cb3a31fbf94058238in.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromDistance_OutNode_ddb3c15bf45c46ab92e58786dcc187e5ToFresnelEffect_NormalNode_752d003d78d94e6cb3a31fbf94058238in"
+            {
+                uniform token info:id = "ND_swizzle_float_vector3"
+                float inputs:in.connect = </MaterialX/Materials/USD_Vector/Distance_OutNode_ddb3c15bf45c46ab92e58786dcc187e5.outputs:out>
+                string inputs:channels = "xxx"
+                float3 outputs:out
+            }
+
+            def Shader "Distance_OutNode_ddb3c15bf45c46ab92e58786dcc187e5"
+            {
+                uniform token info:id = "ND_magnitude_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Distance_Out_inNode_ddb3c15bf45c46ab92e58786dcc187e5.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Distance_Out_inNode_ddb3c15bf45c46ab92e58786dcc187e5"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Distance_ANode_ddb3c15bf45c46ab92e58786dcc187e5.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Vector/Distance_BNode_ddb3c15bf45c46ab92e58786dcc187e5.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Distance_ANode_ddb3c15bf45c46ab92e58786dcc187e5"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Vector3Node_2cd1538b938a49e4bdc51fd66d66e086.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Vector3Node_2cd1538b938a49e4bdc51fd66d66e086"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1 = 1
+                float inputs:in2 = 1
+                float inputs:in3 = 1
+                float3 outputs:out
+            }
+
+            def Shader "SphereMask_OutNode_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/SphereMask_Out_in2Node_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SphereMask_Out_in2Node_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_clamp_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Vector/SphereMask_Out_in2_inNode_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SphereMask_Out_in2_inNode_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/SphereMask_Out_in2_in_in1Node_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/SphereMask_Out_in2_in_in2Node_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SphereMask_Out_in2_in_in2Node_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/SphereMask_HardnessNode_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SphereMask_HardnessNode_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.8
+                float outputs:out
+            }
+
+            def Shader "SphereMask_Out_in2_in_in1Node_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/SphereMask_Out_in2_in_in1_in1Node_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/SphereMask_RadiusNode_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SphereMask_RadiusNode_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.1
+                float outputs:out
+            }
+
+            def Shader "SphereMask_Out_in2_in_in1_in1Node_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_magnitude_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/SphereMask_Out_in2_in_in1_in1_inNode_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SphereMask_Out_in2_in_in1_in1_inNode_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/SphereMask_CoordsNode_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Vector/SphereMask_CenterNode_d5ab9a6a1ce34c2783a6ba455590a175.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "SphereMask_CenterNode_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Rejection_OutNode_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Rejection_OutNode_7bc12286254a492fa1b0dd570fffc168"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Rejection_ANode_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Vector/Rejection_Out_in2Node_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Rejection_ANode_7bc12286254a492fa1b0dd570fffc168"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Vector3Node_caf21f291f5a4c2c911bd1cc9d06da40.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Vector3Node_caf21f291f5a4c2c911bd1cc9d06da40"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1 = 0
+                float inputs:in2 = 0
+                float inputs:in3 = 1
+                float3 outputs:out
+            }
+
+            def Shader "SphereMask_CoordsNode_d5ab9a6a1ce34c2783a6ba455590a175"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Projection_OutNode_1249c628453a4e799cd3e316373306b7.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Projection_OutNode_1249c628453a4e799cd3e316373306b7"
+            {
+                uniform token info:id = "ND_divide_vector3FA"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Projection_Out_in1Node_1249c628453a4e799cd3e316373306b7.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Projection_Out_in2Node_1249c628453a4e799cd3e316373306b7.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Projection_Out_in2Node_1249c628453a4e799cd3e316373306b7"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Projection_BNode_1249c628453a4e799cd3e316373306b7.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Vector/Projection_BNode_1249c628453a4e799cd3e316373306b7.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Projection_BNode_1249c628453a4e799cd3e316373306b7"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Vector3Node_caf21f291f5a4c2c911bd1cc9d06da40.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Projection_Out_in1Node_1249c628453a4e799cd3e316373306b7"
+            {
+                uniform token info:id = "ND_multiply_vector3FA"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Projection_BNode_1249c628453a4e799cd3e316373306b7.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Projection_Out_in1_in2Node_1249c628453a4e799cd3e316373306b7.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Projection_Out_in1_in2Node_1249c628453a4e799cd3e316373306b7"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Projection_ANode_1249c628453a4e799cd3e316373306b7.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Vector/Projection_BNode_1249c628453a4e799cd3e316373306b7.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Projection_ANode_1249c628453a4e799cd3e316373306b7"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Vector3Node_caf21f291f5a4c2c911bd1cc9d06da40.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromRefract_RefractedNode_441e3b0bb3c4451bbef26cd0d13265caToSR_VectoremissiveColor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Refract_RefractedNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "Refract_RefractedNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_realitykit_refract_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Refract_IncidentNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float3 inputs:normal.connect = </MaterialX/Materials/USD_Vector/Refract_NormalNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:eta.connect = </MaterialX/Materials/USD_Vector/Refract_etaNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Refract_etaNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_internalIORSourceNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_internalIORMediumNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_internalIORSourceNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_max_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_IORSourceNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "Refract_IORSourceNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1
+                float outputs:out
+            }
+
+            def Shader "Refract_NormalNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in = (0, 0, -1)
+                float3 outputs:out
+            }
+
+            def Shader "Refract_IncidentNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in = (0, 0, 1)
+                float3 outputs:out
+            }
+
+            def Shader "Refract_IntensityNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Vector/Refract_Intensity_value1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:value2 = 0
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_Intensity_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_Intensity_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_Intensity_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_clamp_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Vector/Refract_Transm_SchlickNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_Transm_SchlickNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_Transm_Schlick_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_Transm_Schlick_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_Transm_Schlick_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_IorToFresnel0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_IorToFresnel0Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_SqrtIorToFresnel0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_SqrtIorToFresnel0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_SqrtIorToFresnel0Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_SqrtIorToFresnel0_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_SqrtIorToFresnel0_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_SqrtIorToFresnel0_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_internalIORMediumNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_internalIORSourceNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_Transm_Schlick_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_Transm_Schlick_in1_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_Transm_Schlick_in1_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_Transm_Schlick_in1_in2_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_x2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_x2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_xNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_xNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_xNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_IncidentNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_NormalNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_Transm_Schlick_in1_in2_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_xNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_x2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_Intensity_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Vector/Refract_Intensity_in1_value1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:value2 = 0
+                float inputs:in1 = 0
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_FresnelDielectricNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_FresnelDielectricNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_FresnelDielectric_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_FresnelDielectric_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_clamp_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Vector/Refract_FresnelDielectric_in2_inNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_FresnelDielectric_in2_inNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_FresnelDielectric_in2_in_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_FresnelDielectric_in2_in_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_FresnelDielectric_in2_in_in2_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_FresnelDielectric_in2_in_in2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_FresnelDielectric_in2_in_in2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_FresnelDielectric_in2_in_in2_in2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_FresnelDielectric_in2_in_in2_in2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_t2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_t2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_t2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_t2_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_t2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_t2_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_t2_in1_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "Refract_t2_in1_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_t2_in1_in1_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_t2_in1_in1_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_gNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_gNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_sqrt_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Vector/Refract_g_inNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_g_inNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_g_in_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "Refract_g_in_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_g_in_in1_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_g_in_in1_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_g_in_in1_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_iorNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_iorNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_iorNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_internalIORMediumNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_internalIORSourceNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_FresnelDielectric_in2_in_in2_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_FresnelDielectric_in2_in_in2_in1_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_t1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_t1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_t1_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_t1_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_t1_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_gNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_FresnelDielectric_in2_in_in2_in1_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 0.5
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_t1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_Intensity_in1_value1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Vector/Refract_kNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:value2 = 0
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "Refract_kNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_k_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_k_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_k_in2_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_k_in2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_k_in2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_k_in2_in2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_k_in2_in2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_k_in2_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_etaNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_etaNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_Intensity_value1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Vector/Refract_internalIORSourceNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_Vector/Refract_internalIORMediumNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in1 = 0
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "SR_Vector_roughness_OnesComplement"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "FresnelEffect_PowerNode_752d003d78d94e6cb3a31fbf94058238"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Vector/Distance_OutNode_a8dd24a2374443c5be12903490b163fa.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Distance_OutNode_a8dd24a2374443c5be12903490b163fa"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Vector/Distance_Out_inNode_a8dd24a2374443c5be12903490b163fa.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Distance_Out_inNode_a8dd24a2374443c5be12903490b163fa"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Distance_ANode_a8dd24a2374443c5be12903490b163fa.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Distance_BNode_a8dd24a2374443c5be12903490b163fa.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Distance_BNode_a8dd24a2374443c5be12903490b163fa"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "Distance_ANode_a8dd24a2374443c5be12903490b163fa"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Vector/Vector1Node_d168998b7bff466cb1a90ed120c96fee.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Vector1Node_d168998b7bff466cb1a90ed120c96fee"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 1
+                float outputs:out
+            }
+
+            def Shader "FresnelEffect_Out_in1_in2_in_in2Node_752d003d78d94e6cb3a31fbf94058238"
+            {
+                uniform token info:id = "ND_normalize_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_ViewDirNode_752d003d78d94e6cb3a31fbf94058238.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "FresnelEffect_ViewDirNode_752d003d78d94e6cb3a31fbf94058238"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_ViewDirNode_752d003d78d94e6cb3a31fbf94058238Flip.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "FresnelEffect_ViewDirNode_752d003d78d94e6cb3a31fbf94058238Flip"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/FresnelEffect_ViewDirNode_752d003d78d94e6cb3a31fbf94058238Geom.outputs:out>
+                float3 inputs:in2 = (1, 1, -1)
+                float3 outputs:out
+            }
+
+            def Shader "FresnelEffect_ViewDirNode_752d003d78d94e6cb3a31fbf94058238Geom"
+            {
+                uniform token info:id = "ND_realitykit_viewdirection_vector3"
+                float3 outputs:out
+            }
+
+            def Shader "Distance_BNode_ddb3c15bf45c46ab92e58786dcc187e5"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/ReflectionNode_b2353c5a0ecd419281113a88cce9dd01.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ReflectionNode_b2353c5a0ecd419281113a88cce9dd01"
+            {
+                uniform token info:id = "ND_realitykit_reflect_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Vector3Node_ed4eebc8e3504810ac1f2fab59328cc2.outputs:out>
+                float3 inputs:normal = (0, 1, 0)
+                float3 outputs:out
+            }
+
+            def Shader "Vector3Node_ed4eebc8e3504810ac1f2fab59328cc2"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1 = 0
+                float inputs:in2 = 1
+                float inputs:in3 = 0
+                float3 outputs:out
+            }
+
+            def Shader "Rejection_Out_in2Node_7bc12286254a492fa1b0dd570fffc168"
+            {
+                uniform token info:id = "ND_divide_vector3FA"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Rejection_Out_in2_in1Node_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Rejection_Out_in2_in2Node_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Rejection_Out_in2_in2Node_7bc12286254a492fa1b0dd570fffc168"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Rejection_BNode_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Vector/Rejection_BNode_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Rejection_BNode_7bc12286254a492fa1b0dd570fffc168"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Vector/Vector3Node_caf21f291f5a4c2c911bd1cc9d06da40.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Rejection_Out_in2_in1Node_7bc12286254a492fa1b0dd570fffc168"
+            {
+                uniform token info:id = "ND_multiply_vector3FA"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Rejection_BNode_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Rejection_Out_in2_in1_in2Node_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Rejection_Out_in2_in1_in2Node_7bc12286254a492fa1b0dd570fffc168"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Vector/Rejection_ANode_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Vector/Rejection_BNode_7bc12286254a492fa1b0dd570fffc168.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_internalIORMediumNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_max_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_IORMediumNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "Refract_IORMediumNode_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1.5
+                float outputs:out
+            }
+
+            def Shader "Refract_SqrtIorToFresnel0_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_internalIORMediumNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_internalIORSourceNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_t2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_t2_in2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_t2_in2_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_t2_in2_in2_in1Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_t2_in2_in2_in1Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_gNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_g_in_in1_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Refract_t1_in2Node_441e3b0bb3c4451bbef26cd0d13265ca"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Vector/Refract_gNode_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Vector/Refract_cos0Node_441e3b0bb3c4451bbef26cd0d13265ca.outputs:out>
+                float outputs:out
+            }
+        }
+    }
+}

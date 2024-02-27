@@ -1,0 +1,70 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <noise2d name = "GradientNoise_OutNode_c6cc4ed008774f439ac79ff2db4af9e6" type = "float">
+        <input name = "amplitude" type = "float" value = "0.5" />
+        <input name = "pivot" type = "float" value = "0.5" />
+        <input name = "texcoord" type = "vector2" nodename = "GradientNoise_Out_texcoordNode_c6cc4ed008774f439ac79ff2db4af9e6" />
+    </noise2d>
+    <multiply name = "GradientNoise_Out_texcoordNode_c6cc4ed008774f439ac79ff2db4af9e6" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6" />
+        <input name = "in2" type = "float" nodename = "GradientNoise_ScaleNode_c6cc4ed008774f439ac79ff2db4af9e6" />
+    </multiply>
+    <dot name = "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6Add" />
+    </dot>
+    <texcoord name = "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6UV" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6Multiply" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6UV" />
+        <input name = "in2" type = "vector2" value = "1,-1" />
+    </multiply>
+    <add name = "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6Add" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6Multiply" />
+        <input name = "in2" type = "vector2" value = "0,1" />
+    </add>
+    <dot name = "GradientNoise_ScaleNode_c6cc4ed008774f439ac79ff2db4af9e6" type = "float">
+        <input name = "in" type = "float" value = "10" />
+    </dot>
+    <worleynoise2d name = "VoronoiNode_2888e5cbbe374a3a9f67fcdb88385907" type = "float">
+        <input name = "jitter" type = "float" value = "2" />
+        <input name = "texcoord" type = "vector2" nodename = "CellDensityNode_2888e5cbbe374a3a9f67fcdb88385907" />
+    </worleynoise2d>
+    <multiply name = "CellDensityNode_2888e5cbbe374a3a9f67fcdb88385907" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "GradientNoiseUVNode_2888e5cbbe374a3a9f67fcdb88385907" />
+        <input name = "in2" type = "float" value = "5" />
+    </multiply>
+    <texcoord name = "GradientNoiseUVNode_2888e5cbbe374a3a9f67fcdb88385907" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <mix name = "RandomRangeNode_bf17d0846a604f649df31ab95b5f1a23" type = "float">
+        <input name = "bg" type = "float" value = "0" />
+        <input name = "fg" type = "float" value = "1" />
+        <input name = "mix" type = "float" nodename = "RandomRangeNoiseNode_bf17d0846a604f649df31ab95b5f1a23" />
+    </mix>
+    <constant name = "RandomRangeSeedNode_bf17d0846a604f649df31ab95b5f1a23" type = "vector2">
+        <input name = "value" type = "vector2" value = "0.5,0.3" />
+    </constant>
+    <noise2d name = "RandomRangeNoiseNode_bf17d0846a604f649df31ab95b5f1a23" type = "float">
+        <input name = "texcoord" type = "vector2" nodename = "RandomRangeSeedNode_bf17d0846a604f649df31ab95b5f1a23" />
+    </noise2d>
+    <mix name = "LerpNode_97f52ece05424efa94ab333bc9dfc1a9" type = "float">
+        <input name = "bg" type = "float" nodename = "GradientNoise_OutNode_c6cc4ed008774f439ac79ff2db4af9e6" />
+        <input name = "fg" type = "float" nodename = "VoronoiNode_2888e5cbbe374a3a9f67fcdb88385907" />
+        <input name = "mix" type = "float" nodename = "RandomRangeNode_bf17d0846a604f649df31ab95b5f1a23" />
+    </mix>
+    <GeometryModification name = "SR_NoiseVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Noise" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromLerpNode_97f52ece05424efa94ab333bc9dfc1a9ToSR_Noisecolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Noise" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_NoiseVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Noise" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromLerpNode_97f52ece05424efa94ab333bc9dfc1a9ToSR_Noisecolor" type = "color3">
+        <input name = "in" type = "float" nodename = "LerpNode_97f52ece05424efa94ab333bc9dfc1a9" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+</materialx>

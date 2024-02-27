@@ -1,0 +1,1034 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_TextSDFSmoothstep"
+        {
+            asset inputs:_MainTex = @placeholder.png@ (colorSpace = "srgb_texture")
+            color4f inputs:_FaceColor = (1, 1, 1, 1)
+            asset inputs:_MaskTexture = @placeholder.png@ (colorSpace = "srgb_texture")
+            matrix4d inputs:_UVTransform = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1))
+            float inputs:_WeightNormal = 0
+            float inputs:_WeightBold = 0.5
+            float inputs:_PerspectiveFilter = 0.875
+            float inputs:_GradientScale = 5
+            float inputs:_Sharpness = 1
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/CastSwizzleFromCombine_RGBNode_0e4f3ee4f6ec44efbfee3669995a83d7ToSR_TextSDFSmoothstepcolor.outputs:out>
+                float inputs:opacity.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/MultiplyNode_5acddf5dfd5b4cddadf89d31e9d9b94a.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromCombine_RGBNode_0e4f3ee4f6ec44efbfee3669995a83d7ToSR_TextSDFSmoothstepcolor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Combine_RGBNode_0e4f3ee4f6ec44efbfee3669995a83d7.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "Combine_RGBNode_0e4f3ee4f6ec44efbfee3669995a83d7"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Combine_RNode_0e4f3ee4f6ec44efbfee3669995a83d7.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Combine_GNode_0e4f3ee4f6ec44efbfee3669995a83d7.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Combine_BNode_0e4f3ee4f6ec44efbfee3669995a83d7.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Combine_RNode_0e4f3ee4f6ec44efbfee3669995a83d7"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_111bfb12898a463c8555977c1fd35eb9R.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SplitNode_111bfb12898a463c8555977c1fd35eb9R"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_111bfb12898a463c8555977c1fd35eb9.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "SplitNode_111bfb12898a463c8555977c1fd35eb9"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/MultiplyNode_c63da869d6cf4a28bc1da28e9b809be5.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "MultiplyNode_c63da869d6cf4a28bc1da28e9b809be5"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/CastSwizzleFrom_FaceColorToMultiplyNode_c63da869d6cf4a28bc1da28e9b809be5in1.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/CastSwizzleFromVertexColorNode_e97be0d8f33a4ee7a3b0674d112deabcToMultiplyNode_c63da869d6cf4a28bc1da28e9b809be5in2.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzleFrom_FaceColorToMultiplyNode_c63da869d6cf4a28bc1da28e9b809be5in1"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep.inputs:_FaceColor>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "MultiplyNode_5acddf5dfd5b4cddadf89d31e9d9b94a"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/MultiplyNode_dcb4d2b5332c48ae8b15fcf711eaec1a.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepNode_c3408fd14ab343238abe366815eec676.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "StepNode_c3408fd14ab343238abe366815eec676"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value2 = 0.2
+                float inputs:value1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/MultiplyNode_c854b49dab4142128ad4bb61999d2fdf.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "MultiplyNode_c854b49dab4142128ad4bb61999d2fdf"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SampleTexture2D_ANode_c5b700bbdf11419fa9f561762b4e4316.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/MultiplyNode_bab600f7c124459aa1d35f87a376a02e.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_ANode_c5b700bbdf11419fa9f561762b4e4316"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SampleTexture2D_RGBANode_c5b700bbdf11419fa9f561762b4e4316.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_c5b700bbdf11419fa9f561762b4e4316"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SampleTexture2D_TextureNode_c5b700bbdf11419fa9f561762b4e4316.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SampleTexture2D_UVNode_c5b700bbdf11419fa9f561762b4e4316.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_c5b700bbdf11419fa9f561762b4e4316"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep.inputs:_MaskTexture>
+                asset outputs:out
+            }
+
+            def Shader "MultiplyNode_dcb4d2b5332c48ae8b15fcf711eaec1a"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_111bfb12898a463c8555977c1fd35eb9A.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_OutNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_OutNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_clamp_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_Out_inNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_Out_inNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_Out_in_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_biasNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_Out_in_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_alphaNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_scaleNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_alphaNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_alpha_inNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_alpha_inNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_TextureNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_alpha_in_texcoordNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "linear"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_TextureNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep.inputs:_MainTex>
+                asset outputs:out
+            }
+
+            def Shader "SplitNode_111bfb12898a463c8555977c1fd35eb9A"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_111bfb12898a463c8555977c1fd35eb9.outputs:out>
+                int inputs:index = 3
+                float outputs:out
+            }
+
+            def Shader "Combine_GNode_0e4f3ee4f6ec44efbfee3669995a83d7"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_111bfb12898a463c8555977c1fd35eb9G.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SplitNode_111bfb12898a463c8555977c1fd35eb9G"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_111bfb12898a463c8555977c1fd35eb9.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "Combine_BNode_0e4f3ee4f6ec44efbfee3669995a83d7"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_111bfb12898a463c8555977c1fd35eb9B.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SplitNode_111bfb12898a463c8555977c1fd35eb9B"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_111bfb12898a463c8555977c1fd35eb9.outputs:out>
+                int inputs:index = 2
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromVertexColorNode_e97be0d8f33a4ee7a3b0674d112deabcToMultiplyNode_c63da869d6cf4a28bc1da28e9b809be5in2"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/VertexColorNode_e97be0d8f33a4ee7a3b0674d112deabc.outputs:out>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "VertexColorNode_e97be0d8f33a4ee7a3b0674d112deabc"
+            {
+                uniform token info:id = "ND_geomcolor_color4"
+                color4f outputs:out
+            }
+
+            def Shader "MultiplyNode_bab600f7c124459aa1d35f87a376a02e"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_5f774c8641194d3f8f91bc6bbcde902dR.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_5f774c8641194d3f8f91bc6bbcde902dG.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SplitNode_5f774c8641194d3f8f91bc6bbcde902dG"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_5f774c8641194d3f8f91bc6bbcde902d.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "SplitNode_5f774c8641194d3f8f91bc6bbcde902d"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepOutNode_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "StepOutNode_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepComp0Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepComp1Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepComp2Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:in4.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepComp3Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "StepComp3Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepIn3Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepEdge3Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "StepEdge3Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepEdgeNode_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                int inputs:index = 3
+                float outputs:out
+            }
+
+            def Shader "StepEdgeNode_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/AbsoluteNode_acd9a1a5cab04eebbe9487f381bbed64.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "AbsoluteNode_acd9a1a5cab04eebbe9487f381bbed64"
+            {
+                uniform token info:id = "ND_absval_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SubtractNode_389701b60f9a4627bf2ee2cb83431ea0.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "SubtractNode_389701b60f9a4627bf2ee2cb83431ea0"
+            {
+                uniform token info:id = "ND_subtract_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/MultiplyNode_d919aae04e9740f2be11747c620f57b8.outputs:out>
+                float4 inputs:in2 = (0.5, 0.5, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "MultiplyNode_d919aae04e9740f2be11747c620f57b8"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_TextSDFSmoothstep.inputs:_UVTransform>
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Position_OutNode_d07a9e4d376445a7b56e9ee30eace4dd.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Position_OutNode_d07a9e4d376445a7b56e9ee30eace4dd"
+            {
+                uniform token info:id = "ND_convert_vector3_vector4"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Position_Out_inNode_d07a9e4d376445a7b56e9ee30eace4dd.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Position_Out_inNode_d07a9e4d376445a7b56e9ee30eace4dd"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Position_Out_in_in1Node_d07a9e4d376445a7b56e9ee30eace4dd.outputs:out>
+                float3 inputs:in2 = (1, 1, -1)
+                float3 outputs:out
+            }
+
+            def Shader "Position_Out_in_in1Node_d07a9e4d376445a7b56e9ee30eace4dd"
+            {
+                uniform token info:id = "ND_position_vector3"
+                string inputs:space = "object"
+                float3 outputs:out
+            }
+
+            def Shader "StepIn3Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepInNode_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                int inputs:index = 3
+                float outputs:out
+            }
+
+            def Shader "StepInNode_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in = (0.5, 0.5, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "StepComp2Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepIn2Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepEdge2Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "StepEdge2Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepEdgeNode_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                int inputs:index = 2
+                float outputs:out
+            }
+
+            def Shader "StepIn2Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepInNode_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                int inputs:index = 2
+                float outputs:out
+            }
+
+            def Shader "StepComp1Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepIn1Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepEdge1Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "StepEdge1Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepEdgeNode_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "StepIn1Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepInNode_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "StepComp0Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepIn0Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:value2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepEdge0Node_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "StepEdge0Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepEdgeNode_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "StepIn0Node_ee27f5aca52542329d8d12f57b714540"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/StepInNode_ee27f5aca52542329d8d12f57b714540.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "SplitNode_5f774c8641194d3f8f91bc6bbcde902dR"
+            {
+                uniform token info:id = "ND_extract_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/SplitNode_5f774c8641194d3f8f91bc6bbcde902d.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_c5b700bbdf11419fa9f561762b4e4316"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/CastSwizzleFromMultiplyNode_d919aae04e9740f2be11747c620f57b8ToSampleTexture2D_UVNode_c5b700bbdf11419fa9f561762b4e4316in.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_d919aae04e9740f2be11747c620f57b8ToSampleTexture2D_UVNode_c5b700bbdf11419fa9f561762b4e4316in"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/MultiplyNode_d919aae04e9740f2be11747c620f57b8.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_biasNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_bias_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_bias_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_bias_in1_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_scaleNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_bias_in1_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 0.5
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_weightNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_weightNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_weight_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2 = 8
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_weight_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_mix_float"
+                float inputs:bg.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_NormalWeightNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:fg.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_BoldWeightNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_boldNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_boldNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_realitykit_step_float"
+                float inputs:edge.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_bold_edgeNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_bold_edgeNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_UV1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_UV1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/AddNode_b167241e90a5402fa32f04dc0fce72d3.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "AddNode_b167241e90a5402fa32f04dc0fce72d3"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1 = (0, 1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/MultiplyNode_b167241e90a5402fa32f04dc0fce72d3.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "MultiplyNode_b167241e90a5402fa32f04dc0fce72d3"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1 = (1, -1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/UVNode_b167241e90a5402fa32f04dc0fce72d3.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "UVNode_b167241e90a5402fa32f04dc0fce72d3"
+            {
+                uniform token info:id = "ND_UsdPrimvarReader_vector2"
+                string inputs:varname = "vertexUV1"
+                float2 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_BoldWeightNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep.inputs:_WeightBold>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_NormalWeightNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep.inputs:_WeightNormal>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_scaleNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_mix_float"
+                float inputs:bg.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_scale_bgNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:fg.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_baseScaleNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_scale_mixNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_scale_mixNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_scale_mix_inNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_scale_mix_inNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_NormalNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_ViewDirNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_ViewDirNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ViewDirection_OutNode_412fd077520144e19808d72e53bc28c3.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ViewDirection_OutNode_412fd077520144e19808d72e53bc28c3"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ViewDirection_Out_in1Node_412fd077520144e19808d72e53bc28c3.outputs:out>
+                float3 inputs:in2 = (1, 1, -1)
+                float3 outputs:out
+            }
+
+            def Shader "ViewDirection_Out_in1Node_412fd077520144e19808d72e53bc28c3"
+            {
+                uniform token info:id = "ND_realitykit_viewdirection_vector3"
+                string inputs:space = "world"
+                float3 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_NormalNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Normal_OutNode_b83737581d614c9abb5ffccb0ed7acdc.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Normal_OutNode_b83737581d614c9abb5ffccb0ed7acdc"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Normal_Out_in1Node_b83737581d614c9abb5ffccb0ed7acdc.outputs:out>
+                float3 inputs:in2 = (1, 1, -1)
+                float3 outputs:out
+            }
+
+            def Shader "Normal_Out_in1Node_b83737581d614c9abb5ffccb0ed7acdc"
+            {
+                uniform token info:id = "ND_normal_vector3"
+                string inputs:space = "world"
+                float3 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_baseScaleNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_baseScale_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_baseScale_in2Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_baseScale_in2Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_sqrt_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_baseScale_in2_inNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_baseScale_in2_inNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dotproduct_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSizeNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSizeNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_pixelSizeNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSize_inNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_pixelSize_inNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_divide_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSize_in_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSize_in_in2Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_pixelSize_in_in2Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_absval_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSize_in_in2_inNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_pixelSize_in_in2_inNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSize_in_in2_in_inNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSize_in_in2_in_matNode_5c52eb66739940eab514dcda998e9996.outputs:viewToProjection>
+                float4 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_pixelSize_in_in2_in_matNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_realitykit_surface_view_to_projection"
+                matrix4d outputs:viewToProjection
+            }
+
+            def Shader "ComputeSDFAlpha_pixelSize_in_in2_in_inNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSize_in_in2_in_in_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSize_in_in2_in_in_in2Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in3 = 0
+                float inputs:in4 = 0
+                float4 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_pixelSize_in_in2_in_in_in2Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_screenDimsNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_screenDimsNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_divide_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_screenDims_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_ndcNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_ndcNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_ndc_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_ndc_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_divide_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_ndc_in1_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_ndc_in1_in2Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_ndc_in1_in2Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_vPositionNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_vPositionNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_vPosition_inNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_vPosition_matNode_5c52eb66739940eab514dcda998e9996.outputs:viewToProjection>
+                float4 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_vPosition_matNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_realitykit_surface_view_to_projection"
+                matrix4d outputs:viewToProjection
+            }
+
+            def Shader "ComputeSDFAlpha_vPosition_inNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_vPosition_in_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_vPosition_in_in2Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_vPosition_in_in3Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in4 = 1
+                float4 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_vPosition_in_in3Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "z"
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/CastSwizzleFromPosition_OutNode_0e72827d9b794f5c9124f57510430b91ToComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996in.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromPosition_OutNode_0e72827d9b794f5c9124f57510430b91ToComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996in"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Position_OutNode_0e72827d9b794f5c9124f57510430b91.outputs:out>
+                string inputs:channels = "xyz"
+                float3 outputs:out
+            }
+
+            def Shader "Position_OutNode_0e72827d9b794f5c9124f57510430b91"
+            {
+                uniform token info:id = "ND_convert_vector3_vector4"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Position_Out_inNode_0e72827d9b794f5c9124f57510430b91.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Position_Out_inNode_0e72827d9b794f5c9124f57510430b91"
+            {
+                uniform token info:id = "ND_transformmatrix_vector3M4"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Position_Out_in_inNode_0e72827d9b794f5c9124f57510430b91.outputs:out>
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/Position_Out_in_matNode_0e72827d9b794f5c9124f57510430b91.outputs:modelToView>
+                float3 outputs:out
+            }
+
+            def Shader "Position_Out_in_inNode_0e72827d9b794f5c9124f57510430b91"
+            {
+                uniform token info:id = "ND_position_vector3"
+                string inputs:space = "object"
+                float3 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_vPosition_in_in2Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_vPosition_in_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_ndc_in1_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_ndc_in1_in1_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float2 inputs:in2 = (0.5, -0.5)
+                float2 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_ndc_in1_in1_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_vPositionNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_screenDims_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_PixelPosNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_PixelPosNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ScreenPositionNode_fbfe91b631234e1fa8377509d75df133.outputs:screenPosition>
+                float4 outputs:out
+            }
+
+            def Shader "ScreenPositionNode_fbfe91b631234e1fa8377509d75df133"
+            {
+                uniform token info:id = "ND_realitykit_surface_screen_position"
+                float4 outputs:screenPosition
+            }
+
+            def Shader "ComputeSDFAlpha_pixelSize_in_in2_in_in_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_screenDimsNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_pixelSize_in_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_convert_float_vector4"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_pixelSize_in_in1_inNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_pixelSize_in_in1_inNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_vPositionNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_baseScale_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_baseScale_in1_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_baseScale_in1_in2Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_baseScale_in1_in2Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_SharpnessNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_SharpnessNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep.inputs:_Sharpness>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_baseScale_in1_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_baseScale_in1_in1_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_GradientScaleNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_GradientScaleNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep.inputs:_GradientScale>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_baseScale_in1_in1_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_baseScale_in1_in1_in1_inNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_baseScale_in1_in1_in1_inNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_UV1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_scale_bgNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_scale_bg_in1Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_scale_bg_in2Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_scale_bg_in2Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_PerspectiveFilterNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_PerspectiveFilterNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep.inputs:_PerspectiveFilter>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_scale_bg_in1Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_baseScaleNode_5c52eb66739940eab514dcda998e9996.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_alpha_in_texcoordNode_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_swizzle_vector2_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/ComputeSDFAlpha_UV0Node_5c52eb66739940eab514dcda998e9996.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "ComputeSDFAlpha_UV0Node_5c52eb66739940eab514dcda998e9996"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/AddNode_d15eb44f625f4c30bf968545c5667d66.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "AddNode_d15eb44f625f4c30bf968545c5667d66"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1 = (0, 1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/MultiplyNode_d15eb44f625f4c30bf968545c5667d66.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "MultiplyNode_d15eb44f625f4c30bf968545c5667d66"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1 = (1, -1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_TextSDFSmoothstep/UVNode_d15eb44f625f4c30bf968545c5667d66.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "UVNode_d15eb44f625f4c30bf968545c5667d66"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "Position_Out_in_matNode_0e72827d9b794f5c9124f57510430b91"
+            {
+                uniform token info:id = "ND_realitykit_surface_model_to_view"
+                matrix4d outputs:modelToView
+            }
+        }
+    }
+}

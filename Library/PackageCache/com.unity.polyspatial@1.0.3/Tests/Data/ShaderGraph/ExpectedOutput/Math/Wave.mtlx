@@ -1,0 +1,137 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <combine4 name = "Combine_RGBANode_1fb04e6723f043a4bb449a33439084cc" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_1fb04e6723f043a4bb449a33439084cc" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_1fb04e6723f043a4bb449a33439084cc" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_1fb04e6723f043a4bb449a33439084cc" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_1fb04e6723f043a4bb449a33439084cc" />
+    </combine4>
+    <dot name = "Combine_RNode_1fb04e6723f043a4bb449a33439084cc" type = "float">
+        <input name = "in" type = "float" nodename = "SquareWave_OutNode_cca0ea3aed1148c3b12967a5c58f2979" />
+    </dot>
+    <dot name = "Combine_GNode_1fb04e6723f043a4bb449a33439084cc" type = "float">
+        <input name = "in" type = "float" nodename = "SawtoothWave_OutNode_3c75885595874ba5ac2117c392e79f5c" />
+    </dot>
+    <dot name = "Combine_BNode_1fb04e6723f043a4bb449a33439084cc" type = "float">
+        <input name = "in" type = "float" nodename = "NoiseSineWave_OutNode_7ba6f499cd184ac48504324d70f30c06" />
+    </dot>
+    <dot name = "Combine_ANode_1fb04e6723f043a4bb449a33439084cc" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_1fb04e6723f043a4bb449a33439084cc" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_1fb04e6723f043a4bb449a33439084cc" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_1fb04e6723f043a4bb449a33439084cc" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_1fb04e6723f043a4bb449a33439084cc" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_1fb04e6723f043a4bb449a33439084cc" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_1fb04e6723f043a4bb449a33439084cc" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_1fb04e6723f043a4bb449a33439084cc" />
+    </combine2>
+    <subtract name = "SquareWave_OutNode_cca0ea3aed1148c3b12967a5c58f2979" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "SquareWave_Out_in2Node_cca0ea3aed1148c3b12967a5c58f2979" />
+    </subtract>
+    <multiply name = "SquareWave_Out_in2Node_cca0ea3aed1148c3b12967a5c58f2979" type = "float">
+        <input name = "in1" type = "float" value = "2" />
+        <input name = "in2" type = "float" nodename = "SquareWave_Out_in2_in2Node_cca0ea3aed1148c3b12967a5c58f2979" />
+    </multiply>
+    <round name = "SquareWave_Out_in2_in2Node_cca0ea3aed1148c3b12967a5c58f2979" type = "float">
+        <input name = "in" type = "float" nodename = "SquareWave_Out_in2_in2_inNode_cca0ea3aed1148c3b12967a5c58f2979" />
+    </round>
+    <realitykit_fractional name = "SquareWave_Out_in2_in2_inNode_cca0ea3aed1148c3b12967a5c58f2979" type = "float">
+        <input name = "in" type = "float" nodename = "SquareWave_InNode_cca0ea3aed1148c3b12967a5c58f2979" />
+    </realitykit_fractional>
+    <dot name = "SquareWave_InNode_cca0ea3aed1148c3b12967a5c58f2979" type = "float">
+        <input name = "in" type = "float" nodename = "_TimeyNode_8a9a3a20401349b4bbfe72dd809477d5" />
+    </dot>
+    <multiply name = "SawtoothWave_OutNode_3c75885595874ba5ac2117c392e79f5c" type = "float">
+        <input name = "in1" type = "float" value = "2" />
+        <input name = "in2" type = "float" nodename = "SawtoothWave_Out_in2Node_3c75885595874ba5ac2117c392e79f5c" />
+    </multiply>
+    <subtract name = "SawtoothWave_Out_in2Node_3c75885595874ba5ac2117c392e79f5c" type = "float">
+        <input name = "in1" type = "float" nodename = "SawtoothWave_InNode_3c75885595874ba5ac2117c392e79f5c" />
+        <input name = "in2" type = "float" nodename = "SawtoothWave_Out_in2_in2Node_3c75885595874ba5ac2117c392e79f5c" />
+    </subtract>
+    <dot name = "SawtoothWave_InNode_3c75885595874ba5ac2117c392e79f5c" type = "float">
+        <input name = "in" type = "float" nodename = "_TimeyNode_8a9a3a20401349b4bbfe72dd809477d5" />
+    </dot>
+    <floor name = "SawtoothWave_Out_in2_in2Node_3c75885595874ba5ac2117c392e79f5c" type = "float">
+        <input name = "in" type = "float" nodename = "SawtoothWave_Out_in2_in2_inNode_3c75885595874ba5ac2117c392e79f5c" />
+    </floor>
+    <add name = "SawtoothWave_Out_in2_in2_inNode_3c75885595874ba5ac2117c392e79f5c" type = "float">
+        <input name = "in1" type = "float" value = "0.5" />
+        <input name = "in2" type = "float" nodename = "SawtoothWave_InNode_3c75885595874ba5ac2117c392e79f5c" />
+    </add>
+    <add name = "NoiseSineWave_OutNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in1" type = "float" nodename = "NoiseSineWave_sinInNode_7ba6f499cd184ac48504324d70f30c06" />
+        <input name = "in2" type = "float" nodename = "NoiseSineWave_noiseNode_7ba6f499cd184ac48504324d70f30c06" />
+    </add>
+    <sin name = "NoiseSineWave_sinInNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in" type = "float" nodename = "NoiseSineWave_InNode_7ba6f499cd184ac48504324d70f30c06" />
+    </sin>
+    <dot name = "NoiseSineWave_InNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in" type = "float" nodename = "_TimeyNode_8a9a3a20401349b4bbfe72dd809477d5" />
+    </dot>
+    <mix name = "NoiseSineWave_noiseNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "bg" type = "float" nodename = "NoiseSineWave_noise_bgNode_7ba6f499cd184ac48504324d70f30c06" />
+        <input name = "fg" type = "float" nodename = "NoiseSineWave_noise_fgNode_7ba6f499cd184ac48504324d70f30c06" />
+        <input name = "mix" type = "float" nodename = "NoiseSineWave_randomnoNode_7ba6f499cd184ac48504324d70f30c06" />
+    </mix>
+    <swizzle name = "NoiseSineWave_noise_bgNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in" type = "vector2" nodename = "NoiseSineWave_MinMaxNode_7ba6f499cd184ac48504324d70f30c06" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "NoiseSineWave_MinMaxNode_7ba6f499cd184ac48504324d70f30c06" type = "vector2">
+        <input name = "in" type = "vector2" value = "-0.5,0.5" />
+    </dot>
+    <swizzle name = "NoiseSineWave_noise_fgNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in" type = "vector2" nodename = "NoiseSineWave_MinMaxNode_7ba6f499cd184ac48504324d70f30c06" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <realitykit_fractional name = "NoiseSineWave_randomnoNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in" type = "float" nodename = "NoiseSineWave_randomno_inNode_7ba6f499cd184ac48504324d70f30c06" />
+    </realitykit_fractional>
+    <multiply name = "NoiseSineWave_randomno_inNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in1" type = "float" nodename = "NoiseSineWave_randomno_in_in1Node_7ba6f499cd184ac48504324d70f30c06" />
+        <input name = "in2" type = "float" value = "43758.55" />
+    </multiply>
+    <sin name = "NoiseSineWave_randomno_in_in1Node_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in" type = "float" nodename = "NoiseSineWave_randomno_in_in1_inNode_7ba6f499cd184ac48504324d70f30c06" />
+    </sin>
+    <multiply name = "NoiseSineWave_randomno_in_in1_inNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in1" type = "float" nodename = "NoiseSineWave_randomno_in_in1_in_in1Node_7ba6f499cd184ac48504324d70f30c06" />
+        <input name = "in2" type = "float" value = "91.2228" />
+    </multiply>
+    <subtract name = "NoiseSineWave_randomno_in_in1_in_in1Node_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in1" type = "float" nodename = "NoiseSineWave_sinInNode_7ba6f499cd184ac48504324d70f30c06" />
+        <input name = "in2" type = "float" nodename = "NoiseSineWave_sinInOffsetNode_7ba6f499cd184ac48504324d70f30c06" />
+    </subtract>
+    <sin name = "NoiseSineWave_sinInOffsetNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in" type = "float" nodename = "NoiseSineWave_sinInOffset_inNode_7ba6f499cd184ac48504324d70f30c06" />
+    </sin>
+    <add name = "NoiseSineWave_sinInOffset_inNode_7ba6f499cd184ac48504324d70f30c06" type = "float">
+        <input name = "in1" type = "float" nodename = "NoiseSineWave_InNode_7ba6f499cd184ac48504324d70f30c06" />
+        <input name = "in2" type = "float" value = "1" />
+    </add>
+    <constant name = "_Time" type = "vector4">
+        <input name = "value" type = "vector4" value = "0,0,0,0" />
+    </constant>
+    <swizzle name = "_TimeyNode_8a9a3a20401349b4bbfe72dd809477d5" type = "float">
+        <input name = "channels" type = "string" value = "y" />
+        <input name = "in" type = "vector4" nodename = "_Time" />
+    </swizzle>
+    <GeometryModification name = "SR_WaveVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Wave" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromCombine_RGBNode_1fb04e6723f043a4bb449a33439084ccToSR_Wavecolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Wave" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_WaveVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Wave" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromCombine_RGBNode_1fb04e6723f043a4bb449a33439084ccToSR_Wavecolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "Combine_RGBNode_1fb04e6723f043a4bb449a33439084cc" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

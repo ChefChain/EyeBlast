@@ -1,0 +1,119 @@
+﻿#include "pch-c.h"
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_m73231DA2B0BD306C684D34F2DFCECB95DA26E7EA (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_m339CA6166545E3E59D561B9124C9D569553154A4 (void);
+extern void InputSystemUtility_Subscribe_mD96F839A5C6698D9AD586C2986F1E05E4CD4B32E (void);
+extern void InputSystemUtility_Unsubscribe_mD2BA2B73415C392C2007A921815C42749C35FF91 (void);
+extern void InputSystemUtility_GetInputAction_m0C71155579F684D8308CE737B7096C980CF78537 (void);
+extern void XRTouchSpaceInteractor_Start_mDB7EC841D54A3FB148D8102DBEEA011A85EEA562 (void);
+extern void XRTouchSpaceInteractor_OnDestroy_m45124747FA1182CF986E287080AE23B46D6E4AA2 (void);
+extern void XRTouchSpaceInteractor_OnWorldTouchPerformed_mE6D9659E5A2AFB93C22F0B2DB3927F3ED074783A (void);
+extern void XRTouchSpaceInteractor_OnWorldTouchCancelled_mF214E7EF4D00090361ED99AC683EF97C4A0904FB (void);
+extern void XRTouchSpaceInteractor_get_isSelectActive_mFE6CAC9F6A2596EFD289C095B7315CE0A5D57DF4 (void);
+extern void XRTouchSpaceInteractor_CanHover_m9156F9E2A1895676D7F5A71CEC7659459794CAA4 (void);
+extern void XRTouchSpaceInteractor_CanSelect_mCF7870550AA11DF49C02784374F5331AB1CF9F4E (void);
+extern void XRTouchSpaceInteractor_GetValidTargets_m21B499E4C0E37E9D4D9B832D22BF966DF5901A15 (void);
+extern void XRTouchSpaceInteractor_TryGetInteractable_m8E02F3AA498C8FF68CC1C5746C6EDFC5DF5E5FCD (void);
+extern void XRTouchSpaceInteractor__ctor_m56B2A3C254536F75B05A16B3F6D12D1FD72F3A20 (void);
+extern void XRHostCommandHandler_Initialize_mB30B8C58318838B1AD5E2573F57D8D3E8741CDF7 (void);
+extern void XRHostCommandHandler_Dispose_m4BAFAA224A084CA1FEF4EE508C293D7AA37C98C7 (void);
+extern void XRHostCommandHandler_HandleHostCommand_m94EA889C393371B3F3C75F9574762AE2AAD07E1E (void);
+extern void XRHostCommandHandler__ctor_mA826AF9E3B5900124C77D0C8C1543BE2EA48CB50 (void);
+extern void XRLocalCommandHandler__ctor_mDA6F58DF1103E8CE8E983766972B8ADB9A5ABA18 (void);
+extern void XRLocalCommandHandler_Initialize_m875FF9A1DCD91D757963392939CA421444ECEE1B (void);
+extern void XRLocalCommandHandler_Dispose_mDBB399A26CCCF8B5C32094E00A98E4D2F37268B1 (void);
+extern void XRLocalCommandHandler_HandleCommand_mF0EAB5C3620982AB32090B30CB3B94C626B33EAE (void);
+extern void PolySpatialMRCapabilityProfile__ctor_m52D3EE08F3C512AABA375C7A737C51BF15395063 (void);
+extern void PolySpatialVRCapabilityProfile_TryGetCapabilityValue_m87DBCA17DB446365055A306A7C3148DC51048578 (void);
+extern void PolySpatialVRCapabilityProfile__ctor_m69B9A909342055F3D93C414E88E3EDC1FA0471AE (void);
+static Il2CppMethodPointer s_methodPointers[26] = 
+{
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_m73231DA2B0BD306C684D34F2DFCECB95DA26E7EA,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_m339CA6166545E3E59D561B9124C9D569553154A4,
+	InputSystemUtility_Subscribe_mD96F839A5C6698D9AD586C2986F1E05E4CD4B32E,
+	InputSystemUtility_Unsubscribe_mD2BA2B73415C392C2007A921815C42749C35FF91,
+	InputSystemUtility_GetInputAction_m0C71155579F684D8308CE737B7096C980CF78537,
+	XRTouchSpaceInteractor_Start_mDB7EC841D54A3FB148D8102DBEEA011A85EEA562,
+	XRTouchSpaceInteractor_OnDestroy_m45124747FA1182CF986E287080AE23B46D6E4AA2,
+	XRTouchSpaceInteractor_OnWorldTouchPerformed_mE6D9659E5A2AFB93C22F0B2DB3927F3ED074783A,
+	XRTouchSpaceInteractor_OnWorldTouchCancelled_mF214E7EF4D00090361ED99AC683EF97C4A0904FB,
+	XRTouchSpaceInteractor_get_isSelectActive_mFE6CAC9F6A2596EFD289C095B7315CE0A5D57DF4,
+	XRTouchSpaceInteractor_CanHover_m9156F9E2A1895676D7F5A71CEC7659459794CAA4,
+	XRTouchSpaceInteractor_CanSelect_mCF7870550AA11DF49C02784374F5331AB1CF9F4E,
+	XRTouchSpaceInteractor_GetValidTargets_m21B499E4C0E37E9D4D9B832D22BF966DF5901A15,
+	XRTouchSpaceInteractor_TryGetInteractable_m8E02F3AA498C8FF68CC1C5746C6EDFC5DF5E5FCD,
+	XRTouchSpaceInteractor__ctor_m56B2A3C254536F75B05A16B3F6D12D1FD72F3A20,
+	XRHostCommandHandler_Initialize_mB30B8C58318838B1AD5E2573F57D8D3E8741CDF7,
+	XRHostCommandHandler_Dispose_m4BAFAA224A084CA1FEF4EE508C293D7AA37C98C7,
+	XRHostCommandHandler_HandleHostCommand_m94EA889C393371B3F3C75F9574762AE2AAD07E1E,
+	XRHostCommandHandler__ctor_mA826AF9E3B5900124C77D0C8C1543BE2EA48CB50,
+	XRLocalCommandHandler__ctor_mDA6F58DF1103E8CE8E983766972B8ADB9A5ABA18,
+	XRLocalCommandHandler_Initialize_m875FF9A1DCD91D757963392939CA421444ECEE1B,
+	XRLocalCommandHandler_Dispose_mDBB399A26CCCF8B5C32094E00A98E4D2F37268B1,
+	XRLocalCommandHandler_HandleCommand_mF0EAB5C3620982AB32090B30CB3B94C626B33EAE,
+	PolySpatialMRCapabilityProfile__ctor_m52D3EE08F3C512AABA375C7A737C51BF15395063,
+	PolySpatialVRCapabilityProfile_TryGetCapabilityValue_m87DBCA17DB446365055A306A7C3148DC51048578,
+	PolySpatialVRCapabilityProfile__ctor_m69B9A909342055F3D93C414E88E3EDC1FA0471AE,
+};
+static const int32_t s_InvokerIndices[26] = 
+{
+	26156,
+	14138,
+	19681,
+	19681,
+	24314,
+	14138,
+	14138,
+	11246,
+	11246,
+	13793,
+	7849,
+	7849,
+	10914,
+	20444,
+	14138,
+	14138,
+	14138,
+	1823,
+	14138,
+	14138,
+	14138,
+	14138,
+	2010,
+	14138,
+	3565,
+	14138,
+};
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_Unity_PolySpatial_XR_CodeGenModule;
+const Il2CppCodeGenModule g_Unity_PolySpatial_XR_CodeGenModule = 
+{
+	"Unity.PolySpatial.XR.dll",
+	26,
+	s_methodPointers,
+	0,
+	NULL,
+	s_InvokerIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};

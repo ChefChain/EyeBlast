@@ -1,0 +1,149 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Noise"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Noise/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Noise/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Noise/CastSwizzleFromLerpNode_97f52ece05424efa94ab333bc9dfc1a9ToSR_Noisecolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromLerpNode_97f52ece05424efa94ab333bc9dfc1a9ToSR_Noisecolor"
+            {
+                uniform token info:id = "ND_swizzle_float_color3"
+                float inputs:in.connect = </MaterialX/Materials/USD_Noise/LerpNode_97f52ece05424efa94ab333bc9dfc1a9.outputs:out>
+                string inputs:channels = "xxx"
+                color3f outputs:out
+            }
+
+            def Shader "LerpNode_97f52ece05424efa94ab333bc9dfc1a9"
+            {
+                uniform token info:id = "ND_mix_float"
+                float inputs:bg.connect = </MaterialX/Materials/USD_Noise/GradientNoise_OutNode_c6cc4ed008774f439ac79ff2db4af9e6.outputs:out>
+                float inputs:fg.connect = </MaterialX/Materials/USD_Noise/VoronoiNode_2888e5cbbe374a3a9f67fcdb88385907.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_Noise/RandomRangeNode_bf17d0846a604f649df31ab95b5f1a23.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "GradientNoise_OutNode_c6cc4ed008774f439ac79ff2db4af9e6"
+            {
+                uniform token info:id = "ND_noise2d_float"
+                float inputs:amplitude = 0.5
+                float inputs:pivot = 0.5
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Noise/GradientNoise_Out_texcoordNode_c6cc4ed008774f439ac79ff2db4af9e6.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "GradientNoise_Out_texcoordNode_c6cc4ed008774f439ac79ff2db4af9e6"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Noise/GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Noise/GradientNoise_ScaleNode_c6cc4ed008774f439ac79ff2db4af9e6.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Noise/GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6Add.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6Add"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Noise/GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6Multiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6Multiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Noise/GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6UV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "GradientNoise_UVNode_c6cc4ed008774f439ac79ff2db4af9e6UV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "VoronoiNode_2888e5cbbe374a3a9f67fcdb88385907"
+            {
+                uniform token info:id = "ND_worleynoise2d_float"
+                float inputs:jitter = 2
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Noise/CellDensityNode_2888e5cbbe374a3a9f67fcdb88385907.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "CellDensityNode_2888e5cbbe374a3a9f67fcdb88385907"
+            {
+                uniform token info:id = "ND_multiply_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Noise/GradientNoiseUVNode_2888e5cbbe374a3a9f67fcdb88385907.outputs:out>
+                float inputs:in2 = 5
+                float2 outputs:out
+            }
+
+            def Shader "GradientNoiseUVNode_2888e5cbbe374a3a9f67fcdb88385907"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "RandomRangeNode_bf17d0846a604f649df31ab95b5f1a23"
+            {
+                uniform token info:id = "ND_mix_float"
+                float inputs:bg = 0
+                float inputs:fg = 1
+                float inputs:mix.connect = </MaterialX/Materials/USD_Noise/RandomRangeNoiseNode_bf17d0846a604f649df31ab95b5f1a23.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RandomRangeNoiseNode_bf17d0846a604f649df31ab95b5f1a23"
+            {
+                uniform token info:id = "ND_noise2d_float"
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Noise/RandomRangeSeedNode_bf17d0846a604f649df31ab95b5f1a23.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RandomRangeSeedNode_bf17d0846a604f649df31ab95b5f1a23"
+            {
+                uniform token info:id = "ND_constant_vector2"
+                float2 inputs:value = (0.5, 0.3)
+                float2 outputs:out
+            }
+
+            def Shader "GradientNoise_ScaleNode_c6cc4ed008774f439ac79ff2db4af9e6"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 10
+                float outputs:out
+            }
+        }
+    }
+}

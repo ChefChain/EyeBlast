@@ -1,0 +1,14 @@
+{
+    "name": "Unity.XR.VisionOS.Editor.Tests",
+    "references": [
+        "Unity.XR.VisionOS.Editor",
+        "Unity.XR.VisionOS"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

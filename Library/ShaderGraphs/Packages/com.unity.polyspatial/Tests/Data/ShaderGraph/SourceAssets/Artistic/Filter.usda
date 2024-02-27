@@ -1,0 +1,117 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Filter"
+        {
+            float4 inputs:_SinTime = (0, 0, 0, 0)
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Filter/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Filter/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Filter/CastSwizzleFromFadeTransition_FadeNode_0ecd4252ee504ed3b5099285785465ddToSR_Filtercolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromFadeTransition_FadeNode_0ecd4252ee504ed3b5099285785465ddToSR_Filtercolor"
+            {
+                uniform token info:id = "ND_swizzle_float_color3"
+                float inputs:in.connect = </MaterialX/Materials/USD_Filter/FadeTransition_FadeNode_0ecd4252ee504ed3b5099285785465dd.outputs:out>
+                string inputs:channels = "xxx"
+                color3f outputs:out
+            }
+
+            def Shader "FadeTransition_FadeNode_0ecd4252ee504ed3b5099285785465dd"
+            {
+                uniform token info:id = "ND_clamp_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Filter/FadeTransition_Fade_inNode_0ecd4252ee504ed3b5099285785465dd.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "FadeTransition_Fade_inNode_0ecd4252ee504ed3b5099285785465dd"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Filter/FadeTransition_Fade_in_in1Node_0ecd4252ee504ed3b5099285785465dd.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Filter/FadeTransition_Fade_in_in2Node_0ecd4252ee504ed3b5099285785465dd.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "FadeTransition_Fade_in_in1Node_0ecd4252ee504ed3b5099285785465dd"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Filter/FadeTransition_FadeValueNode_0ecd4252ee504ed3b5099285785465dd.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Filter/FadeTransition_Fade_in_in1_in2Node_0ecd4252ee504ed3b5099285785465dd.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "FadeTransition_FadeValueNode_0ecd4252ee504ed3b5099285785465dd"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Filter/_SinTimewNode_1743c2e066d640b482803c0cd1141264.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_SinTimewNode_1743c2e066d640b482803c0cd1141264"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                string inputs:channels = "w"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Filter.inputs:_SinTime>
+                float outputs:out
+            }
+
+            def Shader "FadeTransition_Fade_in_in2Node_0ecd4252ee504ed3b5099285785465dd"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Filter/FadeTransition_Fade_in_in2_in1Node_0ecd4252ee504ed3b5099285785465dd.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Filter/FadeTransition_FadeContrastNode_0ecd4252ee504ed3b5099285785465dd.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "FadeTransition_FadeContrastNode_0ecd4252ee504ed3b5099285785465dd"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1
+                float outputs:out
+            }
+
+            def Shader "FadeTransition_Fade_in_in2_in1Node_0ecd4252ee504ed3b5099285785465dd"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Filter/FadeTransition_NoiseValueNode_0ecd4252ee504ed3b5099285785465dd.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "FadeTransition_NoiseValueNode_0ecd4252ee504ed3b5099285785465dd"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.5
+                float outputs:out
+            }
+
+            def Shader "FadeTransition_Fade_in_in1_in2Node_0ecd4252ee504ed3b5099285785465dd"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Filter/FadeTransition_FadeContrastNode_0ecd4252ee504ed3b5099285785465dd.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+        }
+    }
+}

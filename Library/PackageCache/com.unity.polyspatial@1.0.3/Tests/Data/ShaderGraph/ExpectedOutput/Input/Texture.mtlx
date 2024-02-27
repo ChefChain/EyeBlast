@@ -1,0 +1,673 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <RealityKitTexture2D name = "SampleTexture2D_RGBANode_946cc4763c8a43298a3d3ec96ff71183" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture2D_TextureNode_946cc4763c8a43298a3d3ec96ff71183" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture2D_UVNode_946cc4763c8a43298a3d3ec96ff71183" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "SampleTexture2D_TextureNode_946cc4763c8a43298a3d3ec96ff71183" type = "filename">
+        <input name = "in" type = "filename" nodename = "_MainTex" />
+    </dot>
+    <dot name = "SampleTexture2D_UVNode_946cc4763c8a43298a3d3ec96ff71183" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "SampleTexture2D_UVNode_946cc4763c8a43298a3d3ec96ff71183Add" />
+    </dot>
+    <texcoord name = "SampleTexture2D_UVNode_946cc4763c8a43298a3d3ec96ff71183UV" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "SampleTexture2D_UVNode_946cc4763c8a43298a3d3ec96ff71183Multiply" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleTexture2D_UVNode_946cc4763c8a43298a3d3ec96ff71183UV" />
+        <input name = "in2" type = "vector2" value = "1,-1" />
+    </multiply>
+    <add name = "SampleTexture2D_UVNode_946cc4763c8a43298a3d3ec96ff71183Add" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleTexture2D_UVNode_946cc4763c8a43298a3d3ec96ff71183Multiply" />
+        <input name = "in2" type = "vector2" value = "0,1" />
+    </add>
+    <swizzle name = "SampleTexture2D_RNode_946cc4763c8a43298a3d3ec96ff71183" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_946cc4763c8a43298a3d3ec96ff71183" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_GNode_946cc4763c8a43298a3d3ec96ff71183" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_946cc4763c8a43298a3d3ec96ff71183" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_BNode_946cc4763c8a43298a3d3ec96ff71183" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_946cc4763c8a43298a3d3ec96ff71183" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_ANode_946cc4763c8a43298a3d3ec96ff71183" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_946cc4763c8a43298a3d3ec96ff71183" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <constant name = "_MainTex" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <RealityKitTexture2DLOD name = "SampleTexture2DLOD_RGBANode_863147e977944b3e828c0de0418dbcb8" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture2DLOD_TextureNode_863147e977944b3e828c0de0418dbcb8" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture2DLOD_UVNode_863147e977944b3e828c0de0418dbcb8" />
+        <input name = "lod" type = "float" nodename = "SampleTexture2DLOD_LODNode_863147e977944b3e828c0de0418dbcb8" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "SampleTexture2DLOD_TextureNode_863147e977944b3e828c0de0418dbcb8" type = "filename">
+        <input name = "in" type = "filename" nodename = "_VertexTex" />
+    </dot>
+    <dot name = "SampleTexture2DLOD_UVNode_863147e977944b3e828c0de0418dbcb8" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "SampleTexture2DLOD_UVNode_863147e977944b3e828c0de0418dbcb8Add" />
+    </dot>
+    <texcoord name = "SampleTexture2DLOD_UVNode_863147e977944b3e828c0de0418dbcb8UV" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "SampleTexture2DLOD_UVNode_863147e977944b3e828c0de0418dbcb8Multiply" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleTexture2DLOD_UVNode_863147e977944b3e828c0de0418dbcb8UV" />
+        <input name = "in2" type = "vector2" value = "1,-1" />
+    </multiply>
+    <add name = "SampleTexture2DLOD_UVNode_863147e977944b3e828c0de0418dbcb8Add" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleTexture2DLOD_UVNode_863147e977944b3e828c0de0418dbcb8Multiply" />
+        <input name = "in2" type = "vector2" value = "0,1" />
+    </add>
+    <dot name = "SampleTexture2DLOD_LODNode_863147e977944b3e828c0de0418dbcb8" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <swizzle name = "SampleTexture2DLOD_RNode_863147e977944b3e828c0de0418dbcb8" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2DLOD_RGBANode_863147e977944b3e828c0de0418dbcb8" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture2DLOD_GNode_863147e977944b3e828c0de0418dbcb8" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2DLOD_RGBANode_863147e977944b3e828c0de0418dbcb8" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture2DLOD_BNode_863147e977944b3e828c0de0418dbcb8" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2DLOD_RGBANode_863147e977944b3e828c0de0418dbcb8" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture2DLOD_ANode_863147e977944b3e828c0de0418dbcb8" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2DLOD_RGBANode_863147e977944b3e828c0de0418dbcb8" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <constant name = "_VertexTex" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <constant name = "TextureSize_MainTex" type = "vector3">
+        <input name = "value" type = "vector3" value = "0,0,0" />
+    </constant>
+    <swizzle name = "TextureSize_WidthNode_806a6e888e464735ba91c5000dcb1175" type = "float">
+        <input name = "in" type = "vector3" nodename = "TextureSize_MainTex" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "TextureSize_HeightNode_806a6e888e464735ba91c5000dcb1175" type = "float">
+        <input name = "in" type = "vector3" nodename = "TextureSize_MainTex" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "TextureSize_TexelWidthNode_806a6e888e464735ba91c5000dcb1175" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "TextureSize_WidthNode_806a6e888e464735ba91c5000dcb1175" />
+    </divide>
+    <divide name = "TextureSize_TexelHeightNode_806a6e888e464735ba91c5000dcb1175" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "TextureSize_HeightNode_806a6e888e464735ba91c5000dcb1175" />
+    </divide>
+    <RealityKitTexture2DLOD name = "SampleRawCubemap_OutNode_ac67974057a943d3a9193b568a57d458" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleRawCubemap_CubeNode_ac67974057a943d3a9193b568a57d458" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleRawCubemap_Out_texcoordNode_ac67974057a943d3a9193b568a57d458" />
+        <input name = "lod" type = "float" nodename = "SampleRawCubemap_LODNode_ac67974057a943d3a9193b568a57d458" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "SampleRawCubemap_CubeNode_ac67974057a943d3a9193b568a57d458" type = "filename">
+        <input name = "in" type = "filename" nodename = "_Cubemap" />
+    </dot>
+    <ifgreater name = "SampleRawCubemap_Out_texcoordNode_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleRawCubemap___Tmp4Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "value2" type = "float" nodename = "SampleRawCubemap___Tmp5Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in2Node_ac67974057a943d3a9193b568a57d458" />
+    </ifgreater>
+    <swizzle name = "SampleRawCubemap___Tmp4Node_ac67974057a943d3a9193b568a57d458" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap___Tmp3Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <absval name = "SampleRawCubemap___Tmp3Node_ac67974057a943d3a9193b568a57d458" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458" />
+    </absval>
+    <dot name = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458Flip" />
+    </dot>
+    <normal name = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458Geom" type = "vector3">
+        <input name = "space" type = "string" value = "world" />
+    </normal>
+    <multiply name = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458Flip" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458Geom" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <swizzle name = "SampleRawCubemap___Tmp5Node_ac67974057a943d3a9193b568a57d458" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap___Tmp3Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <ifgreater name = "SampleRawCubemap_Out_texcoord_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleRawCubemap___Tmp4Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "value2" type = "float" nodename = "SampleRawCubemap___Tmp6Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in1_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" nodename = "SampleRawCubemap___Tmp10Node_ac67974057a943d3a9193b568a57d458" />
+    </ifgreater>
+    <swizzle name = "SampleRawCubemap___Tmp6Node_ac67974057a943d3a9193b568a57d458" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap___Tmp3Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <ifgreater name = "SampleRawCubemap_Out_texcoord_in1_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleRawCubemap___Tmp0Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in1_in1_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in1_in1_in2Node_ac67974057a943d3a9193b568a57d458" />
+    </ifgreater>
+    <swizzle name = "SampleRawCubemap___Tmp0Node_ac67974057a943d3a9193b568a57d458" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <add name = "SampleRawCubemap_Out_texcoord_in1_in1_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in1_in1_in1_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "0.5,0.08333334" />
+    </add>
+    <multiply name = "SampleRawCubemap_Out_texcoord_in1_in1_in1_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp7Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "-0.5,-0.08333334" />
+    </multiply>
+    <divide name = "SampleRawCubemap___Tmp7Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp7_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "float" nodename = "SampleRawCubemap___Tmp4Node_ac67974057a943d3a9193b568a57d458" />
+    </divide>
+    <swizzle name = "SampleRawCubemap___Tmp7_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458" />
+        <input name = "channels" type = "string" value = "zy" />
+    </swizzle>
+    <add name = "SampleRawCubemap_Out_texcoord_in1_in1_in2Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in1_in1_in2_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "0.5,0.25" />
+    </add>
+    <multiply name = "SampleRawCubemap_Out_texcoord_in1_in1_in2_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp7Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "0.5,-0.08333334" />
+    </multiply>
+    <ifgreater name = "SampleRawCubemap___Tmp10Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleRawCubemap___Tmp2Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp10_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" nodename = "SampleRawCubemap___Tmp10_in2Node_ac67974057a943d3a9193b568a57d458" />
+    </ifgreater>
+    <swizzle name = "SampleRawCubemap___Tmp2Node_ac67974057a943d3a9193b568a57d458" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <add name = "SampleRawCubemap___Tmp10_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp10_in1_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "0.5,0.75" />
+    </add>
+    <multiply name = "SampleRawCubemap___Tmp10_in1_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp9Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "0.5,-0.08333334" />
+    </multiply>
+    <divide name = "SampleRawCubemap___Tmp9Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp9_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "float" nodename = "SampleRawCubemap___Tmp6Node_ac67974057a943d3a9193b568a57d458" />
+    </divide>
+    <swizzle name = "SampleRawCubemap___Tmp9_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <add name = "SampleRawCubemap___Tmp10_in2Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp10_in2_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "0.5,0.9166667" />
+    </add>
+    <multiply name = "SampleRawCubemap___Tmp10_in2_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp9Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "-0.5,-0.08333334" />
+    </multiply>
+    <ifgreater name = "SampleRawCubemap_Out_texcoord_in2Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleRawCubemap___Tmp5Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "value2" type = "float" nodename = "SampleRawCubemap___Tmp6Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in2_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" nodename = "SampleRawCubemap___Tmp10Node_ac67974057a943d3a9193b568a57d458" />
+    </ifgreater>
+    <ifgreater name = "SampleRawCubemap_Out_texcoord_in2_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleRawCubemap___Tmp1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in2_in1_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in2_in1_in2Node_ac67974057a943d3a9193b568a57d458" />
+    </ifgreater>
+    <swizzle name = "SampleRawCubemap___Tmp1Node_ac67974057a943d3a9193b568a57d458" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <add name = "SampleRawCubemap_Out_texcoord_in2_in1_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in2_in1_in1_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "0.5,0.4166667" />
+    </add>
+    <multiply name = "SampleRawCubemap_Out_texcoord_in2_in1_in1_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp8Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "0.5,0.08333334" />
+    </multiply>
+    <divide name = "SampleRawCubemap___Tmp8Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp8_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "float" nodename = "SampleRawCubemap___Tmp5Node_ac67974057a943d3a9193b568a57d458" />
+    </divide>
+    <swizzle name = "SampleRawCubemap___Tmp8_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "SampleRawCubemap_DirNode_ac67974057a943d3a9193b568a57d458" />
+        <input name = "channels" type = "string" value = "xz" />
+    </swizzle>
+    <add name = "SampleRawCubemap_Out_texcoord_in2_in1_in2Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap_Out_texcoord_in2_in1_in2_in1Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5833333" />
+    </add>
+    <multiply name = "SampleRawCubemap_Out_texcoord_in2_in1_in2_in1Node_ac67974057a943d3a9193b568a57d458" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleRawCubemap___Tmp8Node_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector2" value = "0.5,-0.08333334" />
+    </multiply>
+    <dot name = "SampleRawCubemap_LODNode_ac67974057a943d3a9193b568a57d458" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <RealityKitTexture2DLOD name = "SampleCubemap_OutNode_300ce2639efd436fbff656280edf31c3" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleCubemap_CubeNode_300ce2639efd436fbff656280edf31c3" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleCubemap_Out_texcoordNode_300ce2639efd436fbff656280edf31c3" />
+        <input name = "lod" type = "float" nodename = "SampleCubemap_LODNode_300ce2639efd436fbff656280edf31c3" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "SampleCubemap_CubeNode_300ce2639efd436fbff656280edf31c3" type = "filename">
+        <input name = "in" type = "filename" nodename = "_Cubemap" />
+    </dot>
+    <ifgreater name = "SampleCubemap_Out_texcoordNode_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleCubemap___Tmp5Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "value2" type = "float" nodename = "SampleCubemap___Tmp6Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in2Node_300ce2639efd436fbff656280edf31c3" />
+    </ifgreater>
+    <swizzle name = "SampleCubemap___Tmp5Node_300ce2639efd436fbff656280edf31c3" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp4Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <absval name = "SampleCubemap___Tmp4Node_300ce2639efd436fbff656280edf31c3" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp0Node_300ce2639efd436fbff656280edf31c3" />
+    </absval>
+    <realitykit_reflect name = "SampleCubemap___Tmp0Node_300ce2639efd436fbff656280edf31c3" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp0_inNode_300ce2639efd436fbff656280edf31c3" />
+        <input name = "normal" type = "vector3" nodename = "SampleCubemap_NormalNode_300ce2639efd436fbff656280edf31c3" />
+    </realitykit_reflect>
+    <subtract name = "SampleCubemap___Tmp0_inNode_300ce2639efd436fbff656280edf31c3" type = "vector3">
+        <input name = "in2" type = "vector3" nodename = "SampleCubemap_ViewDirNode_300ce2639efd436fbff656280edf31c3" />
+    </subtract>
+    <dot name = "SampleCubemap_ViewDirNode_300ce2639efd436fbff656280edf31c3" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap_ViewDirNode_300ce2639efd436fbff656280edf31c3Flip" />
+    </dot>
+    <realitykit_viewdirection name = "SampleCubemap_ViewDirNode_300ce2639efd436fbff656280edf31c3Geom" type = "vector3">
+    </realitykit_viewdirection>
+    <multiply name = "SampleCubemap_ViewDirNode_300ce2639efd436fbff656280edf31c3Flip" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "SampleCubemap_ViewDirNode_300ce2639efd436fbff656280edf31c3Geom" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <dot name = "SampleCubemap_NormalNode_300ce2639efd436fbff656280edf31c3" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap_NormalNode_300ce2639efd436fbff656280edf31c3Flip" />
+    </dot>
+    <normal name = "SampleCubemap_NormalNode_300ce2639efd436fbff656280edf31c3Geom" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </normal>
+    <multiply name = "SampleCubemap_NormalNode_300ce2639efd436fbff656280edf31c3Flip" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "SampleCubemap_NormalNode_300ce2639efd436fbff656280edf31c3Geom" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <swizzle name = "SampleCubemap___Tmp6Node_300ce2639efd436fbff656280edf31c3" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp4Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <ifgreater name = "SampleCubemap_Out_texcoord_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleCubemap___Tmp5Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "value2" type = "float" nodename = "SampleCubemap___Tmp7Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in1_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" nodename = "SampleCubemap___Tmp11Node_300ce2639efd436fbff656280edf31c3" />
+    </ifgreater>
+    <swizzle name = "SampleCubemap___Tmp7Node_300ce2639efd436fbff656280edf31c3" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp4Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <ifgreater name = "SampleCubemap_Out_texcoord_in1_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleCubemap___Tmp1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in1_in1_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in1_in1_in2Node_300ce2639efd436fbff656280edf31c3" />
+    </ifgreater>
+    <swizzle name = "SampleCubemap___Tmp1Node_300ce2639efd436fbff656280edf31c3" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp0Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <add name = "SampleCubemap_Out_texcoord_in1_in1_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in1_in1_in1_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "0.5,0.08333334" />
+    </add>
+    <multiply name = "SampleCubemap_Out_texcoord_in1_in1_in1_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp8Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "-0.5,-0.08333334" />
+    </multiply>
+    <divide name = "SampleCubemap___Tmp8Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp8_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "float" nodename = "SampleCubemap___Tmp5Node_300ce2639efd436fbff656280edf31c3" />
+    </divide>
+    <swizzle name = "SampleCubemap___Tmp8_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp0Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "channels" type = "string" value = "zy" />
+    </swizzle>
+    <add name = "SampleCubemap_Out_texcoord_in1_in1_in2Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in1_in1_in2_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "0.5,0.25" />
+    </add>
+    <multiply name = "SampleCubemap_Out_texcoord_in1_in1_in2_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp8Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "0.5,-0.08333334" />
+    </multiply>
+    <ifgreater name = "SampleCubemap___Tmp11Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleCubemap___Tmp3Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp11_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" nodename = "SampleCubemap___Tmp11_in2Node_300ce2639efd436fbff656280edf31c3" />
+    </ifgreater>
+    <swizzle name = "SampleCubemap___Tmp3Node_300ce2639efd436fbff656280edf31c3" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp0Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <add name = "SampleCubemap___Tmp11_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp11_in1_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "0.5,0.75" />
+    </add>
+    <multiply name = "SampleCubemap___Tmp11_in1_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp10Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "0.5,-0.08333334" />
+    </multiply>
+    <divide name = "SampleCubemap___Tmp10Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp10_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "float" nodename = "SampleCubemap___Tmp7Node_300ce2639efd436fbff656280edf31c3" />
+    </divide>
+    <swizzle name = "SampleCubemap___Tmp10_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp0Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <add name = "SampleCubemap___Tmp11_in2Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp11_in2_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "0.5,0.9166667" />
+    </add>
+    <multiply name = "SampleCubemap___Tmp11_in2_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp10Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "-0.5,-0.08333334" />
+    </multiply>
+    <ifgreater name = "SampleCubemap_Out_texcoord_in2Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleCubemap___Tmp6Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "value2" type = "float" nodename = "SampleCubemap___Tmp7Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in2_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" nodename = "SampleCubemap___Tmp11Node_300ce2639efd436fbff656280edf31c3" />
+    </ifgreater>
+    <ifgreater name = "SampleCubemap_Out_texcoord_in2_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "value1" type = "float" nodename = "SampleCubemap___Tmp2Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in2_in1_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in2_in1_in2Node_300ce2639efd436fbff656280edf31c3" />
+    </ifgreater>
+    <swizzle name = "SampleCubemap___Tmp2Node_300ce2639efd436fbff656280edf31c3" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp0Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <add name = "SampleCubemap_Out_texcoord_in2_in1_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in2_in1_in1_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "0.5,0.4166667" />
+    </add>
+    <multiply name = "SampleCubemap_Out_texcoord_in2_in1_in1_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp9Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "0.5,0.08333334" />
+    </multiply>
+    <divide name = "SampleCubemap___Tmp9Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp9_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "float" nodename = "SampleCubemap___Tmp6Node_300ce2639efd436fbff656280edf31c3" />
+    </divide>
+    <swizzle name = "SampleCubemap___Tmp9_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "SampleCubemap___Tmp0Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "channels" type = "string" value = "xz" />
+    </swizzle>
+    <add name = "SampleCubemap_Out_texcoord_in2_in1_in2Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap_Out_texcoord_in2_in1_in2_in1Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5833333" />
+    </add>
+    <multiply name = "SampleCubemap_Out_texcoord_in2_in1_in2_in1Node_300ce2639efd436fbff656280edf31c3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "SampleCubemap___Tmp9Node_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector2" value = "0.5,-0.08333334" />
+    </multiply>
+    <dot name = "SampleCubemap_LODNode_300ce2639efd436fbff656280edf31c3" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <constant name = "_Cubemap" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <add name = "AddNode_80f7e1133e0d46deb6636045bc0d837f" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "SampleRawCubemap_OutNode_ac67974057a943d3a9193b568a57d458" />
+        <input name = "in2" type = "vector4" nodename = "AddNode_e9c9803112724b02b3def46557a48cb6" />
+    </add>
+    <constant name = "_Texture3D" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <mix name = "SampleTexture3D_RGBANode_1593172023c94f18ba8ab24245d3dba5" type = "vector4">
+        <input name = "bg" type = "vector4" nodename = "SampleTexture3D_RGBA_bgNode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "fg" type = "vector4" nodename = "SampleTexture3D_RGBA_fgNode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "mix" type = "float" nodename = "SampleTexture3D_RGBA_mixNode_1593172023c94f18ba8ab24245d3dba5" />
+    </mix>
+    <RealityKitTexture2D name = "SampleTexture3D_RGBA_bgNode_1593172023c94f18ba8ab24245d3dba5" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture3D_TextureNode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture3D_RGBA_bg_texcoordNode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "SampleTexture3D_TextureNode_1593172023c94f18ba8ab24245d3dba5" type = "filename">
+        <input name = "in" type = "filename" nodename = "_Texture3D" />
+    </dot>
+    <combine2 name = "SampleTexture3D_RGBA_bg_texcoordNode_1593172023c94f18ba8ab24245d3dba5" type = "vector2">
+        <input name = "in1" type = "float" nodename = "SampleTexture3D___Tmp2Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D_RGBA_bg_texcoord_in2Node_1593172023c94f18ba8ab24245d3dba5" />
+    </combine2>
+    <swizzle name = "SampleTexture3D___Tmp2Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleTexture3D___Tmp1Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <realitykit_fractional name = "SampleTexture3D___Tmp1Node_1593172023c94f18ba8ab24245d3dba5" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "SampleTexture3D_UVNode_1593172023c94f18ba8ab24245d3dba5" />
+    </realitykit_fractional>
+    <dot name = "SampleTexture3D_UVNode_1593172023c94f18ba8ab24245d3dba5" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "CastSwizzleFromPosition_OutNode_1bc69c62199b46a2afff37853852e803ToSampleTexture3D_UVNode_1593172023c94f18ba8ab24245d3dba5in" />
+    </dot>
+    <divide name = "SampleTexture3D_RGBA_bg_texcoord_in2Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleTexture3D_RGBA_bg_texcoord_in2_in1Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D___Tmp0Node_1593172023c94f18ba8ab24245d3dba5" />
+    </divide>
+    <add name = "SampleTexture3D_RGBA_bg_texcoord_in2_in1Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleTexture3D_RGBA_bg_texcoord_in2_in1_in1Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D___Tmp4Node_1593172023c94f18ba8ab24245d3dba5" />
+    </add>
+    <ifgreatereq name = "SampleTexture3D_RGBA_bg_texcoord_in2_in1_in1Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "value1" type = "float" nodename = "SampleTexture3D___Tmp6Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "float" nodename = "SampleTexture3D___Tmp6Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D_RGBA_bg_texcoord_in2_in1_in1_in2Node_1593172023c94f18ba8ab24245d3dba5" />
+    </ifgreatereq>
+    <floor name = "SampleTexture3D___Tmp6Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "float" nodename = "SampleTexture3D___Tmp5Node_1593172023c94f18ba8ab24245d3dba5" />
+    </floor>
+    <subtract name = "SampleTexture3D___Tmp5Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleTexture3D___Tmp5_in1Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </subtract>
+    <multiply name = "SampleTexture3D___Tmp5_in1Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleTexture3D___Tmp5_in1_in1Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D___Tmp0Node_1593172023c94f18ba8ab24245d3dba5" />
+    </multiply>
+    <swizzle name = "SampleTexture3D___Tmp5_in1_in1Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleTexture3D___Tmp1Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture3D___Tmp0Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "vector3" nodename = "TextureSize_Texture3D" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <constant name = "TextureSize_Texture3D" type = "vector3">
+        <input name = "value" type = "vector3" value = "0,0,0" />
+    </constant>
+    <subtract name = "SampleTexture3D_RGBA_bg_texcoord_in2_in1_in1_in2Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleTexture3D___Tmp0Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in2" type = "float" value = "1" />
+    </subtract>
+    <clamp name = "SampleTexture3D___Tmp4Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "float" nodename = "SampleTexture3D___Tmp4_inNode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "low" type = "float" nodename = "SampleTexture3D___Tmp3Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "high" type = "float" nodename = "SampleTexture3D___Tmp4_highNode_1593172023c94f18ba8ab24245d3dba5" />
+    </clamp>
+    <swizzle name = "SampleTexture3D___Tmp4_inNode_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "vector3" nodename = "SampleTexture3D___Tmp1Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "SampleTexture3D___Tmp3Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in1" type = "float" value = "0.5" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D___Tmp3_in2Node_1593172023c94f18ba8ab24245d3dba5" />
+    </divide>
+    <swizzle name = "SampleTexture3D___Tmp3_in2Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "vector3" nodename = "TextureSize_Texture3D" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <subtract name = "SampleTexture3D___Tmp4_highNode_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D___Tmp3Node_1593172023c94f18ba8ab24245d3dba5" />
+    </subtract>
+    <RealityKitTexture2D name = "SampleTexture3D_RGBA_fgNode_1593172023c94f18ba8ab24245d3dba5" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture3D_TextureNode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture3D_RGBA_fg_texcoordNode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <combine2 name = "SampleTexture3D_RGBA_fg_texcoordNode_1593172023c94f18ba8ab24245d3dba5" type = "vector2">
+        <input name = "in1" type = "float" nodename = "SampleTexture3D___Tmp2Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D_RGBA_fg_texcoord_in2Node_1593172023c94f18ba8ab24245d3dba5" />
+    </combine2>
+    <divide name = "SampleTexture3D_RGBA_fg_texcoord_in2Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleTexture3D_RGBA_fg_texcoord_in2_in1Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D___Tmp0Node_1593172023c94f18ba8ab24245d3dba5" />
+    </divide>
+    <add name = "SampleTexture3D_RGBA_fg_texcoord_in2_in1Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleTexture3D_RGBA_fg_texcoord_in2_in1_in1Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D___Tmp4Node_1593172023c94f18ba8ab24245d3dba5" />
+    </add>
+    <ifgreatereq name = "SampleTexture3D_RGBA_fg_texcoord_in2_in1_in1Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "value1" type = "float" nodename = "SampleTexture3D___Tmp7Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "value2" type = "float" nodename = "SampleTexture3D___Tmp0Node_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" nodename = "SampleTexture3D___Tmp7Node_1593172023c94f18ba8ab24245d3dba5" />
+    </ifgreatereq>
+    <ceil name = "SampleTexture3D___Tmp7Node_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "float" nodename = "SampleTexture3D___Tmp5Node_1593172023c94f18ba8ab24245d3dba5" />
+    </ceil>
+    <realitykit_fractional name = "SampleTexture3D_RGBA_mixNode_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "float" nodename = "SampleTexture3D___Tmp5Node_1593172023c94f18ba8ab24245d3dba5" />
+    </realitykit_fractional>
+    <swizzle name = "SampleTexture3D_RNode_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture3D_RGBANode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture3D_GNode_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture3D_RGBANode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture3D_BNode_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture3D_RGBANode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture3D_ANode_1593172023c94f18ba8ab24245d3dba5" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture3D_RGBANode_1593172023c94f18ba8ab24245d3dba5" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <convert name = "Position_OutNode_1bc69c62199b46a2afff37853852e803" type = "vector4">
+        <input name = "in" type = "vector3" nodename = "Position_Out_inNode_1bc69c62199b46a2afff37853852e803" />
+    </convert>
+    <multiply name = "Position_Out_inNode_1bc69c62199b46a2afff37853852e803" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Position_Out_in_in1Node_1bc69c62199b46a2afff37853852e803" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <position name = "Position_Out_in_in1Node_1bc69c62199b46a2afff37853852e803" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </position>
+    <add name = "AddNode_e9c9803112724b02b3def46557a48cb6" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "SampleCubemap_OutNode_300ce2639efd436fbff656280edf31c3" />
+        <input name = "in2" type = "vector4" nodename = "SampleTexture3D_RGBANode_1593172023c94f18ba8ab24245d3dba5" />
+    </add>
+    <GeometryModification name = "SR_TextureVertex" type = "vertexshader">
+        <input name = "modelPositionOffset" type = "vector3" nodename = "SR_TextureVertex_modelPositionOffset_SubtractPosition" />
+    </GeometryModification>
+    <realitykit_pbr name = "SR_Texture" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" nodename = "CastSwizzleFromSampleTexture2D_RGBANode_946cc4763c8a43298a3d3ec96ff71183ToSR_TexturebaseColor" />
+        <input name = "metallic" type = "float" nodename = "TextureSize_WidthNode_806a6e888e464735ba91c5000dcb1175" />
+        <input name = "emissiveColor" type = "color3" nodename = "CastSwizzleFromAddNode_80f7e1133e0d46deb6636045bc0d837fToSR_TextureemissiveColor" />
+        <input name = "ambientOcclusion" type = "float" value = "1" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "roughness" type = "float" nodename = "SR_Texture_roughness_OnesComplement" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_Texture" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_TextureVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Texture" />
+    </surfacematerial>
+    <multiply name = "SR_TextureVertex_modelPositionOffset_FlipZ" type = "vector3">
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+        <input name = "in1" type = "vector3" nodename = "CastSwizzleFromSampleTexture2DLOD_RGBANode_863147e977944b3e828c0de0418dbcb8ToSR_TextureVertex_modelPositionOffset_FlipZin1" />
+    </multiply>
+    <subtract name = "SR_TextureVertex_modelPositionOffset_SubtractPosition" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "SR_TextureVertex_modelPositionOffset_FlipZ" />
+        <input name = "in2" type = "vector3" nodename = "SR_TextureVertex_modelPositionOffset_Position" />
+    </subtract>
+    <position name = "SR_TextureVertex_modelPositionOffset_Position" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </position>
+    <subtract name = "SR_Texture_roughness_OnesComplement" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </subtract>
+    <swizzle name = "CastSwizzleFromPosition_OutNode_1bc69c62199b46a2afff37853852e803ToSampleTexture3D_UVNode_1593172023c94f18ba8ab24245d3dba5in" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "Position_OutNode_1bc69c62199b46a2afff37853852e803" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromSampleTexture2DLOD_RGBANode_863147e977944b3e828c0de0418dbcb8ToSR_TextureVertex_modelPositionOffset_FlipZin1" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2DLOD_RGBANode_863147e977944b3e828c0de0418dbcb8" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromSampleTexture2D_RGBANode_946cc4763c8a43298a3d3ec96ff71183ToSR_TexturebaseColor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_946cc4763c8a43298a3d3ec96ff71183" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromAddNode_80f7e1133e0d46deb6636045bc0d837fToSR_TextureemissiveColor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "AddNode_80f7e1133e0d46deb6636045bc0d837f" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

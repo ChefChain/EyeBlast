@@ -1,0 +1,90 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Geometry"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Geometry/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Geometry/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                color3f inputs:baseColor.connect = </MaterialX/Materials/USD_Geometry/CastSwizzleFromColorNode_4373a8a141cd489ca15a381984c46650ToSR_GeometrybaseColor.outputs:out>
+                float inputs:metallic = 0
+                color3f inputs:emissiveColor = (0, 0, 0)
+                float inputs:ambientOcclusion = 1
+                float inputs:specular = 0.5
+                float inputs:roughness.connect = </MaterialX/Materials/USD_Geometry/SR_Geometry_roughness_OnesComplement.outputs:out>
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                color4f inputs:color.connect = </MaterialX/Materials/USD_Geometry/CastSwizzleFromDivideNode_4a158db7126c488a933f95d7d206914fToSR_GeometryVertexcolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorNode_4373a8a141cd489ca15a381984c46650ToSR_GeometrybaseColor"
+            {
+                uniform token info:id = "ND_swizzle_color4_color3"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_Geometry/ColorNode_4373a8a141cd489ca15a381984c46650.outputs:out>
+                string inputs:channels = "rgb"
+                color3f outputs:out
+            }
+
+            def Shader "ColorNode_4373a8a141cd489ca15a381984c46650"
+            {
+                uniform token info:id = "ND_geomcolor_color4"
+                color4f outputs:out
+            }
+
+            def Shader "SR_Geometry_roughness_OnesComplement"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromDivideNode_4a158db7126c488a933f95d7d206914fToSR_GeometryVertexcolor"
+            {
+                uniform token info:id = "ND_swizzle_float_color4"
+                float inputs:in.connect = </MaterialX/Materials/USD_Geometry/DivideNode_4a158db7126c488a933f95d7d206914f.outputs:out>
+                string inputs:channels = "xxxx"
+                color4f outputs:out
+            }
+
+            def Shader "DivideNode_4a158db7126c488a933f95d7d206914f"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Geometry/CastSrcToFloatFromVertexIDNode_ec90452928824015a445211766951f61ToDivideNode_4a158db7126c488a933f95d7d206914fin1.outputs:out>
+                float inputs:in2 = 24
+                float outputs:out
+            }
+
+            def Shader "CastSrcToFloatFromVertexIDNode_ec90452928824015a445211766951f61ToDivideNode_4a158db7126c488a933f95d7d206914fin1"
+            {
+                uniform token info:id = "ND_convert_integer_float"
+                int inputs:in.connect = </MaterialX/Materials/USD_Geometry/VertexIDNode_ec90452928824015a445211766951f61.outputs:vertexId>
+                float outputs:out
+            }
+
+            def Shader "VertexIDNode_ec90452928824015a445211766951f61"
+            {
+                uniform token info:id = "ND_realitykit_geometry_modifier_vertex_id"
+                int outputs:vertexId
+            }
+        }
+    }
+}

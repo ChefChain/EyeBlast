@@ -1,0 +1,8 @@
+{
+    "hideGlobalNamespace": true,
+    "xref": [
+        "com.unity.polyspatial.visionos",
+        "com.unity.xr.visionos",
+        "com.unity.polyspatial.xr"
+    ]
+}

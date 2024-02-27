@@ -1,0 +1,421 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <combine3 name = "ColorspaceConversion_OutNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector3">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_Out_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_Out_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in3" type = "float" nodename = "ColorspaceConversion_VNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </combine3>
+    <absval name = "ColorspaceConversion_Out_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "float" nodename = "ColorspaceConversion_Out_in1_inNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </absval>
+    <add name = "ColorspaceConversion_Out_in1_inNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_Out_in1_in_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_Out_in1_in_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </add>
+    <swizzle name = "ColorspaceConversion_Out_in1_in_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <mix name = "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector4">
+        <input name = "bg" type = "vector4" nodename = "ColorspaceConversion_Q_bgNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "fg" type = "vector4" nodename = "ColorspaceConversion_Q_fgNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "mix" type = "float" nodename = "ColorspaceConversion_Q_mixNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </mix>
+    <combine4 name = "ColorspaceConversion_Q_bgNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector4">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_Q_bg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_Q_bg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in3" type = "float" nodename = "ColorspaceConversion_Q_bg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in4" type = "float" nodename = "ColorspaceConversion_Q_bg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </combine4>
+    <swizzle name = "ColorspaceConversion_Q_bg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion___Tmp6Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion___Tmp6Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_PNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "xyw" />
+    </swizzle>
+    <mix name = "ColorspaceConversion_PNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector4">
+        <input name = "bg" type = "vector4" nodename = "ColorspaceConversion_P_bgNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "fg" type = "vector4" nodename = "ColorspaceConversion_P_fgNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "mix" type = "float" nodename = "ColorspaceConversion_P_mixNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </mix>
+    <combine4 name = "ColorspaceConversion_P_bgNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector4">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_P_bg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_P_bg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in3" type = "float" nodename = "ColorspaceConversion_P_bg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in4" type = "float" nodename = "ColorspaceConversion_P_bg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </combine4>
+    <swizzle name = "ColorspaceConversion_P_bg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector2" nodename = "ColorspaceConversion___Tmp1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion___Tmp1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "zy" />
+    </swizzle>
+    <dot name = "ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_dafe86a2a9644655b4f60185b67bb03a" />
+    </dot>
+    <swizzle name = "ColorspaceConversion_P_bg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector2" nodename = "ColorspaceConversion___Tmp1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_P_bg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector2" nodename = "ColorspaceConversion___Tmp2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion___Tmp2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_KNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "wz" />
+    </swizzle>
+    <combine4 name = "ColorspaceConversion_KNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector4">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_K_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in3" type = "float" nodename = "ColorspaceConversion_K_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in4" type = "float" value = "-1" />
+    </combine4>
+    <divide name = "ColorspaceConversion_K_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" value = "-1" />
+        <input name = "in2" type = "float" value = "3" />
+    </divide>
+    <divide name = "ColorspaceConversion_K_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" value = "2" />
+        <input name = "in2" type = "float" value = "3" />
+    </divide>
+    <swizzle name = "ColorspaceConversion_P_bg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector2" nodename = "ColorspaceConversion___Tmp2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <combine4 name = "ColorspaceConversion_P_fgNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector4">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_P_fg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_P_fg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in3" type = "float" nodename = "ColorspaceConversion_P_fg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in4" type = "float" nodename = "ColorspaceConversion_P_fg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </combine4>
+    <swizzle name = "ColorspaceConversion_P_fg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector2" nodename = "ColorspaceConversion___Tmp3Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion___Tmp3Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "yz" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_P_fg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector2" nodename = "ColorspaceConversion___Tmp3Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_P_fg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector2" nodename = "ColorspaceConversion___Tmp4Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion___Tmp4Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_KNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_P_fg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector2" nodename = "ColorspaceConversion___Tmp4Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <realitykit_step name = "ColorspaceConversion_P_mixNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "edge" type = "float" nodename = "ColorspaceConversion_P_mix_edgeNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in" type = "float" nodename = "ColorspaceConversion_P_mix_inNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </realitykit_step>
+    <swizzle name = "ColorspaceConversion_P_mix_edgeNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_P_mix_inNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_Q_bg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion___Tmp6Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_Q_bg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion___Tmp6Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_Q_bg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <combine4 name = "ColorspaceConversion_Q_fgNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector4">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_Q_fg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_Q_fg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in3" type = "float" nodename = "ColorspaceConversion_Q_fg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in4" type = "float" nodename = "ColorspaceConversion_Q_fg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </combine4>
+    <swizzle name = "ColorspaceConversion_Q_fg_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_Q_fg_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion___Tmp7Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion___Tmp7Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_PNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "yzx" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_Q_fg_in3Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion___Tmp7Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_Q_fg_in4Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion___Tmp7Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <realitykit_step name = "ColorspaceConversion_Q_mixNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "edge" type = "float" nodename = "ColorspaceConversion_Q_mix_edgeNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in" type = "float" nodename = "ColorspaceConversion_Q_mix_inNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </realitykit_step>
+    <swizzle name = "ColorspaceConversion_Q_mix_edgeNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_PNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_Q_mix_inNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_InNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <divide name = "ColorspaceConversion_Out_in1_in_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_Out_in1_in_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_Out_in1_in_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </divide>
+    <subtract name = "ColorspaceConversion_Out_in1_in_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_Out_in1_in_in2_in1_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_Out_in1_in_in2_in1_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </subtract>
+    <swizzle name = "ColorspaceConversion_Out_in1_in_in2_in1_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_Out_in1_in_in2_in1_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <add name = "ColorspaceConversion_Out_in1_in_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_Out_in1_in_in2_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_ENode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </add>
+    <multiply name = "ColorspaceConversion_Out_in1_in_in2_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" value = "6" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_DNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </multiply>
+    <subtract name = "ColorspaceConversion_DNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_D_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_D_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </subtract>
+    <swizzle name = "ColorspaceConversion_D_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <min name = "ColorspaceConversion_D_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_D_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_D_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </min>
+    <swizzle name = "ColorspaceConversion_D_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_D_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "ColorspaceConversion_ENode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "float" value = "1E-10" />
+    </dot>
+    <divide name = "ColorspaceConversion_Out_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_DNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_Out_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </divide>
+    <add name = "ColorspaceConversion_Out_in2_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_Out_in2_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_ENode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </add>
+    <swizzle name = "ColorspaceConversion_Out_in2_in2_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <ifequal name = "ColorspaceConversion_VNode_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "value1" type = "float" nodename = "ColorspaceConversion_V_value1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_V_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_V_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </ifequal>
+    <ifequal name = "ColorspaceConversion_V_value1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "value1" type = "float" nodename = "ColorspaceConversion_DNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <add name = "ColorspaceConversion_V_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorspaceConversion_V_in1_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_ENode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </add>
+    <swizzle name = "ColorspaceConversion_V_in1_in1Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_V_in2Node_0d72fefb22f04f93a8158bd08dc9ea8b" type = "float">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_QNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <multiply name = "ColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "ColorspaceConversion_Out_in1Node_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "in2" type = "vector3" nodename = "ColorspaceConversion_Out_in2Node_459265dc0b6b4416bde829114fd53e78" />
+    </multiply>
+    <convert name = "ColorspaceConversion_Out_in1Node_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in" type = "float" nodename = "ColorspaceConversion_Out_in1_inNode_459265dc0b6b4416bde829114fd53e78" />
+    </convert>
+    <swizzle name = "ColorspaceConversion_Out_in1_inNode_459265dc0b6b4416bde829114fd53e78" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_InNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "ColorspaceConversion_InNode_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_OutNode_0d72fefb22f04f93a8158bd08dc9ea8b" />
+    </dot>
+    <mix name = "ColorspaceConversion_Out_in2Node_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "bg" type = "vector3" nodename = "ColorspaceConversion_Out_in2_bgNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "fg" type = "vector3" nodename = "ColorspaceConversion_Out_in2_fgNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "mix" type = "float" nodename = "ColorspaceConversion_Out_in2_mixNode_459265dc0b6b4416bde829114fd53e78" />
+    </mix>
+    <swizzle name = "ColorspaceConversion_Out_in2_bgNode_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_KNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <combine4 name = "ColorspaceConversion_KNode_459265dc0b6b4416bde829114fd53e78" type = "vector4">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "ColorspaceConversion_K_in2Node_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "in3" type = "float" nodename = "ColorspaceConversion_K_in3Node_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "in4" type = "float" value = "3" />
+    </combine4>
+    <divide name = "ColorspaceConversion_K_in2Node_459265dc0b6b4416bde829114fd53e78" type = "float">
+        <input name = "in1" type = "float" value = "2" />
+        <input name = "in2" type = "float" value = "3" />
+    </divide>
+    <divide name = "ColorspaceConversion_K_in3Node_459265dc0b6b4416bde829114fd53e78" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "3" />
+    </divide>
+    <clamp name = "ColorspaceConversion_Out_in2_fgNode_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_Out_in2_fg_inNode_459265dc0b6b4416bde829114fd53e78" />
+    </clamp>
+    <subtract name = "ColorspaceConversion_Out_in2_fg_inNode_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "ColorspaceConversion_PNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "in2" type = "vector3" nodename = "ColorspaceConversion_Out_in2_fg_in_in2Node_459265dc0b6b4416bde829114fd53e78" />
+    </subtract>
+    <absval name = "ColorspaceConversion_PNode_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_P_inNode_459265dc0b6b4416bde829114fd53e78" />
+    </absval>
+    <subtract name = "ColorspaceConversion_P_inNode_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "ColorspaceConversion_P_in_in1Node_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "in2" type = "vector3" nodename = "ColorspaceConversion_P_in_in2Node_459265dc0b6b4416bde829114fd53e78" />
+    </subtract>
+    <multiply name = "ColorspaceConversion_P_in_in1Node_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "ColorspaceConversion_P_in_in1_in1Node_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "in2" type = "float" value = "6" />
+    </multiply>
+    <realitykit_fractional name = "ColorspaceConversion_P_in_in1_in1Node_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_P_in_in1_in1_inNode_459265dc0b6b4416bde829114fd53e78" />
+    </realitykit_fractional>
+    <add name = "ColorspaceConversion_P_in_in1_in1_inNode_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "ColorspaceConversion_P_in_in1_in1_in_in1Node_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "in2" type = "vector3" nodename = "ColorspaceConversion_P_in_in1_in1_in_in2Node_459265dc0b6b4416bde829114fd53e78" />
+    </add>
+    <swizzle name = "ColorspaceConversion_P_in_in1_in1_in_in1Node_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_InNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_P_in_in1_in1_in_in2Node_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_KNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_P_in_in2Node_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_KNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "channels" type = "string" value = "www" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_Out_in2_fg_in_in2Node_459265dc0b6b4416bde829114fd53e78" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "ColorspaceConversion_KNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <swizzle name = "ColorspaceConversion_Out_in2_mixNode_459265dc0b6b4416bde829114fd53e78" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_InNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <ifequal name = "ComparisonNode_b423e58c34b84281a3bdb00b4da0315c" type = "float">
+        <input name = "value1" type = "float" nodename = "CastSwizzleFromColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78ToComparisonNode_b423e58c34b84281a3bdb00b4da0315cvalue1" />
+        <input name = "value2" type = "float" nodename = "CastSwizzleFromVector3Node_dafe86a2a9644655b4f60185b67bb03aToComparisonNode_b423e58c34b84281a3bdb00b4da0315cvalue2" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <ifequal name = "ComparisonNode_6b2da8c4391d436fab182272b768928a" type = "float">
+        <input name = "value1" type = "float" nodename = "CastSwizzleFromColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78ToComparisonNode_6b2da8c4391d436fab182272b768928avalue1" />
+        <input name = "value2" type = "float" nodename = "CastSwizzleFromVector3Node_dafe86a2a9644655b4f60185b67bb03aToComparisonNode_6b2da8c4391d436fab182272b768928avalue2" />
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+    </ifequal>
+    <combine3 name = "Vector3Node_dafe86a2a9644655b4f60185b67bb03a" type = "vector3">
+        <input name = "in1" type = "float" value = "0.2" />
+        <input name = "in2" type = "float" value = "0.2" />
+        <input name = "in3" type = "float" value = "0.2" />
+    </combine3>
+    <combine4 name = "Combine_RGBANode_a45a88de1f1e40a5a0902d7ea2afa4cd" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_a45a88de1f1e40a5a0902d7ea2afa4cd" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_a45a88de1f1e40a5a0902d7ea2afa4cd" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_a45a88de1f1e40a5a0902d7ea2afa4cd" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_a45a88de1f1e40a5a0902d7ea2afa4cd" />
+    </combine4>
+    <dot name = "Combine_RNode_a45a88de1f1e40a5a0902d7ea2afa4cd" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_6b2da8c4391d436fab182272b768928a" />
+    </dot>
+    <dot name = "Combine_GNode_a45a88de1f1e40a5a0902d7ea2afa4cd" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_b423e58c34b84281a3bdb00b4da0315c" />
+    </dot>
+    <dot name = "Combine_BNode_a45a88de1f1e40a5a0902d7ea2afa4cd" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "Combine_ANode_a45a88de1f1e40a5a0902d7ea2afa4cd" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_a45a88de1f1e40a5a0902d7ea2afa4cd" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_a45a88de1f1e40a5a0902d7ea2afa4cd" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_a45a88de1f1e40a5a0902d7ea2afa4cd" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_a45a88de1f1e40a5a0902d7ea2afa4cd" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_a45a88de1f1e40a5a0902d7ea2afa4cd" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_a45a88de1f1e40a5a0902d7ea2afa4cd" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_a45a88de1f1e40a5a0902d7ea2afa4cd" />
+    </combine2>
+    <GeometryModification name = "SR_ColorspaceVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Colorspace" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromCombine_RGBNode_a45a88de1f1e40a5a0902d7ea2afa4cdToSR_Colorspacecolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Colorspace" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_ColorspaceVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Colorspace" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78ToComparisonNode_b423e58c34b84281a3bdb00b4da0315cvalue1" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVector3Node_dafe86a2a9644655b4f60185b67bb03aToComparisonNode_b423e58c34b84281a3bdb00b4da0315cvalue2" type = "float">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_dafe86a2a9644655b4f60185b67bb03a" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78ToComparisonNode_6b2da8c4391d436fab182272b768928avalue1" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorspaceConversion_OutNode_459265dc0b6b4416bde829114fd53e78" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVector3Node_dafe86a2a9644655b4f60185b67bb03aToComparisonNode_6b2da8c4391d436fab182272b768928avalue2" type = "float">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_dafe86a2a9644655b4f60185b67bb03a" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromCombine_RGBNode_a45a88de1f1e40a5a0902d7ea2afa4cdToSR_Colorspacecolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "Combine_RGBNode_a45a88de1f1e40a5a0902d7ea2afa4cd" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

@@ -1,0 +1,976 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_UV"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_UV/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_UV/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_UV/CastConvertFinalFromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastConvertFinalFromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/CastSwizzle1FromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/CastSwizzle2FromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor.outputs:out>
+                float inputs:in3 = 0
+                color3f outputs:out
+            }
+
+            def Shader "CastSwizzle1FromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/CastConvertFromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "CastConvertFromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Rotate_OutNode_ffb23436d9574dbdb1940f539bd09cba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Rotate_OutNode_ffb23436d9574dbdb1940f539bd09cba"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Rotate_Out_in1Node_ffb23436d9574dbdb1940f539bd09cba.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Rotate_CenterNode_ffb23436d9574dbdb1940f539bd09cba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Rotate_Out_in1Node_ffb23436d9574dbdb1940f539bd09cba"
+            {
+                uniform token info:id = "ND_rotate2d_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Rotate_Out_in1_inNode_ffb23436d9574dbdb1940f539bd09cba.outputs:out>
+                float inputs:amount.connect = </MaterialX/Materials/USD_UV/Rotate_Out_in1_amountNode_ffb23436d9574dbdb1940f539bd09cba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Rotate_Out_in1_inNode_ffb23436d9574dbdb1940f539bd09cba"
+            {
+                uniform token info:id = "ND_subtract_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Rotate_UVNode_ffb23436d9574dbdb1940f539bd09cba.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Rotate_CenterNode_ffb23436d9574dbdb1940f539bd09cba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Rotate_UVNode_ffb23436d9574dbdb1940f539bd09cba"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/TilingAndOffsetAddNode_4470133616aa40f893dd96fda2d90164.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "TilingAndOffsetAddNode_4470133616aa40f893dd96fda2d90164"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/TilingAndOffsetMulNode_4470133616aa40f893dd96fda2d90164.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "TilingAndOffsetMulNode_4470133616aa40f893dd96fda2d90164"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_OutNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "Flipbook_OutNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_Out_in1Node_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_tileCountNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Flipbook_Out_in1Node_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_UVNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_Out_in1_in2Node_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Flipbook_UVNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Vector2Node_83d395866e7446498e93265910d7baf1.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Vector2Node_83d395866e7446498e93265910d7baf1"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1 = 0.5
+                float inputs:in2 = 0.5
+                float2 outputs:out
+            }
+
+            def Shader "CastSwizzle2FromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/CastConvertFromRotate_OutNode_ffb23436d9574dbdb1940f539bd09cbaToSR_UVcolor.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "Rotate_CenterNode_ffb23436d9574dbdb1940f539bd09cba"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_OutNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "PolarCoordinates_OutNode_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_radiusNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_angleNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "PolarCoordinates_angleNode_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_angle_in1Node_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_LengthScaleNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_LengthScaleNode_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_angle_in1Node_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_angle_in1_in1Node_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float inputs:in2 = 6.28
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_angle_in1_in1Node_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_angle_in1_in1_in1Node_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_angle_in1_in1_in1Node_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_atan2_float"
+                float inputs:iny.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_angle_in1_in1_in1_inyNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float inputs:inx.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_angle_in1_in1_in1_inxNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_angle_in1_in1_in1_inxNode_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_deltaNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_deltaNode_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_subtract_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_CenterNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fAdd.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fAdd"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fMultiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fMultiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fUV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "PolarCoordinates_UVNode_1df35a5b742e42d1bed34e80993c968fUV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "PolarCoordinates_angle_in1_in1_in1_inyNode_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_deltaNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_radiusNode_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_radius_in1Node_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_RadialScaleNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_RadialScaleNode_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_radius_in1Node_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_radius_in1_in1Node_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float inputs:in2 = 2
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_radius_in1_in1Node_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_magnitude_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/PolarCoordinates_deltaNode_1df35a5b742e42d1bed34e80993c968f.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Rotate_Out_in1_amountNode_ffb23436d9574dbdb1940f539bd09cba"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Rotate_RotationNode_ffb23436d9574dbdb1940f539bd09cba.outputs:out>
+                float inputs:in2 = -1
+                float outputs:out
+            }
+
+            def Shader "Rotate_RotationNode_ffb23436d9574dbdb1940f539bd09cba"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 270
+                float outputs:out
+            }
+
+            def Shader "Flipbook_tileCountNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_divide_vector2"
+                float2 inputs:in1 = (1, 1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_tileCount_in2Node_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Flipbook_tileCount_in2Node_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_WidthNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_HeightNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Flipbook_HeightNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1
+                float outputs:out
+            }
+
+            def Shader "Flipbook_WidthNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1
+                float outputs:out
+            }
+
+            def Shader "Flipbook_Out_in1_in2Node_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_tileXNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_tileYNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Flipbook_tileYNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_UV/Flipbook_tileY_inNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Flipbook_tileY_inNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_tileY_in_in1Node_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_tileFloorNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Flipbook_tileFloorNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_floor_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_UV/Flipbook_tileFloor_inNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Flipbook_tileFloor_inNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_wrappedTileNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_tileFloor_in_in2Node_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Flipbook_tileFloor_in_in2Node_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Flipbook_tileCountNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "Flipbook_wrappedTileNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_modulo_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_wrappedTile_in1Node_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_wrappedTile_in2Node_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Flipbook_wrappedTile_in2Node_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_WidthNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_HeightNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Flipbook_wrappedTile_in1Node_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_floor_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_UV/Flipbook_TileNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Flipbook_TileNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "Flipbook_tileY_in_in1Node_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_HeightNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "Flipbook_tileXNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_UV/Flipbook_tileX_inNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Flipbook_tileX_inNode_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_wrappedTileNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_tileX_in_in2Node_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Flipbook_tileX_in_in2Node_00b2df0a2ea04feca9efc70acf418fad"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Flipbook_WidthNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Flipbook_tileFloorNode_00b2df0a2ea04feca9efc70acf418fad.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "PolarCoordinates_CenterNode_1df35a5b742e42d1bed34e80993c968f"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/RadialShear_OutNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_OutNode_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/RadialShear_Out_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/RadialShear_OffsetNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_Out_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/RadialShear_Out_in1_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaAdd.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaAdd"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaMultiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaMultiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaUV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aaUV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_OffsetNode_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in = (0, 0)
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_Out_in1_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/RadialShear_Out_in1_in2_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/RadialShear_delta_offsetNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_Out_in1_in2_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/RadialShear_Out_in1_in2_in1_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/RadialShear_Out_in1_in2_in1_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_Out_in1_in2_in1_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/RadialShear_deltaNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "RadialShear_deltaNode_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_subtract_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/RadialShear_UVNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/RadialShear_CenterNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_CenterNode_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Spherize_OutNode_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_OutNode_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Spherize_Out_in1Node_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Spherize_OffsetNode_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_Out_in1Node_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Spherize_Out_in1_in2Node_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaAdd.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaAdd"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaMultiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaMultiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaUV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dbaUV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_delta_offsetNode_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/RadialShear_delta_offset_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/RadialShear_StrengthNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_StrengthNode_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in = (10, 10)
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_delta_offset_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_convert_float_vector2"
+                float inputs:in.connect = </MaterialX/Materials/USD_UV/RadialShear_delta2Node_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_delta2Node_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_dotproduct_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/RadialShear_delta2_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/RadialShear_delta2_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RadialShear_delta2_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_swizzle_vector2_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/RadialShear_deltaNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_delta2_in1Node_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_swizzle_vector2_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/RadialShear_deltaNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "RadialShear_Out_in1_in2_in1_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/RadialShear_Out_in1_in2_in1_in2_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "RadialShear_Out_in1_in2_in1_in2_in2Node_0e74430d3d1a4c9daf2ff488dadd47aa"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/RadialShear_deltaNode_0e74430d3d1a4c9daf2ff488dadd47aa.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "Spherize_OffsetNode_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in = (0, 0)
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_Out_in1_in2Node_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Spherize_deltaNode_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Spherize_delta_offsetNode_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_deltaNode_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_subtract_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Spherize_UVNode_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Spherize_CenterNode_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_CenterNode_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_OutNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Twirl_OutNode_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_Out_in1Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_Out_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Twirl_Out_in1Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_Out_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_Out_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_Out_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_xNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_Out_in1_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_xNode_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_x_in1Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_x_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_x_in1Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_x_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_x_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_x_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_cos_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_angleNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_angleNode_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_StrengthNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_angle_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_StrengthNode_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 10
+                float outputs:out
+            }
+
+            def Shader "Spherize_delta_offsetNode_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Spherize_delta_offset_in1Node_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Spherize_StrengthNode_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_StrengthNode_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in = (10, 10)
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_delta_offset_in1Node_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_convert_float_vector2"
+                float inputs:in.connect = </MaterialX/Materials/USD_UV/Spherize_delta4Node_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_delta4Node_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Spherize_delta2Node_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Spherize_delta2Node_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Spherize_delta2Node_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_dotproduct_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Spherize_delta2_in1Node_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Spherize_delta2_in2Node_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Spherize_delta2_in2Node_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_swizzle_vector2_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Spherize_deltaNode_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "Spherize_delta2_in1Node_8cb0ad01f12048d685ae4cdc86158dba"
+            {
+                uniform token info:id = "ND_swizzle_vector2_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Spherize_deltaNode_8cb0ad01f12048d685ae4cdc86158dba.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "Twirl_Out_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_Out_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_Out_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_Out_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_OffsetNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "Twirl_OffsetNode_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in = (0, 0)
+                float2 outputs:out
+            }
+
+            def Shader "Twirl_Out_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_yNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_Out_in2_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_Out_in2_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_CenterNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "Twirl_CenterNode_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "Twirl_yNode_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_y_in1Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_y_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_y_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_y_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_y_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_y_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_subtract_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_CenterNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4Add.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4Add"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4Multiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4Multiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4UV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "Twirl_UVNode_fc43d37e544c4326b6bca87c59d050b4UV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "Twirl_y_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_cos_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_angleNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_y_in1Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_y_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_y_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_y_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "Twirl_y_in1_in1Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_sin_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_angleNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_Out_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_OffsetNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "Twirl_Out_in1_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_CenterNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "Twirl_x_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_UV/Twirl_x_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_UV/Twirl_x_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_x_in2_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "Twirl_x_in2_in1Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_sin_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_angleNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Twirl_x_in1_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "Twirl_angle_in2Node_fc43d37e544c4326b6bca87c59d050b4"
+            {
+                uniform token info:id = "ND_magnitude_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_UV/Twirl_deltaNode_fc43d37e544c4326b6bca87c59d050b4.outputs:out>
+                float outputs:out
+            }
+        }
+    }
+}

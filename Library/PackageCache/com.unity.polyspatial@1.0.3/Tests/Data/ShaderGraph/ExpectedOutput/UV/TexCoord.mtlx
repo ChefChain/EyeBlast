@@ -1,0 +1,77 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <texcoord name = "UVNode_1ca5757bb5df448ba9164cb22a2b07d7" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "MultiplyNode_1ca5757bb5df448ba9164cb22a2b07d7" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,-1" />
+        <input name = "in2" type = "vector2" nodename = "UVNode_1ca5757bb5df448ba9164cb22a2b07d7" />
+    </multiply>
+    <add name = "AddNode_1ca5757bb5df448ba9164cb22a2b07d7" type = "vector2">
+        <input name = "in1" type = "vector2" value = "0,1" />
+        <input name = "in2" type = "vector2" nodename = "MultiplyNode_1ca5757bb5df448ba9164cb22a2b07d7" />
+    </add>
+    <UsdPrimvarReader name = "UVNode_476f598b9880427591331bf70fec9a45" type = "vector2">
+        <input name = "varname" type = "string" value = "vertexUV1" />
+    </UsdPrimvarReader>
+    <multiply name = "MultiplyNode_476f598b9880427591331bf70fec9a45" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,-1" />
+        <input name = "in2" type = "vector2" nodename = "UVNode_476f598b9880427591331bf70fec9a45" />
+    </multiply>
+    <add name = "AddNode_476f598b9880427591331bf70fec9a45" type = "vector2">
+        <input name = "in1" type = "vector2" value = "0,1" />
+        <input name = "in2" type = "vector2" nodename = "MultiplyNode_476f598b9880427591331bf70fec9a45" />
+    </add>
+    <multiply name = "MultiplyNode_8b5add3eccd74fdb9350d2560686bdb7" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "CastConvertFinalFromAddNode_1ca5757bb5df448ba9164cb22a2b07d7ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in1" />
+        <input name = "in2" type = "vector4" nodename = "CastConvertFinalFromAddNode_476f598b9880427591331bf70fec9a45ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in2" />
+    </multiply>
+    <GeometryModification name = "SR_TexCoordVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_TexCoord" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7ToSR_TexCoordcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_TexCoord" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_TexCoordVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_TexCoord" />
+    </surfacematerial>
+    <dot name = "CastConvertFromAddNode_1ca5757bb5df448ba9164cb22a2b07d7ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in1" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "AddNode_1ca5757bb5df448ba9164cb22a2b07d7" />
+    </dot>
+    <combine4 name = "CastConvertFinalFromAddNode_1ca5757bb5df448ba9164cb22a2b07d7ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in1" type = "vector4">
+        <input name = "in1" type = "float" nodename = "CastSwizzle1FromAddNode_1ca5757bb5df448ba9164cb22a2b07d7ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in1" />
+        <input name = "in2" type = "float" nodename = "CastSwizzle2FromAddNode_1ca5757bb5df448ba9164cb22a2b07d7ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in1" />
+        <input name = "in3" type = "float" value = "0" />
+        <input name = "in4" type = "float" value = "0" />
+    </combine4>
+    <swizzle name = "CastSwizzle1FromAddNode_1ca5757bb5df448ba9164cb22a2b07d7ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in1" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_1ca5757bb5df448ba9164cb22a2b07d7ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in1" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzle2FromAddNode_1ca5757bb5df448ba9164cb22a2b07d7ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in1" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_1ca5757bb5df448ba9164cb22a2b07d7ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in1" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "CastConvertFromAddNode_476f598b9880427591331bf70fec9a45ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in2" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "AddNode_476f598b9880427591331bf70fec9a45" />
+    </dot>
+    <combine4 name = "CastConvertFinalFromAddNode_476f598b9880427591331bf70fec9a45ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in2" type = "vector4">
+        <input name = "in1" type = "float" nodename = "CastSwizzle1FromAddNode_476f598b9880427591331bf70fec9a45ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in2" />
+        <input name = "in2" type = "float" nodename = "CastSwizzle2FromAddNode_476f598b9880427591331bf70fec9a45ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in2" />
+        <input name = "in3" type = "float" value = "0" />
+        <input name = "in4" type = "float" value = "0" />
+    </combine4>
+    <swizzle name = "CastSwizzle1FromAddNode_476f598b9880427591331bf70fec9a45ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in2" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_476f598b9880427591331bf70fec9a45ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in2" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzle2FromAddNode_476f598b9880427591331bf70fec9a45ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in2" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_476f598b9880427591331bf70fec9a45ToMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7in2" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromMultiplyNode_8b5add3eccd74fdb9350d2560686bdb7ToSR_TexCoordcolor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "MultiplyNode_8b5add3eccd74fdb9350d2560686bdb7" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

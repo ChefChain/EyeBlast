@@ -1,0 +1,27 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <subtract name = "OneMinusNode_72c0c344d5024bb2b89b36f881e6bab6" type = "vector4">
+        <input name = "in2" type = "vector4" value = "1,1,1,1" />
+        <input name = "in1" type = "vector4" value = "1,1,1,1" />
+    </subtract>
+    <GeometryModification name = "SR_FullscreenInvertColorsVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_pbr name = "SR_FullscreenInvertColors" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" nodename = "CastSwizzleFromOneMinusNode_72c0c344d5024bb2b89b36f881e6bab6ToSR_FullscreenInvertColorsbaseColor" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "ambientOcclusion" type = "float" value = "1" />
+        <input name = "emissiveColor" type = "color3" value = "0,0,0" />
+        <input name = "metallic" type = "float" value = "0" />
+        <input name = "roughness" type = "float" value = "0.5" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_FullscreenInvertColors" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_FullscreenInvertColorsVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_FullscreenInvertColors" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromOneMinusNode_72c0c344d5024bb2b89b36f881e6bab6ToSR_FullscreenInvertColorsbaseColor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "OneMinusNode_72c0c344d5024bb2b89b36f881e6bab6" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

@@ -1,0 +1,230 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <absval name = "AbsoluteNode_0b6765b946e34976acdbf7406a76f580" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "NegateNode_5d22ef6c6ef34068a20a5673ae2173df" />
+    </absval>
+    <magnitude name = "LengthNode_5f9967536eef47b8b19fab06fc614e25" type = "float">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_486d342175304ee2b336303428014372" />
+    </magnitude>
+    <ln name = "LogNode_91c0fda28d7a4b4590ee7a06a533a9af" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "ExpBaseENode_1de4f4011fc643ec934d5260a3a0790d" />
+    </ln>
+    <modulo name = "ModuloNode_dfecfd4a084d464fb1a7f560614fe6fb" type = "float">
+        <input name = "in1" type = "float" value = "0.1" />
+        <input name = "in2" type = "float" nodename = "SquareRootNode_24615c09a18d43169d2fdfb091b679df" />
+    </modulo>
+    <multiply name = "NegateNode_5d22ef6c6ef34068a20a5673ae2173df" type = "vector3">
+        <input name = "in2" type = "vector3" nodename = "Vector3Node_ea9add79954144f78781cd3fc38dbbb6" />
+        <input name = "in1" type = "vector3" value = "-1,-1,-1" />
+    </multiply>
+    <normalize name = "NormalizeNode_32b22ff65aee4c808b8a9443ee381b9f" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_486d342175304ee2b336303428014372" />
+    </normalize>
+    <absval name = "LengthNode_6866faf6aa714037884453ad22898702" type = "float">
+        <input name = "in" type = "float" nodename = "Vector1Node_b9602d1c669b48eaad56c32d8365033f" />
+    </absval>
+    <ifequal name = "ComparisonNode_539ac38faed84c8497aa11e0656b37f1" type = "float">
+        <input name = "value1" type = "float" nodename = "LengthNode_5f9967536eef47b8b19fab06fc614e25" />
+        <input name = "value2" type = "float" nodename = "LengthNode_6866faf6aa714037884453ad22898702" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <combine4 name = "Combine_RGBANode_75a43b459bdd448e958055afbc31dc5c" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_75a43b459bdd448e958055afbc31dc5c" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_75a43b459bdd448e958055afbc31dc5c" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_75a43b459bdd448e958055afbc31dc5c" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_75a43b459bdd448e958055afbc31dc5c" />
+    </combine4>
+    <dot name = "Combine_RNode_75a43b459bdd448e958055afbc31dc5c" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_6f2836e0277b4ec38ee1521a702a81c4" />
+    </dot>
+    <dot name = "Combine_GNode_75a43b459bdd448e958055afbc31dc5c" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_539ac38faed84c8497aa11e0656b37f1" />
+    </dot>
+    <dot name = "Combine_BNode_75a43b459bdd448e958055afbc31dc5c" type = "float">
+        <input name = "in" type = "float" nodename = "SplitNode_2434977490784b599d4afdf442f1b173B" />
+    </dot>
+    <dot name = "Combine_ANode_75a43b459bdd448e958055afbc31dc5c" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_75a43b459bdd448e958055afbc31dc5c" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_75a43b459bdd448e958055afbc31dc5c" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_75a43b459bdd448e958055afbc31dc5c" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_75a43b459bdd448e958055afbc31dc5c" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_75a43b459bdd448e958055afbc31dc5c" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_75a43b459bdd448e958055afbc31dc5c" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_75a43b459bdd448e958055afbc31dc5c" />
+    </combine2>
+    <magnitude name = "LengthNode_5329441820fd442e8013961f3645d504" type = "float">
+        <input name = "in" type = "vector3" nodename = "NormalizeNode_32b22ff65aee4c808b8a9443ee381b9f" />
+    </magnitude>
+    <ifequal name = "ComparisonNode_6f2836e0277b4ec38ee1521a702a81c4" type = "float">
+        <input name = "value1" type = "float" nodename = "LengthNode_5329441820fd442e8013961f3645d504" />
+        <input name = "value2" type = "float" value = "1" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <combine3 name = "Vector3Node_486d342175304ee2b336303428014372" type = "vector3">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "10" />
+        <input name = "in3" type = "float" value = "0" />
+    </combine3>
+    <constant name = "Vector1Node_b9602d1c669b48eaad56c32d8365033f" type = "float">
+        <input name = "value" type = "float" value = "10" />
+    </constant>
+    <combine3 name = "Vector3Node_ea9add79954144f78781cd3fc38dbbb6" type = "vector3">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "0" />
+        <input name = "in3" type = "float" value = "1" />
+    </combine3>
+    <dot name = "SplitNode_2434977490784b599d4afdf442f1b173" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "AbsoluteNode_0b6765b946e34976acdbf7406a76f580" />
+    </dot>
+    <extract name = "SplitNode_2434977490784b599d4afdf442f1b173R" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_2434977490784b599d4afdf442f1b173" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "SplitNode_2434977490784b599d4afdf442f1b173G" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_2434977490784b599d4afdf442f1b173" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "SplitNode_2434977490784b599d4afdf442f1b173B" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_2434977490784b599d4afdf442f1b173" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <multiply name = "MultiplyNode_81a75b90efbf445d8c94b31c6b25c330" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Combine_RGBNode_75a43b459bdd448e958055afbc31dc5c" />
+        <input name = "in2" type = "vector3" value = "0.5,0.5,1" />
+    </multiply>
+    <divide name = "DivideNode_f84dfe1a276744fcb6c4a65d8e2299f5" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Combine_RGBNode_75a43b459bdd448e958055afbc31dc5c" />
+        <input name = "in2" type = "vector3" value = "2,2,1" />
+    </divide>
+    <add name = "AddNode_516017e834f0486bb7b33488d4232152" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "MultiplyNode_81a75b90efbf445d8c94b31c6b25c330" />
+        <input name = "in2" type = "vector3" nodename = "DivideNode_f84dfe1a276744fcb6c4a65d8e2299f5" />
+    </add>
+    <clamp name = "SaturateNode_5a3feebd2c3049388f364778be60ff23" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "AddNode_516017e834f0486bb7b33488d4232152" />
+    </clamp>
+    <subtract name = "SubtractNode_cb7ba3423357497a8a41edc16eab5c3c" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "MultiplyNode_81a75b90efbf445d8c94b31c6b25c330" />
+        <input name = "in2" type = "vector3" nodename = "SaturateNode_5a3feebd2c3049388f364778be60ff23" />
+    </subtract>
+    <multiply name = "MultiplyNode_07c514624bcf4900b2af7143d0691d7a" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NegateNode_58ef6433269b45559f65a094bffb3b9c" />
+        <input name = "in2" type = "vector3" value = "0,2,0" />
+    </multiply>
+    <multiply name = "NegateNode_58ef6433269b45559f65a094bffb3b9c" type = "vector3">
+        <input name = "in2" type = "vector3" nodename = "SubtractNode_cb7ba3423357497a8a41edc16eab5c3c" />
+        <input name = "in1" type = "vector3" value = "-1,-1,-1" />
+    </multiply>
+    <exp name = "ExpBaseENode_1de4f4011fc643ec934d5260a3a0790d" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "MultiplyNode_07c514624bcf4900b2af7143d0691d7a" />
+    </exp>
+    <power name = "ExpBase2Node_dfa520cccf1249edba001904299b9fa8" type = "vector3">
+        <input name = "in2" type = "vector3" nodename = "MultiplyNode_07c514624bcf4900b2af7143d0691d7a" />
+        <input name = "in1" type = "vector3" value = "2,2,2" />
+    </power>
+    <ln name = "LogInNode_0faaa886d7374ad0a5911bd1822ef404" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "ExpBase2Node_dfa520cccf1249edba001904299b9fa8" />
+    </ln>
+    <ln name = "LogBaseNode_0faaa886d7374ad0a5911bd1822ef404" type = "vector3">
+        <input name = "in" type = "vector3" value = "2,2,2" />
+    </ln>
+    <divide name = "LogNode_0faaa886d7374ad0a5911bd1822ef404" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "LogInNode_0faaa886d7374ad0a5911bd1822ef404" />
+        <input name = "in2" type = "vector3" nodename = "LogBaseNode_0faaa886d7374ad0a5911bd1822ef404" />
+    </divide>
+    <sqrt name = "SquareRootNode_24615c09a18d43169d2fdfb091b679df" type = "float">
+        <input name = "in" type = "float" nodename = "PowerNode_49029f9fda114f359acf2aff28d0cbe5" />
+    </sqrt>
+    <dot name = "SplitNode_5071eac2cade448fb516a29e80766c12" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "LogNode_91c0fda28d7a4b4590ee7a06a533a9af" />
+    </dot>
+    <extract name = "SplitNode_5071eac2cade448fb516a29e80766c12R" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_5071eac2cade448fb516a29e80766c12" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "SplitNode_5071eac2cade448fb516a29e80766c12G" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_5071eac2cade448fb516a29e80766c12" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "SplitNode_5071eac2cade448fb516a29e80766c12B" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_5071eac2cade448fb516a29e80766c12" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <dot name = "SplitNode_16d1f11ec7074d939e21c3d1e2cbbeb2" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "LogNode_0faaa886d7374ad0a5911bd1822ef404" />
+    </dot>
+    <extract name = "SplitNode_16d1f11ec7074d939e21c3d1e2cbbeb2R" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_16d1f11ec7074d939e21c3d1e2cbbeb2" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "SplitNode_16d1f11ec7074d939e21c3d1e2cbbeb2G" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_16d1f11ec7074d939e21c3d1e2cbbeb2" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "SplitNode_16d1f11ec7074d939e21c3d1e2cbbeb2B" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_16d1f11ec7074d939e21c3d1e2cbbeb2" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <power name = "PowerNode_49029f9fda114f359acf2aff28d0cbe5" type = "float">
+        <input name = "in1" type = "float" nodename = "SplitNode_5071eac2cade448fb516a29e80766c12G" />
+        <input name = "in2" type = "float" nodename = "SplitNode_16d1f11ec7074d939e21c3d1e2cbbeb2G" />
+    </power>
+    <ifequal name = "ComparisonNode_57c7798dc04f4d3d8178d3225124384b" type = "float">
+        <input name = "value1" type = "float" nodename = "ModuloNode_dfecfd4a084d464fb1a7f560614fe6fb" />
+        <input name = "value2" type = "float" value = "0.1" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <combine4 name = "Combine_RGBANode_a72c99b6da4149f586dbba8a5b2c5130" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_a72c99b6da4149f586dbba8a5b2c5130" />
+    </combine4>
+    <dot name = "Combine_RNode_a72c99b6da4149f586dbba8a5b2c5130" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_76e0e48bc8714980a7a197acfaf5c9ac" />
+    </dot>
+    <dot name = "Combine_GNode_a72c99b6da4149f586dbba8a5b2c5130" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_57c7798dc04f4d3d8178d3225124384b" />
+    </dot>
+    <dot name = "Combine_BNode_a72c99b6da4149f586dbba8a5b2c5130" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "Combine_ANode_a72c99b6da4149f586dbba8a5b2c5130" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_a72c99b6da4149f586dbba8a5b2c5130" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_a72c99b6da4149f586dbba8a5b2c5130" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_a72c99b6da4149f586dbba8a5b2c5130" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_a72c99b6da4149f586dbba8a5b2c5130" />
+    </combine2>
+    <ifequal name = "ComparisonNode_76e0e48bc8714980a7a197acfaf5c9ac" type = "float">
+        <input name = "value1" type = "float" nodename = "ModuloNode_dfecfd4a084d464fb1a7f560614fe6fb" />
+        <input name = "value2" type = "float" value = "0.1" />
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+    </ifequal>
+    <GeometryModification name = "SR_BasicAdvancedVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_BasicAdvanced" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromCombine_RGBNode_a72c99b6da4149f586dbba8a5b2c5130ToSR_BasicAdvancedcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_BasicAdvanced" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_BasicAdvancedVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_BasicAdvanced" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromCombine_RGBNode_a72c99b6da4149f586dbba8a5b2c5130ToSR_BasicAdvancedcolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "Combine_RGBNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

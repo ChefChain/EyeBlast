@@ -1,0 +1,417 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <texcoord name = "UVNode_abf533fd4cff47138fc11f8fd4b09938" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "MultiplyNode_abf533fd4cff47138fc11f8fd4b09938" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,-1" />
+        <input name = "in2" type = "vector2" nodename = "UVNode_abf533fd4cff47138fc11f8fd4b09938" />
+    </multiply>
+    <add name = "AddNode_abf533fd4cff47138fc11f8fd4b09938" type = "vector2">
+        <input name = "in1" type = "vector2" value = "0,1" />
+        <input name = "in2" type = "vector2" nodename = "MultiplyNode_abf533fd4cff47138fc11f8fd4b09938" />
+    </add>
+    <multiply name = "MultiplyNode_8bda6384392c420d8d2de413ed5955b3" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "CastConvertFinalFromAddNode_abf533fd4cff47138fc11f8fd4b09938ToMultiplyNode_8bda6384392c420d8d2de413ed5955b3in1" />
+        <input name = "in2" type = "vector4" value = "15,15,15,2" />
+    </multiply>
+    <dot name = "FractionNode_705ffc4fe55d4abfbe6059bd8c251e5eDot" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "MultiplyNode_8bda6384392c420d8d2de413ed5955b3" />
+    </dot>
+    <floor name = "FractionNode_705ffc4fe55d4abfbe6059bd8c251e5eFloor" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "FractionNode_705ffc4fe55d4abfbe6059bd8c251e5eDot" />
+    </floor>
+    <subtract name = "FractionNode_705ffc4fe55d4abfbe6059bd8c251e5e" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "FractionNode_705ffc4fe55d4abfbe6059bd8c251e5eDot" />
+        <input name = "in2" type = "vector4" nodename = "FractionNode_705ffc4fe55d4abfbe6059bd8c251e5eFloor" />
+    </subtract>
+    <splitlr name = "Ellipse_OutNode_923c8e7eb09b4e62828f672a00ccf2d2" type = "float">
+        <input name = "valuel" type = "float" value = "1" />
+        <input name = "valuer" type = "float" value = "0" />
+        <input name = "center" type = "float" value = "1" />
+        <input name = "texcoord" type = "vector2" nodename = "Ellipse_Out_texcoordNode_923c8e7eb09b4e62828f672a00ccf2d2" />
+    </splitlr>
+    <combine2 name = "Ellipse_Out_texcoordNode_923c8e7eb09b4e62828f672a00ccf2d2" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Ellipse_dNode_923c8e7eb09b4e62828f672a00ccf2d2" />
+        <input name = "in2" type = "float" value = "0" />
+    </combine2>
+    <magnitude name = "Ellipse_dNode_923c8e7eb09b4e62828f672a00ccf2d2" type = "float">
+        <input name = "in" type = "vector2" nodename = "Ellipse_d_inNode_923c8e7eb09b4e62828f672a00ccf2d2" />
+    </magnitude>
+    <divide name = "Ellipse_d_inNode_923c8e7eb09b4e62828f672a00ccf2d2" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Ellipse_d_in_in1Node_923c8e7eb09b4e62828f672a00ccf2d2" />
+        <input name = "in2" type = "vector2" nodename = "Ellipse_d_in_in2Node_923c8e7eb09b4e62828f672a00ccf2d2" />
+    </divide>
+    <subtract name = "Ellipse_d_in_in1Node_923c8e7eb09b4e62828f672a00ccf2d2" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Ellipse_d_in_in1_in1Node_923c8e7eb09b4e62828f672a00ccf2d2" />
+        <input name = "in2" type = "float" value = "1" />
+    </subtract>
+    <multiply name = "Ellipse_d_in_in1_in1Node_923c8e7eb09b4e62828f672a00ccf2d2" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Ellipse_UVNode_923c8e7eb09b4e62828f672a00ccf2d2" />
+        <input name = "in2" type = "float" value = "2" />
+    </multiply>
+    <dot name = "Ellipse_UVNode_923c8e7eb09b4e62828f672a00ccf2d2" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromFractionNode_705ffc4fe55d4abfbe6059bd8c251e5eToEllipse_UVNode_923c8e7eb09b4e62828f672a00ccf2d2in" />
+    </dot>
+    <combine2 name = "Ellipse_d_in_in2Node_923c8e7eb09b4e62828f672a00ccf2d2" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Ellipse_WidthNode_923c8e7eb09b4e62828f672a00ccf2d2" />
+        <input name = "in2" type = "float" nodename = "Ellipse_HeightNode_923c8e7eb09b4e62828f672a00ccf2d2" />
+    </combine2>
+    <dot name = "Ellipse_WidthNode_923c8e7eb09b4e62828f672a00ccf2d2" type = "float">
+        <input name = "in" type = "float" nodename = "MultiplyNode_e08792d9fe554db0be19a933b8ca3a8d" />
+    </dot>
+    <dot name = "Ellipse_HeightNode_923c8e7eb09b4e62828f672a00ccf2d2" type = "float">
+        <input name = "in" type = "float" nodename = "MultiplyNode_e08792d9fe554db0be19a933b8ca3a8d" />
+    </dot>
+    <texcoord name = "UVNode_0b68580487494ef5bb11168f37d3512b" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "MultiplyNode_0b68580487494ef5bb11168f37d3512b" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,-1" />
+        <input name = "in2" type = "vector2" nodename = "UVNode_0b68580487494ef5bb11168f37d3512b" />
+    </multiply>
+    <add name = "AddNode_0b68580487494ef5bb11168f37d3512b" type = "vector2">
+        <input name = "in1" type = "vector2" value = "0,1" />
+        <input name = "in2" type = "vector2" nodename = "MultiplyNode_0b68580487494ef5bb11168f37d3512b" />
+    </add>
+    <divide name = "Posterize_OutNode_6ee34dc298fc471c8b829ece86c6c363" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "Posterize_Out_in1Node_6ee34dc298fc471c8b829ece86c6c363" />
+        <input name = "in2" type = "vector4" nodename = "Posterize_StepsNode_6ee34dc298fc471c8b829ece86c6c363" />
+    </divide>
+    <floor name = "Posterize_Out_in1Node_6ee34dc298fc471c8b829ece86c6c363" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "Posterize_Out_in1_inNode_6ee34dc298fc471c8b829ece86c6c363" />
+    </floor>
+    <multiply name = "Posterize_Out_in1_inNode_6ee34dc298fc471c8b829ece86c6c363" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "Posterize_InNode_6ee34dc298fc471c8b829ece86c6c363" />
+        <input name = "in2" type = "vector4" nodename = "Posterize_StepsNode_6ee34dc298fc471c8b829ece86c6c363" />
+    </multiply>
+    <dot name = "Posterize_InNode_6ee34dc298fc471c8b829ece86c6c363" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "CastConvertFinalFromAddNode_0b68580487494ef5bb11168f37d3512bToPosterize_InNode_6ee34dc298fc471c8b829ece86c6c363in" />
+    </dot>
+    <dot name = "Posterize_StepsNode_6ee34dc298fc471c8b829ece86c6c363" type = "vector4">
+        <input name = "in" type = "vector4" value = "15,15,15,4" />
+    </dot>
+    <noise2d name = "GradientNoise_OutNode_a05bc7fc3d7e4427af4d6575619b6fbf" type = "float">
+        <input name = "amplitude" type = "float" value = "0.5" />
+        <input name = "pivot" type = "float" value = "0.5" />
+        <input name = "texcoord" type = "vector2" nodename = "GradientNoise_Out_texcoordNode_a05bc7fc3d7e4427af4d6575619b6fbf" />
+    </noise2d>
+    <multiply name = "GradientNoise_Out_texcoordNode_a05bc7fc3d7e4427af4d6575619b6fbf" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "GradientNoise_UVNode_a05bc7fc3d7e4427af4d6575619b6fbf" />
+        <input name = "in2" type = "float" nodename = "GradientNoise_ScaleNode_a05bc7fc3d7e4427af4d6575619b6fbf" />
+    </multiply>
+    <dot name = "GradientNoise_UVNode_a05bc7fc3d7e4427af4d6575619b6fbf" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromPosterize_OutNode_6ee34dc298fc471c8b829ece86c6c363ToGradientNoise_UVNode_a05bc7fc3d7e4427af4d6575619b6fbfin" />
+    </dot>
+    <dot name = "GradientNoise_ScaleNode_a05bc7fc3d7e4427af4d6575619b6fbf" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <constant name = "_ShortestUVMapping" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <subtract name = "OneMinusNode_8810b7a876c340e98cf012841b152269" type = "float">
+        <input name = "in2" type = "float" nodename = "SmoothStepNode_7b79112050744dbfb0534a0683fc0c45" />
+        <input name = "in1" type = "float" value = "1" />
+    </subtract>
+    <smoothstep name = "SmoothStepNode_7b79112050744dbfb0534a0683fc0c45" type = "float">
+        <input name = "low" type = "float" value = "1" />
+        <input name = "high" type = "float" nodename = "_ShortestUVMapping" />
+        <input name = "in" type = "float" nodename = "SwizzleNode_d05519e5f09347ad9949fd4ce959ba45" />
+    </smoothstep>
+    <UsdPrimvarReader name = "UVNode_3c4ba1828d144fe3ad5b88ae2ecc4b30" type = "vector2">
+        <input name = "varname" type = "string" value = "vertexUV2" />
+    </UsdPrimvarReader>
+    <multiply name = "MultiplyNode_3c4ba1828d144fe3ad5b88ae2ecc4b30" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,-1" />
+        <input name = "in2" type = "vector2" nodename = "UVNode_3c4ba1828d144fe3ad5b88ae2ecc4b30" />
+    </multiply>
+    <add name = "AddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30" type = "vector2">
+        <input name = "in1" type = "vector2" value = "0,1" />
+        <input name = "in2" type = "vector2" nodename = "MultiplyNode_3c4ba1828d144fe3ad5b88ae2ecc4b30" />
+    </add>
+    <swizzle name = "SwizzleNode_d05519e5f09347ad9949fd4ce959ba45" type = "float">
+        <input name = "in" type = "vector4" nodename = "CastConvertFinalFromAddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30ToSwizzleNode_d05519e5f09347ad9949fd4ce959ba45in" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <multiply name = "MultiplyNode_698cb15002d04d18be4765393806974a" type = "float">
+        <input name = "in1" type = "float" nodename = "OneMinusNode_8810b7a876c340e98cf012841b152269" />
+        <input name = "in2" type = "float" value = "0.25" />
+    </multiply>
+    <add name = "AddNode_f11c7cd5d5fc45f99bf7c378a1fb7a6a" type = "float">
+        <input name = "in1" type = "float" nodename = "PowerNode_bcd8203be8e34a9d99c0a36c71252c7c" />
+        <input name = "in2" type = "float" nodename = "FresnelEffect_OutNode_5ca153ac6f9b4fdbaec180c5b6ce5018" />
+    </add>
+    <power name = "FresnelEffect_OutNode_5ca153ac6f9b4fdbaec180c5b6ce5018" type = "float">
+        <input name = "in1" type = "float" nodename = "FresnelEffect_Out_in1Node_5ca153ac6f9b4fdbaec180c5b6ce5018" />
+        <input name = "in2" type = "float" nodename = "FresnelEffect_PowerNode_5ca153ac6f9b4fdbaec180c5b6ce5018" />
+    </power>
+    <subtract name = "FresnelEffect_Out_in1Node_5ca153ac6f9b4fdbaec180c5b6ce5018" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "FresnelEffect_Out_in1_in2Node_5ca153ac6f9b4fdbaec180c5b6ce5018" />
+    </subtract>
+    <clamp name = "FresnelEffect_Out_in1_in2Node_5ca153ac6f9b4fdbaec180c5b6ce5018" type = "float">
+        <input name = "in" type = "float" nodename = "FresnelEffect_Out_in1_in2_inNode_5ca153ac6f9b4fdbaec180c5b6ce5018" />
+    </clamp>
+    <dotproduct name = "FresnelEffect_Out_in1_in2_inNode_5ca153ac6f9b4fdbaec180c5b6ce5018" type = "float">
+        <input name = "in1" type = "vector3" nodename = "FresnelEffect_Out_in1_in2_in_in1Node_5ca153ac6f9b4fdbaec180c5b6ce5018" />
+        <input name = "in2" type = "vector3" nodename = "FresnelEffect_Out_in1_in2_in_in2Node_5ca153ac6f9b4fdbaec180c5b6ce5018" />
+    </dotproduct>
+    <normalize name = "FresnelEffect_Out_in1_in2_in_in1Node_5ca153ac6f9b4fdbaec180c5b6ce5018" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "FresnelEffect_NormalNode_5ca153ac6f9b4fdbaec180c5b6ce5018" />
+    </normalize>
+    <dot name = "FresnelEffect_NormalNode_5ca153ac6f9b4fdbaec180c5b6ce5018" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "FresnelEffect_NormalNode_5ca153ac6f9b4fdbaec180c5b6ce5018Flip" />
+    </dot>
+    <normal name = "FresnelEffect_NormalNode_5ca153ac6f9b4fdbaec180c5b6ce5018Geom" type = "vector3">
+        <input name = "space" type = "string" value = "world" />
+    </normal>
+    <multiply name = "FresnelEffect_NormalNode_5ca153ac6f9b4fdbaec180c5b6ce5018Flip" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "FresnelEffect_NormalNode_5ca153ac6f9b4fdbaec180c5b6ce5018Geom" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <normalize name = "FresnelEffect_Out_in1_in2_in_in2Node_5ca153ac6f9b4fdbaec180c5b6ce5018" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "FresnelEffect_ViewDirNode_5ca153ac6f9b4fdbaec180c5b6ce5018" />
+    </normalize>
+    <dot name = "FresnelEffect_ViewDirNode_5ca153ac6f9b4fdbaec180c5b6ce5018" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "FresnelEffect_ViewDirNode_5ca153ac6f9b4fdbaec180c5b6ce5018Flip" />
+    </dot>
+    <realitykit_viewdirection name = "FresnelEffect_ViewDirNode_5ca153ac6f9b4fdbaec180c5b6ce5018Geom" type = "vector3">
+    </realitykit_viewdirection>
+    <multiply name = "FresnelEffect_ViewDirNode_5ca153ac6f9b4fdbaec180c5b6ce5018Flip" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "FresnelEffect_ViewDirNode_5ca153ac6f9b4fdbaec180c5b6ce5018Geom" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <dot name = "FresnelEffect_PowerNode_5ca153ac6f9b4fdbaec180c5b6ce5018" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <constant name = "_Time" type = "vector4">
+        <input name = "value" type = "vector4" value = "0,0,0,0" />
+    </constant>
+    <swizzle name = "_TimeyNode_920c8f8e5701454697df50dea1177006" type = "float">
+        <input name = "channels" type = "string" value = "y" />
+        <input name = "in" type = "vector4" nodename = "_Time" />
+    </swizzle>
+    <worleynoise2d name = "VoronoiNode_fd9f8b31dfe349f3a0bc02db874fe0b4" type = "float">
+        <input name = "jitter" type = "float" nodename = "MultiplyNode_9f2130e690ce429faa0e8542b5b93eb1" />
+        <input name = "texcoord" type = "vector2" nodename = "CellDensityNode_fd9f8b31dfe349f3a0bc02db874fe0b4" />
+    </worleynoise2d>
+    <multiply name = "CellDensityNode_fd9f8b31dfe349f3a0bc02db874fe0b4" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "GradientNoiseUVNode_fd9f8b31dfe349f3a0bc02db874fe0b4" />
+        <input name = "in2" type = "float" value = "1" />
+    </multiply>
+    <texcoord name = "GradientNoiseUVNode_fd9f8b31dfe349f3a0bc02db874fe0b4" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "MultiplyNode_9f2130e690ce429faa0e8542b5b93eb1" type = "float">
+        <input name = "in1" type = "float" nodename = "_TimeyNode_920c8f8e5701454697df50dea1177006" />
+        <input name = "in2" type = "float" value = "0.375" />
+    </multiply>
+    <multiply name = "MultiplyNode_9a52b314f0664b1a9490eda2e3e4e84f" type = "float">
+        <input name = "in1" type = "float" nodename = "FresnelEffect_OutNode_5ca153ac6f9b4fdbaec180c5b6ce5018" />
+        <input name = "in2" type = "float" nodename = "AddNode_ae5869cc2a5249c2a869ac14c254fa49" />
+    </multiply>
+    <smoothstep name = "SmoothStepNode_82dc38c7e09143b0a660f653473bc288" type = "float">
+        <input name = "low" type = "float" value = "0" />
+        <input name = "high" type = "float" value = "2" />
+        <input name = "in" type = "float" nodename = "VoronoiNode_fd9f8b31dfe349f3a0bc02db874fe0b4" />
+    </smoothstep>
+    <convert name = "Position_OutNode_8455ff9379a241fe9052e577ea807803" type = "vector4">
+        <input name = "in" type = "vector3" nodename = "Position_Out_inNode_8455ff9379a241fe9052e577ea807803" />
+    </convert>
+    <transformmatrix name = "Position_Out_inNode_8455ff9379a241fe9052e577ea807803" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Position_Out_in_inNode_8455ff9379a241fe9052e577ea807803" />
+        <input name = "mat" type = "matrix44" nodename = "Position_Out_in_matNode_8455ff9379a241fe9052e577ea807803" />
+    </transformmatrix>
+    <position name = "Position_Out_in_inNode_8455ff9379a241fe9052e577ea807803" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </position>
+    <realitykit_surface_model_to_view name = "Position_Out_in_matNode_8455ff9379a241fe9052e577ea807803" type = "matrix44">
+    </realitykit_surface_model_to_view>
+    <divide name = "DivideNode_05de1eaaa5e74342a51670311789592d" type = "float">
+        <input name = "in1" type = "float" nodename = "SubtractNode_9602a8dfc7804329a4fc6ee70e0f011a" />
+        <input name = "in2" type = "float" nodename = "Vector1Node_d94bbbe12dc04f29b2d809c205f5b441" />
+    </divide>
+    <constant name = "Vector1Node_d94bbbe12dc04f29b2d809c205f5b441" type = "float">
+        <input name = "value" type = "float" nodename = "_DotViewRadius" />
+    </constant>
+    <magnitude name = "Distance_OutNode_190607116f5f41dea4b8f0199214400d" type = "float">
+        <input name = "in" type = "vector3" nodename = "Distance_Out_inNode_190607116f5f41dea4b8f0199214400d" />
+    </magnitude>
+    <subtract name = "Distance_Out_inNode_190607116f5f41dea4b8f0199214400d" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Distance_ANode_190607116f5f41dea4b8f0199214400d" />
+        <input name = "in2" type = "vector3" nodename = "Distance_BNode_190607116f5f41dea4b8f0199214400d" />
+    </subtract>
+    <dot name = "Distance_ANode_190607116f5f41dea4b8f0199214400d" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "DivideNode_05bbc934b1084ceda9ef176f6f005b24" />
+    </dot>
+    <dot name = "Distance_BNode_190607116f5f41dea4b8f0199214400d" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_c1901d5a29a94daea956f842c92f381d" />
+    </dot>
+    <combine3 name = "Vector3Node_c1901d5a29a94daea956f842c92f381d" type = "vector3">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "0" />
+        <input name = "in3" type = "float" value = "0" />
+    </combine3>
+    <smoothstep name = "SmoothStepNode_c769fbc865644a488f34bc23ce724bfa" type = "float">
+        <input name = "low" type = "float" value = "1" />
+        <input name = "high" type = "float" value = "0" />
+        <input name = "in" type = "float" nodename = "DivideNode_05de1eaaa5e74342a51670311789592d" />
+    </smoothstep>
+    <multiply name = "MultiplyNode_6238a6a57eff4cb4b1fc4d223b0f45ff" type = "float">
+        <input name = "in1" type = "float" nodename = "SmoothStepNode_c769fbc865644a488f34bc23ce724bfa" />
+        <input name = "in2" type = "float" nodename = "MultiplyNode_698cb15002d04d18be4765393806974a" />
+    </multiply>
+    <add name = "AddNode_ae5869cc2a5249c2a869ac14c254fa49" type = "float">
+        <input name = "in1" type = "float" nodename = "SmoothStepNode_82dc38c7e09143b0a660f653473bc288" />
+        <input name = "in2" type = "float" value = "0.1" />
+    </add>
+    <multiply name = "MultiplyNode_e08792d9fe554db0be19a933b8ca3a8d" type = "float">
+        <input name = "in1" type = "float" nodename = "MultiplyNode_6238a6a57eff4cb4b1fc4d223b0f45ff" />
+        <input name = "in2" type = "float" value = "1.25" />
+    </multiply>
+    <power name = "PowerNode_bcd8203be8e34a9d99c0a36c71252c7c" type = "float">
+        <input name = "in1" type = "float" nodename = "Ellipse_OutNode_923c8e7eb09b4e62828f672a00ccf2d2" />
+        <input name = "in2" type = "float" value = "0.25" />
+    </power>
+    <power name = "PowerNode_c4f85f7edbdf4a33a79bb2ea8b888b99" type = "float">
+        <input name = "in1" type = "float" nodename = "PowerNode_bcd8203be8e34a9d99c0a36c71252c7c" />
+        <input name = "in2" type = "float" value = "1" />
+    </power>
+    <constant name = "_DotViewRadius" type = "float">
+        <input name = "value" type = "float" value = "2.5" />
+    </constant>
+    <constant name = "_Alpha" type = "float">
+        <input name = "value" type = "float" value = "0.5" />
+    </constant>
+    <constant name = "Vector1Node_a9de47220fc5452ba7a3c7ff1c1c02d6" type = "float">
+        <input name = "value" type = "float" value = "3.25" />
+    </constant>
+    <divide name = "DivideNode_05bbc934b1084ceda9ef176f6f005b24" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "CastSwizzleFromPosition_OutNode_8455ff9379a241fe9052e577ea807803ToDivideNode_05bbc934b1084ceda9ef176f6f005b24in1" />
+        <input name = "in2" type = "vector3" nodename = "Vector3Node_44bb0cf4453f4f6191bd237a450eeec4" />
+    </divide>
+    <combine3 name = "Vector3Node_44bb0cf4453f4f6191bd237a450eeec4" type = "vector3">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "1" />
+        <input name = "in3" type = "float" value = "1" />
+    </combine3>
+    <subtract name = "SubtractNode_9602a8dfc7804329a4fc6ee70e0f011a" type = "float">
+        <input name = "in1" type = "float" nodename = "Distance_OutNode_190607116f5f41dea4b8f0199214400d" />
+        <input name = "in2" type = "float" value = "0" />
+    </subtract>
+    <swizzle name = "PolySpatialVolumeToWorld_OutNode_c20b23b3d870453e86aa7935bd4711bd" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "PolySpatialVolumeToWorld_Out_inNode_c20b23b3d870453e86aa7935bd4711bd" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <transformmatrix name = "PolySpatialVolumeToWorld_Out_inNode_c20b23b3d870453e86aa7935bd4711bd" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "PolySpatialVolumeToWorld_Out_in_inNode_c20b23b3d870453e86aa7935bd4711bd" />
+        <input name = "mat" type = "matrix44" nodename = "polySpatial_VolumeToWorld" />
+    </transformmatrix>
+    <combine4 name = "PolySpatialVolumeToWorld_Out_in_inNode_c20b23b3d870453e86aa7935bd4711bd" type = "vector4">
+        <input name = "in1" type = "float" nodename = "PolySpatialVolumeToWorld_Out_in_in_in1Node_c20b23b3d870453e86aa7935bd4711bd" />
+        <input name = "in2" type = "float" nodename = "PolySpatialVolumeToWorld_Out_in_in_in2Node_c20b23b3d870453e86aa7935bd4711bd" />
+        <input name = "in3" type = "float" nodename = "PolySpatialVolumeToWorld_Out_in_in_in3Node_c20b23b3d870453e86aa7935bd4711bd" />
+        <input name = "in4" type = "float" value = "1" />
+    </combine4>
+    <swizzle name = "PolySpatialVolumeToWorld_Out_in_in_in1Node_c20b23b3d870453e86aa7935bd4711bd" type = "float">
+        <input name = "in" type = "vector3" nodename = "PolySpatialVolumeToWorld_InNode_c20b23b3d870453e86aa7935bd4711bd" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "PolySpatialVolumeToWorld_InNode_c20b23b3d870453e86aa7935bd4711bd" type = "vector3">
+        <input name = "in" type = "vector3" value = "0,0,0" />
+    </dot>
+    <swizzle name = "PolySpatialVolumeToWorld_Out_in_in_in2Node_c20b23b3d870453e86aa7935bd4711bd" type = "float">
+        <input name = "in" type = "vector3" nodename = "PolySpatialVolumeToWorld_InNode_c20b23b3d870453e86aa7935bd4711bd" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "PolySpatialVolumeToWorld_Out_in_in_in3Node_c20b23b3d870453e86aa7935bd4711bd" type = "float">
+        <input name = "in" type = "vector3" nodename = "PolySpatialVolumeToWorld_InNode_c20b23b3d870453e86aa7935bd4711bd" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <constant name = "polySpatial_VolumeToWorld" type = "matrix44">
+        <input name = "value" type = "matrix44" value = "1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1" />
+    </constant>
+    <GeometryModification name = "SR_DotsVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Dots" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "hasPremultipliedAlpha" type = "boolean" value = "true" />
+        <input name = "color" type = "color3" nodename = "SR_Dots_color_MultiplyAlpha" />
+        <input name = "opacity" type = "float" value = "0" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Dots" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_DotsVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Dots" />
+    </surfacematerial>
+    <multiply name = "SR_Dots_color_MultiplyAlpha" type = "color3">
+        <input name = "in2" type = "float" nodename = "_Alpha" />
+        <input name = "in1" type = "color3" nodename = "CastSwizzleFromPowerNode_c4f85f7edbdf4a33a79bb2ea8b888b99ToSR_Dots_color_MultiplyAlphain1" />
+    </multiply>
+    <dot name = "CastConvertFromAddNode_abf533fd4cff47138fc11f8fd4b09938ToMultiplyNode_8bda6384392c420d8d2de413ed5955b3in1" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "AddNode_abf533fd4cff47138fc11f8fd4b09938" />
+    </dot>
+    <combine4 name = "CastConvertFinalFromAddNode_abf533fd4cff47138fc11f8fd4b09938ToMultiplyNode_8bda6384392c420d8d2de413ed5955b3in1" type = "vector4">
+        <input name = "in1" type = "float" nodename = "CastSwizzle1FromAddNode_abf533fd4cff47138fc11f8fd4b09938ToMultiplyNode_8bda6384392c420d8d2de413ed5955b3in1" />
+        <input name = "in2" type = "float" nodename = "CastSwizzle2FromAddNode_abf533fd4cff47138fc11f8fd4b09938ToMultiplyNode_8bda6384392c420d8d2de413ed5955b3in1" />
+        <input name = "in3" type = "float" value = "0" />
+        <input name = "in4" type = "float" value = "0" />
+    </combine4>
+    <swizzle name = "CastSwizzle1FromAddNode_abf533fd4cff47138fc11f8fd4b09938ToMultiplyNode_8bda6384392c420d8d2de413ed5955b3in1" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_abf533fd4cff47138fc11f8fd4b09938ToMultiplyNode_8bda6384392c420d8d2de413ed5955b3in1" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzle2FromAddNode_abf533fd4cff47138fc11f8fd4b09938ToMultiplyNode_8bda6384392c420d8d2de413ed5955b3in1" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_abf533fd4cff47138fc11f8fd4b09938ToMultiplyNode_8bda6384392c420d8d2de413ed5955b3in1" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromFractionNode_705ffc4fe55d4abfbe6059bd8c251e5eToEllipse_UVNode_923c8e7eb09b4e62828f672a00ccf2d2in" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "FractionNode_705ffc4fe55d4abfbe6059bd8c251e5e" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <dot name = "CastConvertFromAddNode_0b68580487494ef5bb11168f37d3512bToPosterize_InNode_6ee34dc298fc471c8b829ece86c6c363in" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "AddNode_0b68580487494ef5bb11168f37d3512b" />
+    </dot>
+    <combine4 name = "CastConvertFinalFromAddNode_0b68580487494ef5bb11168f37d3512bToPosterize_InNode_6ee34dc298fc471c8b829ece86c6c363in" type = "vector4">
+        <input name = "in1" type = "float" nodename = "CastSwizzle1FromAddNode_0b68580487494ef5bb11168f37d3512bToPosterize_InNode_6ee34dc298fc471c8b829ece86c6c363in" />
+        <input name = "in2" type = "float" nodename = "CastSwizzle2FromAddNode_0b68580487494ef5bb11168f37d3512bToPosterize_InNode_6ee34dc298fc471c8b829ece86c6c363in" />
+        <input name = "in3" type = "float" value = "0" />
+        <input name = "in4" type = "float" value = "0" />
+    </combine4>
+    <swizzle name = "CastSwizzle1FromAddNode_0b68580487494ef5bb11168f37d3512bToPosterize_InNode_6ee34dc298fc471c8b829ece86c6c363in" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_0b68580487494ef5bb11168f37d3512bToPosterize_InNode_6ee34dc298fc471c8b829ece86c6c363in" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzle2FromAddNode_0b68580487494ef5bb11168f37d3512bToPosterize_InNode_6ee34dc298fc471c8b829ece86c6c363in" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_0b68580487494ef5bb11168f37d3512bToPosterize_InNode_6ee34dc298fc471c8b829ece86c6c363in" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromPosterize_OutNode_6ee34dc298fc471c8b829ece86c6c363ToGradientNoise_UVNode_a05bc7fc3d7e4427af4d6575619b6fbfin" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "Posterize_OutNode_6ee34dc298fc471c8b829ece86c6c363" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <dot name = "CastConvertFromAddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30ToSwizzleNode_d05519e5f09347ad9949fd4ce959ba45in" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "AddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30" />
+    </dot>
+    <combine4 name = "CastConvertFinalFromAddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30ToSwizzleNode_d05519e5f09347ad9949fd4ce959ba45in" type = "vector4">
+        <input name = "in1" type = "float" nodename = "CastSwizzle1FromAddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30ToSwizzleNode_d05519e5f09347ad9949fd4ce959ba45in" />
+        <input name = "in2" type = "float" nodename = "CastSwizzle2FromAddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30ToSwizzleNode_d05519e5f09347ad9949fd4ce959ba45in" />
+        <input name = "in3" type = "float" value = "0" />
+        <input name = "in4" type = "float" value = "0" />
+    </combine4>
+    <swizzle name = "CastSwizzle1FromAddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30ToSwizzleNode_d05519e5f09347ad9949fd4ce959ba45in" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30ToSwizzleNode_d05519e5f09347ad9949fd4ce959ba45in" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzle2FromAddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30ToSwizzleNode_d05519e5f09347ad9949fd4ce959ba45in" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_3c4ba1828d144fe3ad5b88ae2ecc4b30ToSwizzleNode_d05519e5f09347ad9949fd4ce959ba45in" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromPosition_OutNode_8455ff9379a241fe9052e577ea807803ToDivideNode_05bbc934b1084ceda9ef176f6f005b24in1" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "Position_OutNode_8455ff9379a241fe9052e577ea807803" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromPowerNode_c4f85f7edbdf4a33a79bb2ea8b888b99ToSR_Dots_color_MultiplyAlphain1" type = "color3">
+        <input name = "in" type = "float" nodename = "PowerNode_c4f85f7edbdf4a33a79bb2ea8b888b99" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+</materialx>

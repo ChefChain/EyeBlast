@@ -1,0 +1,87 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <divide name = "InverseLerp_OutNode_0530b49ce26442d08c785f93c6e54614" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "InverseLerp_Out_in1Node_0530b49ce26442d08c785f93c6e54614" />
+        <input name = "in2" type = "vector3" nodename = "InverseLerp_Out_in2Node_0530b49ce26442d08c785f93c6e54614" />
+    </divide>
+    <subtract name = "InverseLerp_Out_in1Node_0530b49ce26442d08c785f93c6e54614" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "InverseLerp_TNode_0530b49ce26442d08c785f93c6e54614" />
+        <input name = "in2" type = "vector3" nodename = "InverseLerp_ANode_0530b49ce26442d08c785f93c6e54614" />
+    </subtract>
+    <dot name = "InverseLerp_TNode_0530b49ce26442d08c785f93c6e54614" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "LerpNode_1455ea85f6de4ca19b21e64fe199c5e4" />
+    </dot>
+    <dot name = "InverseLerp_ANode_0530b49ce26442d08c785f93c6e54614" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_2f28df05126740ecbb2b83b0be844065" />
+    </dot>
+    <subtract name = "InverseLerp_Out_in2Node_0530b49ce26442d08c785f93c6e54614" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "InverseLerp_BNode_0530b49ce26442d08c785f93c6e54614" />
+        <input name = "in2" type = "vector3" nodename = "InverseLerp_ANode_0530b49ce26442d08c785f93c6e54614" />
+    </subtract>
+    <dot name = "InverseLerp_BNode_0530b49ce26442d08c785f93c6e54614" type = "vector3">
+        <input name = "in" type = "vector3" value = "1,1,1" />
+    </dot>
+    <divide name = "InverseLerp_OutNode_8db8a4d24c37473cac21a07c76d52555" type = "float">
+        <input name = "in1" type = "float" nodename = "InverseLerp_Out_in1Node_8db8a4d24c37473cac21a07c76d52555" />
+        <input name = "in2" type = "float" nodename = "InverseLerp_Out_in2Node_8db8a4d24c37473cac21a07c76d52555" />
+    </divide>
+    <subtract name = "InverseLerp_Out_in1Node_8db8a4d24c37473cac21a07c76d52555" type = "float">
+        <input name = "in1" type = "float" nodename = "InverseLerp_TNode_8db8a4d24c37473cac21a07c76d52555" />
+        <input name = "in2" type = "float" nodename = "InverseLerp_ANode_8db8a4d24c37473cac21a07c76d52555" />
+    </subtract>
+    <dot name = "InverseLerp_TNode_8db8a4d24c37473cac21a07c76d52555" type = "float">
+        <input name = "in" type = "float" nodename = "LerpNode_4090bb25f9d9469a9a74a44a47486dea" />
+    </dot>
+    <dot name = "InverseLerp_ANode_8db8a4d24c37473cac21a07c76d52555" type = "float">
+        <input name = "in" type = "float" nodename = "Vector1Node_3299a5c071904576aecc906e2cce5c68" />
+    </dot>
+    <subtract name = "InverseLerp_Out_in2Node_8db8a4d24c37473cac21a07c76d52555" type = "float">
+        <input name = "in1" type = "float" nodename = "InverseLerp_BNode_8db8a4d24c37473cac21a07c76d52555" />
+        <input name = "in2" type = "float" nodename = "InverseLerp_ANode_8db8a4d24c37473cac21a07c76d52555" />
+    </subtract>
+    <dot name = "InverseLerp_BNode_8db8a4d24c37473cac21a07c76d52555" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <mix name = "LerpNode_4090bb25f9d9469a9a74a44a47486dea" type = "float">
+        <input name = "bg" type = "float" nodename = "Vector1Node_3299a5c071904576aecc906e2cce5c68" />
+        <input name = "fg" type = "float" value = "1" />
+        <input name = "mix" type = "float" value = "0.5" />
+    </mix>
+    <mix name = "LerpNode_1455ea85f6de4ca19b21e64fe199c5e4" type = "vector3">
+        <input name = "bg" type = "vector3" nodename = "Vector3Node_2f28df05126740ecbb2b83b0be844065" />
+        <input name = "fg" type = "vector3" value = "1,1,1" />
+        <input name = "mix" type = "float" value = "0.5" />
+    </mix>
+    <combine3 name = "Vector3Node_2f28df05126740ecbb2b83b0be844065" type = "vector3">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "0" />
+        <input name = "in3" type = "float" value = "0" />
+    </combine3>
+    <constant name = "Vector1Node_3299a5c071904576aecc906e2cce5c68" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <GeometryModification name = "SR_InterpolationVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_pbr name = "SR_Interpolation" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" nodename = "CastSwizzleFromInverseLerp_OutNode_0530b49ce26442d08c785f93c6e54614ToSR_InterpolationbaseColor" />
+        <input name = "metallic" type = "float" nodename = "InverseLerp_OutNode_8db8a4d24c37473cac21a07c76d52555" />
+        <input name = "emissiveColor" type = "color3" value = "0,0,0" />
+        <input name = "ambientOcclusion" type = "float" value = "1" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "roughness" type = "float" nodename = "SR_Interpolation_roughness_OnesComplement" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_Interpolation" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_InterpolationVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Interpolation" />
+    </surfacematerial>
+    <subtract name = "SR_Interpolation_roughness_OnesComplement" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </subtract>
+    <swizzle name = "CastSwizzleFromInverseLerp_OutNode_0530b49ce26442d08c785f93c6e54614ToSR_InterpolationbaseColor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "InverseLerp_OutNode_0530b49ce26442d08c785f93c6e54614" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

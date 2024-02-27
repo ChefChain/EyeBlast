@@ -1,0 +1,126 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <dot name = "TransformationMatrix_OutNode_7780a58ea00644f7be6a295a348a1d6c" type = "matrix44">
+        <input name = "in" type = "matrix44" nodename = "TransformationMatrix_Out_inNode_7780a58ea00644f7be6a295a348a1d6c" />
+    </dot>
+    <invertmatrix name = "TransformationMatrix_Out_inNode_7780a58ea00644f7be6a295a348a1d6c" type = "matrix44">
+        <input name = "in" type = "matrix44" nodename = "TransformationMatrix_Out_in_inNode_7780a58ea00644f7be6a295a348a1d6c" />
+    </invertmatrix>
+    <multiply name = "TransformationMatrix_Out_in_inNode_7780a58ea00644f7be6a295a348a1d6c" type = "matrix44">
+        <input name = "in1" type = "matrix44" nodename = "TransformationMatrix_Out_in_in_in1Node_7780a58ea00644f7be6a295a348a1d6c" />
+        <input name = "in2" type = "matrix44" nodename = "TransformationMatrix_Out_in_in_in2Node_7780a58ea00644f7be6a295a348a1d6c" />
+    </multiply>
+    <multiply name = "TransformationMatrix_Out_in_in_in1Node_7780a58ea00644f7be6a295a348a1d6c" type = "matrix44">
+        <input name = "in1" type = "matrix44" nodename = "TransformationMatrix_Out_in_in_in1_in1Node_7780a58ea00644f7be6a295a348a1d6c" />
+        <input name = "in2" type = "matrix44" nodename = "TransformationMatrix_Out_in_in_in1_in2Node_7780a58ea00644f7be6a295a348a1d6c" />
+    </multiply>
+    <realitykit_geometry_modifier_view_to_projection name = "TransformationMatrix_Out_in_in_in1_in1Node_7780a58ea00644f7be6a295a348a1d6c" type = "matrix44">
+    </realitykit_geometry_modifier_view_to_projection>
+    <realitykit_geometry_modifier_model_to_view name = "TransformationMatrix_Out_in_in_in1_in2Node_7780a58ea00644f7be6a295a348a1d6c" type = "matrix44">
+    </realitykit_geometry_modifier_model_to_view>
+    <multiply name = "TransformationMatrix_Out_in_in_in2Node_7780a58ea00644f7be6a295a348a1d6c" type = "matrix44">
+        <input name = "in1" type = "matrix44" nodename = "TransformationMatrix_Out_in_in_in2_in1Node_7780a58ea00644f7be6a295a348a1d6c" />
+        <input name = "in2" type = "matrix44" value = "1,0,0,0,0,1,0,0,0,0,-1,0,0,0,0,1" />
+    </multiply>
+    <realitykit_geometry_modifier_world_to_model name = "TransformationMatrix_Out_in_in_in2_in1Node_7780a58ea00644f7be6a295a348a1d6c" type = "matrix44">
+    </realitykit_geometry_modifier_world_to_model>
+    <transformmatrix name = "MultiplyNode_93a4700a498545e49d6ec8dbf4e6a195" type = "vector4">
+        <input name = "mat" type = "matrix44" nodename = "TransformationMatrix_OutNode_7780a58ea00644f7be6a295a348a1d6c" />
+        <input name = "in" type = "vector4" nodename = "Vector4Node_f490c91f9b2040c0ac2f02cc1ab9f90e" />
+    </transformmatrix>
+    <combine4 name = "Vector4Node_f490c91f9b2040c0ac2f02cc1ab9f90e" type = "vector4">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "0" />
+        <input name = "in3" type = "float" value = "0" />
+        <input name = "in4" type = "float" value = "1" />
+    </combine4>
+    <constant name = "Matrix2Node_6749021671354bc19732e7b03367135b" type = "matrix22">
+        <input name = "value" type = "matrix22" value = "1,0,0,1" />
+    </constant>
+    <constant name = "Matrix3Node_1038dac3e57f4d5086675e691291c958" type = "matrix33">
+        <input name = "value" type = "matrix33" value = "1,0,0,0,1,0,0,0,1" />
+    </constant>
+    <constant name = "Matrix4Node_f14ee9afc2cf447c9c5cd2a38c1869a2" type = "matrix44">
+        <input name = "value" type = "matrix44" value = "1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1" />
+    </constant>
+    <transformmatrix name = "MultiplyNode_e7040316996d41d2897d78b7f0639c62" type = "vector2">
+        <input name = "mat" type = "matrix22" nodename = "Matrix2Node_6749021671354bc19732e7b03367135b" />
+        <input name = "in" type = "vector2" value = "2,2" />
+    </transformmatrix>
+    <transformmatrix name = "MultiplyNode_aa187395be1f47fbb3ce0845716396b1" type = "vector3">
+        <input name = "mat" type = "matrix33" nodename = "Matrix3Node_1038dac3e57f4d5086675e691291c958" />
+        <input name = "in" type = "vector3" value = "2,2,2" />
+    </transformmatrix>
+    <transformmatrix name = "MultiplyNode_64a01fe86d8442cf8372b0bf730e2f66" type = "vector4">
+        <input name = "mat" type = "matrix44" nodename = "Matrix4Node_f14ee9afc2cf447c9c5cd2a38c1869a2" />
+        <input name = "in" type = "vector4" value = "2,2,2,2" />
+    </transformmatrix>
+    <add name = "AddNode_e4ae0c2eef754badb0a8a44b196cb50e" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "MultiplyNode_aa187395be1f47fbb3ce0845716396b1" />
+        <input name = "in2" type = "vector3" nodename = "CastSwizzleFromMultiplyNode_64a01fe86d8442cf8372b0bf730e2f66ToAddNode_e4ae0c2eef754badb0a8a44b196cb50ein2" />
+    </add>
+    <add name = "AddNode_a0e8e2c6d59d4039b8072c060f2b5423" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "MultiplyNode_e7040316996d41d2897d78b7f0639c62" />
+        <input name = "in2" type = "vector2" nodename = "CastSwizzleFromAddNode_e4ae0c2eef754badb0a8a44b196cb50eToAddNode_a0e8e2c6d59d4039b8072c060f2b5423in2" />
+    </add>
+    <GeometryModification name = "SR_MatrixVertex" type = "vertexshader">
+        <input name = "modelPositionOffset" type = "vector3" nodename = "SR_MatrixVertex_modelPositionOffset_SubtractPosition" />
+    </GeometryModification>
+    <realitykit_pbr name = "SR_Matrix" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" value = "0.2140411,0.2140411,0.2140411" />
+        <input name = "metallic" type = "float" value = "0" />
+        <input name = "emissiveColor" type = "color3" nodename = "CastConvertFinalFromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor" />
+        <input name = "ambientOcclusion" type = "float" value = "1" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "roughness" type = "float" nodename = "SR_Matrix_roughness_OnesComplement" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_Matrix" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_MatrixVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Matrix" />
+    </surfacematerial>
+    <multiply name = "SR_MatrixVertex_modelPositionOffset_FlipZ" type = "vector3">
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+        <input name = "in1" type = "vector3" nodename = "CastSwizzleFromMultiplyNode_93a4700a498545e49d6ec8dbf4e6a195ToSR_MatrixVertex_modelPositionOffset_FlipZin1" />
+    </multiply>
+    <subtract name = "SR_MatrixVertex_modelPositionOffset_SubtractPosition" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "SR_MatrixVertex_modelPositionOffset_FlipZ" />
+        <input name = "in2" type = "vector3" nodename = "SR_MatrixVertex_modelPositionOffset_Position" />
+    </subtract>
+    <position name = "SR_MatrixVertex_modelPositionOffset_Position" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </position>
+    <subtract name = "SR_Matrix_roughness_OnesComplement" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </subtract>
+    <swizzle name = "CastSwizzleFromMultiplyNode_64a01fe86d8442cf8372b0bf730e2f66ToAddNode_e4ae0c2eef754badb0a8a44b196cb50ein2" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "MultiplyNode_64a01fe86d8442cf8372b0bf730e2f66" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromAddNode_e4ae0c2eef754badb0a8a44b196cb50eToAddNode_a0e8e2c6d59d4039b8072c060f2b5423in2" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "AddNode_e4ae0c2eef754badb0a8a44b196cb50e" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromMultiplyNode_93a4700a498545e49d6ec8dbf4e6a195ToSR_MatrixVertex_modelPositionOffset_FlipZin1" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "MultiplyNode_93a4700a498545e49d6ec8dbf4e6a195" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <dot name = "CastConvertFromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "AddNode_a0e8e2c6d59d4039b8072c060f2b5423" />
+    </dot>
+    <combine3 name = "CastConvertFinalFromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor" type = "color3">
+        <input name = "in1" type = "float" nodename = "CastSwizzle1FromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor" />
+        <input name = "in2" type = "float" nodename = "CastSwizzle2FromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor" />
+        <input name = "in3" type = "float" value = "0" />
+    </combine3>
+    <swizzle name = "CastSwizzle1FromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzle2FromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor" type = "float">
+        <input name = "in" type = "vector2" nodename = "CastConvertFromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+</materialx>

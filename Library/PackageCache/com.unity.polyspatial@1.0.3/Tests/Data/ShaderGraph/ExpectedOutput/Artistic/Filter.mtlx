@@ -1,0 +1,56 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <clamp name = "FadeTransition_FadeNode_0ecd4252ee504ed3b5099285785465dd" type = "float">
+        <input name = "in" type = "float" nodename = "FadeTransition_Fade_inNode_0ecd4252ee504ed3b5099285785465dd" />
+    </clamp>
+    <add name = "FadeTransition_Fade_inNode_0ecd4252ee504ed3b5099285785465dd" type = "float">
+        <input name = "in1" type = "float" nodename = "FadeTransition_Fade_in_in1Node_0ecd4252ee504ed3b5099285785465dd" />
+        <input name = "in2" type = "float" nodename = "FadeTransition_Fade_in_in2Node_0ecd4252ee504ed3b5099285785465dd" />
+    </add>
+    <multiply name = "FadeTransition_Fade_in_in1Node_0ecd4252ee504ed3b5099285785465dd" type = "float">
+        <input name = "in1" type = "float" nodename = "FadeTransition_FadeValueNode_0ecd4252ee504ed3b5099285785465dd" />
+        <input name = "in2" type = "float" nodename = "FadeTransition_Fade_in_in1_in2Node_0ecd4252ee504ed3b5099285785465dd" />
+    </multiply>
+    <dot name = "FadeTransition_FadeValueNode_0ecd4252ee504ed3b5099285785465dd" type = "float">
+        <input name = "in" type = "float" nodename = "_SinTimewNode_1743c2e066d640b482803c0cd1141264" />
+    </dot>
+    <add name = "FadeTransition_Fade_in_in1_in2Node_0ecd4252ee504ed3b5099285785465dd" type = "float">
+        <input name = "in1" type = "float" nodename = "FadeTransition_FadeContrastNode_0ecd4252ee504ed3b5099285785465dd" />
+        <input name = "in2" type = "float" value = "1" />
+    </add>
+    <dot name = "FadeTransition_FadeContrastNode_0ecd4252ee504ed3b5099285785465dd" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <multiply name = "FadeTransition_Fade_in_in2Node_0ecd4252ee504ed3b5099285785465dd" type = "float">
+        <input name = "in1" type = "float" nodename = "FadeTransition_Fade_in_in2_in1Node_0ecd4252ee504ed3b5099285785465dd" />
+        <input name = "in2" type = "float" nodename = "FadeTransition_FadeContrastNode_0ecd4252ee504ed3b5099285785465dd" />
+    </multiply>
+    <subtract name = "FadeTransition_Fade_in_in2_in1Node_0ecd4252ee504ed3b5099285785465dd" type = "float">
+        <input name = "in1" type = "float" nodename = "FadeTransition_NoiseValueNode_0ecd4252ee504ed3b5099285785465dd" />
+        <input name = "in2" type = "float" value = "1" />
+    </subtract>
+    <dot name = "FadeTransition_NoiseValueNode_0ecd4252ee504ed3b5099285785465dd" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <constant name = "_SinTime" type = "vector4">
+        <input name = "value" type = "vector4" value = "0,0,0,0" />
+    </constant>
+    <swizzle name = "_SinTimewNode_1743c2e066d640b482803c0cd1141264" type = "float">
+        <input name = "channels" type = "string" value = "w" />
+        <input name = "in" type = "vector4" nodename = "_SinTime" />
+    </swizzle>
+    <GeometryModification name = "SR_FilterVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Filter" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromFadeTransition_FadeNode_0ecd4252ee504ed3b5099285785465ddToSR_Filtercolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Filter" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_FilterVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Filter" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromFadeTransition_FadeNode_0ecd4252ee504ed3b5099285785465ddToSR_Filtercolor" type = "color3">
+        <input name = "in" type = "float" nodename = "FadeTransition_FadeNode_0ecd4252ee504ed3b5099285785465dd" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+</materialx>

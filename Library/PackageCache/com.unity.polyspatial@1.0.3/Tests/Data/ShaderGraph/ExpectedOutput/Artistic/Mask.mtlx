@@ -1,0 +1,98 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <combine4 name = "ChannelMask_OutNode_b9e8523ea102435eb431f467e2c7486f" type = "vector4">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" nodename = "ChannelMask_Out_in2Node_b9e8523ea102435eb431f467e2c7486f" />
+        <input name = "in3" type = "float" nodename = "ChannelMask_Out_in3Node_b9e8523ea102435eb431f467e2c7486f" />
+        <input name = "in4" type = "float" nodename = "ChannelMask_Out_in4Node_b9e8523ea102435eb431f467e2c7486f" />
+    </combine4>
+    <extract name = "ChannelMask_Out_in2Node_b9e8523ea102435eb431f467e2c7486f" type = "float">
+        <input name = "in" type = "vector4" nodename = "ChannelMask_InNode_b9e8523ea102435eb431f467e2c7486f" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <dot name = "ChannelMask_InNode_b9e8523ea102435eb431f467e2c7486f" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "CastSwizzleFromColorNode_e4ff551bf3ed4ed79b9c770d0cbda367ToChannelMask_InNode_b9e8523ea102435eb431f467e2c7486fin" />
+    </dot>
+    <extract name = "ChannelMask_Out_in3Node_b9e8523ea102435eb431f467e2c7486f" type = "float">
+        <input name = "in" type = "vector4" nodename = "ChannelMask_InNode_b9e8523ea102435eb431f467e2c7486f" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <extract name = "ChannelMask_Out_in4Node_b9e8523ea102435eb431f467e2c7486f" type = "float">
+        <input name = "in" type = "vector4" nodename = "ChannelMask_InNode_b9e8523ea102435eb431f467e2c7486f" />
+        <input name = "index" type = "integer" value = "3" />
+    </extract>
+    <constant name = "ColorNode_e4ff551bf3ed4ed79b9c770d0cbda367" type = "color4">
+        <input name = "value" type = "color4" value = "1,1,1,0" />
+    </constant>
+    <clamp name = "ColorMask_OutNode_3473a78bde11410199b0271121206aac" type = "float">
+        <input name = "in" type = "float" nodename = "ColorMask_Out_inNode_3473a78bde11410199b0271121206aac" />
+    </clamp>
+    <subtract name = "ColorMask_Out_inNode_3473a78bde11410199b0271121206aac" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "ColorMask_Out_in_in2Node_3473a78bde11410199b0271121206aac" />
+    </subtract>
+    <divide name = "ColorMask_Out_in_in2Node_3473a78bde11410199b0271121206aac" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorMask_Out_in_in2_in1Node_3473a78bde11410199b0271121206aac" />
+        <input name = "in2" type = "float" nodename = "ColorMask_Out_in_in2_in2Node_3473a78bde11410199b0271121206aac" />
+    </divide>
+    <subtract name = "ColorMask_Out_in_in2_in1Node_3473a78bde11410199b0271121206aac" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorMask_DistanceNode_3473a78bde11410199b0271121206aac" />
+        <input name = "in2" type = "float" nodename = "ColorMask_RangeNode_3473a78bde11410199b0271121206aac" />
+    </subtract>
+    <magnitude name = "ColorMask_DistanceNode_3473a78bde11410199b0271121206aac" type = "float">
+        <input name = "in" type = "vector3" nodename = "ColorMask_Distance_inNode_3473a78bde11410199b0271121206aac" />
+    </magnitude>
+    <subtract name = "ColorMask_Distance_inNode_3473a78bde11410199b0271121206aac" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "ColorMask_Distance_in_in1Node_3473a78bde11410199b0271121206aac" />
+        <input name = "in2" type = "vector3" nodename = "ColorMask_InNode_3473a78bde11410199b0271121206aac" />
+    </subtract>
+    <convert name = "ColorMask_Distance_in_in1Node_3473a78bde11410199b0271121206aac" type = "vector3">
+        <input name = "in" type = "color3" nodename = "ColorMask_MaskColorNode_3473a78bde11410199b0271121206aac" />
+    </convert>
+    <dot name = "ColorMask_MaskColorNode_3473a78bde11410199b0271121206aac" type = "color3">
+        <input name = "in" type = "color3" value = "1,1,1" />
+    </dot>
+    <dot name = "ColorMask_InNode_3473a78bde11410199b0271121206aac" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "CastSwizzleFromColorNode_e4ff551bf3ed4ed79b9c770d0cbda367ToColorMask_InNode_3473a78bde11410199b0271121206aacin" />
+    </dot>
+    <dot name = "ColorMask_RangeNode_3473a78bde11410199b0271121206aac" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <max name = "ColorMask_Out_in_in2_in2Node_3473a78bde11410199b0271121206aac" type = "float">
+        <input name = "in1" type = "float" nodename = "ColorMask_FuzzinessNode_3473a78bde11410199b0271121206aac" />
+        <input name = "in2" type = "float" value = "1E-05" />
+    </max>
+    <dot name = "ColorMask_FuzzinessNode_3473a78bde11410199b0271121206aac" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <multiply name = "MultiplyNode_e7ce4037f7a04ff49140ffa21dec109a" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "ChannelMask_OutNode_b9e8523ea102435eb431f467e2c7486f" />
+        <input name = "in2" type = "vector4" nodename = "CastSwizzleFromColorMask_OutNode_3473a78bde11410199b0271121206aacToMultiplyNode_e7ce4037f7a04ff49140ffa21dec109ain2" />
+    </multiply>
+    <GeometryModification name = "SR_MaskVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Mask" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromMultiplyNode_e7ce4037f7a04ff49140ffa21dec109aToSR_Maskcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Mask" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_MaskVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Mask" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromColorNode_e4ff551bf3ed4ed79b9c770d0cbda367ToChannelMask_InNode_b9e8523ea102435eb431f467e2c7486fin" type = "vector4">
+        <input name = "in" type = "color4" nodename = "ColorNode_e4ff551bf3ed4ed79b9c770d0cbda367" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromColorNode_e4ff551bf3ed4ed79b9c770d0cbda367ToColorMask_InNode_3473a78bde11410199b0271121206aacin" type = "vector3">
+        <input name = "in" type = "color4" nodename = "ColorNode_e4ff551bf3ed4ed79b9c770d0cbda367" />
+        <input name = "channels" type = "string" value = "rgb" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromColorMask_OutNode_3473a78bde11410199b0271121206aacToMultiplyNode_e7ce4037f7a04ff49140ffa21dec109ain2" type = "vector4">
+        <input name = "in" type = "float" nodename = "ColorMask_OutNode_3473a78bde11410199b0271121206aac" />
+        <input name = "channels" type = "string" value = "xxxx" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromMultiplyNode_e7ce4037f7a04ff49140ffa21dec109aToSR_Maskcolor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "MultiplyNode_e7ce4037f7a04ff49140ffa21dec109a" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

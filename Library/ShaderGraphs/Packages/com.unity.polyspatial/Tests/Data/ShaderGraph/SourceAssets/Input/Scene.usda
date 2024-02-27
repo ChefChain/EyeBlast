@@ -1,0 +1,47 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Scene"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Scene/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Scene/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Scene/CastSwizzleFromEyeIndex_OutNode_c2cc5b412c43443ea644198a22c0f7f5ToSR_Scenecolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromEyeIndex_OutNode_c2cc5b412c43443ea644198a22c0f7f5ToSR_Scenecolor"
+            {
+                uniform token info:id = "ND_swizzle_float_color3"
+                float inputs:in.connect = </MaterialX/Materials/USD_Scene/EyeIndex_OutNode_c2cc5b412c43443ea644198a22c0f7f5.outputs:out>
+                string inputs:channels = "xxx"
+                color3f outputs:out
+            }
+
+            def Shader "EyeIndex_OutNode_c2cc5b412c43443ea644198a22c0f7f5"
+            {
+                uniform token info:id = "ND_realitykit_geometry_switch_cameraindex_float"
+                float inputs:right = 1
+                float outputs:out
+            }
+        }
+    }
+}

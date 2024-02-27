@@ -1,0 +1,33 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <constant name = "MetalReflectanceNode_5ac8fc39cdbb48a7aa387e63c6e705fd" type = "vector3">
+        <input name = "value" type = "vector3" value = "1,0.766,0.336" />
+    </constant>
+    <constant name = "DielectricSpecular_OutNode_3128ffc307f34ce392960ae17427012b" type = "float">
+        <input name = "value" type = "float" value = "0.041" />
+    </constant>
+    <GeometryModification name = "SR_PBRVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_pbr name = "SR_PBR" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" nodename = "CastSwizzleFromMetalReflectanceNode_5ac8fc39cdbb48a7aa387e63c6e705fdToSR_PBRbaseColor" />
+        <input name = "metallic" type = "float" nodename = "DielectricSpecular_OutNode_3128ffc307f34ce392960ae17427012b" />
+        <input name = "emissiveColor" type = "color3" value = "0,0,0" />
+        <input name = "ambientOcclusion" type = "float" value = "1" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "roughness" type = "float" nodename = "SR_PBR_roughness_OnesComplement" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_PBR" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_PBRVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_PBR" />
+    </surfacematerial>
+    <subtract name = "SR_PBR_roughness_OnesComplement" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "1" />
+    </subtract>
+    <swizzle name = "CastSwizzleFromMetalReflectanceNode_5ac8fc39cdbb48a7aa387e63c6e705fdToSR_PBRbaseColor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "MetalReflectanceNode_5ac8fc39cdbb48a7aa387e63c6e705fd" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

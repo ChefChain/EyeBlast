@@ -1,0 +1,343 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <combine3 name = "NormalStrength_OutNode_17a6fb112d3145278b53cdeacbbdd8f8" type = "vector3">
+        <input name = "in1" type = "float" nodename = "NormalStrength_Out_in1Node_17a6fb112d3145278b53cdeacbbdd8f8" />
+        <input name = "in2" type = "float" nodename = "NormalStrength_Out_in2Node_17a6fb112d3145278b53cdeacbbdd8f8" />
+        <input name = "in3" type = "float" nodename = "NormalStrength_Out_in3Node_17a6fb112d3145278b53cdeacbbdd8f8" />
+    </combine3>
+    <swizzle name = "NormalStrength_Out_in1Node_17a6fb112d3145278b53cdeacbbdd8f8" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalStrength___Tmp0Node_17a6fb112d3145278b53cdeacbbdd8f8" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <multiply name = "NormalStrength___Tmp0Node_17a6fb112d3145278b53cdeacbbdd8f8" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "NormalStrength___Tmp0_in1Node_17a6fb112d3145278b53cdeacbbdd8f8" />
+        <input name = "in2" type = "float" nodename = "NormalStrength_StrengthNode_17a6fb112d3145278b53cdeacbbdd8f8" />
+    </multiply>
+    <swizzle name = "NormalStrength___Tmp0_in1Node_17a6fb112d3145278b53cdeacbbdd8f8" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "NormalStrength_InNode_17a6fb112d3145278b53cdeacbbdd8f8" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <dot name = "NormalStrength_InNode_17a6fb112d3145278b53cdeacbbdd8f8" type = "vector3">
+        <input name = "in" type = "vector3" value = "0,0,1" />
+    </dot>
+    <dot name = "NormalStrength_StrengthNode_17a6fb112d3145278b53cdeacbbdd8f8" type = "float">
+        <input name = "in" type = "float" value = "5" />
+    </dot>
+    <swizzle name = "NormalStrength_Out_in2Node_17a6fb112d3145278b53cdeacbbdd8f8" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalStrength___Tmp0Node_17a6fb112d3145278b53cdeacbbdd8f8" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <mix name = "NormalStrength_Out_in3Node_17a6fb112d3145278b53cdeacbbdd8f8" type = "float">
+        <input name = "bg" type = "float" value = "1" />
+        <input name = "fg" type = "float" nodename = "NormalStrength_Out_in3_fgNode_17a6fb112d3145278b53cdeacbbdd8f8" />
+        <input name = "mix" type = "float" nodename = "NormalStrength_Out_in3_mixNode_17a6fb112d3145278b53cdeacbbdd8f8" />
+    </mix>
+    <swizzle name = "NormalStrength_Out_in3_fgNode_17a6fb112d3145278b53cdeacbbdd8f8" type = "float">
+        <input name = "in" type = "vector3" nodename = "NormalStrength_InNode_17a6fb112d3145278b53cdeacbbdd8f8" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <clamp name = "NormalStrength_Out_in3_mixNode_17a6fb112d3145278b53cdeacbbdd8f8" type = "float">
+        <input name = "in" type = "float" nodename = "NormalStrength_StrengthNode_17a6fb112d3145278b53cdeacbbdd8f8" />
+    </clamp>
+    <multiply name = "Normal_OutNode_1448d353c6ac46dcadb9d2494ed68ed8" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Normal_Out_in1Node_1448d353c6ac46dcadb9d2494ed68ed8" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <normal name = "Normal_Out_in1Node_1448d353c6ac46dcadb9d2494ed68ed8" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </normal>
+    <subtract name = "NormalBlend_OutNode_ccc49edcd79a472b8ad6d6b78afacaaf" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalBlend_Out_in1Node_ccc49edcd79a472b8ad6d6b78afacaaf" />
+        <input name = "in2" type = "vector3" nodename = "NormalBlend_uNode_ccc49edcd79a472b8ad6d6b78afacaaf" />
+    </subtract>
+    <multiply name = "NormalBlend_Out_in1Node_ccc49edcd79a472b8ad6d6b78afacaaf" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalBlend_Out_in1_in1Node_ccc49edcd79a472b8ad6d6b78afacaaf" />
+        <input name = "in2" type = "float" nodename = "NormalBlend_Out_in1_in2Node_ccc49edcd79a472b8ad6d6b78afacaaf" />
+    </multiply>
+    <divide name = "NormalBlend_Out_in1_in1Node_ccc49edcd79a472b8ad6d6b78afacaaf" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalBlend_tNode_ccc49edcd79a472b8ad6d6b78afacaaf" />
+        <input name = "in2" type = "float" nodename = "NormalBlend_Out_in1_in1_in2Node_ccc49edcd79a472b8ad6d6b78afacaaf" />
+    </divide>
+    <add name = "NormalBlend_tNode_ccc49edcd79a472b8ad6d6b78afacaaf" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalBlend_t_in1Node_ccc49edcd79a472b8ad6d6b78afacaaf" />
+        <input name = "in2" type = "vector3" value = "0,0,1" />
+    </add>
+    <swizzle name = "NormalBlend_t_in1Node_ccc49edcd79a472b8ad6d6b78afacaaf" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "NormalBlend_ANode_ccc49edcd79a472b8ad6d6b78afacaaf" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <dot name = "NormalBlend_ANode_ccc49edcd79a472b8ad6d6b78afacaaf" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "NormalStrength_OutNode_17a6fb112d3145278b53cdeacbbdd8f8" />
+    </dot>
+    <swizzle name = "NormalBlend_Out_in1_in1_in2Node_ccc49edcd79a472b8ad6d6b78afacaaf" type = "float">
+        <input name = "in" type = "vector3" nodename = "NormalBlend_tNode_ccc49edcd79a472b8ad6d6b78afacaaf" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dotproduct name = "NormalBlend_Out_in1_in2Node_ccc49edcd79a472b8ad6d6b78afacaaf" type = "float">
+        <input name = "in1" type = "vector3" nodename = "NormalBlend_tNode_ccc49edcd79a472b8ad6d6b78afacaaf" />
+        <input name = "in2" type = "vector3" nodename = "NormalBlend_uNode_ccc49edcd79a472b8ad6d6b78afacaaf" />
+    </dotproduct>
+    <multiply name = "NormalBlend_uNode_ccc49edcd79a472b8ad6d6b78afacaaf" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalBlend_u_in1Node_ccc49edcd79a472b8ad6d6b78afacaaf" />
+        <input name = "in2" type = "vector3" value = "-1,-1,1" />
+    </multiply>
+    <swizzle name = "NormalBlend_u_in1Node_ccc49edcd79a472b8ad6d6b78afacaaf" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "NormalBlend_BNode_ccc49edcd79a472b8ad6d6b78afacaaf" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <dot name = "NormalBlend_BNode_ccc49edcd79a472b8ad6d6b78afacaaf" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Normal_OutNode_1448d353c6ac46dcadb9d2494ed68ed8" />
+    </dot>
+    <combine3 name = "NormalUnpack_OutNode_e2a62117509640d0855a7bded8f7fad1" type = "vector3">
+        <input name = "in1" type = "float" nodename = "NormalUnpack_Out_in1Node_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "in2" type = "float" nodename = "NormalUnpack_Out_in2Node_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "in3" type = "float" nodename = "NormalUnpack_Out_in3Node_e2a62117509640d0855a7bded8f7fad1" />
+    </combine3>
+    <swizzle name = "NormalUnpack_Out_in1Node_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalUnpack_xyNode_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <subtract name = "NormalUnpack_xyNode_e2a62117509640d0855a7bded8f7fad1" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "NormalUnpack_xy_in1Node_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "in2" type = "float" value = "1" />
+    </subtract>
+    <multiply name = "NormalUnpack_xy_in1Node_e2a62117509640d0855a7bded8f7fad1" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "NormalUnpack_xy_in1_in1Node_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "in2" type = "float" value = "2" />
+    </multiply>
+    <combine2 name = "NormalUnpack_xy_in1_in1Node_e2a62117509640d0855a7bded8f7fad1" type = "vector2">
+        <input name = "in1" type = "float" nodename = "NormalUnpack_xy_in1_in1_in1Node_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "in2" type = "float" nodename = "NormalUnpack_xy_in1_in1_in2Node_e2a62117509640d0855a7bded8f7fad1" />
+    </combine2>
+    <multiply name = "NormalUnpack_xy_in1_in1_in1Node_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in1" type = "float" nodename = "NormalUnpack_xy_in1_in1_in1_in1Node_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "in2" type = "float" nodename = "NormalUnpack_xy_in1_in1_in1_in2Node_e2a62117509640d0855a7bded8f7fad1" />
+    </multiply>
+    <swizzle name = "NormalUnpack_xy_in1_in1_in1_in1Node_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in" type = "vector4" nodename = "NormalUnpack_InNode_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "NormalUnpack_InNode_e2a62117509640d0855a7bded8f7fad1" type = "vector4">
+        <input name = "in" type = "vector4" value = "1,0.5,0,0.5" />
+    </dot>
+    <swizzle name = "NormalUnpack_xy_in1_in1_in1_in2Node_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in" type = "vector4" nodename = "NormalUnpack_InNode_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <swizzle name = "NormalUnpack_xy_in1_in1_in2Node_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in" type = "vector4" nodename = "NormalUnpack_InNode_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "NormalUnpack_Out_in2Node_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalUnpack_xyNode_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <max name = "NormalUnpack_Out_in3Node_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in1" type = "float" value = "1E-16" />
+        <input name = "in2" type = "float" nodename = "NormalUnpack_Out_in3_in2Node_e2a62117509640d0855a7bded8f7fad1" />
+    </max>
+    <sqrt name = "NormalUnpack_Out_in3_in2Node_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in" type = "float" nodename = "NormalUnpack_Out_in3_in2_inNode_e2a62117509640d0855a7bded8f7fad1" />
+    </sqrt>
+    <subtract name = "NormalUnpack_Out_in3_in2_inNode_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "NormalUnpack_Out_in3_in2_in_in2Node_e2a62117509640d0855a7bded8f7fad1" />
+    </subtract>
+    <clamp name = "NormalUnpack_Out_in3_in2_in_in2Node_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in" type = "float" nodename = "NormalUnpack_Out_in3_in2_in_in2_inNode_e2a62117509640d0855a7bded8f7fad1" />
+    </clamp>
+    <dotproduct name = "NormalUnpack_Out_in3_in2_in_in2_inNode_e2a62117509640d0855a7bded8f7fad1" type = "float">
+        <input name = "in1" type = "vector2" nodename = "NormalUnpack_xyNode_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "in2" type = "vector2" nodename = "NormalUnpack_xyNode_e2a62117509640d0855a7bded8f7fad1" />
+    </dotproduct>
+    <subtract name = "NormalUnpack_OutNode_df765cbf0c4c48ee81c51fcced774793" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalUnpack_Out_in1Node_df765cbf0c4c48ee81c51fcced774793" />
+        <input name = "in2" type = "float" value = "1" />
+    </subtract>
+    <multiply name = "NormalUnpack_Out_in1Node_df765cbf0c4c48ee81c51fcced774793" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalUnpack_Out_in1_in1Node_df765cbf0c4c48ee81c51fcced774793" />
+        <input name = "in2" type = "float" value = "2" />
+    </multiply>
+    <swizzle name = "NormalUnpack_Out_in1_in1Node_df765cbf0c4c48ee81c51fcced774793" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "NormalUnpack_InNode_df765cbf0c4c48ee81c51fcced774793" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <dot name = "NormalUnpack_InNode_df765cbf0c4c48ee81c51fcced774793" type = "vector4">
+        <input name = "in" type = "vector4" value = "0.5,0.5,1,1" />
+    </dot>
+    <add name = "AddNode_2cb6a4f4eef242e8ab62bc78ddb6de60" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalUnpack_OutNode_e2a62117509640d0855a7bded8f7fad1" />
+        <input name = "in2" type = "vector3" nodename = "NormalUnpack_OutNode_df765cbf0c4c48ee81c51fcced774793" />
+    </add>
+    <normalize name = "NormalFromTexture_OutNode_c3eeca2a78284789aa453e06cb5583d6" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "NormalFromTexture_Out_inNode_c3eeca2a78284789aa453e06cb5583d6" />
+    </normalize>
+    <crossproduct name = "NormalFromTexture_Out_inNode_c3eeca2a78284789aa453e06cb5583d6" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalFromTexture_vaNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "vector3" nodename = "NormalFromTexture_vbNode_c3eeca2a78284789aa453e06cb5583d6" />
+    </crossproduct>
+    <combine3 name = "NormalFromTexture_vaNode_c3eeca2a78284789aa453e06cb5583d6" type = "vector3">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+        <input name = "in3" type = "float" nodename = "NormalFromTexture_va_in3Node_c3eeca2a78284789aa453e06cb5583d6" />
+    </combine3>
+    <multiply name = "NormalFromTexture_va_in3Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in1" type = "float" nodename = "NormalFromTexture_va_in3_in1Node_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "float" nodename = "NormalFromTexture_StrengthNode_c3eeca2a78284789aa453e06cb5583d6" />
+    </multiply>
+    <subtract name = "NormalFromTexture_va_in3_in1Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in1" type = "float" nodename = "NormalFromTexture_uSampleNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "float" nodename = "NormalFromTexture_normalSampleNode_c3eeca2a78284789aa453e06cb5583d6" />
+    </subtract>
+    <swizzle name = "NormalFromTexture_uSampleNode_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in" type = "vector4" nodename = "NormalFromTexture_uSample_inNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <RealityKitTexture2D name = "NormalFromTexture_uSample_inNode_c3eeca2a78284789aa453e06cb5583d6" type = "vector4">
+        <input name = "file" type = "filename" nodename = "NormalFromTexture_TextureNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "texcoord" type = "vector2" nodename = "NormalFromTexture_offsetUNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "NormalFromTexture_TextureNode_c3eeca2a78284789aa453e06cb5583d6" type = "filename">
+        <input name = "in" type = "filename" nodename = "_Texture2D" />
+    </dot>
+    <combine2 name = "NormalFromTexture_offsetUNode_c3eeca2a78284789aa453e06cb5583d6" type = "vector2">
+        <input name = "in1" type = "float" nodename = "NormalFromTexture_offsetU_in1Node_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "float" nodename = "NormalFromTexture_offsetU_in2Node_c3eeca2a78284789aa453e06cb5583d6" />
+    </combine2>
+    <add name = "NormalFromTexture_offsetU_in1Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in1" type = "float" nodename = "NormalFromTexture_offsetU_in1_in1Node_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "float" nodename = "NormalFromTexture_uvOffsetNode_c3eeca2a78284789aa453e06cb5583d6" />
+    </add>
+    <swizzle name = "NormalFromTexture_offsetU_in1_in1Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6Add" />
+    </dot>
+    <texcoord name = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6UV" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6Multiply" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6UV" />
+        <input name = "in2" type = "vector2" value = "1,-1" />
+    </multiply>
+    <add name = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6Add" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6Multiply" />
+        <input name = "in2" type = "vector2" value = "0,1" />
+    </add>
+    <multiply name = "NormalFromTexture_uvOffsetNode_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in1" type = "float" nodename = "NormalFromTexture_uvOffset_in1Node_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "float" value = "0.1" />
+    </multiply>
+    <power name = "NormalFromTexture_uvOffset_in1Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in1" type = "float" nodename = "NormalFromTexture_OffsetNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "float" value = "3" />
+    </power>
+    <dot name = "NormalFromTexture_OffsetNode_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <swizzle name = "NormalFromTexture_offsetU_in2Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "NormalFromTexture_normalSampleNode_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in" type = "vector4" nodename = "NormalFromTexture_normalSample_inNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <RealityKitTexture2D name = "NormalFromTexture_normalSample_inNode_c3eeca2a78284789aa453e06cb5583d6" type = "vector4">
+        <input name = "file" type = "filename" nodename = "NormalFromTexture_TextureNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "texcoord" type = "vector2" nodename = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "NormalFromTexture_StrengthNode_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in" type = "float" value = "8" />
+    </dot>
+    <combine3 name = "NormalFromTexture_vbNode_c3eeca2a78284789aa453e06cb5583d6" type = "vector3">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+        <input name = "in3" type = "float" nodename = "NormalFromTexture_vb_in3Node_c3eeca2a78284789aa453e06cb5583d6" />
+    </combine3>
+    <multiply name = "NormalFromTexture_vb_in3Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in1" type = "float" nodename = "NormalFromTexture_vb_in3_in1Node_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "float" nodename = "NormalFromTexture_StrengthNode_c3eeca2a78284789aa453e06cb5583d6" />
+    </multiply>
+    <subtract name = "NormalFromTexture_vb_in3_in1Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in1" type = "float" nodename = "NormalFromTexture_vSampleNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "float" nodename = "NormalFromTexture_normalSampleNode_c3eeca2a78284789aa453e06cb5583d6" />
+    </subtract>
+    <swizzle name = "NormalFromTexture_vSampleNode_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in" type = "vector4" nodename = "NormalFromTexture_vSample_inNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <RealityKitTexture2D name = "NormalFromTexture_vSample_inNode_c3eeca2a78284789aa453e06cb5583d6" type = "vector4">
+        <input name = "file" type = "filename" nodename = "NormalFromTexture_TextureNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "texcoord" type = "vector2" nodename = "NormalFromTexture_offsetVNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <combine2 name = "NormalFromTexture_offsetVNode_c3eeca2a78284789aa453e06cb5583d6" type = "vector2">
+        <input name = "in1" type = "float" nodename = "NormalFromTexture_offsetV_in1Node_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "float" nodename = "NormalFromTexture_offsetV_in2Node_c3eeca2a78284789aa453e06cb5583d6" />
+    </combine2>
+    <swizzle name = "NormalFromTexture_offsetV_in1Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <add name = "NormalFromTexture_offsetV_in2Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in1" type = "float" nodename = "NormalFromTexture_offsetV_in2_in1Node_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "in2" type = "float" nodename = "NormalFromTexture_uvOffsetNode_c3eeca2a78284789aa453e06cb5583d6" />
+    </add>
+    <swizzle name = "NormalFromTexture_offsetV_in2_in1Node_c3eeca2a78284789aa453e06cb5583d6" type = "float">
+        <input name = "in" type = "vector2" nodename = "NormalFromTexture_UVNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <constant name = "_Texture2D" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <GeometryModification name = "SR_NormalVertex" type = "vertexshader">
+        <input name = "normal" type = "vector3" nodename = "SR_NormalVertex_normal_FlipZ" />
+    </GeometryModification>
+    <realitykit_pbr name = "SR_Normal" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" nodename = "CastSwizzleFromAddNode_2cb6a4f4eef242e8ab62bc78ddb6de60ToSR_NormalbaseColor" />
+        <input name = "normal" type = "vector3" nodename = "NormalFromTexture_OutNode_c3eeca2a78284789aa453e06cb5583d6" />
+        <input name = "metallic" type = "float" value = "0" />
+        <input name = "emissiveColor" type = "color3" value = "0,0,0" />
+        <input name = "ambientOcclusion" type = "float" value = "1" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "roughness" type = "float" nodename = "SR_Normal_roughness_OnesComplement" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_Normal" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_NormalVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Normal" />
+    </surfacematerial>
+    <multiply name = "SR_NormalVertex_normal_FlipZ" type = "vector3">
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+        <input name = "in1" type = "vector3" nodename = "NormalBlend_OutNode_ccc49edcd79a472b8ad6d6b78afacaaf" />
+    </multiply>
+    <subtract name = "SR_Normal_roughness_OnesComplement" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </subtract>
+    <swizzle name = "CastSwizzleFromAddNode_2cb6a4f4eef242e8ab62bc78ddb6de60ToSR_NormalbaseColor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "AddNode_2cb6a4f4eef242e8ab62bc78ddb6de60" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

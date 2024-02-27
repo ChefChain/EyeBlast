@@ -1,0 +1,377 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <mix name = "Blend_OutNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" type = "vector2">
+        <input name = "bg" type = "vector2" nodename = "Blend_BaseNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" />
+        <input name = "fg" type = "vector2" nodename = "Blend_Out_fgNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" />
+        <input name = "mix" type = "float" nodename = "Blend_OpacityNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" />
+    </mix>
+    <dot name = "Blend_BaseNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Vector2Node_c9753e07769e4da3a9f7150296bbee2c" />
+    </dot>
+    <absval name = "Blend_Out_fgNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Blend_Out_fg_inNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" />
+    </absval>
+    <subtract name = "Blend_Out_fg_inNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_BlendNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BaseNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" />
+    </subtract>
+    <dot name = "Blend_BlendNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4in" />
+    </dot>
+    <dot name = "Blend_OpacityNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <mix name = "Blend_OutNode_26c30eb78b294882af31226cec7363e0" type = "vector2">
+        <input name = "bg" type = "vector2" nodename = "Blend_BaseNode_26c30eb78b294882af31226cec7363e0" />
+        <input name = "fg" type = "vector2" nodename = "Blend_Out_fgNode_26c30eb78b294882af31226cec7363e0" />
+        <input name = "mix" type = "float" nodename = "Blend_OpacityNode_26c30eb78b294882af31226cec7363e0" />
+    </mix>
+    <dot name = "Blend_BaseNode_26c30eb78b294882af31226cec7363e0" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Vector2Node_c9753e07769e4da3a9f7150296bbee2c" />
+    </dot>
+    <subtract name = "Blend_Out_fgNode_26c30eb78b294882af31226cec7363e0" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_BaseNode_26c30eb78b294882af31226cec7363e0" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BlendNode_26c30eb78b294882af31226cec7363e0" />
+    </subtract>
+    <dot name = "Blend_BlendNode_26c30eb78b294882af31226cec7363e0" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_26c30eb78b294882af31226cec7363e0in" />
+    </dot>
+    <dot name = "Blend_OpacityNode_26c30eb78b294882af31226cec7363e0" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <mix name = "Blend_OutNode_fd72c3e7bcf04c89b737d1261443b481" type = "vector2">
+        <input name = "bg" type = "vector2" nodename = "Blend_BaseNode_fd72c3e7bcf04c89b737d1261443b481" />
+        <input name = "fg" type = "vector2" nodename = "Blend_Out_fgNode_fd72c3e7bcf04c89b737d1261443b481" />
+        <input name = "mix" type = "float" nodename = "Blend_OpacityNode_fd72c3e7bcf04c89b737d1261443b481" />
+    </mix>
+    <dot name = "Blend_BaseNode_fd72c3e7bcf04c89b737d1261443b481" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Vector2Node_c9753e07769e4da3a9f7150296bbee2c" />
+    </dot>
+    <subtract name = "Blend_Out_fgNode_fd72c3e7bcf04c89b737d1261443b481" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_Out_fg_in2Node_fd72c3e7bcf04c89b737d1261443b481" />
+    </subtract>
+    <divide name = "Blend_Out_fg_in2Node_fd72c3e7bcf04c89b737d1261443b481" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_Out_fg_in2_in1Node_fd72c3e7bcf04c89b737d1261443b481" />
+        <input name = "in2" type = "vector2" nodename = "Blend_Out_fg_in2_in2Node_fd72c3e7bcf04c89b737d1261443b481" />
+    </divide>
+    <subtract name = "Blend_Out_fg_in2_in1Node_fd72c3e7bcf04c89b737d1261443b481" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BlendNode_fd72c3e7bcf04c89b737d1261443b481" />
+    </subtract>
+    <dot name = "Blend_BlendNode_fd72c3e7bcf04c89b737d1261443b481" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_fd72c3e7bcf04c89b737d1261443b481in" />
+    </dot>
+    <add name = "Blend_Out_fg_in2_in2Node_fd72c3e7bcf04c89b737d1261443b481" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_BaseNode_fd72c3e7bcf04c89b737d1261443b481" />
+        <input name = "in2" type = "float" value = "1E-12" />
+    </add>
+    <dot name = "Blend_OpacityNode_fd72c3e7bcf04c89b737d1261443b481" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <mix name = "Blend_OutNode_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "bg" type = "vector2" nodename = "Blend_BaseNode_3350e7c65ced4984982d3835565b3870" />
+        <input name = "fg" type = "vector2" nodename = "Blend_Out_fgNode_3350e7c65ced4984982d3835565b3870" />
+        <input name = "mix" type = "float" nodename = "Blend_OpacityNode_3350e7c65ced4984982d3835565b3870" />
+    </mix>
+    <dot name = "Blend_BaseNode_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Vector2Node_c9753e07769e4da3a9f7150296bbee2c" />
+    </dot>
+    <add name = "Blend_Out_fgNode_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_Out_fg_in1Node_3350e7c65ced4984982d3835565b3870" />
+        <input name = "in2" type = "vector2" nodename = "Blend_Out_fg_in2Node_3350e7c65ced4984982d3835565b3870" />
+    </add>
+    <multiply name = "Blend_Out_fg_in1Node_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_result2Node_3350e7c65ced4984982d3835565b3870" />
+        <input name = "in2" type = "vector2" nodename = "Blend_zeroOrOneNode_3350e7c65ced4984982d3835565b3870" />
+    </multiply>
+    <multiply name = "Blend_result2Node_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_result2_in1Node_3350e7c65ced4984982d3835565b3870" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BlendNode_3350e7c65ced4984982d3835565b3870" />
+    </multiply>
+    <multiply name = "Blend_result2_in1Node_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" value = "2,2" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BaseNode_3350e7c65ced4984982d3835565b3870" />
+    </multiply>
+    <dot name = "Blend_BlendNode_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_3350e7c65ced4984982d3835565b3870in" />
+    </dot>
+    <realitykit_step name = "Blend_zeroOrOneNode_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "edge" type = "vector2" nodename = "Blend_BaseNode_3350e7c65ced4984982d3835565b3870" />
+        <input name = "in" type = "vector2" value = "0.5,0.5" />
+    </realitykit_step>
+    <multiply name = "Blend_Out_fg_in2Node_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_Out_fg_in2_in1Node_3350e7c65ced4984982d3835565b3870" />
+        <input name = "in2" type = "vector2" nodename = "Blend_result1Node_3350e7c65ced4984982d3835565b3870" />
+    </multiply>
+    <subtract name = "Blend_Out_fg_in2_in1Node_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_zeroOrOneNode_3350e7c65ced4984982d3835565b3870" />
+    </subtract>
+    <subtract name = "Blend_result1Node_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_result1_in2Node_3350e7c65ced4984982d3835565b3870" />
+    </subtract>
+    <multiply name = "Blend_result1_in2Node_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_result1_in2_in1Node_3350e7c65ced4984982d3835565b3870" />
+        <input name = "in2" type = "vector2" nodename = "Blend_result1_in2_in2Node_3350e7c65ced4984982d3835565b3870" />
+    </multiply>
+    <multiply name = "Blend_result1_in2_in1Node_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" value = "2,2" />
+        <input name = "in2" type = "vector2" nodename = "Blend_result1_in2_in1_in2Node_3350e7c65ced4984982d3835565b3870" />
+    </multiply>
+    <subtract name = "Blend_result1_in2_in1_in2Node_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BaseNode_3350e7c65ced4984982d3835565b3870" />
+    </subtract>
+    <subtract name = "Blend_result1_in2_in2Node_3350e7c65ced4984982d3835565b3870" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BlendNode_3350e7c65ced4984982d3835565b3870" />
+    </subtract>
+    <dot name = "Blend_OpacityNode_3350e7c65ced4984982d3835565b3870" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <mix name = "Blend_OutNode_13995735cb1949ec9173c8b55b84ef17" type = "vector2">
+        <input name = "bg" type = "vector2" nodename = "Blend_BaseNode_13995735cb1949ec9173c8b55b84ef17" />
+        <input name = "fg" type = "vector2" nodename = "Blend_Out_fgNode_13995735cb1949ec9173c8b55b84ef17" />
+        <input name = "mix" type = "float" nodename = "Blend_OpacityNode_13995735cb1949ec9173c8b55b84ef17" />
+    </mix>
+    <dot name = "Blend_BaseNode_13995735cb1949ec9173c8b55b84ef17" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Vector2Node_c9753e07769e4da3a9f7150296bbee2c" />
+    </dot>
+    <add name = "Blend_Out_fgNode_13995735cb1949ec9173c8b55b84ef17" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_BaseNode_13995735cb1949ec9173c8b55b84ef17" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BlendNode_13995735cb1949ec9173c8b55b84ef17" />
+    </add>
+    <dot name = "Blend_BlendNode_13995735cb1949ec9173c8b55b84ef17" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_13995735cb1949ec9173c8b55b84ef17in" />
+    </dot>
+    <dot name = "Blend_OpacityNode_13995735cb1949ec9173c8b55b84ef17" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <mix name = "Blend_OutNode_741535be9d634b2fab643f758675a714" type = "vector2">
+        <input name = "bg" type = "vector2" nodename = "Blend_BaseNode_741535be9d634b2fab643f758675a714" />
+        <input name = "fg" type = "vector2" nodename = "Blend_Out_fgNode_741535be9d634b2fab643f758675a714" />
+        <input name = "mix" type = "float" nodename = "Blend_OpacityNode_741535be9d634b2fab643f758675a714" />
+    </mix>
+    <dot name = "Blend_BaseNode_741535be9d634b2fab643f758675a714" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Vector2Node_c9753e07769e4da3a9f7150296bbee2c" />
+    </dot>
+    <divide name = "Blend_Out_fgNode_741535be9d634b2fab643f758675a714" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_BaseNode_741535be9d634b2fab643f758675a714" />
+        <input name = "in2" type = "vector2" nodename = "Blend_Out_fg_in2Node_741535be9d634b2fab643f758675a714" />
+    </divide>
+    <subtract name = "Blend_Out_fg_in2Node_741535be9d634b2fab643f758675a714" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_Out_fg_in2_in2Node_741535be9d634b2fab643f758675a714" />
+    </subtract>
+    <clamp name = "Blend_Out_fg_in2_in2Node_741535be9d634b2fab643f758675a714" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Blend_BlendNode_741535be9d634b2fab643f758675a714" />
+        <input name = "low" type = "vector2" value = "1E-06,1E-06" />
+        <input name = "high" type = "vector2" value = "0.999999,0.999999" />
+    </clamp>
+    <dot name = "Blend_BlendNode_741535be9d634b2fab643f758675a714" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_741535be9d634b2fab643f758675a714in" />
+    </dot>
+    <dot name = "Blend_OpacityNode_741535be9d634b2fab643f758675a714" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <mix name = "Blend_OutNode_bd64a4e24475466a881ab9effdca912f" type = "vector2">
+        <input name = "bg" type = "vector2" nodename = "Blend_BaseNode_bd64a4e24475466a881ab9effdca912f" />
+        <input name = "fg" type = "vector2" nodename = "Blend_Out_fgNode_bd64a4e24475466a881ab9effdca912f" />
+        <input name = "mix" type = "float" nodename = "Blend_OpacityNode_bd64a4e24475466a881ab9effdca912f" />
+    </mix>
+    <dot name = "Blend_BaseNode_bd64a4e24475466a881ab9effdca912f" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Vector2Node_c9753e07769e4da3a9f7150296bbee2c" />
+    </dot>
+    <subtract name = "Blend_Out_fgNode_bd64a4e24475466a881ab9effdca912f" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_Out_fg_in2Node_bd64a4e24475466a881ab9effdca912f" />
+    </subtract>
+    <multiply name = "Blend_Out_fg_in2Node_bd64a4e24475466a881ab9effdca912f" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_Out_fg_in2_in1Node_bd64a4e24475466a881ab9effdca912f" />
+        <input name = "in2" type = "vector2" nodename = "Blend_Out_fg_in2_in2Node_bd64a4e24475466a881ab9effdca912f" />
+    </multiply>
+    <subtract name = "Blend_Out_fg_in2_in1Node_bd64a4e24475466a881ab9effdca912f" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BlendNode_bd64a4e24475466a881ab9effdca912f" />
+    </subtract>
+    <dot name = "Blend_BlendNode_bd64a4e24475466a881ab9effdca912f" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_bd64a4e24475466a881ab9effdca912fin" />
+    </dot>
+    <subtract name = "Blend_Out_fg_in2_in2Node_bd64a4e24475466a881ab9effdca912f" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BaseNode_bd64a4e24475466a881ab9effdca912f" />
+    </subtract>
+    <dot name = "Blend_OpacityNode_bd64a4e24475466a881ab9effdca912f" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <mix name = "Blend_OutNode_3eeb67c46e7845f4a6c3641fe1a0340b" type = "vector2">
+        <input name = "bg" type = "vector2" nodename = "Blend_BaseNode_3eeb67c46e7845f4a6c3641fe1a0340b" />
+        <input name = "fg" type = "vector2" nodename = "Blend_BlendNode_3eeb67c46e7845f4a6c3641fe1a0340b" />
+        <input name = "mix" type = "float" nodename = "Blend_OpacityNode_3eeb67c46e7845f4a6c3641fe1a0340b" />
+    </mix>
+    <dot name = "Blend_BaseNode_3eeb67c46e7845f4a6c3641fe1a0340b" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Vector2Node_c9753e07769e4da3a9f7150296bbee2c" />
+    </dot>
+    <dot name = "Blend_BlendNode_3eeb67c46e7845f4a6c3641fe1a0340b" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_3eeb67c46e7845f4a6c3641fe1a0340bin" />
+    </dot>
+    <dot name = "Blend_OpacityNode_3eeb67c46e7845f4a6c3641fe1a0340b" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <mix name = "Blend_OutNode_159a88e9544a4a15881838068db4cff8" type = "vector2">
+        <input name = "bg" type = "vector2" nodename = "Blend_BaseNode_159a88e9544a4a15881838068db4cff8" />
+        <input name = "fg" type = "vector2" nodename = "Blend_Out_fgNode_159a88e9544a4a15881838068db4cff8" />
+        <input name = "mix" type = "float" nodename = "Blend_OpacityNode_159a88e9544a4a15881838068db4cff8" />
+    </mix>
+    <dot name = "Blend_BaseNode_159a88e9544a4a15881838068db4cff8" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Vector2Node_c9753e07769e4da3a9f7150296bbee2c" />
+    </dot>
+    <subtract name = "Blend_Out_fgNode_159a88e9544a4a15881838068db4cff8" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_Out_fg_in2Node_159a88e9544a4a15881838068db4cff8" />
+    </subtract>
+    <absval name = "Blend_Out_fg_in2Node_159a88e9544a4a15881838068db4cff8" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "Blend_Out_fg_in2_inNode_159a88e9544a4a15881838068db4cff8" />
+    </absval>
+    <subtract name = "Blend_Out_fg_in2_inNode_159a88e9544a4a15881838068db4cff8" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_Out_fg_in2_in_in1Node_159a88e9544a4a15881838068db4cff8" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BaseNode_159a88e9544a4a15881838068db4cff8" />
+    </subtract>
+    <subtract name = "Blend_Out_fg_in2_in_in1Node_159a88e9544a4a15881838068db4cff8" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,1" />
+        <input name = "in2" type = "vector2" nodename = "Blend_BlendNode_159a88e9544a4a15881838068db4cff8" />
+    </subtract>
+    <dot name = "Blend_BlendNode_159a88e9544a4a15881838068db4cff8" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_159a88e9544a4a15881838068db4cff8in" />
+    </dot>
+    <dot name = "Blend_OpacityNode_159a88e9544a4a15881838068db4cff8" type = "float">
+        <input name = "in" type = "float" value = "0.5" />
+    </dot>
+    <combine3 name = "Vector3Node_551f6b815f984a8eb586d31c77d4444f" type = "vector3">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+        <input name = "in3" type = "float" value = "0" />
+    </combine3>
+    <combine2 name = "Vector2Node_c9753e07769e4da3a9f7150296bbee2c" type = "vector2">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </combine2>
+    <multiply name = "MultiplyNode_fcb33c623a2a41c2857a45eff8f62403" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_OutNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4" />
+        <input name = "in2" type = "vector2" nodename = "Blend_OutNode_26c30eb78b294882af31226cec7363e0" />
+    </multiply>
+    <multiply name = "MultiplyNode_74072703c9634c42a8a677b84bc3b39d" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_OutNode_13995735cb1949ec9173c8b55b84ef17" />
+        <input name = "in2" type = "vector2" nodename = "Blend_OutNode_741535be9d634b2fab643f758675a714" />
+    </multiply>
+    <multiply name = "MultiplyNode_124802c4a1ea4c35990edee6340b63ea" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_OutNode_3eeb67c46e7845f4a6c3641fe1a0340b" />
+        <input name = "in2" type = "vector2" nodename = "Blend_OutNode_bd64a4e24475466a881ab9effdca912f" />
+    </multiply>
+    <multiply name = "MultiplyNode_1b8d10128ef24f37b9458b4da88ea93f" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "MultiplyNode_fcb33c623a2a41c2857a45eff8f62403" />
+        <input name = "in2" type = "vector2" nodename = "Blend_OutNode_fd72c3e7bcf04c89b737d1261443b481" />
+    </multiply>
+    <multiply name = "MultiplyNode_52fcaac855794fedb2086a79967a65c8" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "MultiplyNode_74072703c9634c42a8a677b84bc3b39d" />
+        <input name = "in2" type = "vector2" nodename = "Blend_OutNode_3350e7c65ced4984982d3835565b3870" />
+    </multiply>
+    <multiply name = "MultiplyNode_da5c7173406c4049b4c4c8de08afbd77" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "Blend_OutNode_159a88e9544a4a15881838068db4cff8" />
+        <input name = "in2" type = "vector2" nodename = "MultiplyNode_124802c4a1ea4c35990edee6340b63ea" />
+    </multiply>
+    <add name = "AddNode_d17317d6d1bc431fb5aaef7eed8654e3" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "MultiplyNode_52fcaac855794fedb2086a79967a65c8" />
+        <input name = "in2" type = "vector2" nodename = "MultiplyNode_da5c7173406c4049b4c4c8de08afbd77" />
+    </add>
+    <add name = "AddNode_f70cdec27f294523b79163244ae1e67a" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "MultiplyNode_1b8d10128ef24f37b9458b4da88ea93f" />
+        <input name = "in2" type = "vector2" nodename = "AddNode_d17317d6d1bc431fb5aaef7eed8654e3" />
+    </add>
+    <clamp name = "SaturateNode_0961bf8f24c743c0b59554010c6c2f7a" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "AddNode_f70cdec27f294523b79163244ae1e67a" />
+    </clamp>
+    <combine4 name = "Combine_RGBANode_20b279cfd07345e7b4ae7ba5c1dc08bd" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_20b279cfd07345e7b4ae7ba5c1dc08bd" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_20b279cfd07345e7b4ae7ba5c1dc08bd" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_20b279cfd07345e7b4ae7ba5c1dc08bd" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_20b279cfd07345e7b4ae7ba5c1dc08bd" />
+    </combine4>
+    <dot name = "Combine_RNode_20b279cfd07345e7b4ae7ba5c1dc08bd" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "Combine_GNode_20b279cfd07345e7b4ae7ba5c1dc08bd" type = "float">
+        <input name = "in" type = "float" nodename = "SwizzleNode_acd8b1aa1dcd49a896e75fa9b607dc26" />
+    </dot>
+    <dot name = "Combine_BNode_20b279cfd07345e7b4ae7ba5c1dc08bd" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "Combine_ANode_20b279cfd07345e7b4ae7ba5c1dc08bd" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_20b279cfd07345e7b4ae7ba5c1dc08bd" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_20b279cfd07345e7b4ae7ba5c1dc08bd" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_20b279cfd07345e7b4ae7ba5c1dc08bd" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_20b279cfd07345e7b4ae7ba5c1dc08bd" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_20b279cfd07345e7b4ae7ba5c1dc08bd" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_20b279cfd07345e7b4ae7ba5c1dc08bd" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_20b279cfd07345e7b4ae7ba5c1dc08bd" />
+    </combine2>
+    <swizzle name = "SwizzleNode_acd8b1aa1dcd49a896e75fa9b607dc26" type = "float">
+        <input name = "in" type = "vector2" nodename = "SaturateNode_0961bf8f24c743c0b59554010c6c2f7a" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <GeometryModification name = "SR_BlendVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Blend" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromCombine_RGBNode_20b279cfd07345e7b4ae7ba5c1dc08bdToSR_Blendcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Blend" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_BlendVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Blend" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_8f5dd83a9ce74a44a9f33dfd1d4d1ba4in" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_551f6b815f984a8eb586d31c77d4444f" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_26c30eb78b294882af31226cec7363e0in" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_551f6b815f984a8eb586d31c77d4444f" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_fd72c3e7bcf04c89b737d1261443b481in" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_551f6b815f984a8eb586d31c77d4444f" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_3350e7c65ced4984982d3835565b3870in" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_551f6b815f984a8eb586d31c77d4444f" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_13995735cb1949ec9173c8b55b84ef17in" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_551f6b815f984a8eb586d31c77d4444f" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_741535be9d634b2fab643f758675a714in" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_551f6b815f984a8eb586d31c77d4444f" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_bd64a4e24475466a881ab9effdca912fin" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_551f6b815f984a8eb586d31c77d4444f" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_3eeb67c46e7845f4a6c3641fe1a0340bin" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_551f6b815f984a8eb586d31c77d4444f" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVector3Node_551f6b815f984a8eb586d31c77d4444fToBlend_BlendNode_159a88e9544a4a15881838068db4cff8in" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_551f6b815f984a8eb586d31c77d4444f" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromCombine_RGBNode_20b279cfd07345e7b4ae7ba5c1dc08bdToSR_Blendcolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "Combine_RGBNode_20b279cfd07345e7b4ae7ba5c1dc08bd" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

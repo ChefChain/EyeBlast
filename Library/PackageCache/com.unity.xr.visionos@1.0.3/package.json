@@ -1,0 +1,39 @@
+{
+  "name": "com.unity.xr.visionos",
+  "displayName": "Apple visionOS XR Plugin",
+  "version": "1.0.3",
+  "unity": "2022.3",
+  "unityRelease": "15f1",
+  "description": "Provides support for Apple visionOS XR features. This includes build post-processing code and the following subsystem implementations:\n  - XRSessionSubsystem\n  - XRDisplaySubsystem\n  - XRInputSubsystem\n  - XRMeshSubsystem\n  - XRPlaneSubsystem\n  - XRImageTrackingSubsystem\n  - XRAnchorSubsystem\n  - XRHandSubsystem\nUnity PolySpatial and visionOS support is only available to Unity Pro, Unity Enterprise, and Unity Industry users. Learn more about these plans at unity.com/pricing.",
+  "keywords": [
+    "xreditorsubsystem"
+  ],
+  "dependencies": {
+    "com.unity.xr.arfoundation": "5.1.0",
+    "com.unity.xr.management": "4.3.3"
+  },
+  "_upm": {
+    "changelog": "### Added\n- Added a Project Validation rule to check for UniversalRenderData with `Depth Texture Mode` set to anything other than `After Opaques`, which will cause rendering glitches when no opaque objects are visible.\n- Added a workaround to build the post processor for `ARM64 branch out of range` error which can occur when building in Xcode.\n- Added `interactionRayRotation` control which exposes a gaze ray which can be used for draggable UI elements. It begins with a rotation pointing in the direction of the gaze ray, and follows a position which is offset by the change in `devicePosition`. In practice, users can gaze at a slider, pinch their fingers and move their hand right and left to drag it side-to-side.\n- Added a UI canvas to `Main` sample scene, configured to use the `XRUIInputModule` from `com.unity.xr.interaction.toolkit`.\n- Added an `InputSystem UI` scene configured to use the `InputSystemUIInputModule` from `com.unity.inputsystem`.\n- Added an affordance to the Apple visionOS settings UI to install PolySpatial packages if the user switches AppMode to Mixed Reality or clicks the Install Packages button visible when AppMode is set to Mixed Reality.\n- Add Windowed AppMode.\n\n### Changed\n- Updated Xcode version used to build native libraries to 15.2 (15C500b)\n- Renamed `devicePosition` and `deviceRotation` input controls to `inputDevicePosition` and `inputDeviceRotation`.\n\n### Deprecated\n\n### Removed\n\n### Fixed\n- Use the correct deployment target version `1.0` when invoking `actool` to compile image marker libraries.\n- Fixed an issue in samples where the world anchor that is placed by user input used an empty GameObject instead of a visible prefab.\n- Fixed the `HandVisualizer` script in package samples to properly disable joint visual GameObjects when the joint is not tracked.\n\n### Security"
+  },
+  "upmCi": {
+    "footprint": "7ec014e364bfcc8b087f4a79b516ed3bba290edf"
+  },
+  "documentationUrl": "https://docs.unity3d.com/Packages/com.unity.xr.visionos@1.0/manual/index.html",
+  "repository": {
+    "url": "https://github.cds.internal.unity3d.com/unity/quantum.git",
+    "type": "git",
+    "revision": "1fa512302493eca451a043e235682c16e75a51f8"
+  },
+  "samples": [
+    {
+      "displayName": "VR Sample - Built-in",
+      "description": "A sample scene and supporting assets for the built-in render pipeline demonstrating VR features. This sample requires the XR Interaction Toolkit to be added to your project.",
+      "path": "Samples~/VRSampleBuiltin"
+    },
+    {
+      "displayName": "VR Sample - URP",
+      "description": "A sample scene and supporting assets for the Universal Render Pipeline demonstrating VR features. This sample requires the XR Interaction Toolkit to be added to your project.",
+      "path": "Samples~/VRSampleURP"
+    }
+  ]
+}

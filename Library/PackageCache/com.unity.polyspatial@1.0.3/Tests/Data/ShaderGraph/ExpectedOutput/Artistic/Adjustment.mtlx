@@ -1,0 +1,357 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <absval name = "InvertColors_OutNode_5237ae5963fa42938c49854cd99f24de" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "InvertColors_Out_inNode_5237ae5963fa42938c49854cd99f24de" />
+    </absval>
+    <subtract name = "InvertColors_Out_inNode_5237ae5963fa42938c49854cd99f24de" type = "vector4">
+        <input name = "in1" type = "vector4" value = "1,1,1,0" />
+        <input name = "in2" type = "vector4" nodename = "InvertColors_InNode_5237ae5963fa42938c49854cd99f24de" />
+    </subtract>
+    <dot name = "InvertColors_InNode_5237ae5963fa42938c49854cd99f24de" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToInvertColors_InNode_5237ae5963fa42938c49854cd99f24dein" />
+    </dot>
+    <constant name = "ColorNode_57fe4d80a31b47a9b6c2d6e5656f9121" type = "color4">
+        <input name = "value" type = "color4" value = "0,1,1,1" />
+    </constant>
+    <combine3 name = "ChannelMixer_OutNode_8e0c9d593cc64871934b785d817efecc" type = "vector3">
+        <input name = "in1" type = "float" nodename = "ChannelMixer_Out_in1Node_8e0c9d593cc64871934b785d817efecc" />
+        <input name = "in2" type = "float" nodename = "ChannelMixer_Out_in2Node_8e0c9d593cc64871934b785d817efecc" />
+        <input name = "in3" type = "float" nodename = "ChannelMixer_Out_in3Node_8e0c9d593cc64871934b785d817efecc" />
+    </combine3>
+    <dotproduct name = "ChannelMixer_Out_in1Node_8e0c9d593cc64871934b785d817efecc" type = "float">
+        <input name = "in1" type = "vector3" nodename = "ChannelMixer_InNode_8e0c9d593cc64871934b785d817efecc" />
+        <input name = "in2" type = "vector3" value = "0,0,1" />
+    </dotproduct>
+    <dot name = "ChannelMixer_InNode_8e0c9d593cc64871934b785d817efecc" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToChannelMixer_InNode_8e0c9d593cc64871934b785d817efeccin" />
+    </dot>
+    <dotproduct name = "ChannelMixer_Out_in2Node_8e0c9d593cc64871934b785d817efecc" type = "float">
+        <input name = "in1" type = "vector3" nodename = "ChannelMixer_InNode_8e0c9d593cc64871934b785d817efecc" />
+        <input name = "in2" type = "vector3" value = "0,0,0" />
+    </dotproduct>
+    <dotproduct name = "ChannelMixer_Out_in3Node_8e0c9d593cc64871934b785d817efecc" type = "float">
+        <input name = "in1" type = "vector3" nodename = "ChannelMixer_InNode_8e0c9d593cc64871934b785d817efecc" />
+        <input name = "in2" type = "vector3" value = "1,0,0" />
+    </dotproduct>
+    <add name = "AddNode_47a3b549873943a0acf4e40ef38da8ff" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "CastSwizzleFromInvertColors_OutNode_5237ae5963fa42938c49854cd99f24deToAddNode_47a3b549873943a0acf4e40ef38da8ffin1" />
+        <input name = "in2" type = "vector3" nodename = "ChannelMixer_OutNode_8e0c9d593cc64871934b785d817efecc" />
+    </add>
+    <mix name = "ReplaceColor_OutNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "vector3">
+        <input name = "bg" type = "vector3" nodename = "ReplaceColor_Out_bgNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+        <input name = "fg" type = "vector3" nodename = "ReplaceColor_InNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+        <input name = "mix" type = "float" nodename = "ReplaceColor_Out_mixNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+    </mix>
+    <convert name = "ReplaceColor_Out_bgNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "vector3">
+        <input name = "in" type = "color3" nodename = "ReplaceColor_ToNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+    </convert>
+    <dot name = "ReplaceColor_ToNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "color3">
+        <input name = "in" type = "color3" value = "1,0,0" />
+    </dot>
+    <dot name = "ReplaceColor_InNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToReplaceColor_InNode_f2f6715e86a34a67b7e749c0abb3e9cbin" />
+    </dot>
+    <clamp name = "ReplaceColor_Out_mixNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "float">
+        <input name = "in" type = "float" nodename = "ReplaceColor_Out_mix_inNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+    </clamp>
+    <divide name = "ReplaceColor_Out_mix_inNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "float">
+        <input name = "in1" type = "float" nodename = "ReplaceColor_Out_mix_in_in1Node_f2f6715e86a34a67b7e749c0abb3e9cb" />
+        <input name = "in2" type = "float" nodename = "ReplaceColor_Out_mix_in_in2Node_f2f6715e86a34a67b7e749c0abb3e9cb" />
+    </divide>
+    <subtract name = "ReplaceColor_Out_mix_in_in1Node_f2f6715e86a34a67b7e749c0abb3e9cb" type = "float">
+        <input name = "in1" type = "float" nodename = "ReplaceColor_DistanceNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+        <input name = "in2" type = "float" nodename = "ReplaceColor_RangeNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+    </subtract>
+    <magnitude name = "ReplaceColor_DistanceNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "float">
+        <input name = "in" type = "vector3" nodename = "ReplaceColor_Distance_inNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+    </magnitude>
+    <subtract name = "ReplaceColor_Distance_inNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "ReplaceColor_Distance_in_in1Node_f2f6715e86a34a67b7e749c0abb3e9cb" />
+        <input name = "in2" type = "vector3" nodename = "ReplaceColor_InNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+    </subtract>
+    <convert name = "ReplaceColor_Distance_in_in1Node_f2f6715e86a34a67b7e749c0abb3e9cb" type = "vector3">
+        <input name = "in" type = "color3" nodename = "ReplaceColor_FromNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+    </convert>
+    <dot name = "ReplaceColor_FromNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "color3">
+        <input name = "in" type = "color3" value = "0,0.003095769,1" />
+    </dot>
+    <dot name = "ReplaceColor_RangeNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "float">
+        <input name = "in" type = "float" value = "0.75" />
+    </dot>
+    <max name = "ReplaceColor_Out_mix_in_in2Node_f2f6715e86a34a67b7e749c0abb3e9cb" type = "float">
+        <input name = "in1" type = "float" nodename = "ReplaceColor_FuzzinessNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+        <input name = "in2" type = "float" value = "1E-05" />
+    </max>
+    <dot name = "ReplaceColor_FuzzinessNode_f2f6715e86a34a67b7e749c0abb3e9cb" type = "float">
+        <input name = "in" type = "float" value = "0.75" />
+    </dot>
+    <add name = "AddNode_7269114ba96049a09c20e7e20860ea6f" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "AddNode_47a3b549873943a0acf4e40ef38da8ff" />
+        <input name = "in2" type = "vector3" nodename = "ReplaceColor_OutNode_f2f6715e86a34a67b7e749c0abb3e9cb" />
+    </add>
+    <transformmatrix name = "WhiteBalance_OutNode_b7ab975089154bb19d734dec4483f512" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "WhiteBalance_Out_inNode_b7ab975089154bb19d734dec4483f512" />
+        <input name = "mat" type = "matrix33" nodename = "WhiteBalance_LMS_2_LIN_MATNode_b7ab975089154bb19d734dec4483f512" />
+    </transformmatrix>
+    <multiply name = "WhiteBalance_Out_inNode_b7ab975089154bb19d734dec4483f512" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "WhiteBalance_lmsNode_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "vector3" nodename = "WhiteBalance_balanceNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <transformmatrix name = "WhiteBalance_lmsNode_b7ab975089154bb19d734dec4483f512" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "WhiteBalance_InNode_b7ab975089154bb19d734dec4483f512" />
+        <input name = "mat" type = "matrix33" nodename = "WhiteBalance_LIN_2_LMS_MATNode_b7ab975089154bb19d734dec4483f512" />
+    </transformmatrix>
+    <dot name = "WhiteBalance_InNode_b7ab975089154bb19d734dec4483f512" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToWhiteBalance_InNode_b7ab975089154bb19d734dec4483f512in" />
+    </dot>
+    <dot name = "WhiteBalance_LIN_2_LMS_MATNode_b7ab975089154bb19d734dec4483f512" type = "matrix33">
+        <input name = "in" type = "matrix33" value = "0.390405,0.549941,0.00892632,0.0708416,0.963172,0.00135775,0.0231082,0.128021,0.936245" />
+    </dot>
+    <combine3 name = "WhiteBalance_balanceNode_b7ab975089154bb19d734dec4483f512" type = "vector3">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_balance_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_balance_in2Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in3" type = "float" nodename = "WhiteBalance_balance_in3Node_b7ab975089154bb19d734dec4483f512" />
+    </combine3>
+    <divide name = "WhiteBalance_balance_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_balance_in1_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_balance_in1_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </divide>
+    <swizzle name = "WhiteBalance_balance_in1_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in" type = "vector3" nodename = "WhiteBalance_w1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "WhiteBalance_w1Node_b7ab975089154bb19d734dec4483f512" type = "vector3">
+        <input name = "in" type = "vector3" value = "0.949237,1.03542,1.08728" />
+    </dot>
+    <swizzle name = "WhiteBalance_balance_in1_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in" type = "vector3" nodename = "WhiteBalance_w2Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <combine3 name = "WhiteBalance_w2Node_b7ab975089154bb19d734dec4483f512" type = "vector3">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_LNode_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_MNode_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in3" type = "float" nodename = "WhiteBalance_SNode_b7ab975089154bb19d734dec4483f512" />
+    </combine3>
+    <subtract name = "WhiteBalance_LNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_L_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_L_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </subtract>
+    <add name = "WhiteBalance_L_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_L_in1_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_L_in1_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </add>
+    <multiply name = "WhiteBalance_L_in1_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "0.7328" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_XNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <divide name = "WhiteBalance_XNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_X_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_yNode_b7ab975089154bb19d734dec4483f512" />
+    </divide>
+    <multiply name = "WhiteBalance_X_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <dot name = "WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <subtract name = "WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "0.31271" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_x_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </subtract>
+    <multiply name = "WhiteBalance_x_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_t1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_x_in2_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <divide name = "WhiteBalance_t1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_t1_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" value = "6" />
+    </divide>
+    <multiply name = "WhiteBalance_t1_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_TemperatureNode_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" value = "10" />
+    </multiply>
+    <dot name = "WhiteBalance_TemperatureNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <ifequal name = "WhiteBalance_x_in2_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "value1" type = "float" nodename = "WhiteBalance_x_in2_in2_value1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "float" value = "0.05" />
+        <input name = "in2" type = "float" value = "0.1" />
+    </ifequal>
+    <ifgreatereq name = "WhiteBalance_x_in2_in2_value1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "value1" type = "float" nodename = "WhiteBalance_t1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+    </ifgreatereq>
+    <add name = "WhiteBalance_yNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_standardIlluminantYNode_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_y_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </add>
+    <subtract name = "WhiteBalance_standardIlluminantYNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_standardIlluminantY_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" value = "0.2750951" />
+    </subtract>
+    <subtract name = "WhiteBalance_standardIlluminantY_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_standardIlluminantY_in1_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_standardIlluminantY_in1_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </subtract>
+    <multiply name = "WhiteBalance_standardIlluminantY_in1_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "2.87" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <multiply name = "WhiteBalance_standardIlluminantY_in1_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_standardIlluminantY_in1_in2_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <multiply name = "WhiteBalance_standardIlluminantY_in1_in2_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "3" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <multiply name = "WhiteBalance_y_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_t2Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" value = "0.05" />
+    </multiply>
+    <divide name = "WhiteBalance_t2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_t2_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" value = "6" />
+    </divide>
+    <multiply name = "WhiteBalance_t2_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_TintNode_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" value = "10" />
+    </multiply>
+    <dot name = "WhiteBalance_TintNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in" type = "float" value = "4" />
+    </dot>
+    <multiply name = "WhiteBalance_L_in1_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "0.4296" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <multiply name = "WhiteBalance_L_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "0.1624" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_ZNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <divide name = "WhiteBalance_ZNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_Z_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_yNode_b7ab975089154bb19d734dec4483f512" />
+    </divide>
+    <multiply name = "WhiteBalance_Z_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_Z_in1_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <subtract name = "WhiteBalance_Z_in1_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_Z_in1_in2_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_yNode_b7ab975089154bb19d734dec4483f512" />
+    </subtract>
+    <subtract name = "WhiteBalance_Z_in1_in2_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512" />
+    </subtract>
+    <add name = "WhiteBalance_MNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_M_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_M_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </add>
+    <add name = "WhiteBalance_M_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_M_in1_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_M_in1_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </add>
+    <multiply name = "WhiteBalance_M_in1_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "-0.7036" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_XNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <multiply name = "WhiteBalance_M_in1_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "1.6975" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <multiply name = "WhiteBalance_M_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "0.0061" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_ZNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <add name = "WhiteBalance_SNode_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_S_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_S_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </add>
+    <add name = "WhiteBalance_S_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_S_in1_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_S_in1_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </add>
+    <multiply name = "WhiteBalance_S_in1_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "0.003" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_XNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <multiply name = "WhiteBalance_S_in1_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "0.0136" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <multiply name = "WhiteBalance_S_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" value = "0.9834" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_ZNode_b7ab975089154bb19d734dec4483f512" />
+    </multiply>
+    <divide name = "WhiteBalance_balance_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_balance_in2_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_balance_in2_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </divide>
+    <swizzle name = "WhiteBalance_balance_in2_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in" type = "vector3" nodename = "WhiteBalance_w1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "WhiteBalance_balance_in2_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in" type = "vector3" nodename = "WhiteBalance_w2Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "WhiteBalance_balance_in3Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in1" type = "float" nodename = "WhiteBalance_balance_in3_in1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "in2" type = "float" nodename = "WhiteBalance_balance_in3_in2Node_b7ab975089154bb19d734dec4483f512" />
+    </divide>
+    <swizzle name = "WhiteBalance_balance_in3_in1Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in" type = "vector3" nodename = "WhiteBalance_w1Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "WhiteBalance_balance_in3_in2Node_b7ab975089154bb19d734dec4483f512" type = "float">
+        <input name = "in" type = "vector3" nodename = "WhiteBalance_w2Node_b7ab975089154bb19d734dec4483f512" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "WhiteBalance_LMS_2_LIN_MATNode_b7ab975089154bb19d734dec4483f512" type = "matrix33">
+        <input name = "in" type = "matrix33" value = "2.85847,-1.62879,-0.024891,-0.210182,1.1582,0.000324281,-0.041812,-0.118169,1.06867" />
+    </dot>
+    <add name = "AddNode_9fc47f374fc34cbeb63b77625c20853b" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "AddNode_7269114ba96049a09c20e7e20860ea6f" />
+        <input name = "in2" type = "vector3" nodename = "WhiteBalance_OutNode_b7ab975089154bb19d734dec4483f512" />
+    </add>
+    <GeometryModification name = "SR_AdjustmentVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Adjustment" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromAddNode_9fc47f374fc34cbeb63b77625c20853bToSR_Adjustmentcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Adjustment" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_AdjustmentVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Adjustment" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToInvertColors_InNode_5237ae5963fa42938c49854cd99f24dein" type = "vector4">
+        <input name = "in" type = "color4" nodename = "ColorNode_57fe4d80a31b47a9b6c2d6e5656f9121" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToChannelMixer_InNode_8e0c9d593cc64871934b785d817efeccin" type = "vector3">
+        <input name = "in" type = "color4" nodename = "ColorNode_57fe4d80a31b47a9b6c2d6e5656f9121" />
+        <input name = "channels" type = "string" value = "rgb" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromInvertColors_OutNode_5237ae5963fa42938c49854cd99f24deToAddNode_47a3b549873943a0acf4e40ef38da8ffin1" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "InvertColors_OutNode_5237ae5963fa42938c49854cd99f24de" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToReplaceColor_InNode_f2f6715e86a34a67b7e749c0abb3e9cbin" type = "vector3">
+        <input name = "in" type = "color4" nodename = "ColorNode_57fe4d80a31b47a9b6c2d6e5656f9121" />
+        <input name = "channels" type = "string" value = "rgb" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToWhiteBalance_InNode_b7ab975089154bb19d734dec4483f512in" type = "vector3">
+        <input name = "in" type = "color4" nodename = "ColorNode_57fe4d80a31b47a9b6c2d6e5656f9121" />
+        <input name = "channels" type = "string" value = "rgb" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromAddNode_9fc47f374fc34cbeb63b77625c20853bToSR_Adjustmentcolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "AddNode_9fc47f374fc34cbeb63b77625c20853b" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

@@ -1,0 +1,732 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Adjustment"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Adjustment/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Adjustment/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Adjustment/CastSwizzleFromAddNode_9fc47f374fc34cbeb63b77625c20853bToSR_Adjustmentcolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromAddNode_9fc47f374fc34cbeb63b77625c20853bToSR_Adjustmentcolor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/AddNode_9fc47f374fc34cbeb63b77625c20853b.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "AddNode_9fc47f374fc34cbeb63b77625c20853b"
+            {
+                uniform token info:id = "ND_add_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/AddNode_7269114ba96049a09c20e7e20860ea6f.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_OutNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "AddNode_7269114ba96049a09c20e7e20860ea6f"
+            {
+                uniform token info:id = "ND_add_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/AddNode_47a3b549873943a0acf4e40ef38da8ff.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_OutNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "AddNode_47a3b549873943a0acf4e40ef38da8ff"
+            {
+                uniform token info:id = "ND_add_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/CastSwizzleFromInvertColors_OutNode_5237ae5963fa42938c49854cd99f24deToAddNode_47a3b549873943a0acf4e40ef38da8ffin1.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/ChannelMixer_OutNode_8e0c9d593cc64871934b785d817efecc.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromInvertColors_OutNode_5237ae5963fa42938c49854cd99f24deToAddNode_47a3b549873943a0acf4e40ef38da8ffin1"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/InvertColors_OutNode_5237ae5963fa42938c49854cd99f24de.outputs:out>
+                string inputs:channels = "xyz"
+                float3 outputs:out
+            }
+
+            def Shader "InvertColors_OutNode_5237ae5963fa42938c49854cd99f24de"
+            {
+                uniform token info:id = "ND_absval_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/InvertColors_Out_inNode_5237ae5963fa42938c49854cd99f24de.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "InvertColors_Out_inNode_5237ae5963fa42938c49854cd99f24de"
+            {
+                uniform token info:id = "ND_subtract_vector4"
+                float4 inputs:in1 = (1, 1, 1, 0)
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/InvertColors_InNode_5237ae5963fa42938c49854cd99f24de.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "InvertColors_InNode_5237ae5963fa42938c49854cd99f24de"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToInvertColors_InNode_5237ae5963fa42938c49854cd99f24dein.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToInvertColors_InNode_5237ae5963fa42938c49854cd99f24dein"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_Adjustment/ColorNode_57fe4d80a31b47a9b6c2d6e5656f9121.outputs:out>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "ColorNode_57fe4d80a31b47a9b6c2d6e5656f9121"
+            {
+                uniform token info:id = "ND_constant_color4"
+                color4f inputs:value = (0, 1, 1, 1)
+                color4f outputs:out
+            }
+
+            def Shader "WhiteBalance_OutNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_transformmatrix_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_Out_inNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                matrix3d inputs:mat.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_LMS_2_LIN_MATNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "WhiteBalance_LMS_2_LIN_MATNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_dot_matrix33"
+                matrix3d inputs:in = ((2.85847, -1.62879, -0.024891), (-0.210182, 1.1582, 0.000324281), (-0.041812, -0.118169, 1.06867))
+                matrix3d outputs:out
+            }
+
+            def Shader "WhiteBalance_Out_inNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_lmsNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_balanceNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "WhiteBalance_balanceNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_balance_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_balance_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_balance_in3Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "WhiteBalance_balance_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_balance_in1_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_balance_in1_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_balance_in1_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_w1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_w1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in = (0.949237, 1.03542, 1.08728)
+                float3 outputs:out
+            }
+
+            def Shader "WhiteBalance_lmsNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_transformmatrix_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_InNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                matrix3d inputs:mat.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_LIN_2_LMS_MATNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "WhiteBalance_LIN_2_LMS_MATNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_dot_matrix33"
+                matrix3d inputs:in = ((0.390405, 0.549941, 0.00892632), (0.0708416, 0.963172, 0.00135775), (0.0231082, 0.128021, 0.936245))
+                matrix3d outputs:out
+            }
+
+            def Shader "WhiteBalance_InNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToWhiteBalance_InNode_b7ab975089154bb19d734dec4483f512in.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToWhiteBalance_InNode_b7ab975089154bb19d734dec4483f512in"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector3"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_Adjustment/ColorNode_57fe4d80a31b47a9b6c2d6e5656f9121.outputs:out>
+                string inputs:channels = "rgb"
+                float3 outputs:out
+            }
+
+            def Shader "ReplaceColor_OutNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_mix_vector3"
+                float3 inputs:bg.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_Out_bgNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float3 inputs:fg.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_InNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_Out_mixNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ReplaceColor_Out_mixNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_clamp_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_Out_mix_inNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ReplaceColor_Out_mix_inNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_Out_mix_in_in1Node_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_Out_mix_in_in2Node_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ReplaceColor_Out_mix_in_in1Node_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_DistanceNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_RangeNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ReplaceColor_DistanceNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_magnitude_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_Distance_inNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "ReplaceColor_Distance_inNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_Distance_in_in1Node_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_InNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ReplaceColor_Distance_in_in1Node_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_convert_color3_vector3"
+                color3f inputs:in.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_FromNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ReplaceColor_FromNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_dot_color3"
+                color3f inputs:in = (0, 0.003095769, 1)
+                color3f outputs:out
+            }
+
+            def Shader "ReplaceColor_InNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToReplaceColor_InNode_f2f6715e86a34a67b7e749c0abb3e9cbin.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToReplaceColor_InNode_f2f6715e86a34a67b7e749c0abb3e9cbin"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector3"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_Adjustment/ColorNode_57fe4d80a31b47a9b6c2d6e5656f9121.outputs:out>
+                string inputs:channels = "rgb"
+                float3 outputs:out
+            }
+
+            def Shader "ReplaceColor_Out_bgNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_convert_color3_vector3"
+                color3f inputs:in.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_ToNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ReplaceColor_ToNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_dot_color3"
+                color3f inputs:in = (1, 0, 0)
+                color3f outputs:out
+            }
+
+            def Shader "ChannelMixer_OutNode_8e0c9d593cc64871934b785d817efecc"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/ChannelMixer_Out_in1Node_8e0c9d593cc64871934b785d817efecc.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/ChannelMixer_Out_in2Node_8e0c9d593cc64871934b785d817efecc.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Adjustment/ChannelMixer_Out_in3Node_8e0c9d593cc64871934b785d817efecc.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "ChannelMixer_Out_in3Node_8e0c9d593cc64871934b785d817efecc"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/ChannelMixer_InNode_8e0c9d593cc64871934b785d817efecc.outputs:out>
+                float3 inputs:in2 = (1, 0, 0)
+                float outputs:out
+            }
+
+            def Shader "ChannelMixer_InNode_8e0c9d593cc64871934b785d817efecc"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToChannelMixer_InNode_8e0c9d593cc64871934b785d817efeccin.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorNode_57fe4d80a31b47a9b6c2d6e5656f9121ToChannelMixer_InNode_8e0c9d593cc64871934b785d817efeccin"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector3"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_Adjustment/ColorNode_57fe4d80a31b47a9b6c2d6e5656f9121.outputs:out>
+                string inputs:channels = "rgb"
+                float3 outputs:out
+            }
+
+            def Shader "ChannelMixer_Out_in2Node_8e0c9d593cc64871934b785d817efecc"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/ChannelMixer_InNode_8e0c9d593cc64871934b785d817efecc.outputs:out>
+                float3 inputs:in2 = (0, 0, 0)
+                float outputs:out
+            }
+
+            def Shader "ChannelMixer_Out_in1Node_8e0c9d593cc64871934b785d817efecc"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/ChannelMixer_InNode_8e0c9d593cc64871934b785d817efecc.outputs:out>
+                float3 inputs:in2 = (0, 0, 1)
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_balance_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_balance_in2_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_balance_in2_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_balance_in2_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_w2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_w2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_LNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_MNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_SNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "WhiteBalance_SNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_S_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_S_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_S_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 0.9834
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_ZNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_ZNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_Z_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_yNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_Z_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_Z_in1_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_S_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_S_in1_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_S_in1_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_S_in1_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 0.0136
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_S_in1_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 0.003
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_XNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_XNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_X_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_yNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_X_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 0.31271
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_x_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_x_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_t1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_x_in2_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_x_in2_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_ifequal_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_x_in2_in2_value1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:value2 = 0
+                float inputs:in1 = 0.05
+                float inputs:in2 = 0.1
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_x_in2_in2_value1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_t1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:value2 = 0
+                float inputs:in1 = 0
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_t1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_t1_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2 = 6
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_t1_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_TemperatureNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2 = 10
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_TemperatureNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_MNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_M_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_M_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_M_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 0.0061
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_ZNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_M_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_M_in1_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_M_in1_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_M_in1_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 1.6975
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_M_in1_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = -0.7036
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_XNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_LNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_L_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_L_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_L_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 0.1624
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_ZNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_L_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_L_in1_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_L_in1_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_L_in1_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 0.4296
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_YNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_L_in1_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 0.7328
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_XNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_balance_in2_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_w1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_balance_in3Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_balance_in3_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_balance_in3_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_balance_in3_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_w2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                string inputs:channels = "z"
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_balance_in3_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_w1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                string inputs:channels = "z"
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_balance_in1_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_w2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "ReplaceColor_Out_mix_in_in2Node_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_max_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/ReplaceColor_FuzzinessNode_f2f6715e86a34a67b7e749c0abb3e9cb.outputs:out>
+                float inputs:in2 = 1E-05
+                float outputs:out
+            }
+
+            def Shader "ReplaceColor_FuzzinessNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.75
+                float outputs:out
+            }
+
+            def Shader "ReplaceColor_RangeNode_f2f6715e86a34a67b7e749c0abb3e9cb"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0.75
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_yNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_standardIlluminantYNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_y_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_y_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_t2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2 = 0.05
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_t2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_t2_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2 = 6
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_t2_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_TintNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2 = 10
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_TintNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 4
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_standardIlluminantYNode_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_standardIlluminantY_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2 = 0.2750951
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_standardIlluminantY_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_standardIlluminantY_in1_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_standardIlluminantY_in1_in2Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_standardIlluminantY_in1_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_standardIlluminantY_in1_in2_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_standardIlluminantY_in1_in2_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 3
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_standardIlluminantY_in1_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 2.87
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_Z_in1_in2Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_Z_in1_in2_in1Node_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_yNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "WhiteBalance_Z_in1_in2_in1Node_b7ab975089154bb19d734dec4483f512"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_Adjustment/WhiteBalance_xNode_b7ab975089154bb19d734dec4483f512.outputs:out>
+                float outputs:out
+            }
+        }
+    }
+}

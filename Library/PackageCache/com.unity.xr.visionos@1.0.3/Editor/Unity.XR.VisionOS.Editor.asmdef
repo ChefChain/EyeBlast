@@ -1,0 +1,43 @@
+{
+    "name": "Unity.XR.VisionOS.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Unity.XR.VisionOS",
+        "Unity.XR.ARSubsystems",
+        "Unity.XR.ARSubsystems.Editor",
+        "Unity.XR.Management",
+        "Unity.XR.Management.Editor",
+        "Unity.PolySpatial",
+        "Unity.PolySpatial.Editor",
+        "Unity.XR.CoreUtils.Editor",
+        "Unity.XR.ARFoundation",
+        "Unity.RenderPipelines.Universal.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.polyspatial",
+            "expression": "0.1.0",
+            "define": "UNITY_HAS_POLYSPATIAL"
+        },
+        {
+            "name": "com.unity.polyspatial.visionos",
+            "expression": "0.1.0",
+            "define": "UNITY_HAS_POLYSPATIAL_VISIONOS"
+        },
+        {
+            "name": "com.unity.render-pipelines.universal",
+            "expression": "0.1.0",
+            "define": "UNITY_HAS_URP"
+        }
+    ],
+    "noEngineReferences": false
+}

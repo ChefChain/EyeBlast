@@ -1,0 +1,20 @@
+{
+    "FileContentKeywordValidation":
+    {
+        "Keywords":
+        [
+            {
+                "Targets": "+Switch",
+                "Files":
+                [
+                    "Editor/ShaderGraphConversion/Adapters/Nodes/Utility/KeywordAdapter.cs",
+                    "Editor/ShaderGraphConversion/Adapters/Nodes/Artistic/Filter/DitherAdapter.cs"
+                ],
+                "Patterns":
+                [
+                    "MtlxNodeTypes\\.Switch"
+                ]
+            }
+        ]
+    }
+}

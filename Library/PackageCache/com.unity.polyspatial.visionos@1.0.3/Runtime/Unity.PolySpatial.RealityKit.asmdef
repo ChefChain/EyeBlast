@@ -1,0 +1,40 @@
+{
+    "name": "Unity.PolySpatial.RealityKit",
+    "rootNamespace": "",
+    "references": [
+        "Unity.InternalAPIEngineBridge.021",
+        "Unity.Collections",
+        "Unity.PolySpatial",
+        "Unity.PolySpatial.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "Android",
+        "EmbeddedLinux",
+        "GameCoreScarlett",
+        "GameCoreXboxOne",
+        "LinuxStandalone64",
+        "CloudRendering",
+        "PS4",
+        "PS5",
+        "QNX",
+        "Stadia",
+        "Switch",
+        "tvOS",
+        "WSA",
+        "WebGL",
+        "WindowsStandalone32",
+        "WindowsStandalone64",
+        "XboxOne"
+    ],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Unity.PolySpatial.Core.dll",
+        "Unity.InternalAPIEngineBridge.021.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

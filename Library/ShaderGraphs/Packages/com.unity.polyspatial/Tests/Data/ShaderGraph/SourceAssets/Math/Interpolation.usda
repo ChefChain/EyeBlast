@@ -1,0 +1,178 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Interpolation"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Interpolation/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Interpolation/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                color3f inputs:baseColor.connect = </MaterialX/Materials/USD_Interpolation/CastSwizzleFromInverseLerp_OutNode_0530b49ce26442d08c785f93c6e54614ToSR_InterpolationbaseColor.outputs:out>
+                float inputs:metallic.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_OutNode_8db8a4d24c37473cac21a07c76d52555.outputs:out>
+                color3f inputs:emissiveColor = (0, 0, 0)
+                float inputs:ambientOcclusion = 1
+                float inputs:specular = 0.5
+                float inputs:roughness.connect = </MaterialX/Materials/USD_Interpolation/SR_Interpolation_roughness_OnesComplement.outputs:out>
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromInverseLerp_OutNode_0530b49ce26442d08c785f93c6e54614ToSR_InterpolationbaseColor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_OutNode_0530b49ce26442d08c785f93c6e54614.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "InverseLerp_OutNode_0530b49ce26442d08c785f93c6e54614"
+            {
+                uniform token info:id = "ND_divide_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_Out_in1Node_0530b49ce26442d08c785f93c6e54614.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_Out_in2Node_0530b49ce26442d08c785f93c6e54614.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "InverseLerp_Out_in1Node_0530b49ce26442d08c785f93c6e54614"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_TNode_0530b49ce26442d08c785f93c6e54614.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_ANode_0530b49ce26442d08c785f93c6e54614.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "InverseLerp_TNode_0530b49ce26442d08c785f93c6e54614"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Interpolation/LerpNode_1455ea85f6de4ca19b21e64fe199c5e4.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "LerpNode_1455ea85f6de4ca19b21e64fe199c5e4"
+            {
+                uniform token info:id = "ND_mix_vector3"
+                float3 inputs:bg.connect = </MaterialX/Materials/USD_Interpolation/Vector3Node_2f28df05126740ecbb2b83b0be844065.outputs:out>
+                float3 inputs:fg = (1, 1, 1)
+                float inputs:mix = 0.5
+                float3 outputs:out
+            }
+
+            def Shader "Vector3Node_2f28df05126740ecbb2b83b0be844065"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1 = 0
+                float inputs:in2 = 0
+                float inputs:in3 = 0
+                float3 outputs:out
+            }
+
+            def Shader "InverseLerp_OutNode_8db8a4d24c37473cac21a07c76d52555"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_Out_in1Node_8db8a4d24c37473cac21a07c76d52555.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_Out_in2Node_8db8a4d24c37473cac21a07c76d52555.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "InverseLerp_Out_in2Node_8db8a4d24c37473cac21a07c76d52555"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_BNode_8db8a4d24c37473cac21a07c76d52555.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_ANode_8db8a4d24c37473cac21a07c76d52555.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "InverseLerp_BNode_8db8a4d24c37473cac21a07c76d52555"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 1
+                float outputs:out
+            }
+
+            def Shader "InverseLerp_Out_in1Node_8db8a4d24c37473cac21a07c76d52555"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_TNode_8db8a4d24c37473cac21a07c76d52555.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_ANode_8db8a4d24c37473cac21a07c76d52555.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "InverseLerp_TNode_8db8a4d24c37473cac21a07c76d52555"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Interpolation/LerpNode_4090bb25f9d9469a9a74a44a47486dea.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "LerpNode_4090bb25f9d9469a9a74a44a47486dea"
+            {
+                uniform token info:id = "ND_mix_float"
+                float inputs:bg.connect = </MaterialX/Materials/USD_Interpolation/Vector1Node_3299a5c071904576aecc906e2cce5c68.outputs:out>
+                float inputs:fg = 1
+                float inputs:mix = 0.5
+                float outputs:out
+            }
+
+            def Shader "Vector1Node_3299a5c071904576aecc906e2cce5c68"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 0
+                float outputs:out
+            }
+
+            def Shader "SR_Interpolation_roughness_OnesComplement"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "InverseLerp_Out_in2Node_0530b49ce26442d08c785f93c6e54614"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_BNode_0530b49ce26442d08c785f93c6e54614.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Interpolation/InverseLerp_ANode_0530b49ce26442d08c785f93c6e54614.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "InverseLerp_BNode_0530b49ce26442d08c785f93c6e54614"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in = (1, 1, 1)
+                float3 outputs:out
+            }
+
+            def Shader "InverseLerp_ANode_0530b49ce26442d08c785f93c6e54614"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Interpolation/Vector3Node_2f28df05126740ecbb2b83b0be844065.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "InverseLerp_ANode_8db8a4d24c37473cac21a07c76d52555"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_Interpolation/Vector1Node_3299a5c071904576aecc906e2cce5c68.outputs:out>
+                float outputs:out
+            }
+        }
+    }
+}

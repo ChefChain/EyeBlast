@@ -1,0 +1,32 @@
+{
+    "name": "Unity.PolySpatial.EditorTests",
+    "rootNamespace": "",
+    "references": [
+        "Unity.PolySpatial.Editor",
+        "Unity.PolySpatial",
+        "Unity.XR.Quantum.Editor.ShaderGraph",
+        "UnityEditor.TestRunner",
+        "Unity.InputSystem",
+        "Unity.InputSystem.TestFramework",
+        "UnityEngine.TestRunner",
+        "Unity.Collections",
+        "Unity.PolySpatial.Core",
+        "Unity.ShaderGraph.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "Unity.PolySpatial.Core.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

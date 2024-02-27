@@ -1,0 +1,261 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Matrix"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Matrix/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Matrix/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                color3f inputs:baseColor = (0.2140411, 0.2140411, 0.2140411)
+                float inputs:metallic = 0
+                color3f inputs:emissiveColor.connect = </MaterialX/Materials/USD_Matrix/CastConvertFinalFromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor.outputs:out>
+                float inputs:ambientOcclusion = 1
+                float inputs:specular = 0.5
+                float inputs:roughness.connect = </MaterialX/Materials/USD_Matrix/SR_Matrix_roughness_OnesComplement.outputs:out>
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                float3 inputs:modelPositionOffset.connect = </MaterialX/Materials/USD_Matrix/SR_MatrixVertex_modelPositionOffset_SubtractPosition.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "CastConvertFinalFromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Matrix/CastSwizzle1FromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Matrix/CastSwizzle2FromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor.outputs:out>
+                float inputs:in3 = 0
+                color3f outputs:out
+            }
+
+            def Shader "CastSwizzle1FromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Matrix/CastConvertFromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "CastConvertFromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Matrix/AddNode_a0e8e2c6d59d4039b8072c060f2b5423.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "AddNode_a0e8e2c6d59d4039b8072c060f2b5423"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Matrix/MultiplyNode_e7040316996d41d2897d78b7f0639c62.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_Matrix/CastSwizzleFromAddNode_e4ae0c2eef754badb0a8a44b196cb50eToAddNode_a0e8e2c6d59d4039b8072c060f2b5423in2.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "MultiplyNode_e7040316996d41d2897d78b7f0639c62"
+            {
+                uniform token info:id = "ND_transformmatrix_vector2"
+                matrix2d inputs:mat.connect = </MaterialX/Materials/USD_Matrix/Matrix2Node_6749021671354bc19732e7b03367135b.outputs:out>
+                float2 inputs:in = (2, 2)
+                float2 outputs:out
+            }
+
+            def Shader "Matrix2Node_6749021671354bc19732e7b03367135b"
+            {
+                uniform token info:id = "ND_constant_matrix22"
+                matrix2d inputs:value = ((1, 0), (0, 1))
+                matrix2d outputs:out
+            }
+
+            def Shader "SR_Matrix_roughness_OnesComplement"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "SR_MatrixVertex_modelPositionOffset_SubtractPosition"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Matrix/SR_MatrixVertex_modelPositionOffset_FlipZ.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Matrix/SR_MatrixVertex_modelPositionOffset_Position.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "SR_MatrixVertex_modelPositionOffset_Position"
+            {
+                uniform token info:id = "ND_position_vector3"
+                string inputs:space = "object"
+                float3 outputs:out
+            }
+
+            def Shader "SR_MatrixVertex_modelPositionOffset_FlipZ"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in2 = (1, 1, -1)
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Matrix/CastSwizzleFromMultiplyNode_93a4700a498545e49d6ec8dbf4e6a195ToSR_MatrixVertex_modelPositionOffset_FlipZin1.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_93a4700a498545e49d6ec8dbf4e6a195ToSR_MatrixVertex_modelPositionOffset_FlipZin1"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Matrix/MultiplyNode_93a4700a498545e49d6ec8dbf4e6a195.outputs:out>
+                string inputs:channels = "xyz"
+                float3 outputs:out
+            }
+
+            def Shader "MultiplyNode_93a4700a498545e49d6ec8dbf4e6a195"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_Matrix/TransformationMatrix_OutNode_7780a58ea00644f7be6a295a348a1d6c.outputs:out>
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Matrix/Vector4Node_f490c91f9b2040c0ac2f02cc1ab9f90e.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Vector4Node_f490c91f9b2040c0ac2f02cc1ab9f90e"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1 = 0
+                float inputs:in2 = 0
+                float inputs:in3 = 0
+                float inputs:in4 = 1
+                float4 outputs:out
+            }
+
+            def Shader "TransformationMatrix_OutNode_7780a58ea00644f7be6a295a348a1d6c"
+            {
+                uniform token info:id = "ND_dot_matrix44"
+                matrix4d inputs:in.connect = </MaterialX/Materials/USD_Matrix/TransformationMatrix_Out_inNode_7780a58ea00644f7be6a295a348a1d6c.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "TransformationMatrix_Out_inNode_7780a58ea00644f7be6a295a348a1d6c"
+            {
+                uniform token info:id = "ND_invertmatrix_matrix44"
+                matrix4d inputs:in.connect = </MaterialX/Materials/USD_Matrix/TransformationMatrix_Out_in_inNode_7780a58ea00644f7be6a295a348a1d6c.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "TransformationMatrix_Out_in_inNode_7780a58ea00644f7be6a295a348a1d6c"
+            {
+                uniform token info:id = "ND_multiply_matrix44"
+                matrix4d inputs:in1.connect = </MaterialX/Materials/USD_Matrix/TransformationMatrix_Out_in_in_in1Node_7780a58ea00644f7be6a295a348a1d6c.outputs:out>
+                matrix4d inputs:in2.connect = </MaterialX/Materials/USD_Matrix/TransformationMatrix_Out_in_in_in2Node_7780a58ea00644f7be6a295a348a1d6c.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "TransformationMatrix_Out_in_in_in2Node_7780a58ea00644f7be6a295a348a1d6c"
+            {
+                uniform token info:id = "ND_multiply_matrix44"
+                matrix4d inputs:in1.connect = </MaterialX/Materials/USD_Matrix/TransformationMatrix_Out_in_in_in2_in1Node_7780a58ea00644f7be6a295a348a1d6c.outputs:worldToModel>
+                matrix4d inputs:in2 = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, -1, 0), (0, 0, 0, 1))
+                matrix4d outputs:out
+            }
+
+            def Shader "TransformationMatrix_Out_in_in_in2_in1Node_7780a58ea00644f7be6a295a348a1d6c"
+            {
+                uniform token info:id = "ND_realitykit_geometry_modifier_world_to_model"
+                matrix4d outputs:worldToModel
+            }
+
+            def Shader "TransformationMatrix_Out_in_in_in1Node_7780a58ea00644f7be6a295a348a1d6c"
+            {
+                uniform token info:id = "ND_multiply_matrix44"
+                matrix4d inputs:in1.connect = </MaterialX/Materials/USD_Matrix/TransformationMatrix_Out_in_in_in1_in1Node_7780a58ea00644f7be6a295a348a1d6c.outputs:viewToProjection>
+                matrix4d inputs:in2.connect = </MaterialX/Materials/USD_Matrix/TransformationMatrix_Out_in_in_in1_in2Node_7780a58ea00644f7be6a295a348a1d6c.outputs:modelToView>
+                matrix4d outputs:out
+            }
+
+            def Shader "TransformationMatrix_Out_in_in_in1_in2Node_7780a58ea00644f7be6a295a348a1d6c"
+            {
+                uniform token info:id = "ND_realitykit_geometry_modifier_model_to_view"
+                matrix4d outputs:modelToView
+            }
+
+            def Shader "TransformationMatrix_Out_in_in_in1_in1Node_7780a58ea00644f7be6a295a348a1d6c"
+            {
+                uniform token info:id = "ND_realitykit_geometry_modifier_view_to_projection"
+                matrix4d outputs:viewToProjection
+            }
+
+            def Shader "CastSwizzle2FromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Matrix/CastConvertFromAddNode_a0e8e2c6d59d4039b8072c060f2b5423ToSR_MatrixemissiveColor.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromAddNode_e4ae0c2eef754badb0a8a44b196cb50eToAddNode_a0e8e2c6d59d4039b8072c060f2b5423in2"
+            {
+                uniform token info:id = "ND_swizzle_vector3_vector2"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Matrix/AddNode_e4ae0c2eef754badb0a8a44b196cb50e.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "AddNode_e4ae0c2eef754badb0a8a44b196cb50e"
+            {
+                uniform token info:id = "ND_add_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Matrix/MultiplyNode_aa187395be1f47fbb3ce0845716396b1.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Matrix/CastSwizzleFromMultiplyNode_64a01fe86d8442cf8372b0bf730e2f66ToAddNode_e4ae0c2eef754badb0a8a44b196cb50ein2.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "MultiplyNode_aa187395be1f47fbb3ce0845716396b1"
+            {
+                uniform token info:id = "ND_transformmatrix_vector3"
+                matrix3d inputs:mat.connect = </MaterialX/Materials/USD_Matrix/Matrix3Node_1038dac3e57f4d5086675e691291c958.outputs:out>
+                float3 inputs:in = (2, 2, 2)
+                float3 outputs:out
+            }
+
+            def Shader "Matrix3Node_1038dac3e57f4d5086675e691291c958"
+            {
+                uniform token info:id = "ND_constant_matrix33"
+                matrix3d inputs:value = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
+                matrix3d outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_64a01fe86d8442cf8372b0bf730e2f66ToAddNode_e4ae0c2eef754badb0a8a44b196cb50ein2"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Matrix/MultiplyNode_64a01fe86d8442cf8372b0bf730e2f66.outputs:out>
+                string inputs:channels = "xyz"
+                float3 outputs:out
+            }
+
+            def Shader "MultiplyNode_64a01fe86d8442cf8372b0bf730e2f66"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_Matrix/Matrix4Node_f14ee9afc2cf447c9c5cd2a38c1869a2.outputs:out>
+                float4 inputs:in = (2, 2, 2, 2)
+                float4 outputs:out
+            }
+
+            def Shader "Matrix4Node_f14ee9afc2cf447c9c5cd2a38c1869a2"
+            {
+                uniform token info:id = "ND_constant_matrix44"
+                matrix4d inputs:value = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1))
+                matrix4d outputs:out
+            }
+        }
+    }
+}

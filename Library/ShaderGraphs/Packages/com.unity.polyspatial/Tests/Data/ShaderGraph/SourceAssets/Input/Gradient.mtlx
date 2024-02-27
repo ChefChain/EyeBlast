@@ -1,0 +1,228 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <combine2 name = "SampleGradient_OutNode_34c2dcec38d24e8e8cef6ff60482c724" type = "color4">
+        <input name = "in1" type = "color3" nodename = "SampleGradient_Out_in1Node_34c2dcec38d24e8e8cef6ff60482c724" />
+        <input name = "in2" type = "float" nodename = "SampleGradient_Out_in2Node_34c2dcec38d24e8e8cef6ff60482c724" />
+    </combine2>
+    <mix name = "SampleGradient_Out_in1Node_34c2dcec38d24e8e8cef6ff60482c724" type = "color3">
+        <input name = "fg" type = "color3" value = "0,0,0" />
+        <input name = "bg" type = "color3" value = "1,1,1" />
+        <input name = "mix" type = "float" nodename = "SampleGradient_Out_in1_mixNode_34c2dcec38d24e8e8cef6ff60482c724" />
+    </mix>
+    <clamp name = "SampleGradient_Out_in1_mixNode_34c2dcec38d24e8e8cef6ff60482c724" type = "float">
+        <input name = "in" type = "float" nodename = "SampleGradient_Out_in1_mix_inNode_34c2dcec38d24e8e8cef6ff60482c724" />
+    </clamp>
+    <divide name = "SampleGradient_Out_in1_mix_inNode_34c2dcec38d24e8e8cef6ff60482c724" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleGradient_Out_in1_mix_in_in1Node_34c2dcec38d24e8e8cef6ff60482c724" />
+        <input name = "in2" type = "float" value = "1" />
+    </divide>
+    <subtract name = "SampleGradient_Out_in1_mix_in_in1Node_34c2dcec38d24e8e8cef6ff60482c724" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleGradient_TimeNode_34c2dcec38d24e8e8cef6ff60482c724" />
+        <input name = "in2" type = "float" value = "0" />
+    </subtract>
+    <dot name = "SampleGradient_TimeNode_34c2dcec38d24e8e8cef6ff60482c724" type = "float">
+        <input name = "in" type = "float" value = "0.9" />
+    </dot>
+    <mix name = "SampleGradient_Out_in2Node_34c2dcec38d24e8e8cef6ff60482c724" type = "float">
+        <input name = "fg" type = "float" value = "1" />
+        <input name = "bg" type = "float" value = "1" />
+        <input name = "mix" type = "float" nodename = "SampleGradient_Out_in2_mixNode_34c2dcec38d24e8e8cef6ff60482c724" />
+    </mix>
+    <clamp name = "SampleGradient_Out_in2_mixNode_34c2dcec38d24e8e8cef6ff60482c724" type = "float">
+        <input name = "in" type = "float" nodename = "SampleGradient_Out_in2_mix_inNode_34c2dcec38d24e8e8cef6ff60482c724" />
+    </clamp>
+    <divide name = "SampleGradient_Out_in2_mix_inNode_34c2dcec38d24e8e8cef6ff60482c724" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleGradient_Out_in2_mix_in_in1Node_34c2dcec38d24e8e8cef6ff60482c724" />
+        <input name = "in2" type = "float" value = "1" />
+    </divide>
+    <subtract name = "SampleGradient_Out_in2_mix_in_in1Node_34c2dcec38d24e8e8cef6ff60482c724" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleGradient_TimeNode_34c2dcec38d24e8e8cef6ff60482c724" />
+        <input name = "in2" type = "float" value = "0" />
+    </subtract>
+    <dot name = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInput" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "AddNode_a52f28d75c194134add4a2476d705718" />
+    </dot>
+    <add name = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInAdd" type = "vector4">
+        <input name = "in1" type = "vector4" value = "0.5,0.5,0.5,0.5" />
+        <input name = "in2" type = "vector4" nodename = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInput" />
+    </add>
+    <floor name = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInFloor" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInAdd" />
+    </floor>
+    <subtract name = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInSub" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInput" />
+        <input name = "in2" type = "vector4" nodename = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInFloor" />
+    </subtract>
+    <multiply name = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInMul" type = "vector4">
+        <input name = "in1" type = "vector4" value = "2,2,2,2" />
+        <input name = "in2" type = "vector4" nodename = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInSub" />
+    </multiply>
+    <absval name = "TriWaveNode_a254a47e33b7400886125f6815e8a91bAbs" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "TriWaveNode_a254a47e33b7400886125f6815e8a91bInMul" />
+    </absval>
+    <multiply name = "TriWaveNode_a254a47e33b7400886125f6815e8a91bMul" type = "vector4">
+        <input name = "in1" type = "vector4" value = "2,2,2,2" />
+        <input name = "in2" type = "vector4" nodename = "TriWaveNode_a254a47e33b7400886125f6815e8a91bAbs" />
+    </multiply>
+    <subtract name = "TriWaveNode_a254a47e33b7400886125f6815e8a91b" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "TriWaveNode_a254a47e33b7400886125f6815e8a91bMul" />
+        <input name = "in2" type = "vector4" value = "1,1,1,1" />
+    </subtract>
+    <combine2 name = "SampleGradient_OutNode_070b789b9272482d8cd10de2fd5757dd" type = "color4">
+        <input name = "in1" type = "color3" nodename = "SampleGradient_Out_in1Node_070b789b9272482d8cd10de2fd5757dd" />
+        <input name = "in2" type = "float" nodename = "SampleGradient_Out_in2Node_070b789b9272482d8cd10de2fd5757dd" />
+    </combine2>
+    <mix name = "SampleGradient_Out_in1Node_070b789b9272482d8cd10de2fd5757dd" type = "color3">
+        <input name = "fg" type = "color3" value = "1,1,1" />
+        <input name = "bg" type = "color3" value = "0,0,0" />
+        <input name = "mix" type = "float" nodename = "SampleGradient_Out_in1_mixNode_070b789b9272482d8cd10de2fd5757dd" />
+    </mix>
+    <clamp name = "SampleGradient_Out_in1_mixNode_070b789b9272482d8cd10de2fd5757dd" type = "float">
+        <input name = "in" type = "float" nodename = "SampleGradient_Out_in1_mix_inNode_070b789b9272482d8cd10de2fd5757dd" />
+    </clamp>
+    <divide name = "SampleGradient_Out_in1_mix_inNode_070b789b9272482d8cd10de2fd5757dd" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleGradient_Out_in1_mix_in_in1Node_070b789b9272482d8cd10de2fd5757dd" />
+        <input name = "in2" type = "float" value = "1" />
+    </divide>
+    <subtract name = "SampleGradient_Out_in1_mix_in_in1Node_070b789b9272482d8cd10de2fd5757dd" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleGradient_TimeNode_070b789b9272482d8cd10de2fd5757dd" />
+        <input name = "in2" type = "float" value = "0" />
+    </subtract>
+    <dot name = "SampleGradient_TimeNode_070b789b9272482d8cd10de2fd5757dd" type = "float">
+        <input name = "in" type = "float" nodename = "CastSwizzleFromBlackbody_OutNode_b974e35a2d6a4ea3b13ccd3ca22ac53fToSampleGradient_TimeNode_070b789b9272482d8cd10de2fd5757ddin" />
+    </dot>
+    <mix name = "SampleGradient_Out_in2Node_070b789b9272482d8cd10de2fd5757dd" type = "float">
+        <input name = "fg" type = "float" value = "1" />
+        <input name = "bg" type = "float" value = "1" />
+        <input name = "mix" type = "float" nodename = "SampleGradient_Out_in2_mixNode_070b789b9272482d8cd10de2fd5757dd" />
+    </mix>
+    <clamp name = "SampleGradient_Out_in2_mixNode_070b789b9272482d8cd10de2fd5757dd" type = "float">
+        <input name = "in" type = "float" nodename = "SampleGradient_Out_in2_mix_inNode_070b789b9272482d8cd10de2fd5757dd" />
+    </clamp>
+    <divide name = "SampleGradient_Out_in2_mix_inNode_070b789b9272482d8cd10de2fd5757dd" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleGradient_Out_in2_mix_in_in1Node_070b789b9272482d8cd10de2fd5757dd" />
+        <input name = "in2" type = "float" value = "1" />
+    </divide>
+    <subtract name = "SampleGradient_Out_in2_mix_in_in1Node_070b789b9272482d8cd10de2fd5757dd" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleGradient_TimeNode_070b789b9272482d8cd10de2fd5757dd" />
+        <input name = "in2" type = "float" value = "0" />
+    </subtract>
+    <add name = "AddNode_a52f28d75c194134add4a2476d705718" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "CastSwizzleFromSampleGradient_OutNode_34c2dcec38d24e8e8cef6ff60482c724ToAddNode_a52f28d75c194134add4a2476d705718in1" />
+        <input name = "in2" type = "vector4" nodename = "CastSwizzleFromSampleGradient_OutNode_070b789b9272482d8cd10de2fd5757ddToAddNode_a52f28d75c194134add4a2476d705718in2" />
+    </add>
+    <ifequal name = "Blackbody_OutNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "vector3">
+        <input name = "value1" type = "float" nodename = "Blackbody_Out_value1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "vector3" nodename = "Blackbody_rescaledColorNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "vector3" nodename = "Blackbody_Out_in2Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+    </ifequal>
+    <ifgreatereq name = "Blackbody_Out_value1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "value1" type = "float" nodename = "Blackbody_TemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "value2" type = "float" value = "1000" />
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+    </ifgreatereq>
+    <dot name = "Blackbody_TemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in" type = "float" value = "512" />
+    </dot>
+    <divide name = "Blackbody_rescaledColorNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Blackbody_rescaledColor_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "float" value = "255" />
+    </divide>
+    <clamp name = "Blackbody_rescaledColor_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Blackbody_colorNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "low" type = "vector3" value = "0,0,0" />
+        <input name = "high" type = "vector3" value = "255,255,255" />
+    </clamp>
+    <combine3 name = "Blackbody_colorNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Blackbody_color_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "float" nodename = "Blackbody_color_in2Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in3" type = "float" nodename = "Blackbody_color_in3Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+    </combine3>
+    <add name = "Blackbody_color_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in1" type = "float" nodename = "Blackbody_color_in1_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "float" value = "148" />
+    </add>
+    <multiply name = "Blackbody_color_in1_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in1" type = "float" value = "5.61E+07" />
+        <input name = "in2" type = "float" nodename = "Blackbody_powTemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+    </multiply>
+    <power name = "Blackbody_powTemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in1" type = "float" nodename = "Blackbody_TemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "float" value = "-1.5" />
+    </power>
+    <ifequal name = "Blackbody_color_in2Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "value1" type = "float" nodename = "Blackbody_color_in2_value1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "value2" type = "float" value = "0" />
+        <input name = "in1" type = "float" nodename = "Blackbody_color_in2_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "float" nodename = "Blackbody_color_in2_in2Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+    </ifequal>
+    <ifgreater name = "Blackbody_color_in2_value1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "value1" type = "float" nodename = "Blackbody_TemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "value2" type = "float" value = "6500" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreater>
+    <subtract name = "Blackbody_color_in2_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in1" type = "float" nodename = "Blackbody_color_in2_in1_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "float" value = "623.6" />
+    </subtract>
+    <multiply name = "Blackbody_color_in2_in1_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in1" type = "float" value = "100.04" />
+        <input name = "in2" type = "float" nodename = "Blackbody_logTemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+    </multiply>
+    <ln name = "Blackbody_logTemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in" type = "float" nodename = "Blackbody_TemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+    </ln>
+    <add name = "Blackbody_color_in2_in2Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in1" type = "float" nodename = "Blackbody_color_in2_in2_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "float" value = "184" />
+    </add>
+    <multiply name = "Blackbody_color_in2_in2_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in1" type = "float" value = "3.52E+07" />
+        <input name = "in2" type = "float" nodename = "Blackbody_powTemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+    </multiply>
+    <subtract name = "Blackbody_color_in3Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in1" type = "float" nodename = "Blackbody_color_in3_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "float" value = "1448.6" />
+    </subtract>
+    <multiply name = "Blackbody_color_in3_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "float">
+        <input name = "in1" type = "float" value = "194.18" />
+        <input name = "in2" type = "float" nodename = "Blackbody_logTemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+    </multiply>
+    <divide name = "Blackbody_Out_in2Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Blackbody_Out_in2_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "float" value = "1000" />
+    </divide>
+    <multiply name = "Blackbody_Out_in2_in1Node_b974e35a2d6a4ea3b13ccd3ca22ac53f" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Blackbody_rescaledColorNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "in2" type = "float" nodename = "Blackbody_TemperatureNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+    </multiply>
+    <GeometryModification name = "SR_GradientVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Gradient" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromTriWaveNode_a254a47e33b7400886125f6815e8a91bToSR_Gradientcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Gradient" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_GradientVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Gradient" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromBlackbody_OutNode_b974e35a2d6a4ea3b13ccd3ca22ac53fToSampleGradient_TimeNode_070b789b9272482d8cd10de2fd5757ddin" type = "float">
+        <input name = "in" type = "vector3" nodename = "Blackbody_OutNode_b974e35a2d6a4ea3b13ccd3ca22ac53f" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromSampleGradient_OutNode_34c2dcec38d24e8e8cef6ff60482c724ToAddNode_a52f28d75c194134add4a2476d705718in1" type = "vector4">
+        <input name = "in" type = "color4" nodename = "SampleGradient_OutNode_34c2dcec38d24e8e8cef6ff60482c724" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromSampleGradient_OutNode_070b789b9272482d8cd10de2fd5757ddToAddNode_a52f28d75c194134add4a2476d705718in2" type = "vector4">
+        <input name = "in" type = "color4" nodename = "SampleGradient_OutNode_070b789b9272482d8cd10de2fd5757dd" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromTriWaveNode_a254a47e33b7400886125f6815e8a91bToSR_Gradientcolor" type = "color3">
+        <input name = "in" type = "vector4" nodename = "TriWaveNode_a254a47e33b7400886125f6815e8a91b" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

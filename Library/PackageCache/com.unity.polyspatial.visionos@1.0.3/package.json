@@ -1,0 +1,29 @@
+{
+  "name": "com.unity.polyspatial.visionos",
+  "displayName": "PolySpatial visionOS",
+  "version": "1.0.3",
+  "unity": "2022.3",
+  "unityRelease": "15f1",
+  "description": "Unity PolySpatial integration package to support shared and immersive mode rendering on Apple visionOS.\nUnity PolySpatial and visionOS support is only available to Unity Pro, Unity Enterprise, and Unity Industry users. Learn more about these plans at unity.com/pricing.",
+  "dependencies": {
+    "com.unity.polyspatial": "1.0.3",
+    "com.unity.polyspatial.xr": "1.0.3",
+    "com.unity.xr.visionos": "1.0.3",
+    "com.unity.xr.management": "4.4.0"
+  },
+  "upm": {
+    "changelog": ""
+  },
+  "_upm": {
+    "changelog": "### Added\n\n### Changed\n- Updated documentation to address package version and Unity Editor version requirements.\n- In the editor, PolySpatial preview and builds will only be enabled on platforms where it is supported (currently, visionOS MR).\n\n### Deprecated\n\n### Removed\n\n### Fixed\n- PolySpatial will only be enabled for the visionOS Mixed Reality build configuration.\n- Fixed issue with not restarting ARSession when switching scenes.\n- Fixed issue with incorrect transforms on volumes when Display -> Appearance -> Window Zoom setting was changed.\n- Fixed issue with incorrect transforms on volumes when using a bounded Default Volume Camera Window Configuration.\n- Fixed issue when certain skinned meshes would not show up when connecting to PlayToDevice.\n- Fixed issues with building for visionOS MR on non-macOS editor platforms.\n\n### Security"
+  },
+  "upmCi": {
+    "footprint": "1df88ddd887da659518352fb08977837bcd776f2"
+  },
+  "documentationUrl": "https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos@1.0/manual/index.html",
+  "repository": {
+    "url": "https://github.cds.internal.unity3d.com/unity/quantum.git",
+    "type": "git",
+    "revision": "1fa512302493eca451a043e235682c16e75a51f8"
+  }
+}

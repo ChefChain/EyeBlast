@@ -1,0 +1,237 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_AllIO"
+        {
+            matrix4d inputs:_Matrix4x4 = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1))
+            float4 inputs:_Vector4 = (0, 1, 0, 0)
+            float3 inputs:_Vector3 = (1, 0, 0)
+            matrix3d inputs:_Matrix3x3 = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
+            float inputs:_Float = 0.2
+            float inputs:_Boolean = 1
+            float2 inputs:_Vector2 = (1, 1)
+            color4f inputs:_Color = (0, 0.2530122, 1, 0)
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_AllIO/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_AllIO/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                float3 inputs:normal.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_4f37b1c4abe342b3821578ef3daec19a.outputs:out>
+                float inputs:metallic.connect = </MaterialX/Materials/USD_AllIO/CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIOmetallic.outputs:out>
+                color3f inputs:emissiveColor.connect = </MaterialX/Materials/USD_AllIO/CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIOemissiveColor.outputs:out>
+                float inputs:ambientOcclusion.connect = </MaterialX/Materials/USD_AllIO/CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIOambientOcclusion.outputs:out>
+                float inputs:clearcoat.connect = </MaterialX/Materials/USD_AllIO/CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIOclearcoat.outputs:out>
+                color3f inputs:baseColor.connect = </MaterialX/Materials/USD_AllIO/CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIObaseColor.outputs:out>
+                float inputs:specular.connect = </MaterialX/Materials/USD_AllIO/SR_AllIO_specular_Grayscale.outputs:out>
+                float inputs:roughness.connect = </MaterialX/Materials/USD_AllIO/SR_AllIO_roughness_OnesComplement.outputs:out>
+                float inputs:clearcoatRoughness.connect = </MaterialX/Materials/USD_AllIO/SR_AllIO_clearcoatRoughness_OnesComplement.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "MultiplyNode_4f37b1c4abe342b3821578ef3daec19a"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_AllIO/Combine_RGBNode_96f18c31122f4bafa4ffd6a1bf3ba250.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_AllIO/LerpNode_cfddfbc1bcb54fc0883e78e4cc3de7bc.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Combine_RGBNode_96f18c31122f4bafa4ffd6a1bf3ba250"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = </MaterialX/Materials/USD_AllIO/Combine_RNode_96f18c31122f4bafa4ffd6a1bf3ba250.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_AllIO/Combine_GNode_96f18c31122f4bafa4ffd6a1bf3ba250.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_AllIO/Combine_BNode_96f18c31122f4bafa4ffd6a1bf3ba250.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Combine_RNode_96f18c31122f4bafa4ffd6a1bf3ba250"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AllIO.inputs:_Float>
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIOmetallic"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_4f37b1c4abe342b3821578ef3daec19a.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIOemissiveColor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_4f37b1c4abe342b3821578ef3daec19a.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIOambientOcclusion"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_4f37b1c4abe342b3821578ef3daec19a.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIOclearcoat"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_4f37b1c4abe342b3821578ef3daec19a.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIObaseColor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_4f37b1c4abe342b3821578ef3daec19a.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "SR_AllIO_specular_Grayscale"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1 = (0.299, 0.587, 0.114)
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_4f37b1c4abe342b3821578ef3daec19a.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SR_AllIO_roughness_OnesComplement"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_AllIO/CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIO_roughness_OnesComplementin2.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIO_roughness_OnesComplementin2"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_4f37b1c4abe342b3821578ef3daec19a.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "SR_AllIO_clearcoatRoughness_OnesComplement"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = </MaterialX/Materials/USD_AllIO/CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIO_clearcoatRoughness_OnesComplementin2.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_4f37b1c4abe342b3821578ef3daec19aToSR_AllIO_clearcoatRoughness_OnesComplementin2"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_4f37b1c4abe342b3821578ef3daec19a.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "LerpNode_cfddfbc1bcb54fc0883e78e4cc3de7bc"
+            {
+                uniform token info:id = "ND_mix_vector3"
+                float3 inputs:bg.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_ed68b7829cf44f8dba4bd88d93382858.outputs:out>
+                float3 inputs:fg.connect = </MaterialX/Materials/USD_AllIO/CastSwizzleFromMultiplyNode_d6b7b79abc6a4279820ab8d84e327e71ToLerpNode_cfddfbc1bcb54fc0883e78e4cc3de7bcfg.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_AllIO/CastSwizzleFromMultiplyNode_638502aa3f1d4323876c092e13f41ac9ToLerpNode_cfddfbc1bcb54fc0883e78e4cc3de7bcmix.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_638502aa3f1d4323876c092e13f41ac9ToLerpNode_cfddfbc1bcb54fc0883e78e4cc3de7bcmix"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_638502aa3f1d4323876c092e13f41ac9.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "MultiplyNode_638502aa3f1d4323876c092e13f41ac9"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AllIO/CastSwizzleFrom_ColorToMultiplyNode_638502aa3f1d4323876c092e13f41ac9in.outputs:out>
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_AllIO.inputs:_Matrix4x4>
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzleFrom_ColorToMultiplyNode_638502aa3f1d4323876c092e13f41ac9in"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_AllIO.inputs:_Color>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_d6b7b79abc6a4279820ab8d84e327e71ToLerpNode_cfddfbc1bcb54fc0883e78e4cc3de7bcfg"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AllIO/MultiplyNode_d6b7b79abc6a4279820ab8d84e327e71.outputs:out>
+                string inputs:channels = "xyz"
+                float3 outputs:out
+            }
+
+            def Shader "MultiplyNode_d6b7b79abc6a4279820ab8d84e327e71"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_AllIO.inputs:_Vector4>
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_AllIO.inputs:_Matrix4x4>
+                float4 outputs:out
+            }
+
+            def Shader "MultiplyNode_ed68b7829cf44f8dba4bd88d93382858"
+            {
+                uniform token info:id = "ND_transformmatrix_vector3"
+                matrix3d inputs:mat.connect = </MaterialX/Materials/USD_AllIO.inputs:_Matrix3x3>
+                float3 inputs:in.connect = </MaterialX/Materials/USD_AllIO.inputs:_Vector3>
+                float3 outputs:out
+            }
+
+            def Shader "Combine_GNode_96f18c31122f4bafa4ffd6a1bf3ba250"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AllIO.inputs:_Boolean>
+                float outputs:out
+            }
+
+            def Shader "Combine_BNode_96f18c31122f4bafa4ffd6a1bf3ba250"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </MaterialX/Materials/USD_AllIO/SplitNode_60835ad1510d464fb3f75ee3d38e82d1R.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "SplitNode_60835ad1510d464fb3f75ee3d38e82d1R"
+            {
+                uniform token info:id = "ND_extract_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_AllIO/SplitNode_60835ad1510d464fb3f75ee3d38e82d1.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "SplitNode_60835ad1510d464fb3f75ee3d38e82d1"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_AllIO.inputs:_Vector2>
+                float2 outputs:out
+            }
+        }
+    }
+}

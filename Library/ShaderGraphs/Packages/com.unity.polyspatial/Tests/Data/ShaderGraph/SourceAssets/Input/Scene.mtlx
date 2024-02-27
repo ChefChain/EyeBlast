@@ -1,0 +1,20 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <realitykit_geometry_switch_cameraindex name = "EyeIndex_OutNode_c2cc5b412c43443ea644198a22c0f7f5" type = "float">
+        <input name = "right" type = "float" value = "1" />
+    </realitykit_geometry_switch_cameraindex>
+    <GeometryModification name = "SR_SceneVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Scene" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromEyeIndex_OutNode_c2cc5b412c43443ea644198a22c0f7f5ToSR_Scenecolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Scene" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_SceneVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Scene" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromEyeIndex_OutNode_c2cc5b412c43443ea644198a22c0f7f5ToSR_Scenecolor" type = "color3">
+        <input name = "in" type = "float" nodename = "EyeIndex_OutNode_c2cc5b412c43443ea644198a22c0f7f5" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+</materialx>

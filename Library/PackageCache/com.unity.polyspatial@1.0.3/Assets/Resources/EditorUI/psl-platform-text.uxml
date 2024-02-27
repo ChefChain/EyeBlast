@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.unity.polyspatial/Assets/Resources/EditorUI/psl-platform-text-style.uss?fileID=7433441132597879392&amp;guid=bc5f45cb6f5dc4ea8b9d9603a486e55d&amp;type=3#psl-platform-text-style" />
+    <ui:VisualElement style="flex-grow: initial; padding-bottom: 10px;">
+        <ui:VisualElement style="flex-grow: initial; padding-bottom: 20px;">
+            <ui:Label tabindex="-1" text="Text Properties" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 14px;" />
+            <ui:TextField picking-mode="Ignore" label="Text" multiline="true" name="TextField" binding-path="m_Text" style="flex-direction: column; white-space: normal; margin-top: 4px; margin-bottom: 4px; padding-bottom: 10px;" />
+            <uie:PropertyField name="TmProFontAsset" label="Font Asset" binding-path="m_TmProFontAsset" />
+            <uie:PropertyField label="Size" value="42" binding-path="m_TextSize" />
+            <uie:PropertyField name="ColorField" binding-path="m_TextColor" label="Color" />
+            <uie:RectIntField name="Insets" label="Insets" binding-path="m_TextEdgeInsets" />
+            <ui:EnumField label="Justification" type="UnityEngine.TextAlignment, UnityEngine.TextRenderingModule" value="Center" binding-path="m_HorizontalJustification" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: initial; padding-bottom: 10px;">
+            <ui:Label tabindex="-1" text="Canvas Properties" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 14px;" />
+            <uie:PropertyField name="ColorField" binding-path="m_CanvasBackgroundColor" label="Color" />
+            <uie:Vector2Field name="CanvasSize" label="Size" binding-path="m_CanvasSize" />
+            <uie:PropertyField label="Corner Radius" name="CornerRadius" value="42" binding-path="m_CanvasCornerRadius" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,43 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <realitykit_geometry_modifier_vertex_id name = "VertexIDNode_ec90452928824015a445211766951f61" type = "integer">
+    </realitykit_geometry_modifier_vertex_id>
+    <divide name = "DivideNode_4a158db7126c488a933f95d7d206914f" type = "float">
+        <input name = "in1" type = "float" nodename = "CastSrcToFloatFromVertexIDNode_ec90452928824015a445211766951f61ToDivideNode_4a158db7126c488a933f95d7d206914fin1" />
+        <input name = "in2" type = "float" value = "24" />
+    </divide>
+    <geomcolor name = "ColorNode_4373a8a141cd489ca15a381984c46650" type = "color4">
+    </geomcolor>
+    <GeometryModification name = "SR_GeometryVertex" type = "vertexshader">
+        <input name = "color" type = "color4" nodename = "CastSwizzleFromDivideNode_4a158db7126c488a933f95d7d206914fToSR_GeometryVertexcolor" />
+    </GeometryModification>
+    <realitykit_pbr name = "SR_Geometry" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" nodename = "CastSwizzleFromColorNode_4373a8a141cd489ca15a381984c46650ToSR_GeometrybaseColor" />
+        <input name = "metallic" type = "float" value = "0" />
+        <input name = "emissiveColor" type = "color3" value = "0,0,0" />
+        <input name = "ambientOcclusion" type = "float" value = "1" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "roughness" type = "float" nodename = "SR_Geometry_roughness_OnesComplement" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_Geometry" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_GeometryVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Geometry" />
+    </surfacematerial>
+    <subtract name = "SR_Geometry_roughness_OnesComplement" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </subtract>
+    <convert name = "CastSrcToFloatFromVertexIDNode_ec90452928824015a445211766951f61ToDivideNode_4a158db7126c488a933f95d7d206914fin1" type = "float">
+        <input name = "in" type = "integer" nodename = "VertexIDNode_ec90452928824015a445211766951f61" />
+    </convert>
+    <swizzle name = "CastSwizzleFromColorNode_4373a8a141cd489ca15a381984c46650ToSR_GeometrybaseColor" type = "color3">
+        <input name = "in" type = "color4" nodename = "ColorNode_4373a8a141cd489ca15a381984c46650" />
+        <input name = "channels" type = "string" value = "rgb" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromDivideNode_4a158db7126c488a933f95d7d206914fToSR_GeometryVertexcolor" type = "color4">
+        <input name = "in" type = "float" nodename = "DivideNode_4a158db7126c488a933f95d7d206914f" />
+        <input name = "channels" type = "string" value = "xxxx" />
+    </swizzle>
+</materialx>

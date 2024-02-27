@@ -1,0 +1,24 @@
+{
+    "name": "Unity.PolySpatial.RealityKit.Editor",
+    "references": [
+        "Unity.PolySpatial",
+        "Unity.PolySpatial.Core",
+        "Unity.PolySpatial.Editor",
+        "Unity.InternalAPIEngineBridge.021",
+        "Unity.InternalAPIEditorBridge.021",
+        "Unity.XR.VisionOS.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "Unity.PolySpatial.Core.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,482 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <add name = "Contrast_OutNode_710d9b0cc87b4bbc801429331c60c8dd" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Contrast_Out_in1Node_710d9b0cc87b4bbc801429331c60c8dd" />
+        <input name = "in2" type = "float" value = "0.2176376" />
+    </add>
+    <multiply name = "Contrast_Out_in1Node_710d9b0cc87b4bbc801429331c60c8dd" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Contrast_Out_in1_in1Node_710d9b0cc87b4bbc801429331c60c8dd" />
+        <input name = "in2" type = "float" nodename = "Contrast_ContrastNode_710d9b0cc87b4bbc801429331c60c8dd" />
+    </multiply>
+    <subtract name = "Contrast_Out_in1_in1Node_710d9b0cc87b4bbc801429331c60c8dd" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Contrast_InNode_710d9b0cc87b4bbc801429331c60c8dd" />
+        <input name = "in2" type = "float" value = "0.2176376" />
+    </subtract>
+    <dot name = "Contrast_InNode_710d9b0cc87b4bbc801429331c60c8dd" type = "vector3">
+        <input name = "in" type = "vector3" value = "0,1,0" />
+    </dot>
+    <dot name = "Contrast_ContrastNode_710d9b0cc87b4bbc801429331c60c8dd" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <multiply name = "Hue_OutNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Hue_Out_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "vector3" nodename = "Hue_Out_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </multiply>
+    <convert name = "Hue_Out_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "float" nodename = "Hue_Out_in1_inNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </convert>
+    <swizzle name = "Hue_Out_in1_inNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue_hsvNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <combine3 name = "Hue_hsvNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Hue_hsv_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_hsv_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in3" type = "float" nodename = "Hue_hsv_in3Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </combine3>
+    <subtract name = "Hue_hsv_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_hsv_in1_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_hsv_in1_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </subtract>
+    <add name = "Hue_hsv_in1_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_hueNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_hsv_in1_in1_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </add>
+    <add name = "Hue_hueNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_hue_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_hue_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </add>
+    <absval name = "Hue_hue_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "float" nodename = "Hue_hue_in1_inNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </absval>
+    <add name = "Hue_hue_in1_inNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_hue_in1_in_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_hue_in1_in_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </add>
+    <swizzle name = "Hue_hue_in1_in_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector4" nodename = "Hue_QNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <mix name = "Hue_QNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector4">
+        <input name = "bg" type = "vector4" nodename = "Hue_Q_bgNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "fg" type = "vector4" nodename = "Hue_Q_fgNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "mix" type = "float" nodename = "Hue_Q_mixNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </mix>
+    <combine4 name = "Hue_Q_bgNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Hue_Q_bg_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_Q_bg_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in3" type = "float" nodename = "Hue_Q_bg_in3Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in4" type = "float" nodename = "Hue_Q_bg_in4Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </combine4>
+    <swizzle name = "Hue_Q_bg_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue___Tmp6Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "Hue___Tmp6Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "Hue_PNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "xyw" />
+    </swizzle>
+    <mix name = "Hue_PNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector4">
+        <input name = "bg" type = "vector4" nodename = "Hue_P_bgNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "fg" type = "vector4" nodename = "Hue_P_fgNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "mix" type = "float" nodename = "Hue_P_mixNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </mix>
+    <combine4 name = "Hue_P_bgNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Hue_P_bg_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_P_bg_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in3" type = "float" nodename = "Hue_P_bg_in3Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in4" type = "float" nodename = "Hue_P_bg_in4Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </combine4>
+    <swizzle name = "Hue_P_bg_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector2" nodename = "Hue___Tmp1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "Hue___Tmp1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Hue_InNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "zy" />
+    </swizzle>
+    <dot name = "Hue_InNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector3" value = "1,0.5,0" />
+    </dot>
+    <swizzle name = "Hue_P_bg_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector2" nodename = "Hue___Tmp1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "Hue_P_bg_in3Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector2" nodename = "Hue___Tmp2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "Hue___Tmp2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "Hue_KNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "wz" />
+    </swizzle>
+    <combine4 name = "Hue_KNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector4">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" nodename = "Hue_K_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in3" type = "float" nodename = "Hue_K_in3Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in4" type = "float" value = "-1" />
+    </combine4>
+    <divide name = "Hue_K_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" value = "-1" />
+        <input name = "in2" type = "float" value = "3" />
+    </divide>
+    <divide name = "Hue_K_in3Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" value = "2" />
+        <input name = "in2" type = "float" value = "3" />
+    </divide>
+    <swizzle name = "Hue_P_bg_in4Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector2" nodename = "Hue___Tmp2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <combine4 name = "Hue_P_fgNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Hue_P_fg_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_P_fg_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in3" type = "float" nodename = "Hue_P_fg_in3Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in4" type = "float" nodename = "Hue_P_fg_in4Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </combine4>
+    <swizzle name = "Hue_P_fg_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector2" nodename = "Hue___Tmp3Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "Hue___Tmp3Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector2">
+        <input name = "in" type = "vector3" nodename = "Hue_InNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "yz" />
+    </swizzle>
+    <swizzle name = "Hue_P_fg_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector2" nodename = "Hue___Tmp3Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "Hue_P_fg_in3Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector2" nodename = "Hue___Tmp4Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "Hue___Tmp4Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "Hue_KNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "Hue_P_fg_in4Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector2" nodename = "Hue___Tmp4Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <realitykit_step name = "Hue_P_mixNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "edge" type = "float" nodename = "Hue_P_mix_edgeNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in" type = "float" nodename = "Hue_P_mix_inNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </realitykit_step>
+    <swizzle name = "Hue_P_mix_edgeNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue_InNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "Hue_P_mix_inNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue_InNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "Hue_Q_bg_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue___Tmp6Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "Hue_Q_bg_in3Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue___Tmp6Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "Hue_Q_bg_in4Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue_InNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <combine4 name = "Hue_Q_fgNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Hue_Q_fg_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_Q_fg_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in3" type = "float" nodename = "Hue_Q_fg_in3Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in4" type = "float" nodename = "Hue_Q_fg_in4Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </combine4>
+    <swizzle name = "Hue_Q_fg_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue_InNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "Hue_Q_fg_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue___Tmp7Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "Hue___Tmp7Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "Hue_PNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "yzx" />
+    </swizzle>
+    <swizzle name = "Hue_Q_fg_in3Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue___Tmp7Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "Hue_Q_fg_in4Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue___Tmp7Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <realitykit_step name = "Hue_Q_mixNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "edge" type = "float" nodename = "Hue_Q_mix_edgeNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in" type = "float" nodename = "Hue_Q_mix_inNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </realitykit_step>
+    <swizzle name = "Hue_Q_mix_edgeNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector4" nodename = "Hue_PNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "Hue_Q_mix_inNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue_InNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <divide name = "Hue_hue_in1_in_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_hue_in1_in_in2_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_hue_in1_in_in2_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </divide>
+    <subtract name = "Hue_hue_in1_in_in2_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_hue_in1_in_in2_in1_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_hue_in1_in_in2_in1_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </subtract>
+    <swizzle name = "Hue_hue_in1_in_in2_in1_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector4" nodename = "Hue_QNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <swizzle name = "Hue_hue_in1_in_in2_in1_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector4" nodename = "Hue_QNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <add name = "Hue_hue_in1_in_in2_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_hue_in1_in_in2_in2_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_ENode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </add>
+    <multiply name = "Hue_hue_in1_in_in2_in2_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" value = "6" />
+        <input name = "in2" type = "float" nodename = "Hue_DNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </multiply>
+    <subtract name = "Hue_DNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_D_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_D_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </subtract>
+    <swizzle name = "Hue_D_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector4" nodename = "Hue_QNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <min name = "Hue_D_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_D_in2_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_D_in2_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </min>
+    <swizzle name = "Hue_D_in2_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector4" nodename = "Hue_QNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <swizzle name = "Hue_D_in2_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector4" nodename = "Hue_QNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "Hue_ENode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "float" value = "1E-10" />
+    </dot>
+    <divide name = "Hue_hue_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_OffsetNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" value = "360" />
+    </divide>
+    <dot name = "Hue_OffsetNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "float" value = "90" />
+    </dot>
+    <realitykit_step name = "Hue_hsv_in1_in1_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "edge" type = "float" nodename = "Hue_hueNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in" type = "float" value = "0" />
+    </realitykit_step>
+    <realitykit_step name = "Hue_hsv_in1_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "edge" type = "float" value = "1" />
+        <input name = "in" type = "float" nodename = "Hue_hueNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </realitykit_step>
+    <divide name = "Hue_hsv_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_DNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_hsv_in2_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </divide>
+    <add name = "Hue_hsv_in2_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" nodename = "Hue_hsv_in2_in2_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" nodename = "Hue_ENode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </add>
+    <swizzle name = "Hue_hsv_in2_in2_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector4" nodename = "Hue_QNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "Hue_hsv_in3Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector4" nodename = "Hue_QNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <mix name = "Hue_Out_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "bg" type = "vector3" nodename = "Hue_Out_in2_bgNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "fg" type = "vector3" nodename = "Hue_Out_in2_fgNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "mix" type = "float" nodename = "Hue_Out_in2_mixNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </mix>
+    <swizzle name = "Hue_Out_in2_bgNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "Hue_K2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <combine4 name = "Hue_K2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector4">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "Hue_K2_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in3" type = "float" nodename = "Hue_K2_in3Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in4" type = "float" value = "3" />
+    </combine4>
+    <divide name = "Hue_K2_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" value = "2" />
+        <input name = "in2" type = "float" value = "3" />
+    </divide>
+    <divide name = "Hue_K2_in3Node_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "3" />
+    </divide>
+    <clamp name = "Hue_Out_in2_fgNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Hue_Out_in2_fg_inNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </clamp>
+    <subtract name = "Hue_Out_in2_fg_inNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Hue_P2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "vector3" nodename = "Hue_Out_in2_fg_in_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </subtract>
+    <absval name = "Hue_P2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Hue_P2_inNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </absval>
+    <subtract name = "Hue_P2_inNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Hue_P2_in_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "vector3" nodename = "Hue_P2_in_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </subtract>
+    <multiply name = "Hue_P2_in_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Hue_P2_in_in1_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "float" value = "6" />
+    </multiply>
+    <realitykit_fractional name = "Hue_P2_in_in1_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Hue_P2_in_in1_in1_inNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </realitykit_fractional>
+    <add name = "Hue_P2_in_in1_in1_inNode_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Hue_P2_in_in1_in1_in_in1Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "in2" type = "vector3" nodename = "Hue_P2_in_in1_in1_in_in2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+    </add>
+    <swizzle name = "Hue_P2_in_in1_in1_in_in1Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Hue_hsvNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <swizzle name = "Hue_P2_in_in1_in1_in_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "Hue_K2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "Hue_P2_in_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "Hue_K2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "www" />
+    </swizzle>
+    <swizzle name = "Hue_Out_in2_fg_in_in2Node_75a552a90b6a4d0187b82c8683fcfcef" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "Hue_K2Node_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <swizzle name = "Hue_Out_in2_mixNode_75a552a90b6a4d0187b82c8683fcfcef" type = "float">
+        <input name = "in" type = "vector3" nodename = "Hue_hsvNode_75a552a90b6a4d0187b82c8683fcfcef" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <add name = "Saturation_OutNode_b439cc0bd5a74af59e956dd2d81d7724" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Saturation_Out_in1Node_b439cc0bd5a74af59e956dd2d81d7724" />
+        <input name = "in2" type = "vector3" nodename = "Saturation_Out_in2Node_b439cc0bd5a74af59e956dd2d81d7724" />
+    </add>
+    <swizzle name = "Saturation_Out_in1Node_b439cc0bd5a74af59e956dd2d81d7724" type = "vector3">
+        <input name = "in" type = "float" nodename = "Saturation_lumaNode_b439cc0bd5a74af59e956dd2d81d7724" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <dotproduct name = "Saturation_lumaNode_b439cc0bd5a74af59e956dd2d81d7724" type = "float">
+        <input name = "in1" type = "vector3" nodename = "Saturation_InNode_b439cc0bd5a74af59e956dd2d81d7724" />
+        <input name = "in2" type = "vector3" value = "0.2126729,0.7151522,0.072175" />
+    </dotproduct>
+    <dot name = "Saturation_InNode_b439cc0bd5a74af59e956dd2d81d7724" type = "vector3">
+        <input name = "in" type = "vector3" value = "0,1,0" />
+    </dot>
+    <multiply name = "Saturation_Out_in2Node_b439cc0bd5a74af59e956dd2d81d7724" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Saturation_Out_in2_in1Node_b439cc0bd5a74af59e956dd2d81d7724" />
+        <input name = "in2" type = "vector3" nodename = "Saturation_Out_in2_in2Node_b439cc0bd5a74af59e956dd2d81d7724" />
+    </multiply>
+    <swizzle name = "Saturation_Out_in2_in1Node_b439cc0bd5a74af59e956dd2d81d7724" type = "vector3">
+        <input name = "in" type = "float" nodename = "Saturation_SaturationNode_b439cc0bd5a74af59e956dd2d81d7724" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <dot name = "Saturation_SaturationNode_b439cc0bd5a74af59e956dd2d81d7724" type = "float">
+        <input name = "in" type = "float" value = "1" />
+    </dot>
+    <subtract name = "Saturation_Out_in2_in2Node_b439cc0bd5a74af59e956dd2d81d7724" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Saturation_InNode_b439cc0bd5a74af59e956dd2d81d7724" />
+        <input name = "in2" type = "vector3" nodename = "Saturation_Out_in2_in2_in2Node_b439cc0bd5a74af59e956dd2d81d7724" />
+    </subtract>
+    <swizzle name = "Saturation_Out_in2_in2_in2Node_b439cc0bd5a74af59e956dd2d81d7724" type = "vector3">
+        <input name = "in" type = "float" nodename = "Saturation_lumaNode_b439cc0bd5a74af59e956dd2d81d7724" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <add name = "AddNode_da38f6f44cca4385aca5c5cf0c370713" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Saturation_OutNode_b439cc0bd5a74af59e956dd2d81d7724" />
+        <input name = "in2" type = "vector3" nodename = "Hue_OutNode_75a552a90b6a4d0187b82c8683fcfcef" />
+    </add>
+    <clamp name = "SaturateNode_630e7fed80fa45b590093f2f516be12f" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "AddNode_39d538ad93b64be98d15bd0b575c0e24" />
+    </clamp>
+    <add name = "AddNode_39d538ad93b64be98d15bd0b575c0e24" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "AddNode_da38f6f44cca4385aca5c5cf0c370713" />
+        <input name = "in2" type = "vector3" nodename = "Contrast_OutNode_710d9b0cc87b4bbc801429331c60c8dd" />
+    </add>
+    <ifequal name = "ComparisonNode_53195a756ed74b958e82d133020d3c80" type = "float">
+        <input name = "value1" type = "float" nodename = "SplitNode_278a375330ae4f16b8fd56d19bba6416G" />
+        <input name = "value2" type = "float" value = "1" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <ifequal name = "ComparisonNode_1365ee0e2a124a4697cfc5799cabb153" type = "float">
+        <input name = "value1" type = "float" nodename = "SplitNode_278a375330ae4f16b8fd56d19bba6416G" />
+        <input name = "value2" type = "float" value = "1" />
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+    </ifequal>
+    <combine4 name = "Combine_RGBANode_00f72d4538b64277b273c0ce08329809" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_00f72d4538b64277b273c0ce08329809" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_00f72d4538b64277b273c0ce08329809" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_00f72d4538b64277b273c0ce08329809" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_00f72d4538b64277b273c0ce08329809" />
+    </combine4>
+    <dot name = "Combine_RNode_00f72d4538b64277b273c0ce08329809" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_1365ee0e2a124a4697cfc5799cabb153" />
+    </dot>
+    <dot name = "Combine_GNode_00f72d4538b64277b273c0ce08329809" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_53195a756ed74b958e82d133020d3c80" />
+    </dot>
+    <dot name = "Combine_BNode_00f72d4538b64277b273c0ce08329809" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "Combine_ANode_00f72d4538b64277b273c0ce08329809" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_00f72d4538b64277b273c0ce08329809" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_00f72d4538b64277b273c0ce08329809" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_00f72d4538b64277b273c0ce08329809" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_00f72d4538b64277b273c0ce08329809" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_00f72d4538b64277b273c0ce08329809" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_00f72d4538b64277b273c0ce08329809" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_00f72d4538b64277b273c0ce08329809" />
+    </combine2>
+    <dot name = "SplitNode_278a375330ae4f16b8fd56d19bba6416" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "SaturateNode_630e7fed80fa45b590093f2f516be12f" />
+    </dot>
+    <extract name = "SplitNode_278a375330ae4f16b8fd56d19bba6416R" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_278a375330ae4f16b8fd56d19bba6416" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "SplitNode_278a375330ae4f16b8fd56d19bba6416G" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_278a375330ae4f16b8fd56d19bba6416" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "SplitNode_278a375330ae4f16b8fd56d19bba6416B" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_278a375330ae4f16b8fd56d19bba6416" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <GeometryModification name = "SR_hsvVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_hsv" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromCombine_RGBNode_00f72d4538b64277b273c0ce08329809ToSR_hsvcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_hsv" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_hsvVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_hsv" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromCombine_RGBNode_00f72d4538b64277b273c0ce08329809ToSR_hsvcolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "Combine_RGBNode_00f72d4538b64277b273c0ce08329809" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

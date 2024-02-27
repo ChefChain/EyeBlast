@@ -1,0 +1,562 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <constant name = "_MainTex" type = "filename">
+        <input name = "value" type = "filename" value = "../../TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset" />
+    </constant>
+    <dot name = "SplitNode_111bfb12898a463c8555977c1fd35eb9" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "MultiplyNode_c63da869d6cf4a28bc1da28e9b809be5" />
+    </dot>
+    <extract name = "SplitNode_111bfb12898a463c8555977c1fd35eb9R" type = "float">
+        <input name = "in" type = "vector4" nodename = "SplitNode_111bfb12898a463c8555977c1fd35eb9" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "SplitNode_111bfb12898a463c8555977c1fd35eb9G" type = "float">
+        <input name = "in" type = "vector4" nodename = "SplitNode_111bfb12898a463c8555977c1fd35eb9" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "SplitNode_111bfb12898a463c8555977c1fd35eb9B" type = "float">
+        <input name = "in" type = "vector4" nodename = "SplitNode_111bfb12898a463c8555977c1fd35eb9" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <extract name = "SplitNode_111bfb12898a463c8555977c1fd35eb9A" type = "float">
+        <input name = "in" type = "vector4" nodename = "SplitNode_111bfb12898a463c8555977c1fd35eb9" />
+        <input name = "index" type = "integer" value = "3" />
+    </extract>
+    <multiply name = "MultiplyNode_dcb4d2b5332c48ae8b15fcf711eaec1a" type = "float">
+        <input name = "in1" type = "float" nodename = "SplitNode_111bfb12898a463c8555977c1fd35eb9A" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_OutNode_5c52eb66739940eab514dcda998e9996" />
+    </multiply>
+    <combine4 name = "Combine_RGBANode_0e4f3ee4f6ec44efbfee3669995a83d7" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_0e4f3ee4f6ec44efbfee3669995a83d7" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_0e4f3ee4f6ec44efbfee3669995a83d7" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_0e4f3ee4f6ec44efbfee3669995a83d7" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_0e4f3ee4f6ec44efbfee3669995a83d7" />
+    </combine4>
+    <dot name = "Combine_RNode_0e4f3ee4f6ec44efbfee3669995a83d7" type = "float">
+        <input name = "in" type = "float" nodename = "SplitNode_111bfb12898a463c8555977c1fd35eb9R" />
+    </dot>
+    <dot name = "Combine_GNode_0e4f3ee4f6ec44efbfee3669995a83d7" type = "float">
+        <input name = "in" type = "float" nodename = "SplitNode_111bfb12898a463c8555977c1fd35eb9G" />
+    </dot>
+    <dot name = "Combine_BNode_0e4f3ee4f6ec44efbfee3669995a83d7" type = "float">
+        <input name = "in" type = "float" nodename = "SplitNode_111bfb12898a463c8555977c1fd35eb9B" />
+    </dot>
+    <dot name = "Combine_ANode_0e4f3ee4f6ec44efbfee3669995a83d7" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_0e4f3ee4f6ec44efbfee3669995a83d7" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_0e4f3ee4f6ec44efbfee3669995a83d7" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_0e4f3ee4f6ec44efbfee3669995a83d7" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_0e4f3ee4f6ec44efbfee3669995a83d7" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_0e4f3ee4f6ec44efbfee3669995a83d7" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_0e4f3ee4f6ec44efbfee3669995a83d7" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_0e4f3ee4f6ec44efbfee3669995a83d7" />
+    </combine2>
+    <geomcolor name = "VertexColorNode_e97be0d8f33a4ee7a3b0674d112deabc" type = "color4">
+    </geomcolor>
+    <constant name = "_FaceColor" type = "color4">
+        <input name = "value" type = "color4" value = "1,1,1,1" />
+    </constant>
+    <multiply name = "MultiplyNode_c63da869d6cf4a28bc1da28e9b809be5" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "CastSwizzleFrom_FaceColorToMultiplyNode_c63da869d6cf4a28bc1da28e9b809be5in1" />
+        <input name = "in2" type = "vector4" nodename = "CastSwizzleFromVertexColorNode_e97be0d8f33a4ee7a3b0674d112deabcToMultiplyNode_c63da869d6cf4a28bc1da28e9b809be5in2" />
+    </multiply>
+    <RealityKitTexture2D name = "SampleTexture2D_RGBANode_c5b700bbdf11419fa9f561762b4e4316" type = "vector4">
+        <input name = "file" type = "filename" nodename = "SampleTexture2D_TextureNode_c5b700bbdf11419fa9f561762b4e4316" />
+        <input name = "texcoord" type = "vector2" nodename = "SampleTexture2D_UVNode_c5b700bbdf11419fa9f561762b4e4316" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "SampleTexture2D_TextureNode_c5b700bbdf11419fa9f561762b4e4316" type = "filename">
+        <input name = "in" type = "filename" nodename = "_MaskTexture" />
+    </dot>
+    <dot name = "SampleTexture2D_UVNode_c5b700bbdf11419fa9f561762b4e4316" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "CastSwizzleFromMultiplyNode_d919aae04e9740f2be11747c620f57b8ToSampleTexture2D_UVNode_c5b700bbdf11419fa9f561762b4e4316in" />
+    </dot>
+    <swizzle name = "SampleTexture2D_RNode_c5b700bbdf11419fa9f561762b4e4316" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_c5b700bbdf11419fa9f561762b4e4316" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_GNode_c5b700bbdf11419fa9f561762b4e4316" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_c5b700bbdf11419fa9f561762b4e4316" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_BNode_c5b700bbdf11419fa9f561762b4e4316" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_c5b700bbdf11419fa9f561762b4e4316" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "SampleTexture2D_ANode_c5b700bbdf11419fa9f561762b4e4316" type = "float">
+        <input name = "in" type = "vector4" nodename = "SampleTexture2D_RGBANode_c5b700bbdf11419fa9f561762b4e4316" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <constant name = "_MaskTexture" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <constant name = "_UVTransform" type = "matrix44">
+        <input name = "value" type = "matrix44" value = "1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1" />
+    </constant>
+    <transformmatrix name = "MultiplyNode_d919aae04e9740f2be11747c620f57b8" type = "vector4">
+        <input name = "mat" type = "matrix44" nodename = "_UVTransform" />
+        <input name = "in" type = "vector4" nodename = "Position_OutNode_d07a9e4d376445a7b56e9ee30eace4dd" />
+    </transformmatrix>
+    <convert name = "Position_OutNode_d07a9e4d376445a7b56e9ee30eace4dd" type = "vector4">
+        <input name = "in" type = "vector3" nodename = "Position_Out_inNode_d07a9e4d376445a7b56e9ee30eace4dd" />
+    </convert>
+    <multiply name = "Position_Out_inNode_d07a9e4d376445a7b56e9ee30eace4dd" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Position_Out_in_in1Node_d07a9e4d376445a7b56e9ee30eace4dd" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <position name = "Position_Out_in_in1Node_d07a9e4d376445a7b56e9ee30eace4dd" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </position>
+    <multiply name = "MultiplyNode_5acddf5dfd5b4cddadf89d31e9d9b94a" type = "float">
+        <input name = "in1" type = "float" nodename = "MultiplyNode_dcb4d2b5332c48ae8b15fcf711eaec1a" />
+        <input name = "in2" type = "float" nodename = "StepNode_c3408fd14ab343238abe366815eec676" />
+    </multiply>
+    <ifgreatereq name = "StepNode_c3408fd14ab343238abe366815eec676" type = "float">
+        <input name = "value2" type = "float" value = "0.2" />
+        <input name = "value1" type = "float" nodename = "MultiplyNode_c854b49dab4142128ad4bb61999d2fdf" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreatereq>
+    <subtract name = "SubtractNode_389701b60f9a4627bf2ee2cb83431ea0" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "MultiplyNode_d919aae04e9740f2be11747c620f57b8" />
+        <input name = "in2" type = "vector4" value = "0.5,0.5,0,0" />
+    </subtract>
+    <absval name = "AbsoluteNode_acd9a1a5cab04eebbe9487f381bbed64" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "SubtractNode_389701b60f9a4627bf2ee2cb83431ea0" />
+    </absval>
+    <dot name = "StepInNode_ee27f5aca52542329d8d12f57b714540" type = "vector4">
+        <input name = "in" type = "vector4" value = "0.5,0.5,0,0" />
+    </dot>
+    <dot name = "StepEdgeNode_ee27f5aca52542329d8d12f57b714540" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "AbsoluteNode_acd9a1a5cab04eebbe9487f381bbed64" />
+    </dot>
+    <combine4 name = "StepOutNode_ee27f5aca52542329d8d12f57b714540" type = "vector4">
+        <input name = "in1" type = "float" nodename = "StepComp0Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "in2" type = "float" nodename = "StepComp1Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "in3" type = "float" nodename = "StepComp2Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "in4" type = "float" nodename = "StepComp3Node_ee27f5aca52542329d8d12f57b714540" />
+    </combine4>
+    <extract name = "StepEdge0Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "in" type = "vector4" nodename = "StepEdgeNode_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "StepIn0Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "in" type = "vector4" nodename = "StepInNode_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <ifgreatereq name = "StepComp0Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "value1" type = "float" nodename = "StepIn0Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "value2" type = "float" nodename = "StepEdge0Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreatereq>
+    <extract name = "StepEdge1Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "in" type = "vector4" nodename = "StepEdgeNode_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "StepIn1Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "in" type = "vector4" nodename = "StepInNode_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <ifgreatereq name = "StepComp1Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "value1" type = "float" nodename = "StepIn1Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "value2" type = "float" nodename = "StepEdge1Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreatereq>
+    <extract name = "StepEdge2Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "in" type = "vector4" nodename = "StepEdgeNode_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <extract name = "StepIn2Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "in" type = "vector4" nodename = "StepInNode_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <ifgreatereq name = "StepComp2Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "value1" type = "float" nodename = "StepIn2Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "value2" type = "float" nodename = "StepEdge2Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreatereq>
+    <extract name = "StepEdge3Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "in" type = "vector4" nodename = "StepEdgeNode_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "index" type = "integer" value = "3" />
+    </extract>
+    <extract name = "StepIn3Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "in" type = "vector4" nodename = "StepInNode_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "index" type = "integer" value = "3" />
+    </extract>
+    <ifgreatereq name = "StepComp3Node_ee27f5aca52542329d8d12f57b714540" type = "float">
+        <input name = "value1" type = "float" nodename = "StepIn3Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "value2" type = "float" nodename = "StepEdge3Node_ee27f5aca52542329d8d12f57b714540" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreatereq>
+    <dot name = "SplitNode_5f774c8641194d3f8f91bc6bbcde902d" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "StepOutNode_ee27f5aca52542329d8d12f57b714540" />
+    </dot>
+    <extract name = "SplitNode_5f774c8641194d3f8f91bc6bbcde902dR" type = "float">
+        <input name = "in" type = "vector4" nodename = "SplitNode_5f774c8641194d3f8f91bc6bbcde902d" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "SplitNode_5f774c8641194d3f8f91bc6bbcde902dG" type = "float">
+        <input name = "in" type = "vector4" nodename = "SplitNode_5f774c8641194d3f8f91bc6bbcde902d" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "SplitNode_5f774c8641194d3f8f91bc6bbcde902dB" type = "float">
+        <input name = "in" type = "vector4" nodename = "SplitNode_5f774c8641194d3f8f91bc6bbcde902d" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <extract name = "SplitNode_5f774c8641194d3f8f91bc6bbcde902dA" type = "float">
+        <input name = "in" type = "vector4" nodename = "SplitNode_5f774c8641194d3f8f91bc6bbcde902d" />
+        <input name = "index" type = "integer" value = "3" />
+    </extract>
+    <multiply name = "MultiplyNode_bab600f7c124459aa1d35f87a376a02e" type = "float">
+        <input name = "in1" type = "float" nodename = "SplitNode_5f774c8641194d3f8f91bc6bbcde902dR" />
+        <input name = "in2" type = "float" nodename = "SplitNode_5f774c8641194d3f8f91bc6bbcde902dG" />
+    </multiply>
+    <multiply name = "MultiplyNode_c854b49dab4142128ad4bb61999d2fdf" type = "float">
+        <input name = "in1" type = "float" nodename = "SampleTexture2D_ANode_c5b700bbdf11419fa9f561762b4e4316" />
+        <input name = "in2" type = "float" nodename = "MultiplyNode_bab600f7c124459aa1d35f87a376a02e" />
+    </multiply>
+    <clamp name = "ComputeSDFAlpha_OutNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "float" nodename = "ComputeSDFAlpha_Out_inNode_5c52eb66739940eab514dcda998e9996" />
+    </clamp>
+    <subtract name = "ComputeSDFAlpha_Out_inNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_Out_in_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_biasNode_5c52eb66739940eab514dcda998e9996" />
+    </subtract>
+    <multiply name = "ComputeSDFAlpha_Out_in_in1Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_alphaNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_scaleNode_5c52eb66739940eab514dcda998e9996" />
+    </multiply>
+    <swizzle name = "ComputeSDFAlpha_alphaNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "vector4" nodename = "ComputeSDFAlpha_alpha_inNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <RealityKitTexture2D name = "ComputeSDFAlpha_alpha_inNode_5c52eb66739940eab514dcda998e9996" type = "vector4">
+        <input name = "file" type = "filename" nodename = "ComputeSDFAlpha_TextureNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "texcoord" type = "vector2" nodename = "ComputeSDFAlpha_alpha_in_texcoordNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "linear" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "ComputeSDFAlpha_TextureNode_5c52eb66739940eab514dcda998e9996" type = "filename">
+        <input name = "in" type = "filename" nodename = "_MainTex" />
+    </dot>
+    <swizzle name = "ComputeSDFAlpha_alpha_in_texcoordNode_5c52eb66739940eab514dcda998e9996" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "ComputeSDFAlpha_UV0Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <dot name = "ComputeSDFAlpha_UV0Node_5c52eb66739940eab514dcda998e9996" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "AddNode_d15eb44f625f4c30bf968545c5667d66" />
+    </dot>
+    <mix name = "ComputeSDFAlpha_scaleNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "bg" type = "float" nodename = "ComputeSDFAlpha_scale_bgNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "fg" type = "float" nodename = "ComputeSDFAlpha_baseScaleNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "mix" type = "float" nodename = "ComputeSDFAlpha_scale_mixNode_5c52eb66739940eab514dcda998e9996" />
+    </mix>
+    <multiply name = "ComputeSDFAlpha_scale_bgNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_scale_bg_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_scale_bg_in2Node_5c52eb66739940eab514dcda998e9996" />
+    </multiply>
+    <absval name = "ComputeSDFAlpha_scale_bg_in1Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "float" nodename = "ComputeSDFAlpha_baseScaleNode_5c52eb66739940eab514dcda998e9996" />
+    </absval>
+    <divide name = "ComputeSDFAlpha_baseScaleNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_baseScale_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_baseScale_in2Node_5c52eb66739940eab514dcda998e9996" />
+    </divide>
+    <multiply name = "ComputeSDFAlpha_baseScale_in1Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_baseScale_in1_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_baseScale_in1_in2Node_5c52eb66739940eab514dcda998e9996" />
+    </multiply>
+    <multiply name = "ComputeSDFAlpha_baseScale_in1_in1Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_baseScale_in1_in1_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_GradientScaleNode_5c52eb66739940eab514dcda998e9996" />
+    </multiply>
+    <absval name = "ComputeSDFAlpha_baseScale_in1_in1_in1Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "float" nodename = "ComputeSDFAlpha_baseScale_in1_in1_in1_inNode_5c52eb66739940eab514dcda998e9996" />
+    </absval>
+    <swizzle name = "ComputeSDFAlpha_baseScale_in1_in1_in1_inNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "vector2" nodename = "ComputeSDFAlpha_UV1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "ComputeSDFAlpha_UV1Node_5c52eb66739940eab514dcda998e9996" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "AddNode_b167241e90a5402fa32f04dc0fce72d3" />
+    </dot>
+    <dot name = "ComputeSDFAlpha_GradientScaleNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "float" nodename = "_GradientScale" />
+    </dot>
+    <add name = "ComputeSDFAlpha_baseScale_in1_in2Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_SharpnessNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" value = "1" />
+    </add>
+    <dot name = "ComputeSDFAlpha_SharpnessNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "float" nodename = "_Sharpness" />
+    </dot>
+    <sqrt name = "ComputeSDFAlpha_baseScale_in2Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "float" nodename = "ComputeSDFAlpha_baseScale_in2_inNode_5c52eb66739940eab514dcda998e9996" />
+    </sqrt>
+    <dotproduct name = "ComputeSDFAlpha_baseScale_in2_inNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "vector2" nodename = "ComputeSDFAlpha_pixelSizeNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "vector2" nodename = "ComputeSDFAlpha_pixelSizeNode_5c52eb66739940eab514dcda998e9996" />
+    </dotproduct>
+    <swizzle name = "ComputeSDFAlpha_pixelSizeNode_5c52eb66739940eab514dcda998e9996" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "ComputeSDFAlpha_pixelSize_inNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <divide name = "ComputeSDFAlpha_pixelSize_inNode_5c52eb66739940eab514dcda998e9996" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "ComputeSDFAlpha_pixelSize_in_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "vector4" nodename = "ComputeSDFAlpha_pixelSize_in_in2Node_5c52eb66739940eab514dcda998e9996" />
+    </divide>
+    <convert name = "ComputeSDFAlpha_pixelSize_in_in1Node_5c52eb66739940eab514dcda998e9996" type = "vector4">
+        <input name = "in" type = "float" nodename = "ComputeSDFAlpha_pixelSize_in_in1_inNode_5c52eb66739940eab514dcda998e9996" />
+    </convert>
+    <swizzle name = "ComputeSDFAlpha_pixelSize_in_in1_inNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "vector4" nodename = "ComputeSDFAlpha_vPositionNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <transformmatrix name = "ComputeSDFAlpha_vPositionNode_5c52eb66739940eab514dcda998e9996" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "ComputeSDFAlpha_vPosition_inNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "mat" type = "matrix44" nodename = "ComputeSDFAlpha_vPosition_matNode_5c52eb66739940eab514dcda998e9996" />
+    </transformmatrix>
+    <combine4 name = "ComputeSDFAlpha_vPosition_inNode_5c52eb66739940eab514dcda998e9996" type = "vector4">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_vPosition_in_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_vPosition_in_in2Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in3" type = "float" nodename = "ComputeSDFAlpha_vPosition_in_in3Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in4" type = "float" value = "1" />
+    </combine4>
+    <swizzle name = "ComputeSDFAlpha_vPosition_in_in1Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "vector3" nodename = "ComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "ComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "CastSwizzleFromPosition_OutNode_0e72827d9b794f5c9124f57510430b91ToComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996in" />
+    </dot>
+    <swizzle name = "ComputeSDFAlpha_vPosition_in_in2Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "vector3" nodename = "ComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "ComputeSDFAlpha_vPosition_in_in3Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "vector3" nodename = "ComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <realitykit_surface_view_to_projection name = "ComputeSDFAlpha_vPosition_matNode_5c52eb66739940eab514dcda998e9996" type = "matrix44">
+    </realitykit_surface_view_to_projection>
+    <absval name = "ComputeSDFAlpha_pixelSize_in_in2Node_5c52eb66739940eab514dcda998e9996" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "ComputeSDFAlpha_pixelSize_in_in2_inNode_5c52eb66739940eab514dcda998e9996" />
+    </absval>
+    <transformmatrix name = "ComputeSDFAlpha_pixelSize_in_in2_inNode_5c52eb66739940eab514dcda998e9996" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "ComputeSDFAlpha_pixelSize_in_in2_in_inNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "mat" type = "matrix44" nodename = "ComputeSDFAlpha_pixelSize_in_in2_in_matNode_5c52eb66739940eab514dcda998e9996" />
+    </transformmatrix>
+    <combine4 name = "ComputeSDFAlpha_pixelSize_in_in2_in_inNode_5c52eb66739940eab514dcda998e9996" type = "vector4">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_pixelSize_in_in2_in_in_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_pixelSize_in_in2_in_in_in2Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in3" type = "float" value = "0" />
+        <input name = "in4" type = "float" value = "0" />
+    </combine4>
+    <swizzle name = "ComputeSDFAlpha_pixelSize_in_in2_in_in_in1Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "vector2" nodename = "ComputeSDFAlpha_screenDimsNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <divide name = "ComputeSDFAlpha_screenDimsNode_5c52eb66739940eab514dcda998e9996" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "ComputeSDFAlpha_screenDims_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "vector2" nodename = "ComputeSDFAlpha_ndcNode_5c52eb66739940eab514dcda998e9996" />
+    </divide>
+    <swizzle name = "ComputeSDFAlpha_screenDims_in1Node_5c52eb66739940eab514dcda998e9996" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "ComputeSDFAlpha_PixelPosNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <dot name = "ComputeSDFAlpha_PixelPosNode_5c52eb66739940eab514dcda998e9996" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "ScreenPositionNode_fbfe91b631234e1fa8377509d75df133" />
+    </dot>
+    <add name = "ComputeSDFAlpha_ndcNode_5c52eb66739940eab514dcda998e9996" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "ComputeSDFAlpha_ndc_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </add>
+    <divide name = "ComputeSDFAlpha_ndc_in1Node_5c52eb66739940eab514dcda998e9996" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "ComputeSDFAlpha_ndc_in1_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_ndc_in1_in2Node_5c52eb66739940eab514dcda998e9996" />
+    </divide>
+    <multiply name = "ComputeSDFAlpha_ndc_in1_in1Node_5c52eb66739940eab514dcda998e9996" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "ComputeSDFAlpha_ndc_in1_in1_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "vector2" value = "0.5,-0.5" />
+    </multiply>
+    <swizzle name = "ComputeSDFAlpha_ndc_in1_in1_in1Node_5c52eb66739940eab514dcda998e9996" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "ComputeSDFAlpha_vPositionNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "ComputeSDFAlpha_ndc_in1_in2Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "vector4" nodename = "ComputeSDFAlpha_vPositionNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <swizzle name = "ComputeSDFAlpha_pixelSize_in_in2_in_in_in2Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "vector2" nodename = "ComputeSDFAlpha_screenDimsNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <realitykit_surface_view_to_projection name = "ComputeSDFAlpha_pixelSize_in_in2_in_matNode_5c52eb66739940eab514dcda998e9996" type = "matrix44">
+    </realitykit_surface_view_to_projection>
+    <subtract name = "ComputeSDFAlpha_scale_bg_in2Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_PerspectiveFilterNode_5c52eb66739940eab514dcda998e9996" />
+    </subtract>
+    <dot name = "ComputeSDFAlpha_PerspectiveFilterNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "float" nodename = "_PerspectiveFilter" />
+    </dot>
+    <absval name = "ComputeSDFAlpha_scale_mixNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "float" nodename = "ComputeSDFAlpha_scale_mix_inNode_5c52eb66739940eab514dcda998e9996" />
+    </absval>
+    <dotproduct name = "ComputeSDFAlpha_scale_mix_inNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "vector3" nodename = "ComputeSDFAlpha_NormalNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "vector3" nodename = "ComputeSDFAlpha_ViewDirNode_5c52eb66739940eab514dcda998e9996" />
+    </dotproduct>
+    <dot name = "ComputeSDFAlpha_NormalNode_5c52eb66739940eab514dcda998e9996" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Normal_OutNode_b83737581d614c9abb5ffccb0ed7acdc" />
+    </dot>
+    <dot name = "ComputeSDFAlpha_ViewDirNode_5c52eb66739940eab514dcda998e9996" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "ViewDirection_OutNode_412fd077520144e19808d72e53bc28c3" />
+    </dot>
+    <subtract name = "ComputeSDFAlpha_biasNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_bias_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </subtract>
+    <multiply name = "ComputeSDFAlpha_bias_in1Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_bias_in1_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_scaleNode_5c52eb66739940eab514dcda998e9996" />
+    </multiply>
+    <subtract name = "ComputeSDFAlpha_bias_in1_in1Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" value = "0.5" />
+        <input name = "in2" type = "float" nodename = "ComputeSDFAlpha_weightNode_5c52eb66739940eab514dcda998e9996" />
+    </subtract>
+    <divide name = "ComputeSDFAlpha_weightNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in1" type = "float" nodename = "ComputeSDFAlpha_weight_in1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in2" type = "float" value = "8" />
+    </divide>
+    <mix name = "ComputeSDFAlpha_weight_in1Node_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "bg" type = "float" nodename = "ComputeSDFAlpha_NormalWeightNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "fg" type = "float" nodename = "ComputeSDFAlpha_BoldWeightNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "mix" type = "float" nodename = "ComputeSDFAlpha_boldNode_5c52eb66739940eab514dcda998e9996" />
+    </mix>
+    <dot name = "ComputeSDFAlpha_NormalWeightNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "float" nodename = "_WeightNormal" />
+    </dot>
+    <dot name = "ComputeSDFAlpha_BoldWeightNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "float" nodename = "_WeightBold" />
+    </dot>
+    <realitykit_step name = "ComputeSDFAlpha_boldNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "edge" type = "float" nodename = "ComputeSDFAlpha_bold_edgeNode_5c52eb66739940eab514dcda998e9996" />
+        <input name = "in" type = "float" value = "0" />
+    </realitykit_step>
+    <swizzle name = "ComputeSDFAlpha_bold_edgeNode_5c52eb66739940eab514dcda998e9996" type = "float">
+        <input name = "in" type = "vector2" nodename = "ComputeSDFAlpha_UV1Node_5c52eb66739940eab514dcda998e9996" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <convert name = "Position_OutNode_0e72827d9b794f5c9124f57510430b91" type = "vector4">
+        <input name = "in" type = "vector3" nodename = "Position_Out_inNode_0e72827d9b794f5c9124f57510430b91" />
+    </convert>
+    <transformmatrix name = "Position_Out_inNode_0e72827d9b794f5c9124f57510430b91" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Position_Out_in_inNode_0e72827d9b794f5c9124f57510430b91" />
+        <input name = "mat" type = "matrix44" nodename = "Position_Out_in_matNode_0e72827d9b794f5c9124f57510430b91" />
+    </transformmatrix>
+    <position name = "Position_Out_in_inNode_0e72827d9b794f5c9124f57510430b91" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </position>
+    <realitykit_surface_model_to_view name = "Position_Out_in_matNode_0e72827d9b794f5c9124f57510430b91" type = "matrix44">
+    </realitykit_surface_model_to_view>
+    <realitykit_surface_screen_position name = "ScreenPositionNode_fbfe91b631234e1fa8377509d75df133" type = "vector4">
+    </realitykit_surface_screen_position>
+    <texcoord name = "UVNode_d15eb44f625f4c30bf968545c5667d66" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "MultiplyNode_d15eb44f625f4c30bf968545c5667d66" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,-1" />
+        <input name = "in2" type = "vector2" nodename = "UVNode_d15eb44f625f4c30bf968545c5667d66" />
+    </multiply>
+    <add name = "AddNode_d15eb44f625f4c30bf968545c5667d66" type = "vector2">
+        <input name = "in1" type = "vector2" value = "0,1" />
+        <input name = "in2" type = "vector2" nodename = "MultiplyNode_d15eb44f625f4c30bf968545c5667d66" />
+    </add>
+    <UsdPrimvarReader name = "UVNode_b167241e90a5402fa32f04dc0fce72d3" type = "vector2">
+        <input name = "varname" type = "string" value = "vertexUV1" />
+    </UsdPrimvarReader>
+    <multiply name = "MultiplyNode_b167241e90a5402fa32f04dc0fce72d3" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,-1" />
+        <input name = "in2" type = "vector2" nodename = "UVNode_b167241e90a5402fa32f04dc0fce72d3" />
+    </multiply>
+    <add name = "AddNode_b167241e90a5402fa32f04dc0fce72d3" type = "vector2">
+        <input name = "in1" type = "vector2" value = "0,1" />
+        <input name = "in2" type = "vector2" nodename = "MultiplyNode_b167241e90a5402fa32f04dc0fce72d3" />
+    </add>
+    <multiply name = "ViewDirection_OutNode_412fd077520144e19808d72e53bc28c3" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "ViewDirection_Out_in1Node_412fd077520144e19808d72e53bc28c3" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <realitykit_viewdirection name = "ViewDirection_Out_in1Node_412fd077520144e19808d72e53bc28c3" type = "vector3">
+        <input name = "space" type = "string" value = "world" />
+    </realitykit_viewdirection>
+    <multiply name = "Normal_OutNode_b83737581d614c9abb5ffccb0ed7acdc" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "Normal_Out_in1Node_b83737581d614c9abb5ffccb0ed7acdc" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <normal name = "Normal_Out_in1Node_b83737581d614c9abb5ffccb0ed7acdc" type = "vector3">
+        <input name = "space" type = "string" value = "world" />
+    </normal>
+    <constant name = "_WeightNormal" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <constant name = "_WeightBold" type = "float">
+        <input name = "value" type = "float" value = "0.5" />
+    </constant>
+    <constant name = "_PerspectiveFilter" type = "float">
+        <input name = "value" type = "float" value = "0.875" />
+    </constant>
+    <constant name = "_GradientScale" type = "float">
+        <input name = "value" type = "float" value = "5" />
+    </constant>
+    <constant name = "_Sharpness" type = "float">
+        <input name = "value" type = "float" value = "1" />
+    </constant>
+    <GeometryModification name = "SR_TextSDFSmoothstepVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_TextSDFSmoothstep" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromCombine_RGBNode_0e4f3ee4f6ec44efbfee3669995a83d7ToSR_TextSDFSmoothstepcolor" />
+        <input name = "opacity" type = "float" nodename = "MultiplyNode_5acddf5dfd5b4cddadf89d31e9d9b94a" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_TextSDFSmoothstep" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_TextSDFSmoothstepVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_TextSDFSmoothstep" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFrom_FaceColorToMultiplyNode_c63da869d6cf4a28bc1da28e9b809be5in1" type = "vector4">
+        <input name = "in" type = "color4" nodename = "_FaceColor" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromVertexColorNode_e97be0d8f33a4ee7a3b0674d112deabcToMultiplyNode_c63da869d6cf4a28bc1da28e9b809be5in2" type = "vector4">
+        <input name = "in" type = "color4" nodename = "VertexColorNode_e97be0d8f33a4ee7a3b0674d112deabc" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromMultiplyNode_d919aae04e9740f2be11747c620f57b8ToSampleTexture2D_UVNode_c5b700bbdf11419fa9f561762b4e4316in" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "MultiplyNode_d919aae04e9740f2be11747c620f57b8" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromPosition_OutNode_0e72827d9b794f5c9124f57510430b91ToComputeSDFAlpha_ViewPosNode_5c52eb66739940eab514dcda998e9996in" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "Position_OutNode_0e72827d9b794f5c9124f57510430b91" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromCombine_RGBNode_0e4f3ee4f6ec44efbfee3669995a83d7ToSR_TextSDFSmoothstepcolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "Combine_RGBNode_0e4f3ee4f6ec44efbfee3669995a83d7" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

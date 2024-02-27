@@ -1,0 +1,197 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Procedural"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Procedural/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Procedural/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Procedural/CastSwizzleFromCheckerboard_OutNode_cb852112626c4b15a57c75af5f980a86ToSR_Proceduralcolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromCheckerboard_OutNode_cb852112626c4b15a57c75af5f980a86ToSR_Proceduralcolor"
+            {
+                uniform token info:id = "ND_swizzle_vector3_color3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_OutNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "Checkerboard_OutNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_mix_vector3"
+                float3 inputs:bg.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_Out_bgNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float3 inputs:fg.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_Out_fgNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float inputs:mix.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_xorValueNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Checkerboard_Out_bgNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_convert_color3_vector3"
+                color3f inputs:in.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_ColorBNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Checkerboard_ColorBNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_dot_color3"
+                color3f inputs:in = (0.4479884, 0.4479884, 0.4479884)
+                color3f outputs:out
+            }
+
+            def Shader "Checkerboard_Out_fgNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_convert_color3_vector3"
+                color3f inputs:in.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_ColorANode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Checkerboard_ColorANode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_dot_color3"
+                color3f inputs:in = (0.03310476, 0.03310476, 0.03310476)
+                color3f outputs:out
+            }
+
+            def Shader "Checkerboard_xorValueNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_xorValue_in1Node_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_xorValue_in2Node_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Checkerboard_xorValue_in1Node_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_horizontalValueNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_verticalValueNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Checkerboard_horizontalValueNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_splitlr_float"
+                float inputs:valuel = 0
+                float inputs:valuer = 1
+                float inputs:center = 0.5
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_fracUVNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Checkerboard_fracUVNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_realitykit_fractional_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_fracUV_inNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Checkerboard_fracUV_inNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_fracUV_in_in1Node_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_FrequencyNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Checkerboard_fracUV_in_in1Node_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_add_vector2FA"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float inputs:in2 = 0.5
+                float2 outputs:out
+            }
+
+            def Shader "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86Add.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86Add"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86Multiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86Multiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86UV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "Checkerboard_UVNode_cb852112626c4b15a57c75af5f980a86UV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "Checkerboard_xorValue_in2Node_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_xorValue_in2_in1Node_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_verticalValueNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Checkerboard_xorValue_in2_in1Node_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1 = 2
+                float inputs:in2.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_horizontalValueNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Checkerboard_verticalValueNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_splitlr_float"
+                float inputs:valuel = 0
+                float inputs:valuer = 1
+                float inputs:center = 0.5
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_verticalValue_texcoordNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "Checkerboard_verticalValue_texcoordNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_swizzle_vector2_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_Procedural/Checkerboard_fracUVNode_cb852112626c4b15a57c75af5f980a86.outputs:out>
+                string inputs:channels = "yx"
+                float2 outputs:out
+            }
+
+            def Shader "Checkerboard_FrequencyNode_cb852112626c4b15a57c75af5f980a86"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in = (1, 1)
+                float2 outputs:out
+            }
+        }
+    }
+}

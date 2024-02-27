@@ -1,0 +1,50 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Lighting"
+        {
+            float4 inputs:unity_AmbientSky = (0, 0, 0, 0)
+            float4 inputs:unity_AmbientEquator = (0, 0, 0, 0)
+            float4 inputs:unity_AmbientGround = (0, 0, 0, 0)
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Lighting/realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Lighting/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </MaterialX/Materials/USD_Lighting/CastSwizzleFromAmbient_ColorSkyNode_b7f4d598f1fa461cacf4e82341f6c861ToSR_Lightingcolor.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromAmbient_ColorSkyNode_b7f4d598f1fa461cacf4e82341f6c861ToSR_Lightingcolor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Lighting/Ambient_ColorSkyNode_b7f4d598f1fa461cacf4e82341f6c861.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "Ambient_ColorSkyNode_b7f4d598f1fa461cacf4e82341f6c861"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Lighting.inputs:unity_AmbientSky>
+                float4 outputs:out
+            }
+        }
+    }
+}

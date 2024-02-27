@@ -1,0 +1,56 @@
+<linker>
+	<assembly fullname="Assembly-CSharp" ignoreIfMissing="1">
+		<type fullname="PolySpatial.Template.GoalManager">
+			<method name="ForceCompleteGoal"/>
+			<method name="ForceEndAllGoals"/>
+			<method name="ResetCoaching"/>
+		</type>
+		<type fullname="PolySpatial.Template.LaunchProjectile">
+			<method name="Fire"/>
+		</type>
+		<type fullname="PolySpatial.Template.LoadLevelButton">
+			<method name="LoadLevel"/>
+			<method name="LoadLevel"/>
+		</type>
+		<type fullname="PolySpatial.Template.PinchAudioFeedback">
+			<method name="PlayAudioPinchEnd"/>
+			<method name="PlayAudioPinchEnd"/>
+			<method name="PlayAudioPinchEnd"/>
+			<method name="PlayAudioPinchEnd"/>
+			<method name="PlayAudioPinchEnd"/>
+			<method name="PlayAudioPinchStart"/>
+			<method name="PlayAudioPinchStart"/>
+			<method name="PlayAudioPinchStart"/>
+			<method name="PlayAudioPinchStart"/>
+			<method name="PlayAudioPinchStart"/>
+		</type>
+	</assembly>
+	<assembly fullname="Unity.RenderPipelines.Core.Runtime" ignoreIfMissing="1">
+		<type fullname="UnityEngine.Rendering.UI.DebugUIHandlerIntField">
+			<method name="OnDecrement"/>
+			<method name="OnDecrement"/>
+			<method name="OnIncrement"/>
+			<method name="OnIncrement"/>
+		</type>
+		<type fullname="UnityEngine.Rendering.UI.DebugUIHandlerObjectPopupField">
+			<method name="OnDecrement"/>
+			<method name="OnIncrement"/>
+		</type>
+		<type fullname="UnityEngine.Rendering.UI.DebugUIHandlerPanel">
+			<method name="OnScrollbarClicked"/>
+			<method name="OnScrollbarClicked"/>
+			<method name="ResetDebugManager"/>
+		</type>
+		<type fullname="UnityEngine.Rendering.UI.DebugUIHandlerUIntField">
+			<method name="OnDecrement"/>
+			<method name="OnDecrement"/>
+			<method name="OnIncrement"/>
+			<method name="OnIncrement"/>
+		</type>
+	</assembly>
+	<assembly fullname="UnityEngine.CoreModule" ignoreIfMissing="1">
+		<type fullname="UnityEngine.GameObject">
+			<method name="SetActive"/>
+		</type>
+	</assembly>
+</linker>

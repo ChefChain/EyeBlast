@@ -1,0 +1,27 @@
+apiRules:
+  - exclude:
+      hasAttribute:
+        uid: System.ComponentModel.EditorBrowsableAttribute
+        ctorArguments:
+          - System.ComponentModel.EditorBrowsableState.Never
+  - exclude:
+      uidRegex: ^Tests
+      type: Namespace
+  - exclude:
+      uidRegex: Tests$
+      type: Namespace
+  - include:
+      uidRegex: Unity\.PolySpatial\.Internals\.LogLevel
+      type: Enum
+  - include:
+      uidRegex: Unity\.PolySpatial\.Internals\.LogCategory
+      type: Enum
+  - exclude:
+      uidRegex: \.Internals\.
+      type: Type
+  - exclude:
+      uidRegex: UnityEditor\.PolySpatial\.Validation
+      type: Namespace
+  - exclude:
+      uidRegex: UnityEngine\.InputSystem\.LowLevel
+      type: Namespace

@@ -1,0 +1,178 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <combine4 name = "Combine_RGBANode_a72c99b6da4149f586dbba8a5b2c5130" type = "vector4">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in4" type = "float" nodename = "Combine_ANode_a72c99b6da4149f586dbba8a5b2c5130" />
+    </combine4>
+    <dot name = "Combine_RNode_a72c99b6da4149f586dbba8a5b2c5130" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_10b64d7a88854016aa2e8529510f9cc4" />
+    </dot>
+    <dot name = "Combine_GNode_a72c99b6da4149f586dbba8a5b2c5130" type = "float">
+        <input name = "in" type = "float" nodename = "ComparisonNode_ebe7448066a04013981b2fc2060956eb" />
+    </dot>
+    <dot name = "Combine_BNode_a72c99b6da4149f586dbba8a5b2c5130" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "Combine_ANode_a72c99b6da4149f586dbba8a5b2c5130" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <combine3 name = "Combine_RGBNode_a72c99b6da4149f586dbba8a5b2c5130" type = "vector3">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in3" type = "float" nodename = "Combine_BNode_a72c99b6da4149f586dbba8a5b2c5130" />
+    </combine3>
+    <combine2 name = "Combine_RGNode_a72c99b6da4149f586dbba8a5b2c5130" type = "vector2">
+        <input name = "in1" type = "float" nodename = "Combine_RNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "in2" type = "float" nodename = "Combine_GNode_a72c99b6da4149f586dbba8a5b2c5130" />
+    </combine2>
+    <ifgreatereq name = "ComparisonNode_76e0e48bc8714980a7a197acfaf5c9ac" type = "float">
+        <input name = "value1" type = "float" nodename = "SplitNode_1c8958000c6e4a44ba7e04333fc5aeb1G" />
+        <input name = "value2" type = "float" value = "0.9" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreatereq>
+    <rotate3d name = "RotateAboutAxisNode_5121f8586c8f45309319820c83282155" type = "vector3">
+        <input name = "in" type = "vector3" value = "1,0,0" />
+        <input name = "axis" type = "vector3" nodename = "CrossProductNode_529c7a0d85924c85bc7f88200d7c017d" />
+        <input name = "amount" type = "float" nodename = "RotateAboutAxisAngleNode_5121f8586c8f45309319820c83282155" />
+    </rotate3d>
+    <multiply name = "RotateAboutAxisAngleNode_5121f8586c8f45309319820c83282155" type = "float">
+        <input name = "in1" type = "float" value = "90" />
+        <input name = "in2" type = "float" value = "-1" />
+    </multiply>
+    <crossproduct name = "CrossProductNode_529c7a0d85924c85bc7f88200d7c017d" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "NormalizeNode_1634fc7baa194056b29e2676fde35811" />
+        <input name = "in2" type = "vector3" nodename = "CastSwizzleFromNormalizeNode_48e9e596bdcd4d8db8def894bf76789cToCrossProductNode_529c7a0d85924c85bc7f88200d7c017din2" />
+    </crossproduct>
+    <multiply name = "DotProductNode_252c5112e2fe47fbac0981304333327d" type = "float">
+        <input name = "in1" type = "float" nodename = "ComparisonNode_cb0da76147b14290bb7fc0784d1cdfa2" />
+        <input name = "in2" type = "float" value = "1" />
+    </multiply>
+    <transpose name = "TransposeNode_b9f9ac8924074e809d28d5fefdf11f98" type = "matrix33">
+        <input name = "in" type = "matrix33" nodename = "Matrix3Node_7cd772ef95e0485b9ae1cbb9375a82b8" />
+    </transpose>
+    <determinant name = "DeterminantNode_2bed0076c5cb4d35ba76f5690d2617cf" type = "float">
+        <input name = "in" type = "matrix33" nodename = "TransposeNode_b9f9ac8924074e809d28d5fefdf11f98" />
+    </determinant>
+    <dotproduct name = "DotProductNode_6a2edebed41a43b1ab3a62986cae91e5" type = "float">
+        <input name = "in1" type = "vector3" nodename = "Vector3Node_e4b402db2d114529a086c57d7c692a18" />
+        <input name = "in2" type = "vector3" nodename = "Vector3Node_f889b2aa2278429082565e003485faea" />
+    </dotproduct>
+    <combine3 name = "Vector3Node_e4b402db2d114529a086c57d7c692a18" type = "vector3">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0.5" />
+        <input name = "in3" type = "float" value = "0" />
+    </combine3>
+    <combine3 name = "Vector3Node_f889b2aa2278429082565e003485faea" type = "vector3">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "2" />
+        <input name = "in3" type = "float" value = "1" />
+    </combine3>
+    <ifequal name = "ComparisonNode_cb0da76147b14290bb7fc0784d1cdfa2" type = "float">
+        <input name = "value1" type = "float" nodename = "DotProductNode_6a2edebed41a43b1ab3a62986cae91e5" />
+        <input name = "value2" type = "float" value = "1" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <combine3 name = "Vector3Node_0f8ab0f70e304bc9b7e3f9ba3059c27b" type = "vector3">
+        <input name = "in1" type = "float" nodename = "DotProductNode_252c5112e2fe47fbac0981304333327d" />
+        <input name = "in2" type = "float" value = "0" />
+        <input name = "in3" type = "float" value = "0" />
+    </combine3>
+    <dot name = "SplitNode_1c8958000c6e4a44ba7e04333fc5aeb1" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "RotateAboutAxisNode_5121f8586c8f45309319820c83282155" />
+    </dot>
+    <extract name = "SplitNode_1c8958000c6e4a44ba7e04333fc5aeb1R" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_1c8958000c6e4a44ba7e04333fc5aeb1" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "SplitNode_1c8958000c6e4a44ba7e04333fc5aeb1G" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_1c8958000c6e4a44ba7e04333fc5aeb1" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "SplitNode_1c8958000c6e4a44ba7e04333fc5aeb1B" type = "float">
+        <input name = "in" type = "vector3" nodename = "SplitNode_1c8958000c6e4a44ba7e04333fc5aeb1" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <constant name = "Matrix3Node_7cd772ef95e0485b9ae1cbb9375a82b8" type = "matrix33">
+        <input name = "value" type = "matrix33" value = "1,0,0,0,1,0,0,0,1" />
+    </constant>
+    <multiply name = "MultiplyNode_d7360260ed544af2bd8bd8874e8dfe3b" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "CastSwizzleFromDeterminantNode_2bed0076c5cb4d35ba76f5690d2617cfToMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bin1" />
+        <input name = "in2" type = "vector3" nodename = "Vector3Node_b0df942644fd48d5a204793441118347" />
+    </multiply>
+    <combine3 name = "Vector3Node_b0df942644fd48d5a204793441118347" type = "vector3">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+        <input name = "in3" type = "float" value = "0" />
+    </combine3>
+    <normalize name = "NormalizeNode_1634fc7baa194056b29e2676fde35811" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "Vector3Node_0f8ab0f70e304bc9b7e3f9ba3059c27b" />
+    </normalize>
+    <dot name = "PreviewNode_d39705ccb79f4360ac9b5b5d15996d6f" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "RedirectNode_05c0d2429d394a938fc37503f187a999" />
+    </dot>
+    <dot name = "RedirectNode_05c0d2429d394a938fc37503f187a999" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "CastConvertFinalFromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" />
+    </dot>
+    <ifequal name = "ComparisonNode_ebe7448066a04013981b2fc2060956eb" type = "float">
+        <input name = "value1" type = "float" nodename = "ComparisonNode_76e0e48bc8714980a7a197acfaf5c9ac" />
+        <input name = "value2" type = "float" value = "1" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <ifequal name = "ComparisonNode_10b64d7a88854016aa2e8529510f9cc4" type = "float">
+        <input name = "value1" type = "float" value = "0" />
+        <input name = "value2" type = "float" nodename = "ComparisonNode_76e0e48bc8714980a7a197acfaf5c9ac" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifequal>
+    <normalize name = "NormalizeNode_48e9e596bdcd4d8db8def894bf76789c" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "PreviewNode_d39705ccb79f4360ac9b5b5d15996d6f" />
+    </normalize>
+    <GeometryModification name = "SR_LinearVertex" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "SR_Linear" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "CastSwizzleFromCombine_RGBNode_a72c99b6da4149f586dbba8a5b2c5130ToSR_Linearcolor" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Linear" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "SR_LinearVertex" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "SR_Linear" />
+    </surfacematerial>
+    <swizzle name = "CastSwizzleFromNormalizeNode_48e9e596bdcd4d8db8def894bf76789cToCrossProductNode_529c7a0d85924c85bc7f88200d7c017din2" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "NormalizeNode_48e9e596bdcd4d8db8def894bf76789c" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromDeterminantNode_2bed0076c5cb4d35ba76f5690d2617cfToMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bin1" type = "vector3">
+        <input name = "in" type = "float" nodename = "DeterminantNode_2bed0076c5cb4d35ba76f5690d2617cf" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <dot name = "CastConvertFromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "MultiplyNode_d7360260ed544af2bd8bd8874e8dfe3b" />
+    </dot>
+    <combine4 name = "CastConvertFinalFromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" type = "vector4">
+        <input name = "in1" type = "float" nodename = "CastSwizzle1FromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" />
+        <input name = "in2" type = "float" nodename = "CastSwizzle2FromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" />
+        <input name = "in3" type = "float" nodename = "CastSwizzle3FromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" />
+        <input name = "in4" type = "float" value = "0" />
+    </combine4>
+    <swizzle name = "CastSwizzle1FromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" type = "float">
+        <input name = "in" type = "vector3" nodename = "CastConvertFromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "CastSwizzle2FromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" type = "float">
+        <input name = "in" type = "vector3" nodename = "CastConvertFromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "CastSwizzle3FromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" type = "float">
+        <input name = "in" type = "vector3" nodename = "CastConvertFromMultiplyNode_d7360260ed544af2bd8bd8874e8dfe3bToRedirectNode_05c0d2429d394a938fc37503f187a999in" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <swizzle name = "CastSwizzleFromCombine_RGBNode_a72c99b6da4149f586dbba8a5b2c5130ToSR_Linearcolor" type = "color3">
+        <input name = "in" type = "vector3" nodename = "Combine_RGBNode_a72c99b6da4149f586dbba8a5b2c5130" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

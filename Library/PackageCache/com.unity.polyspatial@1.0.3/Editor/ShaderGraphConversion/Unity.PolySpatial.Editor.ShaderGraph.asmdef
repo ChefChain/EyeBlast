@@ -1,0 +1,21 @@
+{
+    "name": "Unity.XR.Quantum.Editor.ShaderGraph",
+    "rootNamespace": "",
+    "references": [
+        "Unity.ShaderGraph.Editor",
+        "Unity.PolySpatial",
+        "Unity.PolySpatial.Editor",
+        "Unity.PolySpatial.Core"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

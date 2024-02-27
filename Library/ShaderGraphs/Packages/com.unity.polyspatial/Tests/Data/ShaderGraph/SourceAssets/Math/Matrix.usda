@@ -1,0 +1,191 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_Matrix"
+        {
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_Matrix/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_Matrix/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                color3f inputs:baseColor.connect = </MaterialX/Materials/USD_Matrix/CastSwizzleFromMatrixSplit_M1Node_31a6c1579c3e4bdda07ec04dd5645db5ToSR_MatrixbaseColor.outputs:out>
+                float inputs:metallic = 0
+                color3f inputs:emissiveColor = (0, 0, 0)
+                float inputs:ambientOcclusion = 1
+                float inputs:specular = 0.5
+                float inputs:roughness.connect = </MaterialX/Materials/USD_Matrix/SR_Matrix_roughness_OnesComplement.outputs:out>
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                float3 inputs:modelPositionOffset.connect = </MaterialX/Materials/USD_Matrix/SR_MatrixVertex_modelPositionOffset_SubtractPosition.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromMatrixSplit_M1Node_31a6c1579c3e4bdda07ec04dd5645db5ToSR_MatrixbaseColor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Matrix/MatrixSplit_M1Node_31a6c1579c3e4bdda07ec04dd5645db5.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "MatrixSplit_M1Node_31a6c1579c3e4bdda07ec04dd5645db5"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                float4 inputs:in = (0, 1, 0, 0)
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_Matrix/MatrixSplit_MatrixNode_31a6c1579c3e4bdda07ec04dd5645db5.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "MatrixSplit_MatrixNode_31a6c1579c3e4bdda07ec04dd5645db5"
+            {
+                uniform token info:id = "ND_transpose_matrix44"
+                matrix4d inputs:in.connect = </MaterialX/Materials/USD_Matrix/MatrixSplit_InNode_31a6c1579c3e4bdda07ec04dd5645db5.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "MatrixSplit_InNode_31a6c1579c3e4bdda07ec04dd5645db5"
+            {
+                uniform token info:id = "ND_dot_matrix44"
+                matrix4d inputs:in.connect = </MaterialX/Materials/USD_Matrix/MatrixConstruction_4x4Node_727545e42c6f4abab97afb399dac8017.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "MatrixConstruction_4x4Node_727545e42c6f4abab97afb399dac8017"
+            {
+                uniform token info:id = "ND_transpose_matrix44"
+                matrix4d inputs:in.connect = </MaterialX/Materials/USD_Matrix/MatrixConstruction_4x4_inNode_727545e42c6f4abab97afb399dac8017.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "MatrixConstruction_4x4_inNode_727545e42c6f4abab97afb399dac8017"
+            {
+                uniform token info:id = "ND_realitykit_combine4_matrix44"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_Matrix/MatrixConstruction_M0Node_727545e42c6f4abab97afb399dac8017.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_Matrix/MatrixConstruction_M1Node_727545e42c6f4abab97afb399dac8017.outputs:out>
+                float4 inputs:in3.connect = </MaterialX/Materials/USD_Matrix/MatrixConstruction_M2Node_727545e42c6f4abab97afb399dac8017.outputs:out>
+                float4 inputs:in4.connect = </MaterialX/Materials/USD_Matrix/MatrixConstruction_M3Node_727545e42c6f4abab97afb399dac8017.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "MatrixConstruction_M0Node_727545e42c6f4abab97afb399dac8017"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Matrix/Vector4Node_636db6a3a8744712a28a76483ab81f2f.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Vector4Node_636db6a3a8744712a28a76483ab81f2f"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float inputs:in3 = 0
+                float inputs:in4 = 0
+                float4 outputs:out
+            }
+
+            def Shader "SR_Matrix_roughness_OnesComplement"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "SR_MatrixVertex_modelPositionOffset_SubtractPosition"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Matrix/SR_MatrixVertex_modelPositionOffset_FlipZ.outputs:out>
+                float3 inputs:in2.connect = </MaterialX/Materials/USD_Matrix/SR_MatrixVertex_modelPositionOffset_Position.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "SR_MatrixVertex_modelPositionOffset_Position"
+            {
+                uniform token info:id = "ND_position_vector3"
+                string inputs:space = "object"
+                float3 outputs:out
+            }
+
+            def Shader "SR_MatrixVertex_modelPositionOffset_FlipZ"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in2 = (1, 1, -1)
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_Matrix/CastSwizzleFromMultiplyNode_77bc853857ef41a88921cf44bc9220d9ToSR_MatrixVertex_modelPositionOffset_FlipZin1.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_77bc853857ef41a88921cf44bc9220d9ToSR_MatrixVertex_modelPositionOffset_FlipZin1"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Matrix/MultiplyNode_77bc853857ef41a88921cf44bc9220d9.outputs:out>
+                string inputs:channels = "xyz"
+                float3 outputs:out
+            }
+
+            def Shader "MultiplyNode_77bc853857ef41a88921cf44bc9220d9"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                matrix4d inputs:mat.connect = </MaterialX/Materials/USD_Matrix/MatrixConstruction_4x4Node_727545e42c6f4abab97afb399dac8017.outputs:out>
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Matrix/Vector4Node_a8619638241a49d3b179a3eab7077a2d.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Vector4Node_a8619638241a49d3b179a3eab7077a2d"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1 = 0
+                float inputs:in2 = 0
+                float inputs:in3 = 0
+                float inputs:in4 = 1
+                float4 outputs:out
+            }
+
+            def Shader "MatrixConstruction_M1Node_727545e42c6f4abab97afb399dac8017"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_Matrix/Vector4Node_0eb5cd0ecd4144cfac282474424cb516.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Vector4Node_0eb5cd0ecd4144cfac282474424cb516"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1 = 0
+                float inputs:in2 = 1
+                float inputs:in3 = 0
+                float inputs:in4 = 0
+                float4 outputs:out
+            }
+
+            def Shader "MatrixConstruction_M2Node_727545e42c6f4abab97afb399dac8017"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in = (0, 0, 1, 0)
+                float4 outputs:out
+            }
+
+            def Shader "MatrixConstruction_M3Node_727545e42c6f4abab97afb399dac8017"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in = (0, 0, 0, 1)
+                float4 outputs:out
+            }
+        }
+    }
+}

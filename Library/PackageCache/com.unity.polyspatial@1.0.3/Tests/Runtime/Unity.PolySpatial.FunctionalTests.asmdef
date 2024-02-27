@@ -1,0 +1,32 @@
+{
+    "name": "Unity.PolySpatial.FunctionalTests",
+    "rootNamespace": "Tests.Runtime.Functional",
+    "references": [
+        "Unity.PolySpatial",
+        "Unity.PolySpatial.RealityKit",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.Collections",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Unity.InputSystem",
+        "Unity.InputSystem.TestFramework",
+        "Unity.TextMeshPro",
+        "Unity.PolySpatial.Core",
+        "Unity.InternalAPIEngineBridge.021"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "FlatSharp.Runtime.dll",
+        "Unity.PolySpatial.Core.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

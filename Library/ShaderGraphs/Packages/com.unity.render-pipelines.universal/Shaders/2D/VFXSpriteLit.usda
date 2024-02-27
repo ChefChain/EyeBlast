@@ -1,0 +1,98 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_VFXSpriteLit"
+        {
+            asset inputs:_Texture2D = @placeholder.png@ (colorSpace = "srgb_texture")
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_VFXSpriteLit/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_VFXSpriteLit/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                color3f inputs:baseColor.connect = </MaterialX/Materials/USD_VFXSpriteLit/CastSwizzleFromSampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fcToSR_VFXSpriteLitbaseColor.outputs:out>
+                float inputs:specular = 0.5
+                float inputs:ambientOcclusion = 1
+                color3f inputs:emissiveColor = (0, 0, 0)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.5
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromSampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fcToSR_VFXSpriteLitbaseColor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_VFXSpriteLit/SampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fc.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_7d404c357a03490d9c3289c3692af3fc"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_VFXSpriteLit/SampleTexture2D_TextureNode_7d404c357a03490d9c3289c3692af3fc.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_VFXSpriteLit/SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fc.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_7d404c357a03490d9c3289c3692af3fc"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_VFXSpriteLit.inputs:_Texture2D>
+                asset outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fc"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_VFXSpriteLit/SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcAdd.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcAdd"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_VFXSpriteLit/SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcMultiply.outputs:out>
+                float2 inputs:in2 = (0, 1)
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcMultiply"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = </MaterialX/Materials/USD_VFXSpriteLit/SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcUV.outputs:out>
+                float2 inputs:in2 = (1, -1)
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_7d404c357a03490d9c3289c3692af3fcUV"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+        }
+    }
+}

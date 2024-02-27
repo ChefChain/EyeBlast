@@ -1,0 +1,404 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_CustomInterpolator"
+        {
+            asset inputs:_SampleTexture2D_dde48ea7f0274d75aa3672cfec65d3b7_Texture_1_Texture2D = @placeholder.png@ (colorSpace = "srgb_texture")
+            asset inputs:_SampleTexture2D_f702726f6d1743cf8a7973bf7d3a1068_Texture_1_Texture2D = @placeholder.png@ (colorSpace = "srgb_texture")
+
+            token outputs:mtlx:surface.connect = </MaterialX/Materials/USD_CustomInterpolator/realitykit_pbr.outputs:out>
+            token outputs:realitykit:vertex.connect = </MaterialX/Materials/USD_CustomInterpolator/GeometryModifier.outputs:out>
+
+            def Shader "realitykit_pbr"
+            {
+                uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+                color3f inputs:baseColor.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzleFromMultiplyNode_3222954943754dd585433ad4a86393d5ToSR_CustomInterpolatorbaseColor.outputs:out>
+                float inputs:metallic = 0
+                color3f inputs:emissiveColor.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzleFromMultiplyNode_c1a681f3e8774968a7aa10acf90d0039ToSR_CustomInterpolatoremissiveColor.outputs:out>
+                float inputs:ambientOcclusion = 1
+                float inputs:specular = 0.5
+                float inputs:roughness.connect = </MaterialX/Materials/USD_CustomInterpolator/SR_CustomInterpolator_roughness_OnesComplement.outputs:out>
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                color4f inputs:color.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzleFromPosition_OutNode_191e1be95d0149628013efe6e7795eecToSR_CustomInterpolatorVertexcolor.outputs:out>
+                float2 inputs:uv0.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzleFromMultiplyNode_0ff6b46f94424fdcb902d63c99274507ToSR_CustomInterpolatorVertexuv0.outputs:out>
+                float2 inputs:uv1.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzleFromMultiplyNode_73254b2b29094a33822099b0bbb6f1d0ToSR_CustomInterpolatorVertexuv1.outputs:out>
+                float4 inputs:userAttribute.connect = </MaterialX/Materials/USD_CustomInterpolator/CastConvertFinalFromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_3222954943754dd585433ad4a86393d5ToSR_CustomInterpolatorbaseColor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/MultiplyNode_3222954943754dd585433ad4a86393d5.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "MultiplyNode_3222954943754dd585433ad4a86393d5"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzleFromColorNode_65fa046114f6438aa112c2a4ecc97532ToMultiplyNode_3222954943754dd585433ad4a86393d5in1.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_CustomInterpolator/SampleTexture2D_RGBANode_dde48ea7f0274d75aa3672cfec65d3b7.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzleFromColorNode_65fa046114f6438aa112c2a4ecc97532ToMultiplyNode_3222954943754dd585433ad4a86393d5in1"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/ColorNode_65fa046114f6438aa112c2a4ecc97532.outputs:out>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "ColorNode_65fa046114f6438aa112c2a4ecc97532"
+            {
+                uniform token info:id = "ND_geomcolor_color4"
+                color4f outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_c1a681f3e8774968a7aa10acf90d0039ToSR_CustomInterpolatoremissiveColor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/MultiplyNode_c1a681f3e8774968a7aa10acf90d0039.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "MultiplyNode_c1a681f3e8774968a7aa10acf90d0039"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_CustomInterpolator/SampleTexture2D_RGBANode_f702726f6d1743cf8a7973bf7d3a1068.outputs:out>
+                float4 inputs:in2.connect = </MaterialX/Materials/USD_CustomInterpolator/UserAttributeNode_21cc81d420b04b6f8275572c801c089d.outputs:customAttribute>
+                float4 outputs:out
+            }
+
+            def Shader "UserAttributeNode_21cc81d420b04b6f8275572c801c089d"
+            {
+                uniform token info:id = "ND_realitykit_surface_custom_attribute"
+                float4 outputs:customAttribute
+            }
+
+            def Shader "SampleTexture2D_RGBANode_f702726f6d1743cf8a7973bf7d3a1068"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_CustomInterpolator/SampleTexture2D_TextureNode_f702726f6d1743cf8a7973bf7d3a1068.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_CustomInterpolator/SampleTexture2D_UVNode_f702726f6d1743cf8a7973bf7d3a1068.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_f702726f6d1743cf8a7973bf7d3a1068"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/UV1Node_fc6391de8216422ebcfea8a3e701e118.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "UV1Node_fc6391de8216422ebcfea8a3e701e118"
+            {
+                uniform token info:id = "ND_UsdPrimvarReader_vector2"
+                string inputs:varname = "vertexUV1"
+                float2 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_f702726f6d1743cf8a7973bf7d3a1068"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator.inputs:_SampleTexture2D_f702726f6d1743cf8a7973bf7d3a1068_Texture_1_Texture2D>
+                asset outputs:out
+            }
+
+            def Shader "SR_CustomInterpolator_roughness_OnesComplement"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1 = 1
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromPosition_OutNode_191e1be95d0149628013efe6e7795eecToSR_CustomInterpolatorVertexcolor"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color4"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/Position_OutNode_191e1be95d0149628013efe6e7795eec.outputs:out>
+                string inputs:channels = "xyzw"
+                color4f outputs:out
+            }
+
+            def Shader "Position_OutNode_191e1be95d0149628013efe6e7795eec"
+            {
+                uniform token info:id = "ND_convert_vector3_vector4"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/Position_Out_inNode_191e1be95d0149628013efe6e7795eec.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "Position_Out_inNode_191e1be95d0149628013efe6e7795eec"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_CustomInterpolator/Position_Out_in_in1Node_191e1be95d0149628013efe6e7795eec.outputs:out>
+                float3 inputs:in2 = (1, 1, -1)
+                float3 outputs:out
+            }
+
+            def Shader "Position_Out_in_in1Node_191e1be95d0149628013efe6e7795eec"
+            {
+                uniform token info:id = "ND_position_vector3"
+                string inputs:space = "object"
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_0ff6b46f94424fdcb902d63c99274507ToSR_CustomInterpolatorVertexuv0"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/MultiplyNode_0ff6b46f94424fdcb902d63c99274507.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "MultiplyNode_0ff6b46f94424fdcb902d63c99274507"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_CustomInterpolator/CastConvertFinalFromAddNode_d35c1e499ee54103b47e1db7df3d383cToMultiplyNode_0ff6b46f94424fdcb902d63c99274507in1.outputs:out>
+                float4 inputs:in2 = (-1, -1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "CastConvertFinalFromAddNode_d35c1e499ee54103b47e1db7df3d383cToMultiplyNode_0ff6b46f94424fdcb902d63c99274507in1"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzle1FromAddNode_d35c1e499ee54103b47e1db7df3d383cToMultiplyNode_0ff6b46f94424fdcb902d63c99274507in1.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzle2FromAddNode_d35c1e499ee54103b47e1db7df3d383cToMultiplyNode_0ff6b46f94424fdcb902d63c99274507in1.outputs:out>
+                float inputs:in3 = 0
+                float inputs:in4 = 0
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzle2FromAddNode_d35c1e499ee54103b47e1db7df3d383cToMultiplyNode_0ff6b46f94424fdcb902d63c99274507in1"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/CastConvertFromAddNode_d35c1e499ee54103b47e1db7df3d383cToMultiplyNode_0ff6b46f94424fdcb902d63c99274507in1.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "CastConvertFromAddNode_d35c1e499ee54103b47e1db7df3d383cToMultiplyNode_0ff6b46f94424fdcb902d63c99274507in1"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/AddNode_d35c1e499ee54103b47e1db7df3d383c.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "AddNode_d35c1e499ee54103b47e1db7df3d383c"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1 = (0, 1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_CustomInterpolator/MultiplyNode_d35c1e499ee54103b47e1db7df3d383c.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "MultiplyNode_d35c1e499ee54103b47e1db7df3d383c"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1 = (1, -1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_CustomInterpolator/UVNode_d35c1e499ee54103b47e1db7df3d383c.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "UVNode_d35c1e499ee54103b47e1db7df3d383c"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "CastSwizzle1FromAddNode_d35c1e499ee54103b47e1db7df3d383cToMultiplyNode_0ff6b46f94424fdcb902d63c99274507in1"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/CastConvertFromAddNode_d35c1e499ee54103b47e1db7df3d383cToMultiplyNode_0ff6b46f94424fdcb902d63c99274507in1.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "CastSwizzleFromMultiplyNode_73254b2b29094a33822099b0bbb6f1d0ToSR_CustomInterpolatorVertexuv1"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/MultiplyNode_73254b2b29094a33822099b0bbb6f1d0.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "MultiplyNode_73254b2b29094a33822099b0bbb6f1d0"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = </MaterialX/Materials/USD_CustomInterpolator/CastConvertFinalFromAddNode_c8cd919ab4f34506a0e8f64581ab53aeToMultiplyNode_73254b2b29094a33822099b0bbb6f1d0in1.outputs:out>
+                float4 inputs:in2 = (-1, -1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "CastConvertFinalFromAddNode_c8cd919ab4f34506a0e8f64581ab53aeToMultiplyNode_73254b2b29094a33822099b0bbb6f1d0in1"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzle1FromAddNode_c8cd919ab4f34506a0e8f64581ab53aeToMultiplyNode_73254b2b29094a33822099b0bbb6f1d0in1.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzle2FromAddNode_c8cd919ab4f34506a0e8f64581ab53aeToMultiplyNode_73254b2b29094a33822099b0bbb6f1d0in1.outputs:out>
+                float inputs:in3 = 0
+                float inputs:in4 = 0
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzle2FromAddNode_c8cd919ab4f34506a0e8f64581ab53aeToMultiplyNode_73254b2b29094a33822099b0bbb6f1d0in1"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/CastConvertFromAddNode_c8cd919ab4f34506a0e8f64581ab53aeToMultiplyNode_73254b2b29094a33822099b0bbb6f1d0in1.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "CastConvertFromAddNode_c8cd919ab4f34506a0e8f64581ab53aeToMultiplyNode_73254b2b29094a33822099b0bbb6f1d0in1"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/AddNode_c8cd919ab4f34506a0e8f64581ab53ae.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "AddNode_c8cd919ab4f34506a0e8f64581ab53ae"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1 = (0, 1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_CustomInterpolator/MultiplyNode_c8cd919ab4f34506a0e8f64581ab53ae.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "MultiplyNode_c8cd919ab4f34506a0e8f64581ab53ae"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1 = (1, -1)
+                float2 inputs:in2.connect = </MaterialX/Materials/USD_CustomInterpolator/UVNode_c8cd919ab4f34506a0e8f64581ab53ae.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "UVNode_c8cd919ab4f34506a0e8f64581ab53ae"
+            {
+                uniform token info:id = "ND_UsdPrimvarReader_vector2"
+                string inputs:varname = "vertexUV1"
+                float2 outputs:out
+            }
+
+            def Shader "CastSwizzle1FromAddNode_c8cd919ab4f34506a0e8f64581ab53aeToMultiplyNode_73254b2b29094a33822099b0bbb6f1d0in1"
+            {
+                uniform token info:id = "ND_swizzle_vector2_float"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/CastConvertFromAddNode_c8cd919ab4f34506a0e8f64581ab53aeToMultiplyNode_73254b2b29094a33822099b0bbb6f1d0in1.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "CastConvertFinalFromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzle1FromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute.outputs:out>
+                float inputs:in2.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzle2FromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute.outputs:out>
+                float inputs:in3.connect = </MaterialX/Materials/USD_CustomInterpolator/CastSwizzle3FromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute.outputs:out>
+                float inputs:in4 = 0
+                float4 outputs:out
+            }
+
+            def Shader "CastSwizzle3FromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/CastConvertFromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute.outputs:out>
+                string inputs:channels = "z"
+                float outputs:out
+            }
+
+            def Shader "CastConvertFromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/Normal_OutNode_4c677514806c485f8106000b231fd71d.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "Normal_OutNode_4c677514806c485f8106000b231fd71d"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = </MaterialX/Materials/USD_CustomInterpolator/Normal_Out_in1Node_4c677514806c485f8106000b231fd71d.outputs:out>
+                float3 inputs:in2 = (1, 1, -1)
+                float3 outputs:out
+            }
+
+            def Shader "Normal_Out_in1Node_4c677514806c485f8106000b231fd71d"
+            {
+                uniform token info:id = "ND_normal_vector3"
+                string inputs:space = "object"
+                float3 outputs:out
+            }
+
+            def Shader "CastSwizzle2FromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/CastConvertFromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "CastSwizzle1FromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/CastConvertFromNormal_OutNode_4c677514806c485f8106000b231fd71dToSR_CustomInterpolatorVertexuserAttribute.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "SampleTexture2D_RGBANode_dde48ea7f0274d75aa3672cfec65d3b7"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = </MaterialX/Materials/USD_CustomInterpolator/SampleTexture2D_TextureNode_dde48ea7f0274d75aa3672cfec65d3b7.outputs:out>
+                float2 inputs:texcoord.connect = </MaterialX/Materials/USD_CustomInterpolator/SampleTexture2D_UVNode_dde48ea7f0274d75aa3672cfec65d3b7.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "SampleTexture2D_TextureNode_dde48ea7f0274d75aa3672cfec65d3b7"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator.inputs:_SampleTexture2D_dde48ea7f0274d75aa3672cfec65d3b7_Texture_1_Texture2D>
+                asset outputs:out
+            }
+
+            def Shader "SampleTexture2D_UVNode_dde48ea7f0274d75aa3672cfec65d3b7"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = </MaterialX/Materials/USD_CustomInterpolator/UV0Node_242540854003437db2c7c3755dd997bd.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "UV0Node_242540854003437db2c7c3755dd997bd"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+        }
+    }
+}
