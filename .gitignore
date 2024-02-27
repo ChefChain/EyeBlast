@@ -32,3 +32,12 @@ MemoryCaptures/
 *.so
 Temp/
 Logs/
+Library/PackageCache/com.unity.polyspatial@1.0.3/Samples~/PolySpatialSamples/PolySpatialSamples.unitypackage
+Library/PackageCache/com.unity.burst@1.8.12/.Runtime/burst-llvm-16.dll
+Library/PackageCache/com.unity.burst@1.8.12/.Runtime/hostmac/dsymutil
+Library/PackageCache/com.unity.burst@1.8.12/.Runtime/libburst-llvm-10.dylib
+Library/PackageCache/com.unity.burst@1.8.12/.Runtime/libburst-llvm-16.so
+Library/ArtifactDB
+Library/PackageCache/com.unity.burst@1.8.12/.Runtime/libburst-llvm-16.dylib
+Temp/
+Logs/
